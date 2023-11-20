@@ -1,6 +1,9 @@
 #ifndef POKER_SCRATCH_H
 #define POKER_SCRATCH_H
 
+class Cards {
+}
+
 
 class poker_scratch
 {
