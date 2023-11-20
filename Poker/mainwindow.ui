@@ -50,8 +50,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
    <widget class="QRadioButton" name="radioButton">
     <property name="geometry">
      <rect>
-      <x>370</x>
-      <y>250</y>
+      <x>360</x>
+      <y>240</y>
       <width>99</width>
       <height>20</height>
      </rect>
