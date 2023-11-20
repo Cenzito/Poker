@@ -28,7 +28,42 @@ private:
 
 };
 
+class Player {
+public: //functions
+    //initializing (new player created)
+        //define chips available as int var
 
+    //get_chips()
+        //returns chips available
+    //get_bet()
+        //returns bet
+    //get_cards()
+        //returns cards
+    //get_hand()
+        //returns hand
+    //is_small_blind()
+        //return small_blind
+    //is_big_blind()
+        //return big_blind
+
+    //Section: Actions a player can make
+    //call()
+    //raise()
+    //fold()
+
+    //
+
+
+private: //attributes
+    //Two cards
+    //Betting
+    //Chips available
+    //Best hand (five cards)
+    //big_blind (boolean)
+    //small_blind (boolean)
+
+
+};
 
 
 
