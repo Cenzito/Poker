@@ -63,6 +63,7 @@ CMakeLists.txt.user*
 # MinGW generated files
 *.Debug
 *.Release
+/build-Poker-Desktop_Qt_6_2_4_MinGW_64_bit-Debug
 
 # Python byte code
 *.pyc
