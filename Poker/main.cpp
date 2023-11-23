@@ -1,12 +1,12 @@
-#include "mainwindow.h"
+#include "PokerPlayer.hpp"
 
-#include <QApplication>
 
-int main(int argc, char *argv[])
-{
-    QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
-    return a.exec();
+
+int main() {
+    Game pokerGame(4);
+    pokerGame.startGame();
+
+    
+
+    return 0;
 }
-//change
