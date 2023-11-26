@@ -1,4 +1,5 @@
-#include "poker_scratch.h"
+#include "../headers/logic_scratch.h"
+#include "logic/headers/PokerPlayer.hpp"
 
 #ifndef POKER_PLAYER_HPP
 #define POKER_PLAYER_HPP
@@ -8,7 +9,7 @@
 
 class Logic_ {
 public:
-    PokerPlayer(const std::string& name, int initialChips);
+    PokerPlayer PokerPlayer(const std::string& name, int initialChips);
 
     int getChips() const;
     void placeBet(int amount);

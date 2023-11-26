@@ -1,4 +1,4 @@
-#include "PokerPlayer.hpp"
+//#include "./logic/headers/PokerPlayer.hpp"
 
 #include "mainwindow.h"
 
@@ -6,8 +6,8 @@
 
 
 int main(int argc, char *argv[]) {
-    Game pokerGame(4);
-    pokerGame.startGame();
+    //Game pokerGame(4);
+    //pokerGame.startGame();
 
     
     QApplication a(argc, argv);

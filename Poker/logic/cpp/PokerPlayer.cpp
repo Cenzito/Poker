@@ -1,6 +1,11 @@
-#include "PokerPlayer.hpp"
+#include "../headers/PokerPlayer.hpp"
+#include <algorithm>
 #include <iostream>
 #include <random>
+#include <chrono>
+#include <iterator>
+
+
 PokerPlayer::PokerPlayer(const std::string& name, int initialChips) : name(name), chips(initialChips) {}
 
 int PokerPlayer::getChips() const {

@@ -2,7 +2,7 @@
 #define POKER_SCRATCH_H
 
 class Cards {
-}
+};
 
 
 class poker_scratch
@@ -83,7 +83,7 @@ private: //attributes
 
 };
 
-class Game { //the idea will be to integrate the functions turn() and round() to create a full game within the class
+class Game_ { //the idea will be to integrate the functions turn() and round() to create a full game within the class
 public:
     //intializing default
         //creates 6 Players and assigns small_blind and big_blind, pot = 0
