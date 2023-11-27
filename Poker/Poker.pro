@@ -11,13 +11,24 @@ CONFIG += c++17
 SOURCES += \
     logic.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp\
+    logic/cpp/logic_scratch.cpp \
+    logic/cpp/PokerPlayer.cpp
+
 
 HEADERS += \
-    mainwindow.h
+    mainwindow.h\
+    logic/headers/card.hpp \
+    logic/headers/logic_scratch.h \
+    logic/headers/player.hpp \
+    logic/headers/PokerPlayer.hpp
+
+
 
 FORMS += \
     mainwindow.ui
+
+
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
