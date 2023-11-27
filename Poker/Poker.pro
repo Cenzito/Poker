@@ -19,6 +19,7 @@ SOURCES += \
 HEADERS += \
     mainwindow.h\
     logic/headers/card.hpp \
+    logic/headers/bot.hpp \
     logic/headers/logic_scratch.h \
     logic/headers/player.hpp \
     logic/headers/PokerPlayer.hpp
