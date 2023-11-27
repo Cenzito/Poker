@@ -15,7 +15,6 @@ class Card {
 public:
     Card(const std::string& suit, int value);
     friend std::ostream& operator<<(std::ostream& os, const Card& card);
-    static std::set<std::string> names;
     std::string getSuit() const;
     int getValue() const;
     std::string toString() const; 
@@ -30,6 +29,7 @@ class PokerPlayer {
 public:
     PokerPlayer(const std::string& name, int initialChips);
     const std::string& getName() const { return name; }
+    static std::set<std::string> names;
     int getChips() const;
     void placeBet(int amount);
     void receiveCards(const std::vector<Card>& cards);
