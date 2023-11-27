@@ -1,6 +1,6 @@
 //#include "./logic/headers/PokerPlayer.hpp"
 
-#include "./Visuals/MainWindow/mainwindow.h"
+#include "./Visuals/MainWindow/mainwindow.hpp"
 
 #include <QApplication>
 
