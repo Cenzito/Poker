@@ -9,26 +9,25 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    logic.cpp \
+    Bots/Easy/BotEasy.cpp \
+    Bots/Medium/BotMedium.cpp \
     main.cpp \
-    mainwindow.cpp\
-    logic/cpp/logic_scratch.cpp \
-    logic/cpp/PokerPlayer.cpp
+    GameLogic/logic_scratch.cpp\
+    Visuals/MainWindow/mainwindow.cpp
 
 
 HEADERS += \
-    mainwindow.h\
-    logic/headers/card.hpp \
-    logic/headers/logic_scratch.h \
-    logic/headers/player.hpp \
-    logic/headers/PokerPlayer.hpp
+    Bots/Medium/BotMedium.hpp \
+    GameLogic/logic_scratch.hpp\
+    Visuals/MainWindow/mainwindow.h\
+    Bots/Easy/BotEasy.hpp
 
 
 
 FORMS += \
-    mainwindow.ui
+    Visuals/MainWindow/mainwindow.ui
 
-
+RESOURCES = application.qrc
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
