@@ -17,7 +17,7 @@ public:
     friend std::ostream& operator<<(std::ostream& os, const Card& card);
     std::string getSuit() const;
     int getValue() const;
-    std::string toString() const; 
+    std::string toString() const;
 
 private:
     std::string suit; // 'H' is heart 'D' is diamond etc.
@@ -35,12 +35,13 @@ public:
     void receiveCards(const std::vector<Card>& cards);
     void showHand() const;
     void winChips(int amount);
-    virtual void action(int minAmount, int type); // 1 = normal round, 2 = small blind, 3 = bigblind
+    //this is not implemented in cpp file
+    //virtual void action(int minAmount, int type); // 1 = normal round, 2 = small blind, 3 = bigblind
 
 protected:
     std::string name;
     int chips;
-    std::vector<Card> hand; 
+    std::vector<Card> hand;
     bool isBot, isAllin, isFold;
 };
 

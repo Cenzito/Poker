@@ -1,4 +1,4 @@
-#include "../headers/PokerPlayer.hpp"
+#include "PokerPlayer.hpp"
 #include <algorithm>
 #include <iostream>
 #include <random>
@@ -74,10 +74,10 @@ Deck::Deck() : currentCardIndex(0) {
 
 
 void Deck::shuffleDeck() {
-    
+
     unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
-    
-    
+
+
     std::mt19937 engine(seed);
     std::shuffle(cards.begin(), cards.end(), engine);
     currentCardIndex = 0;
@@ -99,7 +99,7 @@ Game::Game(int numOfPlayers) {
 }
 
 void Game::startGame() {
-    deck.shuffleDeck(); 
+    deck.shuffleDeck();
 
     // deal two random cards
     for (PokerPlayer& player : players) {
@@ -109,7 +109,7 @@ void Game::startGame() {
         player.showHand();
     }
 
-    
+
     std::cout << "Burn: " << deck.dealCard().toString() << std::endl;
 
     // Flop
