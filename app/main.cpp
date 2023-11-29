@@ -9,5 +9,6 @@ int main() {
         std::cerr << "Exception: " << e.what() << std::endl;
         return 1;
     }
+    
     return 0;
 }
