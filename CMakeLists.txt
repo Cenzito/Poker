@@ -29,7 +29,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 
 set(SPTT SpeechToText)
-set(SV Server)
+set(SERVER Server)
 
 set(EXECUTABLE Executable)
 

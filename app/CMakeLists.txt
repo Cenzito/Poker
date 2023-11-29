@@ -37,7 +37,7 @@ find_package(Poco REQUIRED COMPONENTS Foundation Net)
 
 target_link_libraries(${EXECUTABLE} PRIVATE
     ${SPTT}
-    ${SV}
+    ${SERVER}
     Poco::Foundation
     Poco::Net
 )
