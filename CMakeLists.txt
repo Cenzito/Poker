@@ -1,4 +1,7 @@
 #Overall settings
+set(CMAKE_TOOLCHAIN_FILE "${CMAKE_SOURCE_DIR}/external/vcpkg/scripts/buildsystems/vcpkg.cmake"
+        CACHE STRING "VCPKG toolchain file")
+
 cmake_minimum_required(VERSION 3.16)
 
 project(SpeechToText VERSION 1.0.0 LANGUAGES CXX)
@@ -6,14 +9,18 @@ project(SpeechToText VERSION 1.0.0 LANGUAGES CXX)
 include(GNUInstallDirs)
 
 
+
+if(NOT CMAKE_BUILD_TYPE)
+set(CMAKE_BUILD_TYPE Release)
+endif()
 #Enable warnings
 option(ENABLE_WARNINGS      "Enable to add warnings to a target."   ON)
 
 #Options
 option(ENABLE_CLANG_TIDY    "Enable to add clang tidy."             OFF)
-option(ENABLE_CPPCHECK      "Enable to add cppcheck."               OFF)
+option(ENABLE_CPPCHECK      "Enable to add cppcheck."               ON)
 option(ENABLE_LTO           "Enable to add Link Time Optimization." OFF)
-option(ENABLE_CCACHE        "Enable to add Ccache."                 OFF)
+option(ENABLE_CCACHE        "Enable to add Ccache."                 ON)
 
 #Defining Variables
 set(CMAKE_CXX_STANDARD 17)
@@ -22,7 +29,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 
 set(SPTT SpeechToText)
-
+set(SV Server)
 
 set(EXECUTABLE Executable)
 
@@ -63,7 +70,6 @@ FetchContent_Declare(
 )
 
 FetchContent_MakeAvailable(julius)
-
 
 #inlude warnings
 include(Warnings)

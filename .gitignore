@@ -638,6 +638,7 @@ src/Generator/Generator/generator
 build/
 draft/
 docs/
+external/
 
 src/Generator/Generator/ModuleCache.noindex/Session.modulevalidation
 src/Generator/Generator/Generator-emmzeqevaoeevohberbchelxpaaf/info.plist

@@ -16,7 +16,7 @@ endif(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
 
 set(EXE_SOURCES
     "main.cpp")
-
+ 
 add_compile_definitions(CMAKE_SOURCE_DIR="${CMAKE_SOURCE_DIR}")
 message("Build type: " ${CMAKE_BUILD_TYPE})
 if(CMAKE_BUILD_TYPE MATCHES Debug)
@@ -33,6 +33,11 @@ if (${ENABLE_WARNINGS})
     target_set_warnings(TARGET ${EXECUTABLE} ENABLE ON AS_ERROR OFF)
 endif()
 
-target_link_libraries(${EXECUTABLE} PUBLIC 
+find_package(Poco REQUIRED COMPONENTS Foundation Net)
+
+target_link_libraries(${EXECUTABLE} PRIVATE
     ${SPTT}
+    ${SV}
+    Poco::Foundation
+    Poco::Net
 )
