@@ -1,9 +1,9 @@
-#include "PokerPlayer.hpp"
+#include "logic_scratch.hpp"
 
 
 
 int main() {
-    Game pokerGame(4);
+    Game_ pokerGame(4);
     pokerGame.startGame();
 
     

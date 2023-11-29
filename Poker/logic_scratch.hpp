@@ -1,5 +1,8 @@
 #ifndef POKER_SCRATCH_H
 #define POKER_SCRATCH_H
+#include <iostream>
+#include <string>
+#include <vector>
 
 class Card {
 public:
