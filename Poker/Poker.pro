@@ -10,13 +10,36 @@ CONFIG += c++17
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp
+    Bots/Bot.cpp \
+    Bots/Easy/BotEasy.cpp \
+    Bots/Hard/Axel/BotAxel.cpp \
+    Bots/Hard/Cenzo/BotCenzo.cpp \
+    Bots/Hard/Darius/BotDarius.cpp \
+    Bots/Hard/Kenza/BotKenza.cpp \
+    Bots/Hard/Leal/BotLeal.cpp \
+    Bots/Hard/Pu/BotPu.cpp \
+    Bots/Medium/BotMedium.cpp \
+    GameLogic/logic_scratch.cpp \
+    GameLogic/PokerPlayer.cpp \
+    Visuals/MainWindow/mainwindow.cpp
+
 
 HEADERS += \
-    mainwindow.h
+    Bots/Bot.hpp \
+    Bots/Easy/BotEasy.hpp \
+    Bots/Hard/Axel/BotAxel.hpp \
+    Bots/Hard/Cenzo/BotCenzo.hpp \
+    Bots/Hard/Darius/BotDarius.hpp \
+    Bots/Hard/Kenza/BotKenza.hpp \
+    Bots/Hard/Leal/BotLeal.hpp \
+    Bots/Hard/Pu/BotPu.hpp \
+    Bots/Medium/BotMedium.hpp \
+    GameLogic/PokerPlayer.hpp \
+    GameLogic/logic_scratch.hpp \
+    Visuals/MainWindow/mainwindow.hpp
 
 FORMS += \
-    mainwindow.ui
+    Visuals/MainWindow/mainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
