@@ -1,5 +1,6 @@
 #include "server.h"
 #include "Poco/Net/SocketNotification.h"
+#include <fstream>
 #include <iostream>
 #include <string>
 
@@ -41,5 +42,6 @@ int mainServer(int argc, char** argv) {
     }
     PokerServer server(argv[1]);
     server.run();
+
     return 0;
 }
