@@ -25,6 +25,7 @@ target_link_libraries(${SERVER} PRIVATE
     JsonCpp::JsonCpp
     Poco::Foundation
     Poco::Net
+    ${SPTT}
 )
 
 # Conditional compilation options (same as your other CMake file, adjust if necessary)

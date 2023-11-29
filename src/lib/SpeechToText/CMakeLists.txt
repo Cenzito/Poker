@@ -1,6 +1,6 @@
 set(SPTT_SOURCES
     "speech_to_text.cc")
-set(CUI_HEADERS
+set(SPTT_HEADERS
     "speech_to_text.h")
 
 add_library(${SPTT} STATIC

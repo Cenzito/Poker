@@ -1,2 +1,2 @@
-add_subdirectory(SpeechToText)
 add_subdirectory(Server)
+add_subdirectory(lib)

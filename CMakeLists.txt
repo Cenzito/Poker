@@ -91,7 +91,6 @@ endif(DOXYGEN_FOUND)
 #Includes subdirectories
 
 add_subdirectory(src)
-add_subdirectory(lib)
 add_subdirectory(external)
 
 
