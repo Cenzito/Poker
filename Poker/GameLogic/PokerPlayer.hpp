@@ -9,6 +9,8 @@
 //Combinations class that gives which defines what combinations are possible and which are better than others
 //add to game class a function that: given player cards and cards in the middle give their combination (and probablity of success later)
 //implement betting in the game class
+//A class Table that records all information on the table
+//virtual std::pair<std::string, int> action(const Table* table, int minAmount, int type);
 
 
 class Card {
@@ -37,7 +39,7 @@ public:
     void winChips(int amount);
 
     //this is not implemented in cpp file
-    //virtual void action(int minAmount, int type); // 1 = normal round, 2 = small blind, 3 = bigblind
+    //virtual std::pair<std::string, int> action(const Table* table, int minAmount, int type); // 1 = normal round, 2 = small blind, 3 = bigblind
 
 protected:
     std::string name;
@@ -57,6 +59,10 @@ private:
     int currentCardIndex;
 };
 
+//To be implemented. Record all the information on the table.
+class Table {
+
+};
 
 class Game {
 public:
@@ -66,10 +72,10 @@ public:
 
 private:
     Deck deck;
+    Table table;
     std::vector<PokerPlayer> players;
     std::vector<Card> communityCards;
 };
-
 
 
 #endif // POKER_PLAYER_HPP
