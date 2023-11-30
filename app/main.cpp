@@ -1,13 +1,14 @@
-#include "server.h"
 #include <iostream>
+#include "server.h"
 
 int main() {
-    try {
-        PokerServer server("9998"); // Server starts on port 9998
-        server.run();
-    } catch (const std::exception& e) {
-        std::cerr << "Exception: " << e.what() << std::endl;
-        return 1;
-    }
+    int port = 5000; // Set your desired port here
+    PokerServer server(port);
+    server.start();
+
+    std::cout << "Server is running on port " << port << ". Press enter to exit." << std::endl;
+    std::cin.get();
+
+    server.stop();
     return 0;
 }

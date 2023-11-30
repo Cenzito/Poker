@@ -1,47 +1,46 @@
 #include "server.h"
-#include "Poco/Net/SocketNotification.h"
-#include <fstream>
+#include <Poco/Net/ServerSocket.h>
+#include <Poco/Net/StreamSocket.h>
+#include <Poco/Net/SocketStream.h>
 #include <iostream>
 #include <string>
 
-PokerServer::PokerServer(const std::string& port) 
-    : serverSocket(std::stoi(port)), thread("PokerServerThread") {
-    reactor.addEventHandler(serverSocket, Poco::NObserver<PokerServer, Poco::Net::ReadableNotification>(*this, &PokerServer::onSocketReadable));
-}
 
-PokerServer::~PokerServer() {
-    reactor.stop();
-    thread.join();
-}
-
-void PokerServer::run() {
-    thread.start(reactor);
-    std::cout << "Server is running..." << std::endl;
-    Poco::Thread::sleep(Poco::Timespan::SECONDS * 60 * 60); // Keep server running for an hour
-}
-
-void PokerServer::onSocketReadable(const Poco::AutoPtr<Poco::Net::ReadableNotification>& pNf) {
-    Poco::Net::StreamSocket ss = serverSocket.acceptConnection();
-    char buffer[1024];
-    int n = ss.receiveBytes(buffer, sizeof(buffer));
-    std::string message(buffer, n);
-    std::cout << "Received: " << message << std::endl;
-
-    ss.sendBytes(message.data(), message.size());
+PokerServerConnection::PokerServerConnection(const Poco::Net::StreamSocket& socket)
+: TCPServerConnection(socket) {
 }
 
 
-void PokerServer::onSocketShutdown(const Poco::AutoPtr<Poco::Net::ShutdownNotification>& pNf) {
-    std::cout << "Socket is shutting down." << std::endl;
-}
-
-int mainServer(int argc, char** argv) {
-    if (argc < 2) {
-        std::cerr << "Usage: PokerServer <port>" << std::endl;
-        return 1;
+void PokerServerConnection::run() {
+    Poco::Net::StreamSocket& ss = socket();
+    try {
+        char buffer[1024] = {0};
+        int n = ss.receiveBytes(buffer, sizeof(buffer));
+        while (n > 0) {
+            std::string message(buffer, n); // Construct a string from buffer
+            std::cout << "Received: " << message << std::endl;
+            // Echo back the message
+            ss.sendBytes(buffer, n);
+            // Read next message
+            n = ss.receiveBytes(buffer, sizeof(buffer));
+        }
+    } catch (Poco::Exception& exc) {
+        std::cerr << "Connection error: " << exc.displayText() << std::endl;
     }
-    PokerServer server(argv[1]);
-    server.run();
+}
 
-    return 0;
+
+PokerServer::PokerServer(int port) {
+    Poco::Net::ServerSocket svs(port);
+    _server = new Poco::Net::TCPServer(new Poco::Net::TCPServerConnectionFactoryImpl<PokerServerConnection>(), svs);
+}
+
+
+void PokerServer::start() {
+    _server->start();
+}
+
+
+void PokerServer::stop() {
+    _server->stop();
 }
