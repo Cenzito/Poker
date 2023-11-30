@@ -4,19 +4,19 @@
 #include <QMainWindow>
 
 namespace Ui {
-class Gamewindow;
+class GameWindow;
 }
 
-class Gamewindow : public QMainWindow
+class GameWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    explicit Gamewindow(QWidget *parent = nullptr);
-    ~Gamewindow();
+    explicit GameWindow(QWidget *parent = nullptr);
+    ~GameWindow();
 
 private:
-    Ui::Gamewindow *ui;
+    Ui::GameWindow *ui;
 };
 
 #endif // GAMEWINDOW_H
