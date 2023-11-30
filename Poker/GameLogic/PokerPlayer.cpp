@@ -39,12 +39,19 @@ void PokerPlayer::winChips(int amount) {
     std::cout << name << " wins " << amount << " chips." << std::endl;
 }
 
+<<<<<<< Updated upstream
 void PokerPlayer::action(std::vector<int> table, int minAmount, int type) {
     std::cout << "Pot: " << table[0] << std::endl;
     for (int i = 1; i < table.size();i++) {
         std::cout << "Bet" << table[i] << std::endl;
     }
 };
+=======
+void PokerPlayer::action(std::vector<int> table, int minAmount, int type){
+    std::cout << "Total Pot" << std::endl;
+};
+
+>>>>>>> Stashed changes
 
 std::ostream& operator<<(std::ostream& os, const Card& card) {
     os << card.toString();
@@ -129,6 +136,10 @@ void Game::startGame() {
 
 
     // bet
+    for (PokerPlayer& player : players) {
+        player.action();
+    }
+
 
     // burn and card
     std::cout << "Burn: " << deck.dealCard().toString() << std::endl;

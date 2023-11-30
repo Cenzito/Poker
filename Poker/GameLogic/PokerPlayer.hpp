@@ -36,11 +36,17 @@ public:
     void receiveCards(const std::vector<Card>& cards);
     void showHand() const;
     void winChips(int amount);
+    void setPosition(int pos); // 1: UTG, 2: UTG+1 ...
 
     //this is not implemented in cpp file
+<<<<<<< Updated upstream
     virtual void action(Table table, int minAmount, int type); // 1 = normal round, 2 = small blind, 3 = bigblind
+=======
+    virtual void action(std::vector<int> table, int minAmount, int type); // 1 = normal round, 2 = small blind, 3 = bigblind
+>>>>>>> Stashed changes
 
 protected:
+    int position;
     std::string name;
     int chips;
     std::vector<Card> hand;
