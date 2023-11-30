@@ -22,12 +22,9 @@ SOURCES += \
     Bots/Hard/Leal/BotLeal.cpp \
     Bots/Hard/Pu/BotPu.cpp \
     Bots/Medium/BotMedium.cpp \
-    GameLogic/Card.cpp \
-    GameLogic/Deck.cpp \
     GameLogic/logic_scratch.cpp \
     GameLogic/PokerPlayer.cpp \
-    GameLogic/Game.cpp \
-    GameLogic/table.cpp \
+    Visuals/Gamewindow/gamewindow.cpp \
     Visuals/MainWindow/mainwindow.cpp \
 
 HEADERS += \
@@ -42,14 +39,11 @@ HEADERS += \
     Bots/Hard/Leal/BotLeal.hpp \
     Bots/Hard/Pu/BotPu.hpp \
     Bots/Medium/BotMedium.hpp \
-    GameLogic/Card.hpp \
-    GameLogic/Deck.hpp \
-    GameLogic/Game.hpp \
     GameLogic/PokerPlayer.hpp \
     GameLogic/logic_scratch.hpp \
-    GameLogic/table.hpp \
-    Visuals/GameWindow/gamewindow.hpp \
-    Visuals/MainWindow/mainwindow.hpp
+    Visuals/Gamewindow/gamewindow.h \
+    Visuals/MainWindow/mainwindow.hpp \
+    Visuals/RulesWindow/rules.hpp
 
 
 
@@ -57,14 +51,12 @@ FORMS += \
     Visuals/Gamewindow/gamewindow.ui \
     Visuals/MainWindow/mainwindow.ui
 
+
+
 RESOURCES += \
     Visuals/Image.qrc
-
-
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
-
-
