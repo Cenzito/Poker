@@ -1,8 +1,22 @@
 #ifndef POKER_SCRATCH_H
 #define POKER_SCRATCH_H
-
+#include <vector>
+#include <string>
+#include <algorithm>
 class Cards {
 };
+enum class PokerCombinations {
+    HighCard,
+    OnePair,
+    TwoPair,
+    ThreeOfAKind,
+    Straight,
+    Flush,
+    FullHouse,
+    FourOfAKind,
+    StraightFlush,
+    RoyalFlush
+};  //class listing all the possible combinations of poker hands, used to fully specify the best hand of a player 
 
 
 class poker_scratch
@@ -32,20 +46,20 @@ class Player {
 public: //functions
     //initializing (new player created)
         //define chips available as int var
-
-    //get_chips()
+    Player(int chips_available, std::vector<Cards> cards, int small_blind, int big_blind, bool is_player_still_playing);
+    int get_chips();
         //returns chips available
-    //get_bet()
+    int get_bet();
         //returns bet
-    //get_cards()
-        //returns cards
+    std::vector<Cards> get_cards();
+        //returns cards, as a vector with two elements 
     //get_hand()
         //returns hand
     //is_small_blind()
         //return small_blind
     //is_big_blind()
         //return big_blind
-    //is_still_playing()
+    bool is_still_playing();
         //return is_player_still_playing
 
     //Section: Actions a player can make
@@ -62,7 +76,7 @@ public: //functions
         //change value of is_player_still_playing to False
 
     //Section: Actions at end of game
-    //find_best_hand(5 cards in middle)
+   std::vector<Cards> find_best_hand(std::vector<Cards> cards_in_middle); 
         // if (royal flush) ...
         // else if (straight flush)...
 
@@ -72,13 +86,13 @@ public: //functions
 
 
 private: //attributes
-    //Two cards
+    std::vector<Cards> cards;//  a vector of two cards consisting of the player cards
     //Betting
-    //Chips available
-    //Best hand (five cards)
-    //big_blind (boolean)
-    //small_blind (boolean)
-    //is_player_still_playing (boolean)
+    long chips; //the number of hips available
+    std::vector<Cards> best_hand;//Best hand (five cards)
+    int big_blind ;// the current amount of the big blind
+    int small_blind ;// the current amount of the small blind
+    bool is_player_still_playing ;//boolean, 1 if the player is still in the game, 0 otherwise
 
 
 };

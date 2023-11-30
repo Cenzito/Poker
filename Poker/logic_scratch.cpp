@@ -42,7 +42,10 @@ std::ostream& operator<<(std::ostream& os, const Card& card) {
     return os;
 }
 
-
+Card:: operator<(const Card& card) const {
+    
+    return value < card.value;
+}
 Card::Card(const std::string& suit, int value) : suit(suit), value(value) {}
 
 std::string Card::getSuit() const {
