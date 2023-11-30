@@ -3,21 +3,20 @@
 
 #include <QMainWindow>
 
-QT_BEGIN_NAMESPACE
-namespace Ui { class GameWindow; }
-QT_END_NAMESPACE
+namespace Ui {
+class GameWindow;
+}
 
 class GameWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    GameWindow(QWidget *parent = nullptr);
+    explicit GameWindow(QWidget *parent = nullptr);
     ~GameWindow();
 
 private:
     Ui::GameWindow *ui;
-private slots:
-    void onPlayButtonClicked();
 };
+
 #endif // GAMEWINDOW_H

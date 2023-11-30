@@ -41,7 +41,7 @@ HEADERS += \
     Bots/Medium/BotMedium.hpp \
     GameLogic/PokerPlayer.hpp \
     GameLogic/logic_scratch.hpp \
-    Visuals/Gamewindow/gamewindow.h \
+    Visuals/Gamewindow/gamewindow.hpp \
     Visuals/MainWindow/mainwindow.hpp \
     Visuals/RulesWindow/rules.hpp
 
