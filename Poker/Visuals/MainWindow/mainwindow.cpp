@@ -7,6 +7,10 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     connect(ui->pushButton, &QPushButton::clicked, this, &MainWindow::onPlayButtonClicked);
+
+    // Loading and setting the image to the QLabel
+    QPixmap image1("C:/Users/tamar/Desktop/Tamzi/faks/semester 3/cse201/poker project/Poker/Poker/Visuals/MainWindow/pokerpic.jpg"); //sorry for the longest adress ever
+    ui->label_2->setPixmap(image1);
 }
 
 MainWindow::~MainWindow()
