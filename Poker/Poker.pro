@@ -11,6 +11,8 @@ CONFIG += c++17
 SOURCES += \
     Bots/Easy/MonkeyBot.cpp \
     Visuals/MainWindow/gamewindow.cpp \
+    Bots/Easy/BotDrunk.cpp \
+    Visuals/Gamewindow/gamewindow.cpp \
     main.cpp \
     Bots/Bot.cpp \
     Bots/Easy/BotEasy.cpp \
@@ -28,6 +30,7 @@ SOURCES += \
 
 HEADERS += \
     Bots/Bot.hpp \
+    Bots/Easy/BotDrunk.hpp \
     Bots/Easy/BotEasy.hpp \
     Bots/Easy/MonkeyBot.hpp \
     Bots/Hard/Axel/BotAxel.hpp \
@@ -39,19 +42,16 @@ HEADERS += \
     Bots/Medium/BotMedium.hpp \
     GameLogic/PokerPlayer.hpp \
     GameLogic/logic_scratch.hpp \
-    Visuals/MainWindow/gamewindow.h \
+    Visuals/Gamewindow/gamewindow.h \
     Visuals/MainWindow/mainwindow.hpp
 
 
 
 FORMS += \
-    Visuals/MainWindow/gamewindow.ui \
+    Visuals/Gamewindow/gamewindow.ui \
     Visuals/MainWindow/mainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
-
-RESOURCES += \
-    Visuals/Image.qrc

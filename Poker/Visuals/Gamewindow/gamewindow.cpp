@@ -1,14 +1,14 @@
-#include "gamewindow.h"
+#include "gamewindow.hpp"
 #include "ui_gamewindow.h"
 
-Gamewindow::Gamewindow(QWidget *parent) :
+GameWindow::GameWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::Gamewindow)
+    ui(new Ui::GameWindow)
 {
     ui->setupUi(this);
 }
 
-Gamewindow::~Gamewindow()
+GameWindow::~GameWindow()
 {
     delete ui;
 }
