@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+#include <set>
 
 //TO IMPLEMENT:
 //Combinations class that gives which defines what combinations are possible and which are better than others
@@ -14,10 +15,9 @@ class Card {
 public:
     Card(const std::string& suit, int value);
     friend std::ostream& operator<<(std::ostream& os, const Card& card);
-
     std::string getSuit() const;
     int getValue() const;
-    std::string toString() const; 
+    std::string toString() const;
 
 private:
     std::string suit; // 'H' is heart 'D' is diamond etc.
@@ -29,18 +29,21 @@ class PokerPlayer {
 public:
     PokerPlayer(const std::string& name, int initialChips);
     const std::string& getName() const { return name; }
+    static std::set<std::string> names;
     int getChips() const;
     void placeBet(int amount);
     void receiveCards(const std::vector<Card>& cards);
     void showHand() const;
     void winChips(int amount);
-    
 
-private:
+    //this is not implemented in cpp file
+    //virtual void action(int minAmount, int type); // 1 = normal round, 2 = small blind, 3 = bigblind
+
+protected:
     std::string name;
     int chips;
-    std::vector<Card> hand; 
-    
+    std::vector<Card> hand;
+    bool isBot, isAllin, isFold;
 };
 
 class Deck {

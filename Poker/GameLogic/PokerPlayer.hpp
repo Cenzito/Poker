@@ -35,6 +35,7 @@ public:
     void receiveCards(const std::vector<Card>& cards);
     void showHand() const;
     void winChips(int amount);
+
     //this is not implemented in cpp file
     //virtual void action(int minAmount, int type); // 1 = normal round, 2 = small blind, 3 = bigblind
 
