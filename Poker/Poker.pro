@@ -9,6 +9,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    Bots/Easy/BotDrunk.cpp \
     Visuals/Gamewindow/gamewindow.cpp \
     main.cpp \
     Bots/Bot.cpp \
@@ -27,6 +28,7 @@ SOURCES += \
 
 HEADERS += \
     Bots/Bot.hpp \
+    Bots/Easy/BotDrunk.hpp \
     Bots/Easy/BotEasy.hpp \
     Bots/Hard/Axel/BotAxel.hpp \
     Bots/Hard/Cenzo/BotCenzo.hpp \
