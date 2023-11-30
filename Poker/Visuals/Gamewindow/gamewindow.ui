@@ -14,10 +14,10 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-image: url(:/images/poker_table.png);</string>
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="label_card1">
     <property name="geometry">
      <rect>
       <x>50</x>
@@ -27,13 +27,13 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">image: url(:/images/back_card.png);</string>
+     <string notr="true"/>
     </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="label_2">
+   <widget class="QLabel" name="label_card2">
     <property name="geometry">
      <rect>
       <x>200</x>
@@ -43,13 +43,13 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">image: url(:/images/back_card.png);</string>
+     <string notr="true"/>
     </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="label_3">
+   <widget class="QLabel" name="label_card3">
     <property name="geometry">
      <rect>
       <x>340</x>
@@ -59,13 +59,13 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">image: url(:/images/back_card.png);</string>
+     <string notr="true"/>
     </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="label_4">
+   <widget class="QLabel" name="label_card4">
     <property name="geometry">
      <rect>
       <x>480</x>
@@ -75,13 +75,14 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">image: url(:/images/back_card.png);</string>
+     <string notr="true">
+</string>
     </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="label_5">
+   <widget class="QLabel" name="label_card5">
     <property name="geometry">
      <rect>
       <x>610</x>
@@ -91,10 +92,23 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">image: url(:/images/back_card.png);</string>
+     <string notr="true"/>
     </property>
     <property name="text">
      <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="dealButton">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>320</y>
+      <width>151</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Deal cards</string>
     </property>
    </widget>
   </widget>
