@@ -2,7 +2,6 @@
 #include <algorithm>
 #include <random>
 #include <chrono>
-#include <iterator>
 
 
 Deck::Deck() : currentCardIndex(0) {

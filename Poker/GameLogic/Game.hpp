@@ -6,7 +6,6 @@
 
 class Game {
 public:
-
     Game(int numOfPlayers);
     void startGame();
 

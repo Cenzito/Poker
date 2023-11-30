@@ -17,7 +17,9 @@ public:
 
 private:
     Ui::GameWindow *ui;
+
+/*
 private slots:
-    void onPlayButtonClicked();
+    void onPlayButtonClicked();*/
 };
 #endif // GAMEWINDOW_H

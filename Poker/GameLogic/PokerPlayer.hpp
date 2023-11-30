@@ -28,7 +28,7 @@ public:
     void setPosition(int pos); // 1: UTG, 2: UTG+1 ...
 
     //this is not implemented in cpp file
-    virtual void action(Table table, int minAmount, int type); // 1 = normal round, 2 = small blind, 3 = bigblind
+    //virtual void action(Table table, int minAmount, int type); // 1 = normal round, 2 = small blind, 3 = bigblind
 
 
 protected:
