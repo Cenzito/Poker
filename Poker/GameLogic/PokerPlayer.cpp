@@ -39,6 +39,12 @@ void PokerPlayer::winChips(int amount) {
     std::cout << name << " wins " << amount << " chips." << std::endl;
 }
 
+void PokerPlayer::action(std::vector<int> table, int minAmount, int type) {
+    std::cout << "Pot: " << table[0] << std::endl;
+    for (int i = 1; i < table.size();i++) {
+        std::cout << "Bet" << table[i] << std::endl;
+    }
+};
 
 std::ostream& operator<<(std::ostream& os, const Card& card) {
     os << card.toString();
@@ -120,6 +126,7 @@ void Game::startGame() {
         std::cout << card.toString() << " ";
     }
     std::cout << std::endl;
+
 
     // bet
 

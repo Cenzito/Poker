@@ -4,11 +4,12 @@
 #include <vector>
 #include <string>
 #include <set>
+#include "table.hpp"
+#include <unordered_map>
 
 //TO IMPLEMENT:
 //Combinations class that gives which defines what combinations are possible and which are better than others
 //add to game class a function that: given player cards and cards in the middle give their combination (and probablity of success later)
-//implement betting in the game class
 
 
 class Card {
@@ -37,7 +38,7 @@ public:
     void winChips(int amount);
 
     //this is not implemented in cpp file
-    //virtual void action(int minAmount, int type); // 1 = normal round, 2 = small blind, 3 = bigblind
+    virtual void action(Table table, int minAmount, int type); // 1 = normal round, 2 = small blind, 3 = bigblind
 
 protected:
     std::string name;
@@ -69,6 +70,12 @@ private:
     std::vector<PokerPlayer> players;
     std::vector<Card> communityCards;
 };
+
+
+
+
+
+
 
 
 
