@@ -24,6 +24,10 @@ SOURCES += \
     Bots/Medium/BotMedium.cpp \
     GameLogic/logic_scratch.cpp \
     GameLogic/PokerPlayer.cpp \
+    GameLogic/Card.cpp \
+    GameLogic/Deck.cpp \
+    GameLogic/table.cpp \
+    GameLogic/Game.cpp \
     Visuals/Gamewindow/gamewindow.cpp \
     Visuals/MainWindow/mainwindow.cpp \
 
@@ -41,6 +45,10 @@ HEADERS += \
     Bots/Medium/BotMedium.hpp \
     GameLogic/PokerPlayer.hpp \
     GameLogic/logic_scratch.hpp \
+    GameLogic/Card.hpp \
+    GameLogic/Deck.hpp \
+    GameLogic/Game.hpp \
+    GameLogic/table.hpp \
     Visuals/Gamewindow/gamewindow.hpp \
     Visuals/MainWindow/mainwindow.hpp \
     Visuals/RulesWindow/rules.hpp
