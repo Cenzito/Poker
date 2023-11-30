@@ -1,8 +1,8 @@
 ## Weak 1
-Create card.hpp
-Create player.hpp
+1. Create card.hpp
+2. Create player.hpp
 
 ## Weak 2
-Create bot.hpp
-Create BotDrunk.hpp and BotDrunk.hpp
-Update PokerPlayer.hpp
+1. Create bot.hpp
+2. Create BotDrunk.hpp and BotDrunk.hpp
+3. Update PokerPlayer.hpp
