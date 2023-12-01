@@ -6,19 +6,11 @@
 #include <iterator>
 
 
-PokerPlayer::PokerPlayer(const std::string& name, int initialChips) : name(name), chips(initialChips) {}
+PokerPlayer::PokerPlayer(const std::string& name, int initialChips) : name(name) {}
 
-int PokerPlayer::getChips() const {
-    return chips;
-}
-
+//
 void PokerPlayer::placeBet(int amount) {
-    if (amount <= chips) {
-        chips -= amount;
-        std::cout << name << " bets " << amount << " chips." << std::endl;
-    } else {
-        std::cout << name << " cannot bet that amount." << std::endl;
-    }
+    return;
 }
 
 void PokerPlayer::receiveCards(const std::vector<Card>& cards) {
@@ -34,9 +26,10 @@ void PokerPlayer::showHand() const {
     std::cout << std::endl;
 }
 
-void PokerPlayer::winChips(int amount) {
-    chips += amount;
-    std::cout << name << " wins " << amount << " chips." << std::endl;
+void PokerPlayer::updateTable(Table table) {
+    //update info about the table
+    //will need to change ui after that
+    tableInfo = table;
 }
 
 /*

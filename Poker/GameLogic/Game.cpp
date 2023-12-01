@@ -4,8 +4,29 @@
 
 
 Game::Game(int numOfPlayers) {
+    //This will need to be changed
+    //Create a Game where people will join
     for (int i = 0; i < numOfPlayers; ++i) {
         players.emplace_back("Player " + std::to_string(i + 1), 1000); //1000 cest les chips
+    }
+}
+
+
+void Game::JoinGame(PokerPlayer player) {
+    //player joins game so we add him to the table
+    //in future we will not just give money but search for the account of the player and add that much money
+    //or do other stuff
+    PlayerInfo playerinfo = PlayerInfo(player.getName(), 1000, 0);
+    //would need to do a try in case of error if room is full
+    tableInfo.JoinTable(playerinfo);
+}
+
+//update the table information of every player in the game
+//every time we have a change we will call that
+//ui will need to be changed in each players
+void Game::update() {
+    for (PokerPlayer& player : players) {
+        player.updateTable(tableInfo);
     }
 }
 
@@ -27,7 +48,7 @@ void Game::startGame() {
     std::cout << "Flop: ";
     for (int i = 0; i < 3; ++i) {
         Card card = deck.dealCard();
-        communityCards.push_back(card);
+        tableInfo.addCard(card);
         std::cout << card.toString() << " ";
     }
     std::cout << std::endl;
@@ -43,7 +64,7 @@ void Game::startGame() {
     std::cout << "Burn: " << deck.dealCard().toString() << std::endl;
     std::cout << "Turn: ";
     Card turnCard = deck.dealCard();
-    communityCards.push_back(turnCard);
+    tableInfo.addCard(turnCard);
     std::cout << turnCard.toString() << std::endl;
 
     // bet
@@ -52,7 +73,7 @@ void Game::startGame() {
     std::cout << "Burn: " << deck.dealCard().toString() << std::endl;
     std::cout << "River: ";
     Card riverCard = deck.dealCard();
-    communityCards.push_back(riverCard);
+    tableInfo.addCard(riverCard);
     std::cout << riverCard.toString() << std::endl;
 
     //betting
