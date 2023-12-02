@@ -14,7 +14,7 @@ GameWindow::~GameWindow()
     delete ui;
 }
 
-QString GameWindow::Get_image_path(std::string suit, std::string value, bool back){
+const QString GameWindow::Get_image_path(const std::string &suit, const std::string &value, bool back){
 
     if (back){
         return ":/images/cards/back_card.png";

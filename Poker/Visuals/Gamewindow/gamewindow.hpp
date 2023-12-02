@@ -14,7 +14,7 @@ class GameWindow : public QMainWindow
 public:
     explicit GameWindow(QWidget *parent = nullptr);
     ~GameWindow();
-    QString Get_image_path(std::string suit, std::string value, bool back = false); // to display the back call with args ("back", "back", true)
+    const QString Get_image_path(const std::string &suit, const std::string &value, bool back = false); // to display the back call with args ("back", "back", true)
 
 private slots:
 
