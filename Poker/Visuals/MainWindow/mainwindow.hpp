@@ -19,5 +19,6 @@ private:
     Ui::MainWindow *ui;
 private slots:
     void onPlayButtonClicked();
+    void onRulesButtonClicked();
 };
 #endif // MAINWINDOW_H

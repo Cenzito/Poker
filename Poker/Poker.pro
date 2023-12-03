@@ -10,7 +10,7 @@ CONFIG += c++17
 
 SOURCES += \
     GameLogic/PlayerInfo.cpp \
-    Visuals/RulesWindow/rules.cpp \
+    Visuals/RulesWindow/ruleswindow.cpp \
     main.cpp \
     Bots/Bot.cpp \
     Bots/Easy/BotEasy.cpp \
@@ -53,13 +53,14 @@ HEADERS += \
     GameLogic/Table.hpp \
     Visuals/Gamewindow/gamewindow.hpp \
     Visuals/MainWindow/mainwindow.hpp \
-    Visuals/RulesWindow/rules.hpp
+    Visuals/RulesWindow/ruleswindow.h
 
 
 
 FORMS += \
     Visuals/Gamewindow/gamewindow.ui \
-    Visuals/MainWindow/mainwindow.ui
+    Visuals/MainWindow/mainwindow.ui \
+    Visuals/RulesWindow/ruleswindow.ui
 
 
 
