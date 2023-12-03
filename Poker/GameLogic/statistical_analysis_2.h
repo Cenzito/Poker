@@ -3,6 +3,8 @@
 
 #include <string>
 #include <unordered_map>
+#include <fstream>
+#include <iostream>
 
 class PokerWinRate {
 public:
