@@ -1,4 +1,6 @@
-## Week 1:
+## Luca Andrei Fechete - Server Team
+
+### Week 1:
 
 This week, significant progress was made on the server component of our project. My efforts were primarily focused on two key areas:
 
