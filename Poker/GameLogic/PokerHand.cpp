@@ -14,7 +14,7 @@ void PokerHand :: order_cards(){
     std::sort(cards.begin(),cards.end());
 }
 
-bool PokerHand:: is_royal_flush(){
+bool PokerHand:: is_royal_flush(){ //for each royal flush, we check if we have it in the received cards. We assume the received cards are different
 Suit suit[4] = {Suit:: Spades, Suit:: Hearts, Suit:: Diamonds, Suit:: Clubs};
 std::vector<Card> Spades_royal_flush={Card(suit[0], 10), Card(suit[0],11), Card(suit[0],12), Card(suit[0],13), Card(suit[0],14)}; //the spades royal flush
 std::vector<Card> Hearts_royal_flush={Card(suit[1], 10), Card(suit[1],11), Card(suit[1],12), Card(suit[1],13), Card(suit[1],14)}; //the hearts royal flush
@@ -31,28 +31,28 @@ for(int i=0;i<cards.size();i++){
         cards[i]== Spades_royal_flush[2] || 
         cards[i]==Spades_royal_flush[3] || 
         cards[i]==Spades_royal_flush[4]) number_spades++; std::cout<<number_spades;
-    } //we compute the number of cards from the spades royal flush in our hand
+    } //we compute the number of cards from the spades royal flush in our hand, if it is 5, then we have a royal flush
      if(cards[i].getSuit()==suit[1]) {
         if (cards[i]==Hearts_royal_flush[0] || 
         cards[i]==Hearts_royal_flush[1] || 
         cards[i]== Hearts_royal_flush[2] || 
         cards[i]==Hearts_royal_flush[3] || 
         cards[i]==Hearts_royal_flush[4]) number_hearts++; 
-    } //we compute the number of cards from the hearts royal flush in our hand
+    } //we compute the number of cards from the hearts royal flush in our hand, if it is 5, then we have a royal flush
     if(cards[i].getSuit()==suit[2]) {
         if (cards[i]==Diamonds_royal_flush[0] || 
         cards[i]==Diamonds_royal_flush[1] || 
         cards[i]== Diamonds_royal_flush[2] || 
         cards[i]==Diamonds_royal_flush[3] || 
         cards[i]==Diamonds_royal_flush[4]) number_diamonds++; 
-    } //we compute the number of cards from the diamonds royal flush in our hand
+    } //we compute the number of cards from the diamonds royal flush in our hand, if it is 5, then we have a royal flush
     if(cards[i].getSuit()==suit[3]) {
         if (cards[i]==Clubs_royal_flush[0] || 
         cards[i]==Clubs_royal_flush[1] || 
         cards[i]== Clubs_royal_flush[2] || 
         cards[i]==Clubs_royal_flush[3] || 
         cards[i]==Clubs_royal_flush[4]) number_clubs++; 
-    } //we compute the number of cards from the clubs royal flush in our hand
+    } //we compute the number of cards from the clubs royal flush in our hand, if it is 5, then we have a royal flush
 }
 if(number_spades ==5 || number_hearts==5 || number_diamonds==5 || number_clubs==5)
 {
