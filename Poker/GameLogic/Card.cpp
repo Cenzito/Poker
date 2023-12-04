@@ -19,6 +19,7 @@ std::ostream& operator<<(std::ostream& os, const Card& card) {
     return os;
 }
 
+
 Card::Card (Suit suit, int value) {
     this->suit = suit;
     this->value = value;
@@ -29,6 +30,10 @@ bool Card:: operator<(const Card& other_card) {
         if(suit<other_card.suit) return true;
         else return false;
     }
+    else return false;
+}
+bool Card :: operator == (const Card& other_card){
+    if(value==other_card.value && suit==other_card.suit) return true;
     else return false;
 }
 

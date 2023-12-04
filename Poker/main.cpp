@@ -4,6 +4,8 @@
 #include "./GameLogic/Game.hpp"
 #include "./GameLogic/Card.cpp"
 #include "./GameLogic/Deck.cpp"
+#include "./GameLogic/PokerHand.cpp"
+
 //#include <QApplication>
 
 
@@ -28,7 +30,8 @@ int main(int argc, char *argv[]) {
     //MainWindow w;
     //w.show();
     //return a.exec();
-
+    PokerHand hand{Card(suit[0], 10), Card(suit[0],11), Card(suit[0],12), Card(suit[0],13), Card(suit[0],14)};
+    std:: cout<< hand.is_royal_flush();
     return 0;
 }
 //testing
