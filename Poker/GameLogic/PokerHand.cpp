@@ -1,8 +1,12 @@
-#include<PokerHand.hpp>
+#include "PokerHand.hpp"
+#include <algorithm>
+#include "vector"
+#include "string"
 
 PokerHand :: PokerHand (std::vector<Card> cards){
     this->cards=cards;
 }
+
 std::vector <Card> Card PokerHand :: get_cards(){
     return cards;
 }

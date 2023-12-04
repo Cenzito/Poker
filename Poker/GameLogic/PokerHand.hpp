@@ -1,17 +1,16 @@
-#include "Card.hpp"
-#include "PokerPlayer.hpp"
-#include <algorithm>
-#include <iostream>
+#ifndef POKER_HAND_HPP
+#define POKER_HAND_HPP
 
-#include <chrono>
-#include <iterator>
-#include<vector>
-#include <string>
+#include "Card.hpp"
+#include "algorithm"
+#include "vector"
+#include "string"
+
 class PokerHand{
     public:
-    PokerHand(std::vector<Card> cards); // constructor
+    PokerHand( std::vector <Card> cards); // constructor
     int get_score(); // computes the score of a given hand, so that we can rank them
-    std::vector<Card> get_cards(); // returns the cards
+    std::vector <Card> get_cards(); // returns the cards
     PokerCombinations get_combination(); // returns the best combination of the hand
     void order_cards(); // orders the cards in the hand, so that we can easily check for combinations
     bool is_high_card(); // returns true if the hand has a high card
@@ -30,3 +29,5 @@ class PokerHand{
 
 
 };
+
+#endif // POKER_HAND_HPP
