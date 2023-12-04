@@ -7,7 +7,7 @@ PokerHand :: PokerHand (std::vector<Card> cards){
     this->cards=cards;
 }
 
-std::vector <Card> Card PokerHand :: get_cards(){
+std::vector <Card> PokerHand :: get_cards(){
     return cards;
 }
 void PokerHand :: order_cards(){
@@ -15,7 +15,7 @@ void PokerHand :: order_cards(){
 }
 
 bool PokerHand:: is_royal_flush(){
-Suit suits[4] = {Suit:: Spades, Suit:: Hearts, Suit:: Diamonds, Suit:: Clubs};
+Suit suit[4] = {Suit:: Spades, Suit:: Hearts, Suit:: Diamonds, Suit:: Clubs};
 std::vector<Card> Spades_royal_flush={Card(suit[0], 10), Card(suit[0],11), Card(suit[0],12), Card(suit[0],13), Card(suit[0],14)}; //the spades royal flush
 std::vector<Card> Hearts_royal_flush={Card(suit[1], 10), Card(suit[1],11), Card(suit[1],12), Card(suit[1],13), Card(suit[1],14)}; //the hearts royal flush
 std::vector<Card> Diamonds_royal_flush={Card(suit[2], 10), Card(suit[2],11), Card(suit[2],12), Card(suit[2],13), Card(suit[2],14)}; //the diamonds royal flush   
@@ -30,7 +30,7 @@ for(int i=0;i<cards.size();i++){
         cards[i]==Spades_royal_flush[1] || 
         cards[i]== Spades_royal_flush[2] || 
         cards[i]==Spades_royal_flush[3] || 
-        cards[i]==Spades_royal_flush[4]) number_spades++; 
+        cards[i]==Spades_royal_flush[4]) number_spades++; std::cout<<number_spades;
     } //we compute the number of cards from the spades royal flush in our hand
      if(cards[i].getSuit()==suit[1]) {
         if (cards[i]==Hearts_royal_flush[0] || 
@@ -58,7 +58,8 @@ if(number_spades ==5 || number_hearts==5 || number_diamonds==5 || number_clubs==
 {
     return true;
 }
-else:
-return false;
+else return false;
 }
+
+
 

@@ -4,7 +4,7 @@
 #include "./GameLogic/Game.hpp"
 #include "./GameLogic/Card.cpp"
 #include "./GameLogic/Deck.cpp"
-#include "./GameLogic/PokerHand.hpp"
+#include "./GameLogic/PokerHand.cpp"
 
 //#include <QApplication>
 
@@ -23,17 +23,9 @@ int main(int argc, char *argv[]) {
     //std::cout << (card1 < card3) << std::endl;
     Deck deck;
     deck.shuffleDeck();
-    std::cout << deck.dealCard() << std::endl;
-    std::cout << deck.dealCard() << std::endl;
-    std::cout << deck.dealCard() << std::endl;
-    //std:: vector <Card> cards= {Card(Suit::Spades, 10), Card(Suit::Spades,11), Card(Suit::Spades,12), Card(Suit::Spades,13), Card(Suit::Spades,14)};
-    //std::cout<< cards[0];
-    //QApplication a(argc, argv);
-    //MainWindow w;
-    //w.show();
-    //return a.exec();
     PokerHand hand ({Card(Suit::Spades, 10), Card(Suit::Spades,11), Card(Suit::Spades,12), Card(Suit::Spades,13), Card(Suit::Spades,14)});
-    //std:: cout<< hand.is_royal_flush();
+    //std::cout << hand.get_cards()[0];
+    //std::cout << hand.is_royal_flush();
     return 0;
 }
 //testing

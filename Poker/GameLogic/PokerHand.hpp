@@ -26,7 +26,7 @@ class PokerHand{
 
     private:
     std::vector<Card> cards; //the cards that will be used to make the hand
-
+    
 
 };
 
