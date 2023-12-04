@@ -1,4 +1,4 @@
-#include "logic_scratch.hpp"
+#include "logic_scratch.h"
 
 #include <vector>
 #include <string>
