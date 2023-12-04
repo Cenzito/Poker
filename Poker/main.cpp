@@ -3,6 +3,7 @@
 // #include "./Visuals/MainWindow/mainwindow.hpp"
 #include "./GameLogic/Game.hpp"
 #include "./GameLogic/Card.cpp"
+#include "./GameLogic/Deck.cpp"
 //#include <QApplication>
 
 
@@ -18,6 +19,11 @@ int main(int argc, char *argv[]) {
     //std::cout << (card1 < card2) << std::endl;
     //std::cout << (card2 < card3) << std::endl;
     //std::cout << (card1 < card3) << std::endl;
+    //Deck deck;
+    //deck.shuffleDeck();
+    //std::cout << deck.dealCard() << std::endl;
+    //std::cout << deck.dealCard() << std::endl;
+    //std::cout << deck.dealCard() << std::endl;
     //QApplication a(argc, argv);
     //MainWindow w;
     //w.show();

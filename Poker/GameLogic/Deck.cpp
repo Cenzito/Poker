@@ -5,9 +5,9 @@
 
 
 Deck::Deck() : currentCardIndex(0) {
-    std::string suits[4] = {"H", "D", "C", "S"};
-    for (const std::string& suit : suits) {
-        for (int value = 1; value <= 13; ++value) {
+    Suit suits[4] = {Suit:: Spades, Suit:: Hearts, Suit:: Diamonds, Suit:: Clubs};
+    for (const Suit& suit : suits) {
+        for (int value = 2; value <= 14; ++value) {
             cards.emplace_back(suit, value);
         }
     }
