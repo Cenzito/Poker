@@ -1,4 +1,5 @@
 #include "gamewindow.hpp"
+#include "Visuals/RulesWindow/ruleswindow.h"
 #include "ui_gamewindow.h"
 #include <QPixmap>
 
@@ -7,6 +8,7 @@ GameWindow::GameWindow(QWidget *parent) :
     ui(new Ui::GameWindow)
 {
     ui->setupUi(this);
+    connect(ui->pushButton, &QPushButton::clicked, this, &GameWindow::onPlayButtonClicked);
 }
 
 GameWindow::~GameWindow()
@@ -45,5 +47,9 @@ void GameWindow::on_dealButton_clicked()
     ui->label_card5->setPixmap(QPixmap::fromImage(card_5).scaled(size, Qt::KeepAspectRatio, Qt::SmoothTransformation)); // dont change this
 }
 
-
+void GameWindow::onPlayButtonClicked()
+{
+    RulesWindow *rulesWindow = new RulesWindow(this) ;
+    rulesWindow->show();
+}
 
