@@ -30,7 +30,7 @@ for(int i=0;i<cards.size();i++){
         cards[i]==Spades_royal_flush[1] || 
         cards[i]== Spades_royal_flush[2] || 
         cards[i]==Spades_royal_flush[3] || 
-        cards[i]==Spades_royal_flush[4]) number_spades++; std::cout<<number_spades;
+        cards[i]==Spades_royal_flush[4]) number_spades++; 
     } //we compute the number of cards from the spades royal flush in our hand, if it is 5, then we have a royal flush
      if(cards[i].getSuit()==suit[1]) {
         if (cards[i]==Hearts_royal_flush[0] || 
