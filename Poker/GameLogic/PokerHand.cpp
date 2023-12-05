@@ -13,6 +13,12 @@ std::vector <Card> PokerHand :: get_cards(){
 void PokerHand :: order_cards(){
     std::sort(cards.begin(),cards.end());
 }
+bool PokerHand:: is_member(Card card){
+    for(int i=0;i<cards.size();i++){
+        if(cards[i]==card) return true;
+    }
+    return false;
+}
 
 bool PokerHand:: is_royal_flush(){ //for each royal flush, we check if we have it in the received cards. We assume the received cards are different
 Suit suit[4] = {Suit:: Spades, Suit:: Hearts, Suit:: Diamonds, Suit:: Clubs};

@@ -13,6 +13,7 @@ class PokerHand{
     std::vector <Card> get_cards(); // returns the cards
     PokerCombinations get_combination(); // returns the best combination of the hand
     void order_cards(); // orders the cards in the hand, so that we can easily check for combinations
+    bool is_member(Card card); // returns true if the card is in the hand
     bool is_high_card(); // returns true if the hand has a high card
     bool is_pair(); // returns true if the hand has a pair
     bool is_three_of_a_kind(); // returns true if the hand has three of a kind

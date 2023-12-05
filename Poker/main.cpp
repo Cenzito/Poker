@@ -27,7 +27,8 @@ int main(int argc, char *argv[]) {
     std::cout << hand.get_cards()[0];
     if( hand.is_royal_flush() == true ) std::cout << "Royal flush";
     else std::cout << "Not royal flush";
-
+    if( hand.is_member(card1)==true) std::cout << "Card is in hand";
+    else std::cout << "Card is not in hand";
     return 0;
 }
 
