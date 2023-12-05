@@ -23,12 +23,16 @@ int main(int argc, char *argv[]) {
     std::cout << (card1 < card3) << std::endl;
     Deck deck;
     deck.shuffleDeck();
-    PokerHand hand ({Card(Suit::Spades, 9), Card(Suit::Spades,11), Card(Suit::Spades,12), Card(Suit::Spades,13), Card(Suit::Spades,14)});
+    PokerHand hand ({Card(Suit::Spades, 2), Card(Suit::Clubs,3), Card(Suit::Spades, 4), Card(Suit::Spades, 5), Card(Suit::Spades,13), Card(Suit::Hearts,6) });
     std::cout << hand.get_cards()[0];
     if( hand.is_royal_flush() == true ) std::cout << "Royal flush";
     else std::cout << "Not royal flush";
     if( hand.is_member(card1)==true) std::cout << "Card is in hand";
-    else std::cout << "Card is not in hand";
+    else std::cout << "Card is not in hand"<<std::endl;
+    if(hand.is_flush()==true) std::cout << " Flush"<<std::endl;
+    else std::cout << "Not Flush"<<std::endl;
+    if(hand.is_straight()==true) std::cout << " Straight"<<std::endl;
+    else std::cout << "Not Straight"<<std::endl;
     return 0;
 }
 

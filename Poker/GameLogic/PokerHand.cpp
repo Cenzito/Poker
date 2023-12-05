@@ -2,7 +2,7 @@
 #include <algorithm>
 #include "vector"
 #include "string"
-
+using namespace std;
 PokerHand :: PokerHand (std::vector<Card> cards){
     this->cards=cards;
 }
@@ -66,6 +66,53 @@ if(number_spades ==5 || number_hearts==5 || number_diamonds==5 || number_clubs==
 }
 else return false;
 }
+bool PokerHand:: is_flush(){
+    Suit suit[4] = {Suit:: Spades, Suit:: Hearts, Suit:: Diamonds, Suit:: Clubs};
+    int number_spades=0;
+    int number_hearts=0;
+    int number_diamonds=0;
+    int number_clubs=0;
+    for(int i=0;i<cards.size();i++){
+        if(cards[i].getSuit()==suit[0]) number_spades++; //we compute the number of spades in our hand
+        if(cards[i].getSuit()==suit[1]) number_hearts++; //we compute the number of hearts in our hand
+        if(cards[i].getSuit()==suit[2]) number_diamonds++; //we compute the number of diamonds in our hand
+        if(cards[i].getSuit()==suit[3]) number_clubs++; //we compute the number of clubs in our hand
+    }
+    //std::cout<<"Number of spades: "<<number_spades<<std::endl;
+    //std::cout<<"Number of hearts: "<<number_hearts<<std::endl;
+    //std::cout<<"Number of diamonds: "<<number_diamonds<<std::endl;
+    //std::cout<<"Number of clubs: "<<number_clubs<<std::endl;
+    if(number_spades ==5 || number_hearts==5 || number_diamonds==5 || number_clubs==5)
+    {
+        return true;
+    }
+    else return false;
+}
+bool::PokerHand:: is_straight(){
+    
+    int ranks[15]; //for each rank, we will store if it is in the hand or not
+    for (int i=1; i<15; i++) ranks[i]=0; //we initialize all the ranks to 0
+    
+    for (int i = 0; i < cards.size(); i++) {
+        ranks[cards[i].getValue()]=1; //we increment the rank of the card
+        if (cards[i].getValue()==14) ranks[1]=1; //if the card is an ace, we also increment the rank of the ace (because it can be used as a 1)
+        
+    }
+   // std::cout<<"exited for loop"<<std::endl;
+    for (int i=1 ; i<15; i++){
+        //std::cout<<ranks[i]<<" "<<i<<std::endl;
+    }
+    //std:: cout<< "exited second for loop"<<std::endl;
+    for (int i=1; i<11; i++){
+        if (ranks[i]==1 && 
+            ranks[i+1]==1 && 
+            ranks[i+2]==1 && 
+            ranks[i+3]==1 && 
+            ranks[i+4]==1) return true; //if we have 5 consecutive ranks, then we have a straight
+    }
+    return false;
+}
+
 
 
 
