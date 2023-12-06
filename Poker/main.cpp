@@ -11,7 +11,10 @@
 
 int main(int argc, char *argv[]) {
     Game pokerGame(4);
-    pokerGame.startGame();
+    pokerGame.startRound();
+
+
+
     std::cout << "Hello World!" << std::endl;
     Card card1(Suit::Spades, 1);
     Card card2(Suit::Spades, 2);

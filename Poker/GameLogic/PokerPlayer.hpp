@@ -24,7 +24,9 @@ public:
     const std::string& getName() const { return name; }
     void placeBet(int amount);
     void receiveCards(const std::vector<Card>& cards);
-    void showHand() const;
+    void removeCards();
+
+    std::vector<Card> getHand() const;
 
     void updateTable(Table table);
 
