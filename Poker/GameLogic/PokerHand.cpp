@@ -11,7 +11,7 @@ std::vector <Card> PokerHand :: get_cards(){
     return cards;
 }
 void PokerHand :: order_cards(){
-    //std::sort(cards.begin(),cards.end());
+    std::sort(cards.begin(),cards.end());
 }
 bool PokerHand:: is_member(Card card){
     for(int i=0;i<cards.size();i++){

@@ -23,8 +23,10 @@ int main(int argc, char *argv[]) {
     std::cout << (card1 < card3) << std::endl;
     Deck deck;
     deck.shuffleDeck();
-    PokerHand hand ({Card(Suit::Spades, 2), Card(Suit::Clubs,3), Card(Suit::Spades, 4), Card(Suit::Spades, 5), Card(Suit::Spades,13), Card(Suit::Hearts,6) });
+    PokerHand hand ({Card(Suit::Spades, 2), Card(Suit::Clubs,4), Card(Suit::Spades, 3), Card(Suit::Spades, 5), Card(Suit::Spades,13), Card(Suit::Hearts,6) });
+    //PokerHand hand ({});
     std::cout << hand.get_cards()[0];
+
     if( hand.is_royal_flush() == true ) std::cout << "Royal flush";
     else std::cout << "Not royal flush";
     if( hand.is_member(card1)==true) std::cout << "Card is in hand";
@@ -33,7 +35,12 @@ int main(int argc, char *argv[]) {
     else std::cout << "Not Flush"<<std::endl;
     if(hand.is_straight()==true) std::cout << " Straight"<<std::endl;
     else std::cout << "Not Straight"<<std::endl;
+    hand.order_cards();
+    for (int i = 0; i < hand.get_cards().size(); i++) {
+        std::cout << hand.get_cards()[i] << " ";
+    }
     return 0;
+
 }
 
 //test
