@@ -6,7 +6,38 @@
 #include <iterator>
 
 
-PokerPlayer::PokerPlayer(const std::string& name, int initialChips) : name(name) {}
+PokerPlayer::PokerPlayer(const std::string& name, int chips) : name(name), chips(chips), active(true) {}
+
+bool PokerPlayer::isActive() const {
+    return active;
+}
+
+bool PokerPlayer::canBet(int amount) const {
+    return amount <= chips;
+}
+
+void PokerPlayer::bet(int amount) {
+    chips -= amount;
+    // Additional logic for betting (e.g., adding to the pot)
+}
+
+int PokerPlayer::decideBet(int currentHighestBet, int minimumRaise) {
+    // Implement player decision logic here
+    // For now, returning a basic decision
+    return currentHighestBet + minimumRaise;
+}
+
+void PokerPlayer::receiveCards(const std::vector<Card>& newHand) {
+    hand = newHand;
+}
+
+void PokerPlayer::updateTable(const Table& tableInfo) {
+    currentTable = tableInfo;
+}
+
+const std::string& PokerPlayer::getName() const {
+    return name;
+}
 
 //
 void PokerPlayer::placeBet(int amount) {

@@ -21,12 +21,17 @@
 class PokerPlayer {
 public:
     PokerPlayer(const std::string& name, int initialChips);
-    const std::string& getName() const { return name; }
+    const std::string& getName() const;
     void placeBet(int amount);
     void receiveCards(const std::vector<Card>& cards);
     void showHand() const;
-
-    void updateTable(Table table);
+    bool isActive() const;
+    bool canBet(int amount) const;
+    void bet(int amount);
+    int decideBet(int currentHighestBet, int minimumRaise);
+    void receiveCards(const std::vector<Card>& hand);
+    void updateTable(const Table& tableInfo);
+    void updateTable(Table* table);
 
     //this is not implemented in cpp file
     //virtual void action(Table table, int minAmount, int type); // 1 = normal round, 2 = small blind, 3 = bigblind
@@ -37,6 +42,10 @@ protected:
     std::string name;
     std::vector<Card> hand;
     bool isBot, isAllin, isFold;
+    int chips;
+    bool active;
+    Table currentTable;
+    
 };
 
 

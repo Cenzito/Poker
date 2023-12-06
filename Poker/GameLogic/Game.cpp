@@ -30,6 +30,25 @@ void Game::update() {
     }
 }
 
+void Game::bettingRound() {
+    for (PokerPlayer& player : players) {
+        if (!player.isActive()) continue;
+
+        int betAmount = player.decideBet(currentHighestBet, minimumRaise); // Implement this method in PokerPlayer
+
+        if (player.canBet(betAmount)) {
+            if (betAmount >= currentHighestBet + minimumRaise) {
+                player.bet(betAmount);
+                currentHighestBet = betAmount;
+            } else {
+                // Handle case where bet is too low
+            }
+        } else {
+            // Handle case where player can't bet the amount
+        }
+    }
+}
+
 void Game::startGame() {
     deck.shuffleDeck();
 

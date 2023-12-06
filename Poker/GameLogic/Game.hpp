@@ -12,12 +12,20 @@ public:
     Game(int numOfPlayers);
     void JoinGame(PokerPlayer);
     void startGame();
+    void updateTable(const Table& tableInfo);
 
-    void update();
+
+
 private:
+    void update();
+    void bettingRound();
+    bool isRoundOver() const;
+
     Deck deck;
     Table tableInfo;
     std::vector<PokerPlayer> players;
+    int currentHighestBet;
+    const int minimumRaise;
 };
 
 
