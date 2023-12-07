@@ -1,8 +1,13 @@
 #include <iostream>
 #include "server.h"
 
-int main() {
+int main(int argc, char** argv) {
     int port = 5000; // Set your desired port here
+
+    if (argc > 1) {
+        port = std::stoi(argv[1]);
+    }
+
     PokerServer server(port);
     server.start();
 
