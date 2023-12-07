@@ -20,5 +20,6 @@ private:
 private slots:
     void onPlayButtonClicked();
     void onRulesButtonClicked();
+    void on_groupBox_login_clicked();
 };
 #endif // MAINWINDOW_H

@@ -16,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 }
 
+
 MainWindow::~MainWindow()
 {
     delete ui;
@@ -33,3 +34,4 @@ void MainWindow::onRulesButtonClicked()
     RulesWindow *rulesWindow = new RulesWindow(this) ;
     rulesWindow->show();
 }
+

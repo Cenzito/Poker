@@ -68,6 +68,14 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <height>51</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Academy Engraved LET</family>
+      <pointsize>30</pointsize>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
     <property name="styleSheet">
      <string notr="true">font: 30pt &quot;Academy Engraved LET&quot;;</string>
     </property>
@@ -96,6 +104,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <width>371</width>
       <height>181</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(175, 255, 187)</string>
     </property>
     <property name="text">
      <string/>
@@ -138,6 +149,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <width>351</width>
       <height>131</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(144, 200, 174)</string>
     </property>
     <property name="title">
      <string>Log in:</string>
@@ -211,8 +225,14 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <height>131</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(144, 200, 174)</string>
+    </property>
     <property name="title">
      <string>or make an account:</string>
+    </property>
+    <property name="checkable">
+     <bool>false</bool>
     </property>
     <widget class="QLineEdit" name="lineEdit_newuser">
      <property name="geometry">
@@ -244,7 +264,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
       </rect>
      </property>
      <property name="text">
-      <string>Signin</string>
+      <string>Sign in</string>
      </property>
     </widget>
    </widget>
