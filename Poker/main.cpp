@@ -1,12 +1,12 @@
 
 
-//#include "./Visuals/MainWindow/mainwindow.hpp"
+#include "./Visuals/MainWindow/mainwindow.hpp"
 #include "./GameLogic/Game.hpp"
 #include "./GameLogic/Card.cpp"
 #include "./GameLogic/Deck.cpp"
 #include "./GameLogic/PokerHand.cpp"
 
-//#include <QApplication>
+#include <QApplication>
 
 
 int main(int argc, char *argv[]) {
