@@ -323,11 +323,6 @@ std::vector<int> PokerHand::get_score(){// for each hand, we create a score, whi
     }
     
     
-    else if(has_straight()==true){
-    score[0]=5;
-    score[1]=max_straight(); //the tie breaker is the maximum straight
-    }
-    
     else if(has_three_of_a_kind()==true) {
     score[0]=4; 
     int ranks[15]; //for each rank, we will store if it is in the hand or not
