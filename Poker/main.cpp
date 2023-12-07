@@ -11,13 +11,15 @@
 
 int main(int argc, char *argv[]) {
 
-    QApplication a(argc, argv); //test//
+    //Game pokerGame(4);
+    //pokerGame.startGame();
 
-    Game pokerGame(4);
-    pokerGame.startRound();
+    
+    QApplication a(argc, argv);
+    MainWindow w;
+    w.show();
+    return a.exec();
 
-    MainWindow mainWindow;  //test//
-    mainWindow.show(); //test//
 
     std::cout << "Hello World!" << std::endl;
     Card card1(Suit::Spades, 1);
@@ -43,6 +45,7 @@ int main(int argc, char *argv[]) {
     //return 0;
 
     return a.exec(); //test//
+
 }
 
 //test

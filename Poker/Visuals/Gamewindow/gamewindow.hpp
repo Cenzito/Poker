@@ -21,6 +21,7 @@ private slots:
     void on_dealButton_clicked();
     void onPlayButtonClicked();
 
+
 private:
     Ui::GameWindow *ui;
 };
