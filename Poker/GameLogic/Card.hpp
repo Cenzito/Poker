@@ -13,6 +13,8 @@ enum class PokerCombinations {
     StraightFlush = 9,
     RoyalFlush = 10
 };  // assigns a score to all possible combinations
+std::string combinationToString(PokerCombinations combination); //converts the poker combination to a string
+
 enum class Suit {
     Spades = 3,
     Hearts = 2,

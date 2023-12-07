@@ -23,13 +23,13 @@ public:
     PokerPlayer(const std::string& name, int initialChips);
     const std::string& getName() const;
     void placeBet(int amount);
-    void receiveCards(const std::vector<Card>& cards);
+    //void receiveCards(const std::vector<Card>& cards);
     void showHand() const;
     bool isActive() const;
     bool canBet(int amount) const;
     void bet(int amount);
     int decideBet(int currentHighestBet, int minimumRaise);
-    void receiveCards(const std::vector<Card>& hand);
+    //void receiveCards(const std::vector<Card>& hand);
     void updateTable(const Table& tableInfo);
     void updateTable(Table* table);
 
