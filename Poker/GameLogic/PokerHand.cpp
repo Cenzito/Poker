@@ -92,11 +92,11 @@ bool PokerHand:: has_flush(){
 bool::PokerHand:: has_straight(){
     
     int ranks[15]; //for each rank, we will store if it is in the hand or not
-    for (int i=1; i<15; i++) ranks[i]=0; //we initialize all the ranks to 0
+    for (int i=1; i<15; i++) ranks[i]=0; //we initialize the number of cards with rank i with 0
     
     for (int i = 0; i < cards.size(); i++) {
-        ranks[cards[i].getValue()]=1; //we increment the rank of the card
-        if (cards[i].getValue()==14) ranks[1]=1; //if the card is an ace, we also increment the rank of the ace (because it can be used as a 1)
+        ranks[cards[i].getValue()]=1; //we increment the number of cards with the rank/value of the current card
+        if (cards[i].getValue()==14) ranks[1]=1; //if the card is an ace, we also increment the rank of the ace (because it can be used as a 1) (done for the purpose of the straight A,2,3,4,5)
         
     }
    // std::cout<<"exited for loop"<<std::endl;
@@ -115,10 +115,10 @@ bool::PokerHand:: has_straight(){
 }
 int PokerHand:: max_straight(){
     int ranks[15]; //for each rank, we will store if it is in the hand or not
-    for (int i=1; i<15; i++) ranks[i]=0; //we initialize all the ranks to 0
+    for (int i=1; i<15; i++) ranks[i]=0; //we initialize the number of cards with rank i with 0
     
     for (int i = 0; i < cards.size(); i++) {
-        ranks[cards[i].getValue()]=1; //we increment number of card with rank i
+        ranks[cards[i].getValue()]=1; //we increment number of cards with rank i
         if (cards[i].getValue()==14) ranks[1]=1; //if the card is an ace, we also increment the number of cards of rank 1
         
     }
@@ -149,10 +149,10 @@ bool PokerHand :: has_straight_flush(){
 
 bool PokerHand :: has_four_of_a_kind(){
     int ranks[15]; //for each rank, we will store if it is in the hand or not
-    for (int i=1; i<15; i++) ranks[i]=0; //we initialize all the ranks to 0
+    for (int i=1; i<15; i++) ranks[i]=0; //we initialize the number of cards with rank i with 0
     
     for (int i = 0; i < cards.size(); i++) {
-        ranks[cards[i].getValue()]++; //we increment the rank of the card     
+        ranks[cards[i].getValue()]++; //we increment the number of cards with the rank/value of the current card    
     }
     for (int i=1; i<15; i++){
         if (ranks[i]==4) return true; //if we have 4 cards of the same rank, then we have four of a kind
@@ -161,10 +161,10 @@ bool PokerHand :: has_four_of_a_kind(){
 }
 bool PokerHand :: has_three_of_a_kind(){
     int ranks[15]; //for each rank, we will store if it is in the hand or not
-    for (int i=1; i<15; i++) ranks[i]=0; //we initialize all the ranks to 0
+    for (int i=1; i<15; i++) ranks[i]=0; //we initialize the number of cards with rank i with 0
     
     for (int i = 0; i < cards.size(); i++) {
-        ranks[cards[i].getValue()]++; //we increment the rank of the card     
+        ranks[cards[i].getValue()]++; //we increment the number of cards with the rank/value of the current card    
     }
     for (int i=1; i<15; i++){
         if (ranks[i]>=3) return true; //if we have 3 cards of the same rank, then we have three of a kind
@@ -173,10 +173,10 @@ bool PokerHand :: has_three_of_a_kind(){
 }
 bool PokerHand :: has_pair(){
     int ranks[15]; //for each rank, we will store if it is in the hand or not
-    for (int i=1; i<15; i++) ranks[i]=0; //we initialize all the ranks to 0
+    for (int i=1; i<15; i++) ranks[i]=0; //we initialize the number of cards with rank i with 0
     
     for (int i = 0; i < cards.size(); i++) {
-        ranks[cards[i].getValue()]++; //we increment the rank of the card     
+        ranks[cards[i].getValue()]++; //we increment the number of cards with the rank/value of the current card
     }
     for (int i=2; i<15; i++){
         if (ranks[i]>=2) return true; //if we have 2 cards of the same rank, then we have a pair
@@ -243,7 +243,7 @@ std::vector<int> PokerHand::get_score(){// for each hand, we create a score, whi
     else if(has_four_of_a_kind()==true) {
         score[0]=8;
         int ranks[15]; //for each rank, we will store if it is in the hand or not
-    for (int i=1; i<15; i++) ranks[i]=0; //we initialize all the ranks to 0
+    for (int i=1; i<15; i++) ranks[i]=0; //we initialize the number of cards with rank i with 0
     
     for (int i = 0; i < cards.size(); i++) {
         ranks[cards[i].getValue()]++; //we increment the number of cards with a given rank
@@ -262,7 +262,7 @@ std::vector<int> PokerHand::get_score(){// for each hand, we create a score, whi
     else if(has_full_house()==true) {
         score[0]=7; 
         int ranks[15]; //for each rank, we will store if it is in the hand or not
-        for (int i=1; i<15; i++) ranks[i]=0; //we initialize all the ranks to 0
+        for (int i=1; i<15; i++) ranks[i]=0; //we initialize the number of cards with rank i with 0
     
     for (int i = 0; i < cards.size(); i++) {
         ranks[cards[i].getValue()]++; //we increment the number of cards with rank i
@@ -321,11 +321,7 @@ std::vector<int> PokerHand::get_score(){// for each hand, we create a score, whi
         score[0]=5; 
         score[1]=max_straight(); //the tie breaker is the maximum straight
     }
-    else if(has_three_of_a_kind()==true) {
-        score[0]=4; 
-        int ranks[15]; //for each rank, we will store if it is in the hand or not
-        for (int i=1; i<15; i++) ranks[i]=0; //we initialize all the ranks to 0
-    }
+    
     
     else if(has_straight()==true){
     score[0]=5;
@@ -335,11 +331,15 @@ std::vector<int> PokerHand::get_score(){// for each hand, we create a score, whi
     else if(has_three_of_a_kind()==true) {
     score[0]=4; 
     int ranks[15]; //for each rank, we will store if it is in the hand or not
-        for (int i=1; i<15; i++) ranks[i]=0; //we initialize all the ranks to 0
+        for (int i=1; i<15; i++) ranks[i]=0; //we initialize the number of cards with rank i with 0
     
     for (int i = 0; i < cards.size(); i++) {
-        ranks[cards[i].getValue()]++; //we increment the number of cards with rank i
+        ranks[cards[i].getValue()]++; //we increment the number of cards with the rank of the current card
     }
+    //for (int i=14; i>1; i--){
+      //  std::cout<<ranks[i]<<" "<<i<<" "; //the tie breaker is the rank of the triplet
+    //}
+    //std::cout<<std::endl;
     for(int i=14; i>1; i--){
         if(ranks[i]==3) {score[1]=i; break;} //the tie breaker is the rank of the triplet
     }
@@ -354,9 +354,9 @@ std::vector<int> PokerHand::get_score(){// for each hand, we create a score, whi
     else if(has_two_pairs()==true) {
     score[0]=3;
     int ranks[15]; //for each rank, we will store if it is in the hand or not
-        for (int i=1; i<15; i++) ranks[i]=0; //we initialize all the ranks to 0
+        for (int i=1; i<15; i++) ranks[i]=0; //we initialize the number of cards with rank i with 0
     for(int i=0; i<cards.size(); i++){
-        ranks[cards[i].getValue()]++; //we increment the number of cards with rank i
+        ranks[cards[i].getValue()]++; //we increment the number of cards with the rank of the current card
     }
     for (int i=14; i>1; i--){
         if(ranks[i]==2) {score[1]=i; break;} //the first tie breaker is the rank of the first pair
@@ -372,9 +372,9 @@ std::vector<int> PokerHand::get_score(){// for each hand, we create a score, whi
     else if(has_pair()==true) {
     score[0]=2;
     int ranks[15]; //for each rank, we will store if it is in the hand or not
-        for (int i=1; i<15; i++) ranks[i]=0; //we initialize all the ranks to 0
+        for (int i=1; i<15; i++) ranks[i]=0; //we initialize the number of cards with rank i with 0
     for(int i=0; i<cards.size(); i++){
-        ranks[cards[i].getValue()]++; //we increment the number of cards with rank i
+        ranks[cards[i].getValue()]++; //we increment the number of cards the rank of the current card
     }
     for (int i=14; i>1; i--){
         if(ranks[i]==2) {score[1]=i; break;} //the first tie breaker is the rank of the pair
@@ -394,9 +394,9 @@ std::vector<int> PokerHand::get_score(){// for each hand, we create a score, whi
     else if(has_high_card()==true) { 
     score[0]=1; 
     int ranks[15]; //for each rank, we will store if it is in the hand or not
-        for (int i=1; i<15; i++) ranks[i]=0; //we initialize all the ranks to 0
+        for (int i=1; i<15; i++) ranks[i]=0; //we initialize the number of cards with rank i with 0
     for(int i=0; i<cards.size(); i++){
-        ranks[cards[i].getValue()]++; //we increment the number of cards with rank i
+        ranks[cards[i].getValue()]++; //we increment the number of cards with the rank of the current card
     }
     int j=0; //we create a counter for the tie breakers
     int i=14; // we begin with the highest value card and iteratively check the best ones in descending order
@@ -412,5 +412,13 @@ std::vector<int> PokerHand::get_score(){// for each hand, we create a score, whi
     else score[0]=0; 
     return score;
 }
-
+int compare_hands(PokerHand hand1, PokerHand hand2){
+    std::vector<int> score1=hand1.get_score();
+    std::vector<int> score2=hand2.get_score();
+    for(int i=0; i<score1.size(); i++){ // we iteratively check the kickers, from the most important to the least important
+        if(score1[i]>score2[i]) return 1; //if the first hand has a better score, we return 1
+        if(score1[i]<score2[i]) return 2; //if the second hand has a better score, we return 2
+    }
+    return 0; //if the hands are equal, we return 0
+}
 
