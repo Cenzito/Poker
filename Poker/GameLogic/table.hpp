@@ -16,21 +16,6 @@ public:
     //default to 5 players
     Table();
 
-    //start a new hand
-    void resetHand();
-    void addBet();
-    void winMoney(std::string name, int amount);
-
-    int getFreeSeat();
-
-    void addCard(Card card);
-
-
-
-    void JoinTable(PlayerInfo player);
-
-    void leaveTable(PlayerInfo);
-private:
     //Cards that anyone can see
     std::vector<Card> communityCards;
 
@@ -40,8 +25,14 @@ private:
     int player_num;
     int pot;
     int current_player;
+
+    int smallBlindPlayer;
+
+    int SBValue;
+    int BBValue;
+
     //hash map associating each position to the player there
-    //small blind is 0 and it goes up from there
+    //position is just their placement at the table (not BB, SB...)
     std::unordered_map <int, PlayerInfo> playerInfo;
 };
 

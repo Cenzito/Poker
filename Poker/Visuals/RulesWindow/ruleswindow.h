@@ -17,6 +17,10 @@ public:
 
 private:
     Ui::RulesWindow *ui;
+
+private slots:
+    void CloseRulesWindow();
+
 };
 
 #endif // RULESWINDOW_H
