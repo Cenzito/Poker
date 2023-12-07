@@ -9,6 +9,7 @@ GameWindow::GameWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     connect(ui->pushButton, &QPushButton::clicked, this, &GameWindow::onPlayButtonClicked);
+
 }
 
 GameWindow::~GameWindow()

@@ -10,10 +10,14 @@
 
 
 int main(int argc, char *argv[]) {
+
+    QApplication a(argc, argv); //test//
+
     Game pokerGame(4);
     pokerGame.startRound();
 
-
+    MainWindow mainWindow;  //test//
+    mainWindow.show(); //test//
 
     std::cout << "Hello World!" << std::endl;
     Card card1(Suit::Spades, 1);
@@ -36,7 +40,9 @@ int main(int argc, char *argv[]) {
     else std::cout << "Not Flush"<<std::endl;
     if(hand.is_straight()==true) std::cout << " Straight"<<std::endl;
     else std::cout << "Not Straight"<<std::endl;
-    return 0;
+    //return 0;
+
+    return a.exec(); //test//
 }
 
 //test
