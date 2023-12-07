@@ -18,3 +18,5 @@ After the organisation, I undertook to create the basic layout of the project an
 I also gave information about the workflow we would adopt and how Github works to those that struggled.
 
 I will regularly be checking the files and commits made to the repository, making sure everything is working.
+
+I also worked on the Game logic aspect of the project. I created a Table class which will contain information that each player will have access to at any time at the table. This object will be updated by the server and sent to every player everytime a change is detected.
