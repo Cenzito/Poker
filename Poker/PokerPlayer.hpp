@@ -24,13 +24,16 @@ public:
     const std::string& getName() const { return name; }
     void placeBet(int amount);
     void receiveCards(const std::vector<Card>& cards);
-    void showHand() const;
+    void removeCards();
+
+    std::vector<Card> getHand() const;
 
     void updateTable(Table table);
 
     //this is not implemented in cpp file
     //virtual void action(Table table, int minAmount, int type); // 1 = normal round, 2 = small blind, 3 = bigblind
 
+    Table tableInfo;
 
 protected:
     Table tableInfo;
