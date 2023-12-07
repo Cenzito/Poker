@@ -32,8 +32,9 @@ public:
     Suit getSuit() const; 
     int getValue() const;
     std::string toString() const;
-    bool operator<(const Card& other_card); //overload the < operator, makes for comparing the cards easier
+    bool operator <(const Card& other_card); //overload the < operator, makes for comparing the cards easier
     bool operator == (const Card& other_card); //overload the == operator, makes for comparing the cards easier
+    bool operator >(const Card& other_card); //overload the > operator, makes for comparing the cards easier
 private:
     Suit suit;          // suit represented as an object of the suit class
     int value;        // cards 2 - 14, 13 is king, 14 is ace

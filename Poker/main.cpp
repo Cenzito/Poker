@@ -23,7 +23,7 @@ int main(int argc, char *argv[]) {
     std::cout << (card1 < card3) << std::endl;
     Deck deck;
     deck.shuffleDeck();
-    PokerHand hand ({Card(Suit::Spades, 2), Card(Suit::Spades,3), Card(Suit::Spades, 4), Card(Suit:: Spades, 5), Card(Suit::Spades, 6), Card(Suit::Clubs,2) });
+    PokerHand hand({deck.dealCard(), deck.dealCard(), deck.dealCard(), deck.dealCard(), deck.dealCard(), deck.dealCard(), deck.dealCard()}); //7 random cards
     //PokerHand hand ({});
     std::cout << hand.get_cards()[0];
 

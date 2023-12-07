@@ -12,7 +12,7 @@ class PokerHand{
     std::vector<int> get_score(); // computes the score of a given hand, so that we can rank them
     std::vector <Card> get_cards(); // returns the cards
     PokerCombinations get_combination(); // returns the best combination of the hand
-    void order_cards(); // orders the cards in the hand, so that we can easily check for combinations
+    void order_cards(); // orders the cards in the hand in descending order
     bool is_member(Card card); // returns true if the card is in the hand
     bool has_high_card(); // returns true if the hand has a high card
     bool has_pair(); // returns true if the hand has a pair
