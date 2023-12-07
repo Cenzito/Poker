@@ -2,6 +2,10 @@
 #include "Visuals/RulesWindow/ruleswindow.h"
 #include "ui_gamewindow.h"
 #include <QPixmap>
+#include "GameLogic/table.hpp"
+#include"GameLogic/PlayerInfo.hpp"
+#include "GameLogic/PokerPlayer.hpp"
+#include "GameLogic/Game.hpp"
 
 GameWindow::GameWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -9,7 +13,6 @@ GameWindow::GameWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     connect(ui->pushButton, &QPushButton::clicked, this, &GameWindow::onPlayButtonClicked);
-
 }
 
 GameWindow::~GameWindow()
@@ -50,4 +53,10 @@ void GameWindow::onPlayButtonClicked()
     rulesWindow->show();
 }
 
+void GameWindow::on_BetButton_clicked()
+{
+    int add_bet = ui->raise_box->value();
+    int current = (ui->cumulative_bet_line->text()).toInt();
+    ui->cumulative_bet_line->setText(QString::number(add_bet+current));
+}
 
