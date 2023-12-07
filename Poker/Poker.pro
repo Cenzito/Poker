@@ -25,6 +25,7 @@ SOURCES += \
     Bots/Medium/BotMedium.cpp \
     GameLogic/logic_scratch.cpp \
     GameLogic/PokerPlayer.cpp \
+    GameLogic/PokerHand.cpp \
     GameLogic/Card.cpp \
     GameLogic/Deck.cpp \
     GameLogic/Table.cpp \
@@ -46,6 +47,7 @@ HEADERS += \
     Bots/Medium/BotMedium.hpp \
     GameLogic/PlayerInfo.hpp \
     GameLogic/PokerPlayer.hpp \
+    GameLogic/PokerHand.hpp \
     GameLogic/logic_scratch.hpp \
     GameLogic/Card.hpp \
     GameLogic/Deck.hpp \
