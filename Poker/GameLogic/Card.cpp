@@ -13,6 +13,19 @@ std::string suitToString(Suit suit) {
         return "Unknown Suit";
     }
 }
+std::string combinationToString(PokerCombinations combination){
+    if(combination==PokerCombinations::HighCard) return "High Card";
+    else if(combination==PokerCombinations::Pair) return "Pair";
+    else if(combination==PokerCombinations::TwoPairs) return "Two Pairs";
+    else if(combination==PokerCombinations::ThreeOfAKind) return "Three of a Kind";
+    else if(combination==PokerCombinations::Straight) return "Straight";
+    else if(combination==PokerCombinations::Flush) return "Flush";
+    else if(combination==PokerCombinations::FullHouse) return "Full House";
+    else if(combination==PokerCombinations::FourOfAKind) return "Four of a Kind";
+    else if(combination==PokerCombinations::StraightFlush) return "Straight Flush";
+    else if(combination==PokerCombinations::RoyalFlush) return "Royal Flush";
+    else return "Unknown Combination";
+}
 
 std::ostream& operator<<(std::ostream& os, const Card& card) {
     os << card.toString();
@@ -28,6 +41,14 @@ bool Card:: operator<(const Card& other_card) {
     if(value<other_card.value) return true;
     else if(value==other_card.value) {
         if(suit<other_card.suit) return true;
+        else return false;
+    }
+    else return false;
+}
+bool Card:: operator>(const Card& other_card) {
+    if(value>other_card.value) return true;
+    else if(value==other_card.value) {
+        if(suit>other_card.suit) return true;
         else return false;
     }
     else return false;
