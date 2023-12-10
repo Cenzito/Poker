@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "GameLogic/Game.hpp"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -17,8 +19,10 @@ public:
 
 private:
     Ui::MainWindow *ui;
+
 private slots:
     void onPlayButtonClicked();
     void onRulesButtonClicked();
+
 };
 #endif // MAINWINDOW_H

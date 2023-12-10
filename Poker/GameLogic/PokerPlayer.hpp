@@ -23,6 +23,7 @@ public:
     PokerPlayer(const std::string& name, int initialChips);
     const std::string& getName() const;
     void placeBet(int amount);
+
     //void receiveCards(const std::vector<Card>& cards);
     void showHand() const;
     bool isActive() const;
@@ -33,8 +34,18 @@ public:
     void updateTable(const Table& tableInfo);
     void updateTable(Table* table);
 
+    //commented these 3 because of conflicts (delete and recreate pull request if this is unneccesary)
+    //void receiveCards(const std::vector<Card>& cards);
+    //void removeCards();
+    //std::vector<Card> getHand() const;
+
+
+
     //this is not implemented in cpp file
     //virtual void action(Table table, int minAmount, int type); // 1 = normal round, 2 = small blind, 3 = bigblind
+
+
+    //Table tableInfo; //
 
 
 protected:

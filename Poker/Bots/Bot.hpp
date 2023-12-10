@@ -6,7 +6,7 @@ public :
         this -> level = level;
     };
 
-   virtual std::pair<std::string, int> action(const Table* table, int minAmount, int type) = 0;
+   virtual void action(int minAmount, int type) = 0;
 
 protected:
     int level;

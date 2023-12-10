@@ -10,8 +10,18 @@
 
 
 int main(int argc, char *argv[]) {
+
+
     //Game pokerGame(4);
     //pokerGame.startGame();
+
+    //commented these 4 because of conflicts (delete and recreate pull request if this is unneccesary)
+    //QApplication a(argc, argv);
+    //MainWindow w;
+    //w.show();
+    //return a.exec();
+
+  
     std::cout << "Hello World!" << std::endl;
     //Card card1(Suit::Spades, 1);
     //Card card2(Suit::Spades, 2);
@@ -36,6 +46,7 @@ int main(int argc, char *argv[]) {
     else std::cout << "Not Flush"<<std::endl;
     if(hand.has_straight()==true) std::cout << " Straight"<<std::endl;
     else std::cout << "Not Straight"<<std::endl;
+
     hand.order_cards();
     for (int i = 0; i < hand.get_cards().size(); i++) {
         std::cout << hand.get_cards()[i] << " ";
@@ -83,6 +94,7 @@ int main(int argc, char *argv[]) {
     std::cout<<std::endl;
     std::cout << compare_hands(hand1, hand2) << std::endl;
     return 0;
+
 
 }
 
