@@ -12,3 +12,15 @@
 
 3. **Next step: Code Implementation:**
   - Translate architectural concepts into code for the `Player`, `Game`, and `Deck` classes.
+
+## Weeks of Monday 27 Nov 2023 and Monday 4 Dec 2023
+
+1. **Implementation of `Player`, `Game`, `Deck` classes**
+   - Implemented the `Player`, `Game`, `Deck` classes to create most of the logic of a poker game in `logic_scratch.cpp` and `logic_scratch.hpp`
+   - Main issue: I was not coordinating my work with my team causing people to overlap work
+   - After communicating better I decided to follow the approach idealized by Remi as separating all the classes in different files eases readabiltiy
+
+2. **Finalizing basic logic of poker game**
+   - Completed the `PokerPlayer` and `Game` hpp/cpp files to complete the logic of a poker game
+   - Added the logic of the rounds of betting: `round_of_betting` to have one round of betting after each step - preflop, flop, etc
+   - To make this possible needed to implement `turn` to let player choose to call, raise, fold, `end_round` to determine winner, and resp. methods/attributes to `PokerPlayer` class
