@@ -16,10 +16,10 @@ int main(int argc, char *argv[]) {
     //pokerGame.startGame();
 
     //commented these 4 because of conflicts (delete and recreate pull request if this is unneccesary)
-    //QApplication a(argc, argv);
-    //MainWindow w;
-    //w.show();
-    //return a.exec();
+    QApplication a(argc, argv);
+    MainWindow w;
+    w.show();
+    return a.exec();
 
   
     std::cout << "Hello World!" << std::endl;
