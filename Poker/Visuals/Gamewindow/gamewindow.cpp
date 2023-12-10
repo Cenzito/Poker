@@ -61,8 +61,10 @@ void GameWindow::on_BetButton_clicked()
 }
 
 void GameWindow::update_to_display(PokerPlayer* player, PlayerInfo* info){
-    ui->name_line->setText(QString::fromStdString(player->getName()));
+    //bug
+    //ui->name_line->setText(QString::fromStdString(player->getName()));
     // need to add the card displays,
+
 }
 
 void GameWindow::update_from_display(PokerPlayer* player, PlayerInfo* info){

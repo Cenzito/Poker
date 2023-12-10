@@ -23,6 +23,8 @@ public:
 
 private slots:
 
+    void on_dealButton_clicked();
+
     void onPlayButtonClicked();
 
     void on_BetButton_clicked();
