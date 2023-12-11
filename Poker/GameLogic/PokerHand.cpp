@@ -11,7 +11,7 @@ std::vector <Card> PokerHand :: get_cards(){
     return cards;
 }
 void PokerHand :: order_cards(){ //we order the cards in descending order, so that the highest card is the first one
-    std::sort(cards.begin(),cards.end()); 
+    std::sort(cards.begin(),cards.end());
     std::reverse(cards.begin(),cards.end());
 }
 bool PokerHand:: is_member(Card card){

@@ -44,11 +44,6 @@ void PokerPlayer::placeBet(int amount) {
     return;
 }
 
-void PokerPlayer::receiveCards(const std::vector<Card>& cards) {
-    hand = cards;
-}
-
-
 std::vector<Card> PokerPlayer::getHand() const {
     std::cout << name << "'s hand: ";
     for (const auto& card : hand) {
@@ -58,11 +53,6 @@ std::vector<Card> PokerPlayer::getHand() const {
     return hand;
 }
 
-void PokerPlayer::updateTable(Table table) {
-    //update info about the table
-    //will need to change ui after that
-    tableInfo = table;
-}
 
 void PokerPlayer::removeCards() {
     hand = std::vector<Card>();

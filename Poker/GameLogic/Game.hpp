@@ -24,7 +24,7 @@ private:
     bool isRoundOver() const;
 
 
-  /* commented this because of conflict (delete and recreate pull request if this is unneccesary)
+  // commented this because of conflict (delete and recreate pull request if this is unneccesary)
     void startRound();
     void addBot(PokerPlayer bot);
     //start a new hand
@@ -34,13 +34,13 @@ private:
     int getFreeSeat();
     void addCard(Card card);
     void leaveGame(PokerPlayer);   
-*/
+
 
     Deck deck;
     Table tableInfo;
     std::vector<PokerPlayer> players;
     int currentHighestBet;
-    const int minimumRaise;
+    int minimumRaise;
 };
 
 

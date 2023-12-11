@@ -9,6 +9,7 @@ Game::Game(int numOfPlayers) {
     for (int i = 0; i < numOfPlayers; ++i) {
         players.emplace_back("Player " + std::to_string(i + 1), 1000); //1000 cest les chips
     }
+    minimumRaise = 10;
 }
 
 int Game::getFreeSeat() {
