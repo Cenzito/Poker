@@ -14,7 +14,7 @@ For further reference and to aid in understanding the methodologies employed, th
 
 These resources offer comprehensive information on the POCO library, including its modules, usage examples, and API documentation. They are instrumental for anyone looking to understand the underlying mechanics of our server's functionality.
 
-## Week 2:
+### Week 2:
 Building on the momentum from the first week, I further enhanced our server project with several key developments:
 
 1. **Client Implementation Using Native Linux Headers**: This week, I focused on the client side of our project by creating a lightweight and efficient client using native Linux headers. This approach ensures compatibility and performance, leveraging the inherent capabilities of the Linux system for network communications. The client is designed to interact seamlessly with our server, providing a robust and responsive user experience.
