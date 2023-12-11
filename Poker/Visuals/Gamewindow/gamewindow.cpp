@@ -31,7 +31,7 @@ const QString GameWindow::Get_image_path(const std::string &suit, const std::str
     return final;
 
 }
-//void GameWindow::on_dealButton_clicked()
+void GameWindow::on_dealButton_clicked() {;}
 
 
     // see with logic to run from here the function that deals the cards and then return which ones we need to display
