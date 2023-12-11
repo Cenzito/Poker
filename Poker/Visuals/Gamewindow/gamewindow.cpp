@@ -31,7 +31,7 @@ const QString GameWindow::Get_image_path(const std::string &suit, const std::str
     return final;
 
 }
-//void GameWindow::on_dealButton_clicked()
+void GameWindow::on_dealButton_clicked() {;}
 
 
     // see with logic to run from here the function that deals the cards and then return which ones we need to display
@@ -61,8 +61,10 @@ void GameWindow::on_BetButton_clicked()
 }
 
 void GameWindow::update_to_display(PokerPlayer* player, PlayerInfo* info){
-    ui->name_line->setText(QString::fromStdString(player->getName()));
+    //bug
+    //ui->name_line->setText(QString::fromStdString(player->getName()));
     // need to add the card displays,
+
 }
 
 void GameWindow::update_from_display(PokerPlayer* player, PlayerInfo* info){

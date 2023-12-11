@@ -35,9 +35,9 @@ public:
     void updateTable(Table* table);
 
     //commented these 3 because of conflicts (delete and recreate pull request if this is unneccesary)
-    //void receiveCards(const std::vector<Card>& cards);
-    //void removeCards();
-    //std::vector<Card> getHand() const;
+    void receiveCards(const std::vector<Card>& cards);
+    void removeCards();
+    std::vector<Card> getHand() const;
 
 
 

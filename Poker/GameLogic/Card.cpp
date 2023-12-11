@@ -37,7 +37,7 @@ Card::Card (Suit suit, int value) {
     this->suit = suit;
     this->value = value;
 }
-bool Card:: operator<(const Card& other_card) {
+bool Card:: operator<(const Card& other_card) const{
     if(value<other_card.value) return true;
     else if(value==other_card.value) {
         if(suit<other_card.suit) return true;
