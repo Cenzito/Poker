@@ -32,7 +32,7 @@ public:
     Suit getSuit() const; 
     int getValue() const;
     std::string toString() const;
-    bool operator <(const Card& other_card); //overload the < operator, makes for comparing the cards easier
+    bool operator <(const Card& other_card) const; //overload the < operator, makes for comparing the cards easier
     bool operator == (const Card& other_card); //overload the == operator, makes for comparing the cards easier
     bool operator >(const Card& other_card); //overload the > operator, makes for comparing the cards easier
 private:
