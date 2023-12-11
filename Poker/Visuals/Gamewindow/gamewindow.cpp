@@ -60,3 +60,14 @@ void GameWindow::on_BetButton_clicked()
     ui->cumulative_bet_line->setText(QString::number(add_bet+current));
 }
 
+void GameWindow::update_to_display(PokerPlayer* player, PlayerInfo* info){
+    ui->name_line->setText(QString::fromStdString(player->getName()));
+    // need to add the card displays,
+}
+
+void GameWindow::update_from_display(PokerPlayer* player, PlayerInfo* info){
+
+}
+
+
+
