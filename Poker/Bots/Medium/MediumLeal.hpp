@@ -2,16 +2,17 @@
 #define MEDIUMLEAL_HPP
 #include "../Bot.hpp"
 
-class MediumLeal /*: public Bot*/ {
+class MediumLeal : public Bot {
 public:
     //constrcutor
     MediumLeal();
 
     //action
-    void action(int MinAmount, int type) /*override*/;
+    virtual void action(int MinAmount, int type);
 
 private:
     double gamma;
+    double proba;
     int calcCardValue();
     bool shouldFold();
     bool shouldRaise(int threshhold);

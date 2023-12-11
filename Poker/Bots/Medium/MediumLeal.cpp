@@ -9,11 +9,21 @@ MediumLeal::MediumLeal() {
 
 int MediumLeal::calcCardValue() {
     //calculate card value
-    //branches -> community cards complete or not
+    //can use the function in PokerHand
+    /*
+    if (is_pair() == true) {
+        cardValue = ...;
+    }
+    ...
+    */
 }
 
 bool MediumLeal::shouldFold() {
     //calculate probability according to outline
+    /*
+    double probability = pow(e, -4.7*(cardValue/10))
+
+     */
 }
 
 
