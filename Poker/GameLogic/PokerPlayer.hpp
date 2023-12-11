@@ -33,9 +33,7 @@ public:
     //this is not implemented in cpp file
     //virtual void action(Table table, int minAmount, int type); // 1 = normal round, 2 = small blind, 3 = bigblind
 
-
     //Table tableInfo; //
-
 
 protected:
     Table tableInfo;
