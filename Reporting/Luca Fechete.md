@@ -13,3 +13,14 @@ For further reference and to aid in understanding the methodologies employed, th
 - POCO Documentation: [POCO Documentation](https://pocoproject.org/docs/)
 
 These resources offer comprehensive information on the POCO library, including its modules, usage examples, and API documentation. They are instrumental for anyone looking to understand the underlying mechanics of our server's functionality.
+
+## Week 2:
+Building on the momentum from the first week, I further enhanced our server project with several key developments:
+
+1. **Client Implementation Using Native Linux Headers**: This week, I focused on the client side of our project by creating a lightweight and efficient client using native Linux headers. This approach ensures compatibility and performance, leveraging the inherent capabilities of the Linux system for network communications. The client is designed to interact seamlessly with our server, providing a robust and responsive user experience.
+
+2. **Server Enhancement with Multicasting Capabilities**: To improve the efficiency and scalability of our server, I implemented multicasting functionality. This allows the server to send messages to multiple clients simultaneously, significantly enhancing the communication process. This feature is particularly beneficial for scenarios requiring real-time updates or broadcasts to multiple clients, demonstrating our server's capacity to handle high-volume, simultaneous communications.
+
+3. **Account Creation Support**: Another major milestone was the implementation of account creation support. This feature enables users to create their own accounts, laying the groundwork for personalized and secure interactions within our network. The account creation process is integrated with the server's architecture, ensuring a seamless and user-friendly experience. This addition marks an important step towards a fully-featured and user-centric application.
+
+These advancements collectively mark a significant progression in our project, showcasing the potential of our server-client architecture and setting a solid foundation for future enhancements and features.
