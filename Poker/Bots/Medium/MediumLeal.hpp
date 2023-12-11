@@ -8,10 +8,9 @@ public:
     MediumLeal();
 
     //action
-    void action(int MinAmount, int type) /*override*/;
+    void action() /*override*/;
 
 private:
-    double gamma;
     int calcCardValue();
     bool shouldFold();
     bool shouldRaise(int threshhold);
