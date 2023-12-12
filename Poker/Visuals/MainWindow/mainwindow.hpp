@@ -23,6 +23,7 @@ private:
 private slots:
     void onPlayButtonClicked();
     void onRulesButtonClicked();
+    void onLocalPlayButtonClicked();
 
 };
 #endif // MAINWINDOW_H

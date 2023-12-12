@@ -9,7 +9,8 @@
 
 GameWindow::GameWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::GameWindow)
+    ui(new Ui::GameWindow),
+    player("name", 100)
 {
     ui->setupUi(this);
     connect(ui->pushButton, &QPushButton::clicked, this, &GameWindow::onPlayButtonClicked);

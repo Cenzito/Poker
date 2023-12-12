@@ -11,6 +11,7 @@ CONFIG += c++17
 SOURCES += \
     Bots/Medium/MediumLeal.cpp \
     GameLogic/PlayerInfo.cpp \
+    Visuals/Gamewindow/localgamewindow.cpp \
     Visuals/RulesWindow/ruleswindow.cpp \
     main.cpp \
     Bots/Bot.cpp \
@@ -56,6 +57,7 @@ HEADERS += \
     GameLogic/Game.hpp \
     GameLogic/Table.hpp \
     Visuals/Gamewindow/gamewindow.hpp \
+    Visuals/Gamewindow/localgamewindow.h \
     Visuals/MainWindow/mainwindow.hpp \
     Visuals/RulesWindow/ruleswindow.h
 

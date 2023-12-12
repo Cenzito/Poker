@@ -32,6 +32,9 @@ private slots:
 private:
     Ui::GameWindow *ui;
 
+
+    //player playing
+    PokerPlayer player;
 };
 
 
