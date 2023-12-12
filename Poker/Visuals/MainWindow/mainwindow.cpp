@@ -2,6 +2,7 @@
 #include "Visuals/RulesWindow/ruleswindow.h"
 #include "ui_mainwindow.h"
 #include "../GameWindow/gamewindow.hpp"
+#include "../Gamewindow/localgamewindow.h"
 #include <Qcolor>
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -45,6 +46,6 @@ void MainWindow::onRulesButtonClicked()
 
 void MainWindow::onLocalPlayButtonClicked() {
     // Create and show the GameWindow when the PLAY button is clicked
-    GameWindow *gameWindow = new GameWindow(this, true);
+    GameWindow *gameWindow = new LocalGameWindow(this);
     gameWindow->show();
 }

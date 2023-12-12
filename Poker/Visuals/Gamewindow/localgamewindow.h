@@ -10,7 +10,7 @@ class LocalGameWindow : public GameWindow
 public:
     LocalGameWindow(QWidget *parent);
 
-    void addBot(Bot bot);
+    void addBot(PokerPlayer bot);
 
 private:
     //have own game

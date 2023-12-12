@@ -16,7 +16,7 @@ public:
     void startGame();
     void updateTable(const Table& tableInfo);
 
-
+    void addBot(PokerPlayer bot);
 
 private:
     void update();
@@ -26,7 +26,7 @@ private:
 
   // commented this because of conflict (delete and recreate pull request if this is unneccesary)
     void startRound();
-    void addBot(PokerPlayer bot);
+
     //start a new hand
     void nextHand();
     void addBet(int pos, int amount);
