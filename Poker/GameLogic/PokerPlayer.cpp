@@ -66,4 +66,33 @@ void PokerPlayer::action(std::vector<int> table, int minAmount, int type) {
     }
 };*/
 
+void PokerPlayer::call(int bet_on_table) {//TO BE DONE: manage the case where Not enough chips DO THIS IN OTHER Function
+    //decreases Chips available by bet_on_table - current_bet
+    chips -= (bet_on_table - current_bet);
+    //changes current_bet = bet_on_table
+    current_bet = bet_on_table;
+}
+
+int PokerPlayer::raise(int bet_on_table) { //TO BE DONE
+    //: Ask raise amount !!!there are minimums (check poker rules) TO DO THE MINIMUMS IF statements
+    std::string userInput;
+    std::cout << "By how much woud you like to raise: ";
+    std::cin >> userInput;
+    int amount_to_raise = std::stoi(userInput); //stoi = string to integer
+    //CHECK IF amount_to_raise + current bet > bet on table + big blind or something
+    //minimum based on small_blind and bet_on_table
+    chips -= amount_to_raise; //decreases Chips available by amount_to_raise
+    current_bet += amount_to_raise; //changes current_bet = amount_to_raise + current_bet
+    //returns current_bet + amount_to_raise = updated current bet
+    return current_bet; //this returns allows us to redefine the general bet on the table to ask other players to follow
+}
+
+int PokerPlayer::fold() {
+    //change value of player_stopped_playing to true
+    isFold = true;
+    //returns current bet to add to total pot
+    int current_bet_2 = current_bet; //allows us to make current bet 0 while returning current_bet_2
+    current_bet = 0;
+    return current_bet_2;
+}
 

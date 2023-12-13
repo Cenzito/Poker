@@ -24,6 +24,24 @@ public:
     const std::string& getName() const;
     void placeBet(int amount);
 
+    //Practical functions for betting round functions
+    int get_bet() {return current_bet;}
+    int get_chips() {return chips;}
+    bool stopped_playing() {return isFold;}
+    void make_bet_zero() {
+        current_bet = 0;
+    }
+    void win(int pot) {
+        chips += pot;
+    }
+    void will_restart_playing() {
+        isFold = false;
+    }
+    //Action functions call raise fold
+    void call(int);
+    int raise(int);
+    int fold();
+
     //void receiveCards(const std::vector<Card>& cards);
     void showHand() const;
     bool isActive() const;
@@ -40,7 +58,6 @@ public:
     std::vector<Card> getHand() const;
 
 
-
     //this is not implemented in cpp file
     //virtual void action(Table table, int minAmount, int type); // 1 = normal round, 2 = small blind, 3 = bigblind
 
@@ -54,6 +71,7 @@ protected:
     std::vector<Card> hand;
     bool isBot, isAllin, isFold;
     int chips;
+    int current_bet; //to be used to compare bets in round of betting functions
     bool active;
     Table currentTable;
     
