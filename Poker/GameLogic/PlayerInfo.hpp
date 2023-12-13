@@ -17,6 +17,8 @@ class PlayerInfo
         int stack_size;
         int bet;
 
+        bool isAllin, isFold;
+
 };
 
 #endif // PLAYERINFO_H
