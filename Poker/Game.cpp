@@ -9,6 +9,7 @@ Game::Game(int numOfPlayers) {
     for (int i = 0; i < numOfPlayers; ++i) {
         players.emplace_back("Player " + std::to_string(i + 1), 1000); //1000 cest les chips
     }
+    minimumRaise = 10;
 }
 
 int Game::getFreeSeat() {
@@ -89,7 +90,30 @@ void Game::update() {
 }
 
 
-void Game::startRound() {
+void Game::bettingRound() {
+    for (PokerPlayer& player : players) {
+        if (!player.isActive()) continue;
+
+        int betAmount = player.decideBet(currentHighestBet, minimumRaise); // Implement this method in PokerPlayer
+
+        if (player.canBet(betAmount)) {
+            if (betAmount >= currentHighestBet + minimumRaise) {
+                player.bet(betAmount);
+                currentHighestBet = betAmount;
+            } else {
+                // Handle case where bet is too low
+            }
+        } else {
+            // Handle case where player can't bet the amount
+        }
+    }
+}
+
+void Game::startGame() {
+
+//commented because of conflicts (delete and recreate pull request if this is unneccesary)
+//void Game::startRound() {
+
     deck.shuffleDeck();
 
     // deal two random cards

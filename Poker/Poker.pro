@@ -9,6 +9,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    Bots/Medium/MediumLeal.cpp \
     GameLogic/PlayerInfo.cpp \
     Visuals/RulesWindow/ruleswindow.cpp \
     main.cpp \
@@ -45,6 +46,7 @@ HEADERS += \
     Bots/Hard/Leal/BotLeal.hpp \
     Bots/Hard/Pu/BotPu.hpp \
     Bots/Medium/BotMedium.hpp \
+    Bots/Medium/MediumLeal.hpp \
     GameLogic/PlayerInfo.hpp \
     GameLogic/PokerPlayer.hpp \
     GameLogic/PokerHand.hpp \
@@ -68,6 +70,7 @@ FORMS += \
 
 RESOURCES += \
     Visuals/Image.qrc
+    Visuals/MainWindow/pokerpic.jpg
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
