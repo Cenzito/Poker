@@ -23,25 +23,35 @@ public:
 
 
 private:
+    void pay(PokerPlayer player, int sum);
+    void win(PokerPlayer player, int sum);
+
     void update();
     void bettingRound();
     bool isRoundOver() const;
 
 
-  // commented this because of conflict (delete and recreate pull request if this is unneccesary)
+    void turn(int index_turn, PokerPlayer player);
+    void round_of_betting(int index_turn);
+    void end_round();
+
+
     void startRound();
     void addBot(PokerPlayer bot);
+
     //start a new hand
     void nextHand();
     void addBet(int pos, int amount);
     void winMoney(int pos, int amount);
     int getFreeSeat();
     void addCard(Card card);
-    void leaveGame(PokerPlayer);   
+    void leaveGame(PokerPlayer);
 
 
     Deck deck;
     Table tableInfo;
+
+    //would need to change this to hold player name and way to communicate with them (through server)
     std::vector<PokerPlayer> players;
     int currentHighestBet;
     int minimumRaise;
