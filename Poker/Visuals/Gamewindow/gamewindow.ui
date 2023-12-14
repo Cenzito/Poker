@@ -190,7 +190,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_2">
+   <widget class="QLineEdit" name="line_player4">
     <property name="geometry">
      <rect>
       <x>660</x>
@@ -200,7 +200,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_3">
+   <widget class="QLineEdit" name="line_player6">
     <property name="geometry">
      <rect>
       <x>650</x>
@@ -210,7 +210,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_4">
+   <widget class="QLineEdit" name="line_player8">
     <property name="geometry">
      <rect>
       <x>510</x>
@@ -230,7 +230,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_6">
+   <widget class="QLineEdit" name="line_player3">
     <property name="geometry">
      <rect>
       <x>180</x>
@@ -240,7 +240,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_7">
+   <widget class="QLineEdit" name="line_player7">
     <property name="geometry">
      <rect>
       <x>360</x>
@@ -250,7 +250,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_8">
+   <widget class="QLineEdit" name="line_player2">
     <property name="geometry">
      <rect>
       <x>590</x>
@@ -271,13 +271,13 @@
    <zorder>name_line</zorder>
    <zorder>pushButton</zorder>
    <zorder>line_player1</zorder>
-   <zorder>lineEdit_2</zorder>
-   <zorder>lineEdit_3</zorder>
-   <zorder>lineEdit_4</zorder>
+   <zorder>line_player4</zorder>
+   <zorder>line_player6</zorder>
+   <zorder>line_player8</zorder>
    <zorder>lineEdit_5</zorder>
-   <zorder>lineEdit_6</zorder>
-   <zorder>lineEdit_7</zorder>
-   <zorder>lineEdit_8</zorder>
+   <zorder>line_player3</zorder>
+   <zorder>line_player7</zorder>
+   <zorder>line_player2</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
