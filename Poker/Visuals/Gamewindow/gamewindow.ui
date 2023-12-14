@@ -167,16 +167,26 @@
    <widget class="QLabel" name="label_table">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>40</y>
-      <width>831</width>
-      <height>421</height>
+      <x>87</x>
+      <y>0</y>
+      <width>911</width>
+      <height>461</height>
      </rect>
     </property>
     <property name="text">
      <string/>
     </property>
    </widget>
+   <zorder>label_card2</zorder>
+   <zorder>CheckButton</zorder>
+   <zorder>BetButton</zorder>
+   <zorder>FoldButton</zorder>
+   <zorder>raise_box</zorder>
+   <zorder>label_card1</zorder>
+   <zorder>cumulative_bet_line</zorder>
+   <zorder>name_line</zorder>
+   <zorder>label_table</zorder>
+   <zorder>pushButton</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
