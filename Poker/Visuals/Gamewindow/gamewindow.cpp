@@ -2,17 +2,22 @@
 #include "Visuals/RulesWindow/ruleswindow.h"
 #include "ui_gamewindow.h"
 #include <QPixmap>
-#include "GameLogic/table.hpp"
+#include "GameLogic/Table.hpp"
 #include"GameLogic/PlayerInfo.hpp"
 #include "GameLogic/PokerPlayer.hpp"
 #include "GameLogic/Game.hpp"
 
 GameWindow::GameWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::GameWindow)
+    QMainWindow(parent), ui(new Ui::GameWindow)
 {
+
     ui->setupUi(this);
     connect(ui->pushButton, &QPushButton::clicked, this, &GameWindow::onPlayButtonClicked);
+    // Loading and setting the image to the QLabel
+    int w = ui->background_label->width();
+    int h = ui->background_label->height();
+    QPixmap image1("../Poker/Visuals/GameWindow/poker-table.jpg");
+    ui->background_label->setPixmap(image1.scaled(w,h,Qt::KeepAspectRatio));
 }
 
 GameWindow::~GameWindow()
