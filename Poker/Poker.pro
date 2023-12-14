@@ -70,6 +70,7 @@ FORMS += \
 
 RESOURCES += \
     Visuals/Image.qrc
+    Visuals/MainWindow/pokerpic.jpg
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

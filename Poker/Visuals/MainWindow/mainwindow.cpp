@@ -8,10 +8,17 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+
+    // Apply stylesheets
+    ui->pushButton->setStyleSheet("background-color: #3498db; color: white;");
+    ui->pushButton_2->setStyleSheet("background-color: #3498db; color: white;");
+
+
     connect(ui->pushButton, &QPushButton::clicked, this, &MainWindow::onPlayButtonClicked);
     connect(ui->pushButton_2, &QPushButton::clicked, this, &MainWindow::onRulesButtonClicked);
     // Loading and setting the image to the QLabel
-    QPixmap image1("C:/Users/tamar/Desktop/Tamzi/faks/semester 3/cse201/poker project/Poker/Poker/Visuals/MainWindow/pokerpic.jpg"); //sorry for the longest adress ever
+    QPixmap image1("../Poker/Visuals/MainWindow/pokerpic.jpg");
     ui->label_2->setPixmap(image1);
 
 }
