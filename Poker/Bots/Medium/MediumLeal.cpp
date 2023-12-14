@@ -3,59 +3,50 @@
 #include <algorithm>
 
 
-MediumLeal::MediumLeal() {
-    //constructor
+int MediumLeal::CalcCardValue() {
+
+    PokerHand educatedHand(hand);
+    CardValue = educatedHand.get_combination();
+    NumericalCardValue = static_cast<int>(CardValue);
 }
 
-int MediumLeal::calcCardValue() {
-    //calculate card value
-    //branches -> community cards complete or not
-    //check all of the is_smth
-    /*cardValue = get_combination() */
+bool MediumLeal::ShouldFold() {
 
-}
-
-bool MediumLeal::shouldFold() {
-
-    /*if (our money less than call amount) {
+    if (chips < tableInfo.SBValue) {
        return true;
-     } */
+     }
 
-    //proba = e**(-lamda * cardValue)
-    //threshold = randomvalue[0,1]
-    /*if (threshhold <= proba) {
+    float Probability = exp(-lambda * NumericalCardValue);
+    double threshold = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+    if (threshold <= Probability) {
         return true;
     }
     else {
         return false;
-    }*/
-
+    }
 }
 
 
-bool MediumLeal::shouldRaise(int threshold) {
-    /* if (cardValue < threshold) {
-     *  return false
+bool MediumLeal::ShouldRaise(int threshold) {
+    if (NumericalCardValue < threshold) {
+        return false;
      }
        else {
         return true;
     }
-    */
 
 }
 
 void MediumLeal::action() { //syntax changes as soon as we can make it an inhereted class
-    /*
-    if (shouldFold is False && shouldRaise is False) {
-        call
-    }
-    if (shouldFold is False && shouldRaise is True) {
-        raise by 2xsmall bild
-        if not enough money, call
-    }
-    if (shouldFold is True) {
-        fold
-    }
 
-    */
+    if (ShouldFold() == false && ShouldRaise(threshold) == false) {
+        call(1);
+    }
+    if (ShouldFold() == false && ShouldRaise(threshold) == true) {
+        //raise by 2 x small blind
+
+    }
+    if (ShouldFold() == true) {
+        fold();
+    }
 }
