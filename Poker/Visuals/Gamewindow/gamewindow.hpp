@@ -10,7 +10,7 @@ namespace Ui {
 class GameWindow;
 }
 
-class GameWindow : public QMainWindow
+class GameWindow: public QMainWindow
 {
     Q_OBJECT
 
@@ -20,6 +20,8 @@ public:
     const QString Get_image_path(const std::string &suit, const std::string &value, bool back = false); // to display the back call with args ("back", "back", true)
     void update_to_display(PokerPlayer* player, PlayerInfo* info);
     void update_from_display(PokerPlayer* player, PlayerInfo* info);
+
+    void display_player_hand(PokerPlayer* player);
 
 private slots:
 
@@ -31,6 +33,7 @@ private slots:
 
 private:
     Ui::GameWindow *ui;
+    //PokerPlayer player ; //
 
 };
 

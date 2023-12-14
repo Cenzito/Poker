@@ -8,7 +8,7 @@ RulesWindow::RulesWindow(QWidget *parent) :
     ui->setupUi(this);
     connect(ui->pushButton, &QPushButton::clicked, this, &RulesWindow::CloseRulesWindow);
 
-    setStyleSheet("background-color:darkGreen;");
+    setStyleSheet("background-color:darkseagreen;");
     setAutoFillBackground( true );
 
 }
