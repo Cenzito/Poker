@@ -1,12 +1,13 @@
 
 
-#include "./Visuals/MainWindow/mainwindow.hpp"
+//#include "./Visuals/MainWindow/mainwindow.hpp"
 #include "./GameLogic/Game.hpp"
 #include "./GameLogic/Card.cpp"
 #include "./GameLogic/Deck.cpp"
 #include "./GameLogic/PokerHand.cpp"
+#include "./GameLogic/Monte_Carlo_Probability_Simulator.cpp"
 
-#include <QApplication>
+//#include <QApplication>
 
 
 int main(int argc, char *argv[]) {
@@ -16,16 +17,16 @@ int main(int argc, char *argv[]) {
     //pokerGame.startGame();
 
     //commented these 4 because of conflicts (delete and recreate pull request if this is unneccesary)
-    QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
-    return a.exec();
+    //QApplication a(argc, argv);
+    //MainWindow w;
+    //w.show();
+    //return a.exec();
 
   
     std::cout << "Hello World!" << std::endl;
-    //Card card1(Suit::Spades, 1);
-    //Card card2(Suit::Spades, 2);
-    //Card card3(Suit::Hearts, 2);
+    Card card1(Suit::Spades, 1);
+    Card card2(Suit::Spades, 2);
+    Card card3(Suit::Hearts, 2);
     //std::cout << card1 << std::endl;
     //std::cout << card2 << std::endl;
     //std::cout << (card1 < card2) << std::endl;
@@ -93,6 +94,20 @@ int main(int argc, char *argv[]) {
     }
     std::cout<<std::endl;
     std::cout << compare_hands(hand1, hand2) << std::endl;
+    Deck newDeck;
+    newDeck.shuffleDeck();
+    Table table;
+    PokerPlayer player1 ("Player1");
+    player1.hand.emplace_back(newDeck.dealCard());
+    player1.hand.emplace_back(newDeck.dealCard());
+    table.communityCards.emplace_back(newDeck.dealCard());
+    table.communityCards.emplace_back(newDeck.dealCard());
+    table.communityCards.emplace_back(newDeck.dealCard());
+    std::vector<float> probabilities;
+    probabilities=Winning_Probability(table, player1, 4, 1000);
+    for (int i = 0; i < probabilities.size(); i++) {
+        std::cout << probabilities[i] << " ";
+    }
     return 0;
 
 

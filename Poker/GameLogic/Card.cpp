@@ -45,6 +45,10 @@ bool Card:: operator<(const Card& other_card) const{
     }
     else return false;
 }
+bool Card:: operator!=(const Card& other_card) {
+    if(value!=other_card.value || suit!=other_card.suit) return true;
+    else return false;
+}
 bool Card:: operator>(const Card& other_card) {
     if(value>other_card.value) return true;
     else if(value==other_card.value) {

@@ -10,7 +10,7 @@
 #include "table.hpp"
 #include "PokerPlayer.hpp"
 #include "PlayerInfo.hpp"
-#include "./Bots/Bot.hpp"
+//#include "./Bots/Bot.hpp"
 
 class Game {
 public:
