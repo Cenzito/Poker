@@ -13,6 +13,10 @@ GameWindow::GameWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     connect(ui->pushButton, &QPushButton::clicked, this, &GameWindow::onPlayButtonClicked);
+
+    QImage table_background(":/images/table.png");
+    QSize table_background_size = ui->label_table->size();
+    ui->label_table->setPixmap(QPixmap::fromImage(table_background).scaled(table_background_size, Qt::KeepAspectRatio, Qt::SmoothTransformation));
 }
 
 GameWindow::~GameWindow()
