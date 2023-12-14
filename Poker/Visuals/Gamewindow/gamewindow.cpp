@@ -76,8 +76,14 @@ void GameWindow::update_from_display(PokerPlayer* player, PlayerInfo* info){
 }
 
 void GameWindow::on_line_player7_cursorPositionChanged(int arg1, int arg2)
+// the idea is to display the amount of money someone has by clicking on its name
+// when the name is displayed and you click then it switches to the bank and vice versa
+
+// we will replicate this for every line_player
+
 {
-    ui->line_player7->text();
-    ui->line_player7->setText("hello");
+    QString text  = ui->line_player7->text();
+   // if (text == )
+   //ui->line_player7->setText("hello");
 }
 
