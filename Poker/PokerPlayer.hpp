@@ -8,54 +8,40 @@
 #include "Card.hpp"
 #include <unordered_map>
 
-//TO IMPLEMENT:
-//Combinations class that gives which defines what combinations are possible and which are better than others
-//add to game class a function that: given player cards and cards in the middle give their combination (and probablity of success later)
-//implement betting in the game class
-//A class Table that records all information on the table
-//virtual std::pair<std::string, int> action(const Table* table, int minAmount, int type);
-
-
-
 
 class PokerPlayer {
 public:
-    PokerPlayer(const std::string& name, int initialChips);
+    PokerPlayer(const std::string& name);
     const std::string& getName() const;
-    void placeBet(int amount);
+
+    //Action functions call raise fold
+    void call(int);
+    void raise(int);
+    void fold();
 
     //void receiveCards(const std::vector<Card>& cards);
     void showHand() const;
-    bool isActive() const;
     bool canBet(int amount) const;
-    void bet(int amount);
-    int decideBet(int currentHighestBet, int minimumRaise);
-    //void receiveCards(const std::vector<Card>& hand);
-    void updateTable(const Table& tableInfo);
-    void updateTable(Table* table);
+    int decideBet(int currentHighestBet, int money, int minimumRaise);
 
-    //commented these 3 because of conflicts (delete and recreate pull request if this is unneccesary)
+    //void receiveCards(const std::vector<Card>& hand);
+    void updateTable(Table table);
+
     void receiveCards(const std::vector<Card>& cards);
     void removeCards();
     std::vector<Card> getHand() const;
 
-
+    Table tableInfo;
 
     //this is not implemented in cpp file
     //virtual void action(Table table, int minAmount, int type); // 1 = normal round, 2 = small blind, 3 = bigblind
 
+    int chips;
+    void updateChips();
 
-    //Table tableInfo; //
-
-
-protected:
-    Table tableInfo;
     std::string name;
     std::vector<Card> hand;
-    bool isBot, isAllin, isFold;
-    int chips;
-    bool active;
-    Table currentTable;
+    bool isBot;
     
 };
 
