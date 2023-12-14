@@ -22,7 +22,7 @@ public:
 
 
 
-private:
+protected:
     void pay(PokerPlayer player, int sum);
     void win(PokerPlayer player, int sum);
 

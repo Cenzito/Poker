@@ -10,6 +10,7 @@ CONFIG += c++17
 
 SOURCES += \
     Bots/Medium/MediumLeal.cpp \
+    GameLogic/GameLocal.cpp \
     GameLogic/PlayerInfo.cpp \
     Visuals/RulesWindow/ruleswindow.cpp \
     main.cpp \
@@ -47,6 +48,7 @@ HEADERS += \
     Bots/Hard/Pu/BotPu.hpp \
     Bots/Medium/BotMedium.hpp \
     Bots/Medium/MediumLeal.hpp \
+    GameLogic/GameLocal.hpp \
     GameLogic/PlayerInfo.hpp \
     GameLogic/PokerPlayer.hpp \
     GameLogic/PokerHand.hpp \
