@@ -75,5 +75,9 @@ void GameWindow::update_from_display(PokerPlayer* player, PlayerInfo* info){
 
 }
 
-
+void GameWindow::on_line_player7_cursorPositionChanged(int arg1, int arg2)
+{
+    ui->line_player7->text();
+    ui->line_player7->setText("hello");
+}
 

@@ -29,6 +29,8 @@ private slots:
 
     void on_BetButton_clicked();
 
+    void on_line_player7_cursorPositionChanged(int arg1, int arg2);
+
 private:
     Ui::GameWindow *ui;
 
