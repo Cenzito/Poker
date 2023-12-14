@@ -9,6 +9,9 @@
 #include <unordered_map>
 
 
+
+
+
 class PokerPlayer {
 public:
     PokerPlayer(const std::string& name);
@@ -41,7 +44,8 @@ public:
 
     std::string name;
     std::vector<Card> hand;
-    bool isBot;
+    //isActive tells if it's the players turn to bet
+    bool isBot, isActive;
     
 };
 

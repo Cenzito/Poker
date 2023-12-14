@@ -12,6 +12,7 @@ SOURCES += \
     Bots/Medium/MediumLeal.cpp \
     GameLogic/GameLocal.cpp \
     GameLogic/PlayerInfo.cpp \
+    GameLogic/PokerPlayerLocal.cpp \
     Visuals/RulesWindow/ruleswindow.cpp \
     main.cpp \
     Bots/Bot.cpp \
@@ -52,6 +53,7 @@ HEADERS += \
     GameLogic/PlayerInfo.hpp \
     GameLogic/PokerPlayer.hpp \
     GameLogic/PokerHand.hpp \
+    GameLogic/PokerPlayerLocal.hpp \
     GameLogic/logic_scratch.hpp \
     GameLogic/Card.hpp \
     GameLogic/Deck.hpp \

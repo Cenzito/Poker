@@ -102,11 +102,8 @@ void Game::update() {
     }
 }
 
-
-enum Action { //will be used for implementation of turn()
-    call,
-    raise_,
-    fold
+Action Game::AskAction(PokerPlayer player) {
+    return call;
 };
 
 void Game::turn(int index_turn, PokerPlayer player) { //turn() turn in a round for a player
@@ -128,6 +125,7 @@ void Game::turn(int index_turn, PokerPlayer player) { //turn() turn in a round f
 
     //Ask action
     //returns call, raise, or fold based on enum
+    Action action = AskAction(PokerPlayer);
     Action action;
     std::string userInput;
     std::cout << "Enter your action (call, raise, fold): ";

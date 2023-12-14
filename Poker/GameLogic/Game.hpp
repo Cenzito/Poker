@@ -12,6 +12,13 @@
 #include "PlayerInfo.hpp"
 #include "./Bots/Bot.hpp"
 
+
+enum Action { //will be used for implementation of turn()
+    call,
+    raise_,
+    fold
+};
+
 class Game {
 public:
     Game(int numOfPlayers);
@@ -23,6 +30,11 @@ public:
 
 
 protected:
+
+
+
+    Action AskAction(PokerPlayer);
+
     void pay(PokerPlayer player, int sum);
     void win(PokerPlayer player, int sum);
 

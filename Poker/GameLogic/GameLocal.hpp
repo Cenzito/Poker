@@ -2,7 +2,7 @@
 #define GAMELOCAL_HPP
 
 #include "Game.hpp"
-
+#include "PokerPlayerLocal.hpp"
 
 
 class GameLocal : public Game
@@ -19,7 +19,6 @@ public:
 
     void nextHand();
 
-    //would need to change this to hold player name and way to communicate with them (through server)
     std::vector<PokerPlayer> players;
 };
 
