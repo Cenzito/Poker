@@ -13,6 +13,10 @@ GameWindow::GameWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     connect(ui->pushButton, &QPushButton::clicked, this, &GameWindow::onPlayButtonClicked);
+
+    // Loading and setting the image to the QLabel
+    QPixmap image("../Poker/Visuals/images/pokertable.jpg");
+    ui->label_tablepic->setPixmap(image);
 }
 
 GameWindow::~GameWindow()
@@ -65,7 +69,35 @@ void GameWindow::update_to_display(PokerPlayer* player, PlayerInfo* info){
     //ui->name_line->setText(QString::fromStdString(player->getName()));
     // need to add the card displays,
 
+
+    // Update community cards (middle cards)
+    update_community_cards();
+
 }
+
+
+void GameWindow::update_community_cards() {
+    Table table;
+    const std::vector<Card>& communityCards = table.communityCards;
+
+    // Display the first three community cards initially
+    for (int i = 0; i < 3; ++i) {
+        update_middle_card_display(i + 1, communityCards[i]);
+    }
+}
+
+void GameWindow::update_middle_card_display(int cardIndex, const Card& card) {
+    QLabel* middleCardLabel = findChild<QLabel*>(QString("label_middlecard%1").arg(cardIndex));
+    if (middleCardLabel) {
+        // Get the image path for the card
+        //QString imagePath = Get_image_path(card.suit, std::to_string(card.getValue()), false);
+//many bugs but i will solve them
+        // Loading and setting the image to the QLabel
+        //QPixmap image(imagePath);
+        //ui->middleCardLabel->setPixmap(image);
+    }
+}
+
 
 void GameWindow::update_from_display(PokerPlayer* player, PlayerInfo* info){
 
