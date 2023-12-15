@@ -17,6 +17,7 @@ GameWindow::GameWindow(QWidget *parent) :
     QImage table_background(":/images/table.png");
     QSize table_background_size = ui->label_table->size();
     ui->label_table->setPixmap(QPixmap::fromImage(table_background).scaled(table_background_size, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+
 }
 
 GameWindow::~GameWindow()
@@ -82,8 +83,8 @@ void GameWindow::on_line_player7_cursorPositionChanged(int arg1, int arg2)
 // we will replicate this for every line_player
 
 {
-    QString text  = ui->line_player7->text();
-   // if (text == )
-   //ui->line_player7->setText("hello");
+   QString text  = ui->line_player7->text();
+   // if(test == name_of_player)
+   ui->line_player7->setText("test");
 }
 

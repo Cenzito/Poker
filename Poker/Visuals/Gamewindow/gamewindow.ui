@@ -183,11 +183,14 @@
    <widget class="QLineEdit" name="line_player1">
     <property name="geometry">
      <rect>
-      <x>270</x>
+      <x>280</x>
       <y>70</y>
       <width>113</width>
       <height>21</height>
      </rect>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
     <property name="readOnly">
      <bool>true</bool>
@@ -202,6 +205,9 @@
       <height>21</height>
      </rect>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
     <property name="readOnly">
      <bool>true</bool>
     </property>
@@ -215,6 +221,9 @@
       <height>21</height>
      </rect>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
     <property name="readOnly">
      <bool>true</bool>
     </property>
@@ -223,10 +232,13 @@
     <property name="geometry">
      <rect>
       <x>510</x>
-      <y>370</y>
+      <y>360</y>
       <width>113</width>
       <height>21</height>
      </rect>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
     <property name="readOnly">
      <bool>true</bool>
@@ -235,11 +247,14 @@
    <widget class="QLineEdit" name="lineEdit_5">
     <property name="geometry">
      <rect>
-      <x>190</x>
+      <x>200</x>
       <y>310</y>
       <width>113</width>
       <height>21</height>
      </rect>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
     <property name="readOnly">
      <bool>true</bool>
@@ -248,11 +263,14 @@
    <widget class="QLineEdit" name="line_player3">
     <property name="geometry">
      <rect>
-      <x>180</x>
+      <x>190</x>
       <y>200</y>
       <width>113</width>
       <height>21</height>
      </rect>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
     <property name="readOnly">
      <bool>true</bool>
@@ -262,10 +280,13 @@
     <property name="geometry">
      <rect>
       <x>360</x>
-      <y>370</y>
+      <y>360</y>
       <width>113</width>
       <height>21</height>
      </rect>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
     <property name="readOnly">
      <bool>true</bool>
@@ -279,6 +300,137 @@
       <width>113</width>
       <height>21</height>
      </rect>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="line_bet3">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>200</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="line_bet8">
+    <property name="geometry">
+     <rect>
+      <x>630</x>
+      <y>360</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="line_bet7">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>360</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="line_bet5">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>310</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="line_bet1">
+    <property name="geometry">
+     <rect>
+      <x>400</x>
+      <y>70</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="line_bet4">
+    <property name="geometry">
+     <rect>
+      <x>780</x>
+      <y>200</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="line_bet6">
+    <property name="geometry">
+     <rect>
+      <x>590</x>
+      <y>310</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="line_bet2">
+    <property name="geometry">
+     <rect>
+      <x>530</x>
+      <y>70</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
     <property name="readOnly">
      <bool>true</bool>
@@ -302,6 +454,14 @@
    <zorder>line_player3</zorder>
    <zorder>line_player7</zorder>
    <zorder>line_player2</zorder>
+   <zorder>line_bet3</zorder>
+   <zorder>line_bet8</zorder>
+   <zorder>line_bet7</zorder>
+   <zorder>line_bet5</zorder>
+   <zorder>line_bet1</zorder>
+   <zorder>line_bet4</zorder>
+   <zorder>line_bet6</zorder>
+   <zorder>line_bet2</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
