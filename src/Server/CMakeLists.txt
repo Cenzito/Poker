@@ -9,6 +9,8 @@ add_library(${SERVER} STATIC
     ${SERVER_SOURCES}
     ${SERVER_HEADERS})
 
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/Database)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/Server)
 # Specify the directories where the compiler should look for include files
 target_include_directories(${SERVER} PUBLIC 
     "./"
