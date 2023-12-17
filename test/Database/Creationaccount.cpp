@@ -5,7 +5,6 @@
 #include <cryptopp/osrng.h>
 #include <cryptopp/base64.h>
 #include "Creationaccount.hpp"
-#include "encription.hpp"
 
 //This is a constructor
 CreationAccount::CreationAccount(const char* dbName) : db(nullptr) {

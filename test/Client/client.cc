@@ -4,6 +4,7 @@
 #include <netinet/in.h>
 #include <unistd.h>
 #include <arpa/inet.h>
+#include "Creationaccount.hpp"
 
 #define BUFFER_SIZE 1024
 
@@ -72,15 +73,34 @@ void PokerClient::receiveMessages() {
 }
 
 void PokerClient::sendCredentials() {
-    std::string username, password;
-    std::cout << "Enter username: ";
-    std::getline(std::cin, username);
+    const char* accountinformation = "Account.db";
 
-    std::cout << "Enter password: ";
-    std::getline(std::cin, password);
+    CreationAccount account = CreationAccount(accountinformation);
 
-    std::string credentials = username + ":" + password;
-    sendMessage(credentials);
+    const char* sql = "CREATE TABLE IF NOT EXISTS ACCOUNT("
+                  "USERNAME TEXT PRIMARY KEY NOT NULL, "
+                  "PASSWORD TEXT NOT NULL);";
+    account.CreationTable(sql);
+
+    std::string username, password, choice;
+    std::cout<<"If you need to register, input register else login"<<std::endl;
+    std::cin>>choice;
+    if(choice == "register"){
+        do{
+            std::cout << "Enter username: ";
+            std::getline(std::cin, username);
+            std::cout << "Enter password: ";
+            std::getline(std::cin, password);
+        }while(account.Check_repetition(username));
+    }
+    else if(choice =="login"){
+        do{
+            std::cout << "Enter username: ";
+            std::getline(std::cin, username);
+            std::cout << "Enter password: ";
+            std::getline(std::cin, password);
+        }while(account.login(username, password)); 
+    }
     isCredentialsSent = true;
 }
 
