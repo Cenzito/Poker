@@ -48,7 +48,7 @@ void PokerServerConnection::run() {
             if (!clientCredentials[&ss].isLoggedIn) {
                 auto delimiterPos = message.find(':');
                 if (delimiterPos != std::string::npos) {
-                    if(account.login(message.substr(0, delimiterPos), message.substr(delimiterPos + 1))){
+                    while(account.login(message.substr(0, delimiterPos), message.substr(delimiterPos + 1))){
                         clientCredentials[&ss].username = message.substr(0, delimiterPos);
                         clientCredentials[&ss].password = message.substr(delimiterPos + 1);
                         clientCredentials[&ss].isLoggedIn = true; // Set login status to true
