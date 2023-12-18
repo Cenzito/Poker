@@ -196,7 +196,7 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLineEdit" name="line_player4">
+   <widget class="QLineEdit" name="line_player3">
     <property name="geometry">
      <rect>
       <x>700</x>
@@ -212,7 +212,7 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLineEdit" name="line_player6">
+   <widget class="QLineEdit" name="line_player4">
     <property name="geometry">
      <rect>
       <x>650</x>
@@ -228,7 +228,7 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLineEdit" name="line_player8">
+   <widget class="QLineEdit" name="line_player5">
     <property name="geometry">
      <rect>
       <x>510</x>
@@ -244,7 +244,7 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_5">
+   <widget class="QLineEdit" name="line_player7">
     <property name="geometry">
      <rect>
       <x>200</x>
@@ -260,7 +260,7 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLineEdit" name="line_player3">
+   <widget class="QLineEdit" name="line_player8">
     <property name="geometry">
      <rect>
       <x>170</x>
@@ -276,7 +276,7 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLineEdit" name="line_player7">
+   <widget class="QLineEdit" name="line_player6">
     <property name="geometry">
      <rect>
       <x>360</x>
@@ -308,7 +308,7 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLineEdit" name="line_bet3">
+   <widget class="QLineEdit" name="line_bet8">
     <property name="geometry">
      <rect>
       <x>110</x>
@@ -324,7 +324,7 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLineEdit" name="line_bet8">
+   <widget class="QLineEdit" name="line_bet5">
     <property name="geometry">
      <rect>
       <x>630</x>
@@ -340,7 +340,7 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLineEdit" name="line_bet7">
+   <widget class="QLineEdit" name="line_bet6">
     <property name="geometry">
      <rect>
       <x>300</x>
@@ -356,7 +356,7 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLineEdit" name="line_bet5">
+   <widget class="QLineEdit" name="line_bet7">
     <property name="geometry">
      <rect>
       <x>320</x>
@@ -388,7 +388,7 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLineEdit" name="line_bet4">
+   <widget class="QLineEdit" name="line_bet3">
     <property name="geometry">
      <rect>
       <x>820</x>
@@ -404,7 +404,7 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLineEdit" name="line_bet6">
+   <widget class="QLineEdit" name="line_bet4">
     <property name="geometry">
      <rect>
       <x>590</x>
@@ -447,20 +447,20 @@
    <zorder>name_line</zorder>
    <zorder>pushButton</zorder>
    <zorder>line_player1</zorder>
-   <zorder>line_player4</zorder>
-   <zorder>line_player6</zorder>
-   <zorder>line_player8</zorder>
-   <zorder>lineEdit_5</zorder>
    <zorder>line_player3</zorder>
+   <zorder>line_player4</zorder>
+   <zorder>line_player5</zorder>
    <zorder>line_player7</zorder>
+   <zorder>line_player8</zorder>
+   <zorder>line_player6</zorder>
    <zorder>line_player2</zorder>
-   <zorder>line_bet3</zorder>
    <zorder>line_bet8</zorder>
-   <zorder>line_bet7</zorder>
    <zorder>line_bet5</zorder>
-   <zorder>line_bet1</zorder>
-   <zorder>line_bet4</zorder>
    <zorder>line_bet6</zorder>
+   <zorder>line_bet7</zorder>
+   <zorder>line_bet1</zorder>
+   <zorder>line_bet3</zorder>
+   <zorder>line_bet4</zorder>
    <zorder>line_bet2</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">

@@ -1,4 +1,4 @@
-#include "gamewindow.hpp"
+    #include "gamewindow.hpp"
 #include "Visuals/RulesWindow/ruleswindow.h"
 #include "ui_gamewindow.h"
 #include <QPixmap>
@@ -75,6 +75,8 @@ void GameWindow::update_to_display(PokerPlayer* player, PlayerInfo* info){
 void GameWindow::update_from_display(PokerPlayer* player, PlayerInfo* info){
 
 }
+
+
 
 void GameWindow::on_line_player7_cursorPositionChanged(int arg1, int arg2)
 // the idea is to display the amount of money someone has by clicking on its name
