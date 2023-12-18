@@ -117,8 +117,6 @@ void GameWindow::on_line_player2_cursorPositionChanged(PokerPlayer* player)
     }
 
 }
-
-
 void GameWindow::on_line_player3_cursorPositionChanged(PokerPlayer* player)
 {
     if (player->tableInfo.player_num >= 3){
@@ -137,10 +135,7 @@ void GameWindow::on_line_player3_cursorPositionChanged(PokerPlayer* player)
             ui->line_player3->setText(stack_qt);
         }
     }
-
 }
-
-
 void GameWindow::on_line_player4_cursorPositionChanged(PokerPlayer* player)
 {
     if (player->tableInfo.player_num >= 4){
@@ -159,10 +154,7 @@ void GameWindow::on_line_player4_cursorPositionChanged(PokerPlayer* player)
             ui->line_player4->setText(stack_qt);
         }
     }
-
 }
-
-
 void GameWindow::on_line_player5_cursorPositionChanged(PokerPlayer* player)
 {
     if (player->tableInfo.player_num >= 5){
@@ -181,10 +173,7 @@ void GameWindow::on_line_player5_cursorPositionChanged(PokerPlayer* player)
             ui->line_player5->setText(stack_qt);
         }
     }
-
 }
-
-
 void GameWindow::on_line_player6_cursorPositionChanged(PokerPlayer* player)
 {
     if (player->tableInfo.player_num >= 6){
@@ -203,10 +192,7 @@ void GameWindow::on_line_player6_cursorPositionChanged(PokerPlayer* player)
             ui->line_player6->setText(stack_qt);
         }
     }
-
 }
-
-
 void GameWindow::on_line_player7_cursorPositionChanged(PokerPlayer* player)
 {
     if (player->tableInfo.player_num >= 7){
@@ -225,10 +211,7 @@ void GameWindow::on_line_player7_cursorPositionChanged(PokerPlayer* player)
             ui->line_player7->setText(stack_qt);
         }
     }
-
 }
-
-
 void GameWindow::on_line_player8_cursorPositionChanged(PokerPlayer* player)
 {
     if (player->tableInfo.player_num == 8){
@@ -247,9 +230,7 @@ void GameWindow::on_line_player8_cursorPositionChanged(PokerPlayer* player)
             ui->line_player8->setText(stack_qt);
         }
     }
-
 }
-
 
 // end of switch from name tag to bank display
 
