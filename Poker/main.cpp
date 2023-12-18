@@ -6,6 +6,8 @@
 #include "./GameLogic/Deck.cpp"
 #include "./GameLogic/PokerHand.cpp"
 #include "./GameLogic/Monte_Carlo_Probability_Simulator.cpp"
+#include "./GameLogic/PokerPlayer.cpp"
+#include "./GameLogic/Table.cpp"
 
 //#include <QApplication>
 
@@ -94,15 +96,18 @@ int main(int argc, char *argv[]) {
     }
     std::cout<<std::endl;
     std::cout << compare_hands(hand1, hand2) << std::endl;
+    //std::cout<<"Good for now!"<<std::endl;
     Deck newDeck;
     newDeck.shuffleDeck();
+    std::cout<<newDeck.dealCard()<<std::endl;
     Table table;
-    PokerPlayer player1 ("Player1");
+    PokerPlayer player1 ("P");
     player1.hand.emplace_back(newDeck.dealCard());
     player1.hand.emplace_back(newDeck.dealCard());
     table.communityCards.emplace_back(newDeck.dealCard());
     table.communityCards.emplace_back(newDeck.dealCard());
     table.communityCards.emplace_back(newDeck.dealCard());
+    std::cout<<"Good for now!"<<std::endl;
     std::vector<float> probabilities;
     probabilities=Winning_Probability(table, player1, 4, 1000);
     for (int i = 0; i < probabilities.size(); i++) {
