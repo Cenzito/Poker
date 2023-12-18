@@ -13,6 +13,7 @@ SOURCES += \
     GameLogic/GameLocal.cpp \
     GameLogic/PlayerInfo.cpp \
     GameLogic/PokerPlayerLocal.cpp \
+    Visuals/Gamewindow/gamelocalwindow.cpp \
     Visuals/RulesWindow/ruleswindow.cpp \
     main.cpp \
     Bots/Bot.cpp \
@@ -59,6 +60,7 @@ HEADERS += \
     GameLogic/Deck.hpp \
     GameLogic/Game.hpp \
     GameLogic/Table.hpp \
+    Visuals/Gamewindow/gamelocalwindow.hpp \
     Visuals/Gamewindow/gamewindow.hpp \
     Visuals/MainWindow/mainwindow.hpp \
     Visuals/RulesWindow/ruleswindow.h
