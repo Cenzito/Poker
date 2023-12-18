@@ -29,8 +29,25 @@ private slots:
 
     void on_BetButton_clicked();
 
-    void on_line_player7_cursorPositionChanged(int arg1, int arg2);
+    // beginning of switch from name tag to bank display
 
+    void on_line_player1_cursorPositionChanged(PokerPlayer* player);
+
+    void on_line_player2_cursorPositionChanged(PokerPlayer* player);
+
+    void on_line_player3_cursorPositionChanged(PokerPlayer* player);
+
+    void on_line_player4_cursorPositionChanged(PokerPlayer* player);
+
+    void on_line_player5_cursorPositionChanged(PokerPlayer* player);
+
+    void on_line_player6_cursorPositionChanged(PokerPlayer* player);
+
+    void on_line_player7_cursorPositionChanged(PokerPlayer* player);
+
+    void on_line_player8_cursorPositionChanged(PokerPlayer* player);
+
+    // end of switch from name tag to bank display
 private:
     Ui::GameWindow *ui;
 
