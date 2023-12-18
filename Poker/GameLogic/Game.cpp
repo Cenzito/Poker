@@ -107,7 +107,7 @@ Action Game::AskAction(PokerPlayer player) {
 };
 /*
 void Game::turn(int index_turn, PokerPlayer player) { //turn() turn in a round for a player
-
+/*
     //ask player to bet
     //wait for response
 
@@ -125,8 +125,7 @@ void Game::turn(int index_turn, PokerPlayer player) { //turn() turn in a round f
 
     //Ask action
     //returns call, raise, or fold based on enum
-    Action action = AskAction(PokerPlayer);
-    Action action;
+    Action action = AskAction(player);
     std::string userInput;
     std::cout << "Enter your action (call, raise, fold): ";
     std::cin >> userInput;
@@ -158,7 +157,8 @@ void Game::turn(int index_turn, PokerPlayer player) { //turn() turn in a round f
         //Player.fold() both makes player stop playing and returns his current bet to add to pot
         players_standing -= 1;
         //decrease players_standing by 1
-    }
+    }*/
+
 }
 */
 void Game::round_of_betting(int index_turn) {

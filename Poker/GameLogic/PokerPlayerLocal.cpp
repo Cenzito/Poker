@@ -9,7 +9,10 @@ PokerPlayerLocal::PokerPlayerLocal(std::string name) : PokerPlayer(name)
 
 
 int PokerPlayerLocal::Action() {
+
     //create buttons to choose bet size
+    //QPushButton button("Click Me!", &window);
+    //layout.addWidget(&button);
 
     // Create a timer
     QTimer timer;
