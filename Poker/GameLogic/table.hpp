@@ -12,28 +12,30 @@
 //It contains public information that every player should know
 class Table {
 public:
+    //constructors
     Table(int seats);
-    //default to 5 players
-    Table();
+    Table(); //default 5 seats
 
-    //Cards that anyone can see
-    std::vector<Card> communityCards;
+    //Card information
+    std::vector<Card> communityCards; //Cards that anyone can see
 
-    //max number of players at table
-    int seats;
-    //current number of players
-    int player_num;
-    int pot;
+    //Player information
+    int seats; //max number of players at table
+    int player_num; //current number of players
     int current_player;
-
     int smallBlindPlayer;
+    std::unordered_map <int, PlayerInfo> playerInfo; //hash map associating each position to the player there (playerInfo[0] is the first player that joined)
 
+    //Money information
     int SBValue;
     int BBValue;
+    int pot;
 
-    //hash map associating each position to the player there
-    //position is just their placement at the table (not BB, SB...)
-    std::unordered_map <int, PlayerInfo> playerInfo;
+
+
+
+
+
 };
 
 #endif // TABLE_HPP

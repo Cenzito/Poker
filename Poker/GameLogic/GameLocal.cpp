@@ -1,8 +1,9 @@
 #include "GameLocal.hpp"
 
-GameLocal::GameLocal() : Game(5)
+GameLocal::GameLocal(std::vector<PokerPlayer> players):
 {
-
+    this -> players = players;
+    table = Table(players::size())
 }
 
 
@@ -29,6 +30,7 @@ void GameLocal::addBot(PokerPlayer bot) {
 void GameLocal::pay(int position, int sum) {
     tableInfo.playerInfo[position].stack_size -= sum;
 };
+
 void GameLocal::win(int position, int sum) {
     tableInfo.playerInfo[position].stack_size += sum;
 };
@@ -51,7 +53,11 @@ void GameLocal::nextHand(){
     tableInfo.communityCards=std::vector<Card>();
 }
 
+void GameLocal::testGameLocal(int num_rounds){
+    //add 2 bots and 1 player
+    //initialize the table
 
+}
 
 
 
