@@ -12,7 +12,7 @@ int MediumLeal::CalcCardValue() {
 
 bool MediumLeal::ShouldFold() {
 
-    if (chips < tableInfo.SBValue) {
+    if (chips < tableInfo.bet_on_table) {
        return true;
      }
 
@@ -40,10 +40,20 @@ bool MediumLeal::ShouldRaise(int threshold) {
 void MediumLeal::action() { //syntax changes as soon as we can make it an inhereted class
 
     if (ShouldFold() == false && ShouldRaise(threshold) == false) {
-        call(1);
+        call(tableInfo.bet_on_table);
     }
     if (ShouldFold() == false && ShouldRaise(threshold) == true) {
         //raise by 2 x small blind
+        if (chips > 2*tableInfo.bet_on_table) {
+            raise(2*tableInfo.bet_on_table);
+
+        }
+
+        else {
+            call(tableInfo.bet_on_table);
+
+        }
+
 
     }
     if (ShouldFold() == true) {
