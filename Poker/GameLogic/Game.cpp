@@ -42,7 +42,7 @@ void Game::JoinGame(PokerPlayer player) {
 }
 
 
-void Game::addBot(Bot bot) {
+void Game::addBot(PokerPlayer bot) {
     Game::JoinGame(bot);
 }
 

@@ -37,7 +37,7 @@ private:
 
 
     void startRound();
-    void addBot(Bot bot);
+    void addBot(PokerPlayer bot);
 
     //start a new hand
     void nextHand();
