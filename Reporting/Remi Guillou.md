@@ -27,6 +27,8 @@ I also worked on the Game logic aspect of the project. I created a Table class w
 Second week. Decided to focus on the logic of the project. 
 Upgraded the Table class with missing information and removed functions from it. Now a Table object is simply used as a way to pass information. It has no practical functionalities. As such all of it's variables are public. The Game will directly modify them and the Player will be able to access them. 
 Also decided on the way the player would interact with the server. Mainly explained the interactions of the player and the server to the people working on the logic part. The Game class will run on the server and the Player class on the user's computer. These two classes will need to be able to interact.
+After experiencing a few issues with the main branch not compiling after a bad merge, we have also implemented a satisfactory mean to verify every merge request to main.
+A few people still had trouble working with Github so took some time to get everyone together and show them the workflow.
 
 ## Week 3
 
