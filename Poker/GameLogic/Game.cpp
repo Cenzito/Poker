@@ -10,9 +10,7 @@ Game::Game(int numOfPlayers) {
     //for (int i = 0; i < numOfPlayers; ++i) {
     //    players.emplace_back("Player " + std::to_string(i + 1), 1000); //1000 cest les chips
     //}
-
-    small_blind_index = 1; //small blind set at 1 because 0 is set as the button
-    turn_index = 3; //underthegun player starts
+    tableInfo=Table(numOfPlayers);
 
 }
 
@@ -56,7 +54,7 @@ void Game::nextHand(){
 
 
     tableInfo.pot=0;
-    tableInfo.smallBlindPlayer += 1;
+    tableInfo.ButtonPlayer += 1;
     tableInfo.communityCards=std::vector<Card>();
 }
 
@@ -227,6 +225,23 @@ void Game::end_round() { //TO COMPLETE!
 }
 
 
+void Game::DealCards() {
+    // deal two random cards
+    for (PokerPlayer& player : players) {
+        std::vector<Card> hand = {deck.dealCard(), deck.dealCard()};
+        player.receiveCards(hand);
+        std::cout << player.getName() << "'s hand: ";
+        player.getHand();
+    }
+}
+
+void Game::ChangeRound() {
+    //going from round 1 to 2 etc, shifting the small and big blind
+    tableInfo. = (small_blind_index + 1) % tableInfo.player_num; //we shift the small blind (consequently big blind) by 1
+    current_player = 0; //resetting
+}
+
+
 void Game::startGame() {
 /*
 //commented because of conflicts (delete and recreate pull request if this is unneccesary)
@@ -241,12 +256,7 @@ void Game::startGame() {
 
     deck.shuffleDeck();
 
-    // deal two random cards
-    for (PokerPlayer& player : players) {
-        std::vector<Card> hand = {deck.dealCard(), deck.dealCard()};
-        player.receiveCards(hand);
-        std::cout << player.getName() << "'s hand: ";
-        player.getHand();
+
     }
 
     //Round 0 - make small blind and big blind play, bet_on_table = big blind

@@ -23,7 +23,7 @@ public:
     int seats; //max number of players at table
     int player_num; //current number of players
     int current_player;
-    int smallBlindPlayer;
+    int ButtonPlayer; //0 set as the button initially, so 1 is small blind, 2 is big blind, 3 is under the gun etc and then alternates
     std::unordered_map <int, PlayerInfo> playerInfo; //hash map associating each position to the player there (playerInfo[0] is the first player that joined)
 
     //Money information
