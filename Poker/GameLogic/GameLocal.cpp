@@ -1,20 +1,17 @@
 #include "GameLocal.hpp"
 
-GameLocal::GameLocal(int seats): Game(seats)
-{
-}
+
+GameLocal::GameLocal(int seats): Game(seats) {;}
 
 
 void GameLocal::JoinGame(PokerPlayerLocal player) {
 
-    //player joins game so we add him to the table with an initial amount of money
-    PlayerInfo playerinfo = PlayerInfo(player.getName(), 1000, 0);
-
-    getFreeSeat();
     //would need to do a try in case of error if room is full
     if (tableInfo.player_num >= tableInfo.seats)  {
         return;
     } else {
+        //player joins game so we add him to the table with an initial amount of money
+        PlayerInfo playerinfo = PlayerInfo(player.getName(), 1000, 0);
         tableInfo.playerInfo.insert({getFreeSeat(), playerinfo});
         players.push_back(player);
     }
@@ -64,7 +61,7 @@ void GameLocal::nextHand(){
     }
 
     tableInfo.pot=0;
-    tableInfo.smallBlindPlayer += 1;
+    tableInfo.ButtonPlayer += 1;
     tableInfo.communityCards=std::vector<Card>();
     hand_finished = false;
     updatePlayersTable();
