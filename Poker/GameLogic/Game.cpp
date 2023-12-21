@@ -10,7 +10,10 @@ Game::Game(int numOfPlayers) {
     //for (int i = 0; i < numOfPlayers; ++i) {
     //    players.emplace_back("Player " + std::to_string(i + 1), 1000); //1000 cest les chips
     //}
-    small_blind_index = 0;
+
+    small_blind_index = 1; //small blind set at 1 because 0 is set as the button
+    turn_index = 3; //underthegun player starts
+
 }
 
 int Game::getFreeSeat() {
@@ -104,7 +107,7 @@ Action Game::AskAction(PokerPlayer player) {
     return call;
 };
 
-void Game::turn(int index_turn, PokerPlayer player) { //turn() turn in a round for a player
+void Game::turn(int turn_index, PokerPlayer player) { //turn() turn in a round for a player
 /*
     //ask player to bet
     //wait for response
@@ -113,9 +116,9 @@ void Game::turn(int index_turn, PokerPlayer player) { //turn() turn in a round f
     // all of this is kind of useless but can be used for bot testing
 
     //DEBUGGING IN CASE ONE WANTS TO SEE OUTPUT UNCOMMENT FOLLOWING (already uncommented)
-    std::cout << "Player name: " << players[index_turn].getName() << std::endl; //show name
-    //std::cout << "Player's bet: " << players[index_turn].get_bet() << std::endl; //show current bet
-    //std::cout << "Player's chips: " << players[index_turn].get_chips() << std::endl; //show chips
+    std::cout << "Player name: " << players[turn_index].getName() << std::endl; //show name
+    //std::cout << "Player's bet: " << players[turn_index].get_bet() << std::endl; //show current bet
+    //std::cout << "Player's chips: " << players[turn_index].get_chips() << std::endl; //show chips
     std::cout << "Pot size: " << tableInfo.pot << std::endl; //show size_of_pot
     std::cout << "Bet to match: " << bet_on_table << std::endl; //show bet_to_match
     std::cout << "Player calling: " << number_callers << std::endl; //show number of players calling
@@ -136,14 +139,14 @@ void Game::turn(int index_turn, PokerPlayer player) { //turn() turn in a round f
     }
 
     if (action == call) {
-        players[index_turn].call(bet_on_table);
+        players[turn_index].call(bet_on_table);
         //We use player.call() function
         number_callers += 1;
         //We increase number_callers by 1
-        //std::cout << "Player called, his chips are: " << players[index_turn].get_bet() << std::endl; //show bet_to_match
+        //std::cout << "Player called, his chips are: " << players[turn_index].get_bet() << std::endl; //show bet_to_match
     }
     else if (action == raise_) {
-        //bet_on_table = players[index_turn].raise(bet_on_table);
+        //bet_on_table = players[turn_index].raise(bet_on_table);
         //bet_on_table variable is updated to raise amount
         // !! A new round starts from here and ends at last unless new player re-raises
         number_callers = 1;
@@ -151,26 +154,26 @@ void Game::turn(int index_turn, PokerPlayer player) { //turn() turn in a round f
     }
     else if (action == fold) {
         //pot = pot + bet_of_player
-        //tableInfo.pot += players[index_turn].fold();
+        //tableInfo.pot += players[turn_index].fold();
         //Player.fold() both makes player stop playing and returns his current bet to add to pot
         players_standing -= 1;
         //decrease players_standing by 1
     }*/
 }
 
-void Game::round_of_betting(int index_turn) {
+void Game::round_of_betting(int turn_index) {
     /*
     //while (players_standing != number_callers)
     while (players_standing != number_callers) {
 
-        if (players[index_turn].stopped_playing()) { //if player is not playing, i.e. has folded
-            index_turn = (index_turn + 1) % tableInfo.player_num; //increase index_turn by 1
+        if (players[turn_index].stopped_playing()) { //if player is not playing, i.e. has folded
+            turn_index = (turn_index + 1) % tableInfo.player_num; //increase turn_index by 1
             continue; //and skip to next iteration of while loop
         }
 
         else { //if player is still playing, hasn't folded
-            turn(index_turn, players[index_turn]); //player plays his turn (can raise, call, fold: check turn() function)
-            index_turn = (index_turn + 1) % tableInfo.player_num; //increase index_of_turn by 1
+            turn(turn_index, players[turn_index]); //player plays his turn (can raise, call, fold: check turn() function)
+            turn_index = (turn_index + 1) % tableInfo.player_num; //increase index_of_turn by 1
         }
     }
     //We finished the first round: either >=2 players called or 1 player won as everybody else folded
@@ -198,7 +201,7 @@ void Game::end_round() { //TO COMPLETE!
     //if players_standing == 1 then player won by making rest of player fold
     if (players_standing == 1) {
         //player standing gets pot with players[index_of_winner].win(pot)
-        win(players[index_turn], tableInfo.pot);
+        win(players[turn_index], tableInfo.pot);
     }
     else { //else we arrive at the end of river and need to comapre cards
         //for all players left compute their best hand based on their two cards and 5 cards in middle
@@ -228,7 +231,7 @@ void Game::startGame() {
 /*
 //commented because of conflicts (delete and recreate pull request if this is unneccesary)
 //void Game::startRound() {
-    index_turn = 0; //Will be used to just shift from one player to the other as Players are in a vector
+    turn_index = 0; //Will be used to just shift from one player to the other as Players are in a vector
     small_blind_index = (small_blind_index + 1) % tableInfo.player_num; //we shift the small blind (consequently big blind) by 1
         //Bets
     bet_on_table = 0; //We start with a zero bet on the table (small blinds are treated after)
@@ -252,9 +255,9 @@ void Game::startGame() {
     bet_on_table = tableInfo.BBValue;
 
     //Round 1 - pre-flop
-    index_turn = (small_blind_index + 2) % total_number_players; //The player to the left of big blind is "under the gun": he starts
+    turn_index = (small_blind_index + 2) % total_number_players; //The player to the left of big blind is "under the gun": he starts
     //while (players_standing != number_callers)
-    round_of_betting(index_turn);
+    round_of_betting(turn_index);
 
     //Round 2 - flop
     std::cout << "Burn: " << deck.dealCard().toString() << std::endl;
@@ -267,8 +270,8 @@ void Game::startGame() {
     std::cout << std::endl;
     //betting
     number_callers = 0; //we reinitialize the counter for number of CALLS
-    //Notice we ended naturally at the player who raised last, hence index_turn is naturally correct, we start immediately
-    round_of_betting(index_turn);
+    //Notice we ended naturally at the player who raised last, hence turn_index is naturally correct, we start immediately
+    round_of_betting(turn_index);
 
     //Round 3 - turn (adding 1 card in middle for 3 + 1 = 4 total)
     std::cout << "Burn: " << deck.dealCard().toString() << std::endl;
@@ -278,7 +281,7 @@ void Game::startGame() {
     std::cout << turnCard.toString() << std::endl;
     //betting
     number_callers = 0; //we reinitialize the counter for number of CALLS
-    round_of_betting(index_turn);
+    round_of_betting(turn_index);
 
     //Round 4 - river (adding 1 card in middle for 4 + 1 = 5 total)
     std::cout << "Burn: " << deck.dealCard().toString() << std::endl;
@@ -288,7 +291,7 @@ void Game::startGame() {
     std::cout << riverCard.toString() << std::endl;
     //betting
     number_callers = 0; //we reinitialize the counter for number of CALLS
-    round_of_betting(index_turn);
+    round_of_betting(turn_index);
 
     //End of 4 rounds:
     end_round(); //for all players standing compute their best hands and determine best hand check end_round() function

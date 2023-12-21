@@ -41,8 +41,8 @@ protected:
     bool isRoundOver() const;
 
 
-    void turn(int index_turn, PokerPlayer player);
-    void round_of_betting(int index_turn);
+    void turn(int turn_index, PokerPlayer player);
+    void round_of_betting(int turn_index);
     void end_round();
 
 
@@ -67,7 +67,7 @@ protected:
     //Following used to determine when to go to next stages of a round (turn, flop, river)
     int players_standing; //players_standing (if players_standing == 1 then round ends as 1 winner)
     int small_blind_index; //very useful to determine which player has small and big blind in any round
-    int index_turn; //Will be used to just shift from one player to the other as Players are in a vector
+    int turn_index; //Will be used to just shift from one player to the other as Players are in a vector
 
 };
 

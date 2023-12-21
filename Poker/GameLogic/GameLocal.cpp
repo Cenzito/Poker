@@ -1,8 +1,7 @@
 #include "GameLocal.hpp"
 
 
-GameLocal::GameLocal(int seats): Game(seats)
-{
+GameLocal::GameLocal(int seats): Game(seats) {
 
 }
 
