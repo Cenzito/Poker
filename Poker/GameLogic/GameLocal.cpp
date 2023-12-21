@@ -1,9 +1,7 @@
 #include "GameLocal.hpp"
 
-GameLocal::GameLocal(std::vector<PokerPlayer> players):
+GameLocal::GameLocal(int seats): Game(seats)
 {
-    this -> players = players;
-    table = Table(players::size())
 }
 
 

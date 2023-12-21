@@ -2,6 +2,7 @@
 #include "Visuals/RulesWindow/ruleswindow.h"
 #include "ui_mainwindow.h"
 #include "../GameWindow/gamewindow.hpp"
+#include "../Gamewindow/gamelocalwindow.hpp"
 #include <Qcolor>
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -18,7 +19,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->pushButton, &QPushButton::clicked, this, &MainWindow::onPlayButtonClicked);
     connect(ui->pushButton_2, &QPushButton::clicked, this, &MainWindow::onRulesButtonClicked);
-    //connect(ui->playLocal, &QPushButton::clicked, this, &MainWindow::onLocalPlayButtonClicked);
+    connect(ui->play_local, &QPushButton::clicked, this, &MainWindow::onLocalPlayButtonClicked);
     // Loading and setting the image to the QLabel
     QPixmap image1("../Poker/Visuals/MainWindow/pokerpic.jpg");
     ui->label_2->setPixmap(image1);
@@ -44,5 +45,6 @@ void MainWindow::onRulesButtonClicked()
 }
 
 void MainWindow::onLocalPlayButtonClicked() {
-
+    GameLocalWindow *gamelocalwindow = new GameLocalWindow(this);
+    gamelocalwindow -> show();
 }

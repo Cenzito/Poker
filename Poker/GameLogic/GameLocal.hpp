@@ -9,7 +9,7 @@
 class GameLocal : public Game
 {
 public:
-    GameLocal(std::vector<PokerPlayer> players);
+    GameLocal(int seats);
     void testGameLocal(int num_rounds);
     void JoinGame(PokerPlayer);
     void addBot(PokerPlayer bot);
@@ -18,7 +18,6 @@ public:
     void updatePlayersTable();
     void nextHand();
 
-    Table table;
     std::vector<PokerPlayer> players;
 };
 
