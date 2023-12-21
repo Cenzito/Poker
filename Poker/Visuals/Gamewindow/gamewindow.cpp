@@ -65,7 +65,7 @@ void GameWindow::on_BetButton_clicked()
     ui->cumulative_bet_line->setText(QString::number(add_bet+current));
 }
 
-void GameWindow::update_to_display(PokerPlayer* player, PlayerInfo* info){
+void GameWindow::update_to_display(PokerPlayer* player){
 
     if (player->tableInfo.player_num<=1) {
         std::string playerName1 = player->tableInfo.playerInfo[0].name;
@@ -144,7 +144,7 @@ void GameWindow::update_to_display(PokerPlayer* player, PlayerInfo* info){
         ui ->line_player7->setText(QString::fromStdString(playerName7));
     }
 
-    if (player->tableInfo.player_num<=7) {
+    if (player->tableInfo.player_num<=8) {
         std::string playerName1 = player->tableInfo.playerInfo[0].name;
         std::string playerName2 = player->tableInfo.playerInfo[1].name;
         std::string playerName3 = player->tableInfo.playerInfo[2].name;
@@ -163,15 +163,11 @@ void GameWindow::update_to_display(PokerPlayer* player, PlayerInfo* info){
         ui ->line_player8->setText(QString::fromStdString(playerName8));
     }
 
-
-
 }
 
-void GameWindow::update_from_display(PokerPlayer* player, PlayerInfo* info){
+void GameWindow::update_from_display(PokerPlayer* player){
 
 }
-
-
 
 // beginning of switch from name tag to bank display
 
