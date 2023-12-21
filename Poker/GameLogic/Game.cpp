@@ -36,7 +36,7 @@ void Game::JoinGame(PokerPlayer player) {
     } else {
         tableInfo.playerInfo.insert({getFreeSeat(), playerinfo}); //add the player to the hashmap
         players.push_back(player); //add the player to the player vector
-        tableInfo.player_num+=1 //add a player to the total
+        tableInfo.player_num+=1; //add a player to the total
     }
 }
 
