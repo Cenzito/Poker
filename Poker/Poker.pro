@@ -31,6 +31,7 @@ SOURCES += \
     GameLogic/Deck.cpp \
     GameLogic/Table.cpp \
     GameLogic/Game.cpp \
+    GameLogic/Monte_Carlo_Probability_Simulator.cpp \
     Visuals/Gamewindow/gamewindow.cpp \
     Visuals/MainWindow/mainwindow.cpp \
 

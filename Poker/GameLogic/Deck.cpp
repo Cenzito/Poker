@@ -34,3 +34,6 @@ Card Deck::dealCard() {
         throw std::out_of_range("No more cards in the deck");
     }
 }
+Card Deck::getCurrentCard() const {
+    return cards[currentCardIndex];
+}

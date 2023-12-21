@@ -1,31 +1,38 @@
 
 
-#include "./Visuals/MainWindow/mainwindow.hpp"
+//#include "./Visuals/MainWindow/mainwindow.hpp"
 #include "./GameLogic/Game.hpp"
 #include "./GameLogic/Card.cpp"
 #include "./GameLogic/Deck.cpp"
 #include "./GameLogic/PokerHand.cpp"
-
+#include "./GameLogic/Monte_Carlo_Probability_Simulator.cpp"
+#include "./GameLogic/PokerPlayer.cpp"
+#include "./GameLogic/Table.cpp"
+#include "Visuals/MainWindow/mainwindow.hpp"
+#include <chrono>
 #include <QApplication>
 
 
 int main(int argc, char *argv[]) {
 
 
-    //Game pokerGame(4);
-    //pokerGame.startGame();
+    Game pokerGame(4);
+    pokerGame.startGame();
 
-    //commented these 4 because of conflicts (delete and recreate pull request if this is unneccesary)
     QApplication a(argc, argv);
     MainWindow w;
     w.show();
     return a.exec();
 
-  
+
+
+
+
+    //darius testing
     std::cout << "Hello World!" << std::endl;
-    //Card card1(Suit::Spades, 1);
-    //Card card2(Suit::Spades, 2);
-    //Card card3(Suit::Hearts, 2);
+    Card card1(Suit::Spades, 1);
+    Card card2(Suit::Spades, 2);
+    Card card3(Suit::Hearts, 2);
     //std::cout << card1 << std::endl;
     //std::cout << card2 << std::endl;
     //std::cout << (card1 < card2) << std::endl;
@@ -93,8 +100,34 @@ int main(int argc, char *argv[]) {
     }
     std::cout<<std::endl;
     std::cout << compare_hands(hand1, hand2) << std::endl;
+    //std::cout<<"Good for now!"<<std::endl;
+    Deck newDeck;
+    newDeck.shuffleDeck();
+    std::cout<<newDeck.dealCard()<<std::endl;
+    Table table;
+    PokerPlayer player1 ("P");
+    player1.hand.emplace_back(newDeck.dealCard());
+    player1.hand.emplace_back(newDeck.dealCard());
+    table.communityCards.emplace_back(newDeck.dealCard());
+    table.communityCards.emplace_back(newDeck.dealCard());
+    table.communityCards.emplace_back(newDeck.dealCard());
+    std::cout<<"Good for now!"<<std::endl;
+    std::vector<float> probabilities;
+    auto start = std::chrono::high_resolution_clock::now();
+    probabilities=Winning_Probability(table, player1, 3, 10000);
+    auto end = std::chrono::high_resolution_clock::now();
+    for (int i = 0; i < probabilities.size(); i++) {
+        std::cout << probabilities[i] << " ";
+    }
+    std::chrono::duration<double> duration = end - start;
+    std::cout << std::endl << "Time taken: " << duration.count() << " seconds" << std::endl;
+    std::cout<<player1.hand[0]<<std::endl;
+    std::cout<<player1.hand[1]<<std::endl;
+    std::cout<<table.communityCards[0]<<std::endl;
+    std::cout<<table.communityCards[1]<<std::endl;
+    std::cout<<table.communityCards[2]<<std::endl;
     return 0;
-
+    
 
 }
 
