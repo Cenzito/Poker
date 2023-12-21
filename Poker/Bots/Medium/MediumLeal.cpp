@@ -46,14 +46,10 @@ void MediumLeal::action() { //syntax changes as soon as we can make it an inhere
         //raise by 2 x small blind
         if (chips > 2*tableInfo.bet_on_table) {
             raise(2*tableInfo.bet_on_table);
-
         }
-
         else {
             call(tableInfo.bet_on_table);
-
         }
-
 
     }
     if (ShouldFold() == true) {
