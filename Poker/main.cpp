@@ -8,23 +8,27 @@
 #include "./GameLogic/Monte_Carlo_Probability_Simulator.cpp"
 #include "./GameLogic/PokerPlayer.cpp"
 #include "./GameLogic/Table.cpp"
+#include "Visuals/MainWindow/mainwindow.hpp"
 #include <chrono>
-//#include <QApplication>
+#include <QApplication>
 
 
 int main(int argc, char *argv[]) {
 
 
-    //Game pokerGame(4);
-    //pokerGame.startGame();
+    Game pokerGame(4);
+    pokerGame.startGame();
 
-    //commented these 4 because of conflicts (delete and recreate pull request if this is unneccesary)
-    //QApplication a(argc, argv);
-    //MainWindow w;
-    //w.show();
-    //return a.exec();
+    QApplication a(argc, argv);
+    MainWindow w;
+    w.show();
+    return a.exec();
 
-  
+
+
+
+
+    //darius testing
     std::cout << "Hello World!" << std::endl;
     Card card1(Suit::Spades, 1);
     Card card2(Suit::Spades, 2);
