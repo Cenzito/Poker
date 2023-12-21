@@ -29,6 +29,8 @@ private slots:
 
     void on_BetButton_clicked();
 
+    void display_names_bet(PokerPlayer* player);
+
     // beginning of switch from name tag to bank display
 
     void on_line_player1_cursorPositionChanged(PokerPlayer* player);

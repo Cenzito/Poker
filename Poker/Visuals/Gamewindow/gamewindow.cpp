@@ -67,101 +67,7 @@ void GameWindow::on_BetButton_clicked()
 
 void GameWindow::update_to_display(PokerPlayer* player){
 
-    if (player->tableInfo.player_num<=1) {
-        std::string playerName1 = player->tableInfo.playerInfo[0].name;
-        ui ->line_player1->setText(QString::fromStdString(playerName1));
-    }
-
-    if (player->tableInfo.player_num<=2) {
-        std::string playerName1 = player->tableInfo.playerInfo[0].name;
-        std::string playerName2 = player->tableInfo.playerInfo[1].name;
-        ui ->line_player1->setText(QString::fromStdString(playerName1));
-        ui ->line_player2->setText(QString::fromStdString(playerName2));
-    }
-
-    if (player->tableInfo.player_num<=3) {
-        std::string playerName1 = player->tableInfo.playerInfo[0].name;
-        std::string playerName2 = player->tableInfo.playerInfo[1].name;
-        std::string playerName3 = player->tableInfo.playerInfo[2].name;
-        ui ->line_player1->setText(QString::fromStdString(playerName1));
-        ui ->line_player2->setText(QString::fromStdString(playerName2));
-        ui ->line_player3->setText(QString::fromStdString(playerName3));
-    }
-
-    if (player->tableInfo.player_num<=4) {
-        std::string playerName1 = player->tableInfo.playerInfo[0].name;
-        std::string playerName2 = player->tableInfo.playerInfo[1].name;
-        std::string playerName3 = player->tableInfo.playerInfo[2].name;
-        std::string playerName4 = player->tableInfo.playerInfo[3].name;
-        ui ->line_player1->setText(QString::fromStdString(playerName1));
-        ui ->line_player2->setText(QString::fromStdString(playerName2));
-        ui ->line_player3->setText(QString::fromStdString(playerName3));
-        ui ->line_player4->setText(QString::fromStdString(playerName4));
-    }
-
-    if (player->tableInfo.player_num<=5) {
-        std::string playerName1 = player->tableInfo.playerInfo[0].name;
-        std::string playerName2 = player->tableInfo.playerInfo[1].name;
-        std::string playerName3 = player->tableInfo.playerInfo[2].name;
-        std::string playerName4 = player->tableInfo.playerInfo[3].name;
-        std::string playerName5 = player->tableInfo.playerInfo[4].name;
-        ui ->line_player1->setText(QString::fromStdString(playerName1));
-        ui ->line_player2->setText(QString::fromStdString(playerName2));
-        ui ->line_player3->setText(QString::fromStdString(playerName3));
-        ui ->line_player4->setText(QString::fromStdString(playerName4));
-        ui ->line_player5->setText(QString::fromStdString(playerName5));
-    }
-
-    if (player->tableInfo.player_num<=6) {
-        std::string playerName1 = player->tableInfo.playerInfo[0].name;
-        std::string playerName2 = player->tableInfo.playerInfo[1].name;
-        std::string playerName3 = player->tableInfo.playerInfo[2].name;
-        std::string playerName4 = player->tableInfo.playerInfo[3].name;
-        std::string playerName5 = player->tableInfo.playerInfo[4].name;
-        std::string playerName6 = player->tableInfo.playerInfo[5].name;
-        ui ->line_player1->setText(QString::fromStdString(playerName1));
-        ui ->line_player2->setText(QString::fromStdString(playerName2));
-        ui ->line_player3->setText(QString::fromStdString(playerName3));
-        ui ->line_player4->setText(QString::fromStdString(playerName4));
-        ui ->line_player5->setText(QString::fromStdString(playerName5));
-        ui ->line_player6->setText(QString::fromStdString(playerName6));
-    }
-
-    if (player->tableInfo.player_num<=7) {
-        std::string playerName1 = player->tableInfo.playerInfo[0].name;
-        std::string playerName2 = player->tableInfo.playerInfo[1].name;
-        std::string playerName3 = player->tableInfo.playerInfo[2].name;
-        std::string playerName4 = player->tableInfo.playerInfo[3].name;
-        std::string playerName5 = player->tableInfo.playerInfo[4].name;
-        std::string playerName6 = player->tableInfo.playerInfo[5].name;
-        std::string playerName7 = player->tableInfo.playerInfo[6].name;
-        ui ->line_player1->setText(QString::fromStdString(playerName1));
-        ui ->line_player2->setText(QString::fromStdString(playerName2));
-        ui ->line_player3->setText(QString::fromStdString(playerName3));
-        ui ->line_player4->setText(QString::fromStdString(playerName4));
-        ui ->line_player5->setText(QString::fromStdString(playerName5));
-        ui ->line_player6->setText(QString::fromStdString(playerName6));
-        ui ->line_player7->setText(QString::fromStdString(playerName7));
-    }
-
-    if (player->tableInfo.player_num<=8) {
-        std::string playerName1 = player->tableInfo.playerInfo[0].name;
-        std::string playerName2 = player->tableInfo.playerInfo[1].name;
-        std::string playerName3 = player->tableInfo.playerInfo[2].name;
-        std::string playerName4 = player->tableInfo.playerInfo[3].name;
-        std::string playerName5 = player->tableInfo.playerInfo[4].name;
-        std::string playerName6 = player->tableInfo.playerInfo[5].name;
-        std::string playerName7 = player->tableInfo.playerInfo[6].name;
-        std::string playerName8 = player->tableInfo.playerInfo[7].name;
-        ui ->line_player1->setText(QString::fromStdString(playerName1));
-        ui ->line_player2->setText(QString::fromStdString(playerName2));
-        ui ->line_player3->setText(QString::fromStdString(playerName3));
-        ui ->line_player4->setText(QString::fromStdString(playerName4));
-        ui ->line_player5->setText(QString::fromStdString(playerName5));
-        ui ->line_player6->setText(QString::fromStdString(playerName6));
-        ui ->line_player7->setText(QString::fromStdString(playerName7));
-        ui ->line_player8->setText(QString::fromStdString(playerName8));
-    }
+    GameWindow::display_names_bet(player);
 
 }
 
@@ -169,6 +75,47 @@ void GameWindow::update_from_display(PokerPlayer* player){
 
 }
 
+
+
+
+// Minor functions used for updates :
+
+void GameWindow::display_names_bet(PokerPlayer* player){
+
+    if (player->tableInfo.player_num<=1) {
+        std::string playerName1 = player->tableInfo.playerInfo[0].name;
+        ui ->line_player1->setText(QString::fromStdString(playerName1));
+    }
+    if (player->tableInfo.player_num<=2) {
+        std::string playerName2 = player->tableInfo.playerInfo[1].name;
+        ui ->line_player2->setText(QString::fromStdString(playerName2));
+    }
+    if (player->tableInfo.player_num<=3) {
+
+        std::string playerName3 = player->tableInfo.playerInfo[2].name;
+        ui ->line_player3->setText(QString::fromStdString(playerName3));
+    }
+    if (player->tableInfo.player_num<=4) {
+        std::string playerName4 = player->tableInfo.playerInfo[3].name;
+        ui ->line_player4->setText(QString::fromStdString(playerName4));
+    }
+    if (player->tableInfo.player_num<=5) {
+        std::string playerName5 = player->tableInfo.playerInfo[4].name;
+        ui ->line_player5->setText(QString::fromStdString(playerName5));
+    }
+    if (player->tableInfo.player_num<=6) {
+        std::string playerName6 = player->tableInfo.playerInfo[5].name;
+        ui ->line_player6->setText(QString::fromStdString(playerName6));
+    }
+    if (player->tableInfo.player_num<=7) {
+        std::string playerName7 = player->tableInfo.playerInfo[6].name;
+        ui ->line_player7->setText(QString::fromStdString(playerName7));
+    }
+    if (player->tableInfo.player_num<=8) {
+        std::string playerName8 = player->tableInfo.playerInfo[7].name;
+        ui ->line_player8->setText(QString::fromStdString(playerName8));
+    }
+}
 // beginning of switch from name tag to bank display
 
 void GameWindow::on_line_player1_cursorPositionChanged(PokerPlayer* player)
