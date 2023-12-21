@@ -10,10 +10,17 @@ PokerPlayerLocal::PokerPlayerLocal(std::string name) : PokerPlayer(name)
 
 int PokerPlayerLocal::Action() {
 
-    //create buttons to choose bet size
+
+    int n;
+    std::cout << "What do you want to do? \n -1: fold \n 0: call/check \n a number: raise to that \n";
+    std::cin >> n;
+
+    return n;
+//will need to change this function to create buttons and wait for a click instead of using the console.
+/*
+ *  //create buttons to choose bet size
     //QPushButton button("Click Me!", &window);
     //layout.addWidget(&button);
-
     // Create a timer
     QTimer timer;
     timer.setSingleShot(true); // Set the timer to fire only once
@@ -38,4 +45,6 @@ int PokerPlayerLocal::Action() {
 
     // Run the event loop
     loop.exec();
+
+*/
 }

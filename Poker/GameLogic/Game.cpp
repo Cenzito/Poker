@@ -104,7 +104,7 @@ void Game::update() {
 Action Game::AskAction(PokerPlayer player) {
     return call;
 };
-/*
+
 void Game::turn(int index_turn, PokerPlayer player) { //turn() turn in a round for a player
 /*
     //ask player to bet
@@ -157,9 +157,8 @@ void Game::turn(int index_turn, PokerPlayer player) { //turn() turn in a round f
         players_standing -= 1;
         //decrease players_standing by 1
     }*/
-
 }
-*/
+
 void Game::round_of_betting(int index_turn) {
     /*
     //while (players_standing != number_callers)
