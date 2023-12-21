@@ -25,7 +25,7 @@ std::vector<float> Winning_Probability (Table table, PokerPlayer player, int num
         //std::cout<<"Number of simulations: "<<num_simulations<<std::endl;
         deck.shuffleDeck(); //for each simulation, we shuffle the deck
         //std::cout<<"Shuffled the deck!"<<std::endl;
-        std::cout<<"trial "<<i<<" out of "<<num_simulations<<std::endl;
+        //std::cout<<"trial "<<i<<" out of "<<num_simulations<<std::endl;
         for (int j=0; j<num_players; j++) { //for each simulation, we construct the hand of the other players
             //std::cout<<"Player "<<j<<std::endl;
             for (int k=0; k<2; k++) { //for each player, we iterate through the 2 cards in his hand and construct both
@@ -56,7 +56,7 @@ std::vector<float> Winning_Probability (Table table, PokerPlayer player, int num
     our_hand.emplace_back(community_cards[4]); // create a hand with all cards corresponding to the player
     //std::cout<<"Constructed our hand!"<<std::endl;
     PokerHand ourhand(our_hand); //we make it a PokerHand object so that we can use the functions
-    std::cout<<"Our hand is "<<combinationToString(ourhand.get_combination())<<std::endl;
+    //std::cout<<"Our hand is "<<combinationToString(ourhand.get_combination())<<std::endl;
    // std::cout<<"Constructed our Pokerhand object!"<<std::endl;
     int ok=1; // we use it as an indicator to check if we win or lose or draw
     for (int j=0; j<num_players; j++) { //we construct the final hand of the other players
@@ -68,14 +68,14 @@ std::vector<float> Winning_Probability (Table table, PokerPlayer player, int num
         hands[j].emplace_back(community_cards[4]); // create a hand with all cards corresponding to the player
         //std::cout<<"Constructed the hand of player "<<j<<std::endl;
         final_hands[j]=PokerHand(hands[j]); //we make it a PokerHand object so that we can use the functions
-        std::cout<<"Player "<<j<<" has " <<combinationToString(final_hands[j].get_combination())<<std::endl;
+        //std::cout<<"Player "<<j<<" has " <<combinationToString(final_hands[j].get_combination())<<std::endl;
         if(compare_hands(ourhand,final_hands[j])==2) {ok=2; break;} //if we lose against a player, we set ok to 2, and we know for sure we lost so we break
         if(compare_hands(ourhand,final_hands[j])==0) {ok=0;} //if we draw against a player, we set ok to 0, so we know for sure we cannot win and continue checking for possible losses
         //std::cout<<"At stage "<<j<<" ok is "<<ok<<std::endl;
     }
-    if(ok==0) {ties++; std::cout<<"Tie"<<" ";} //if we end with 0 then there were draws but no losses against other players so we draw
-    if(ok==2) {losses++;std::cout<<"Loss"<<" ";} //if we end with 2 then we lost against at least one player so we lose
-    if(ok==1) {wins++;std::cout<<"Win"<<" ";} //if we end with 1 then we won against all players so we win
+    if(ok==0) {ties++; /*std::cout<<"Tie"<<" "*/;} //if we end with 0 then there were draws but no losses against other players so we draw
+    if(ok==2) {losses++;/*std::cout<<"Loss"<<" "*/;} //if we end with 2 then we lost against at least one player so we lose
+    if(ok==1) {wins++;/*std::cout<<"Win"<<" "*/;} //if we end with 1 then we won against all players so we win
     }
     std::vector<float> probabilities={float(wins)/float(num_simulations), float(ties)/float(num_simulations), float(losses)/float(num_simulations)}; //we return the probabilities
     return probabilities;
