@@ -29,6 +29,7 @@ public:
     PokerPlayerLocal findPlayer(std::string name);
     std::vector<PokerPlayerLocal> players;
 
+    int players_standing;
     bool hand_finished;
 };
 
