@@ -8,7 +8,7 @@ PokerPlayerLocal::PokerPlayerLocal(std::string name) : PokerPlayer(name)
 
 
 
-int PokerPlayerLocal::Action() {
+signed int PokerPlayerLocal::Action() {
 
 
     int n;

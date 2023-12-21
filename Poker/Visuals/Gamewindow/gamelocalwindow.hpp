@@ -8,7 +8,7 @@
 class GameLocalWindow : public GameWindow
 {
 public:
-    explicit GameLocalWindow(QWidget *parent = nullptr, PokerPlayer p = PokerPlayer("name"));
+    explicit GameLocalWindow(QWidget *parent = nullptr, PokerPlayerLocal p = PokerPlayerLocal("name"));
 
     GameLocal game;
 };

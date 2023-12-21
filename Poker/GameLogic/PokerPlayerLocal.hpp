@@ -16,7 +16,7 @@ public:
     PokerPlayerLocal(std::string name);
 
 
-    int Action();
+    signed int Action();
 
 
 };
