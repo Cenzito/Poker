@@ -8,6 +8,7 @@
 
 PokerPlayer::PokerPlayer(const std::string& name) : name(name) {}
 
+PokerPlayer::PokerPlayer(){}
 
 int PokerPlayer::decideBet(int currentHighestBet, int money, int minimumRaise) {
     // Implement player decision logic here

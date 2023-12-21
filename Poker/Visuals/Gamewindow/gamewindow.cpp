@@ -67,11 +67,13 @@ void GameWindow::on_BetButton_clicked()
 
 void GameWindow::update_to_display(PokerPlayer* player){
 
+    game_player = player;
+
     GameWindow::display_names_bet(player);
 
 }
 
-void GameWindow::update_from_display(PokerPlayer* player){
+void GameWindow::update_from_display(){
 
 }
 
@@ -118,13 +120,13 @@ void GameWindow::display_names_bet(PokerPlayer* player){
 }
 // beginning of switch from name tag to bank display
 
-void GameWindow::on_line_player1_cursorPositionChanged(PokerPlayer* player)
+void GameWindow::on_line_player1_cursorPositionChanged()
 {
     QString text_line = ui->line_player1->text();
     std::string text = text_line.toStdString();
 
-    std::string name = player->tableInfo.playerInfo[0].name;
-    std::string stack =  std::to_string(player->tableInfo.playerInfo[0].stack_size);
+    std::string name = game_player->tableInfo.playerInfo[0].name;
+    std::string stack =  std::to_string(game_player->tableInfo.playerInfo[0].stack_size);
 
     if (text == stack){
         QString name_qt = QString::fromStdString(name);
@@ -135,14 +137,14 @@ void GameWindow::on_line_player1_cursorPositionChanged(PokerPlayer* player)
         ui->line_player1->setText(stack_qt);
     }
 }
-void GameWindow::on_line_player2_cursorPositionChanged(PokerPlayer* player)
+void GameWindow::on_line_player2_cursorPositionChanged()
 {
-    if (player->tableInfo.player_num >= 2){
+    if (game_player->tableInfo.player_num >= 2){
         QString text_line = ui->line_player2->text();
         std::string text = text_line.toStdString();
 
-        std::string name = player->tableInfo.playerInfo[1].name;
-        std::string stack =  std::to_string(player->tableInfo.playerInfo[1].stack_size);
+        std::string name = game_player->tableInfo.playerInfo[1].name;
+        std::string stack =  std::to_string(game_player->tableInfo.playerInfo[1].stack_size);
 
         if (text == stack){
             QString name_qt = QString::fromStdString(name);
@@ -155,14 +157,14 @@ void GameWindow::on_line_player2_cursorPositionChanged(PokerPlayer* player)
     }
 
 }
-void GameWindow::on_line_player3_cursorPositionChanged(PokerPlayer* player)
+void GameWindow::on_line_player3_cursorPositionChanged()
 {
-    if (player->tableInfo.player_num >= 3){
+    if (game_player->tableInfo.player_num >= 3){
         QString text_line = ui->line_player3->text();
         std::string text = text_line.toStdString();
 
-        std::string name = player->tableInfo.playerInfo[2].name;
-        std::string stack =  std::to_string(player->tableInfo.playerInfo[2].stack_size);
+        std::string name = game_player->tableInfo.playerInfo[2].name;
+        std::string stack =  std::to_string(game_player->tableInfo.playerInfo[2].stack_size);
 
         if (text == stack){
             QString name_qt = QString::fromStdString(name);
@@ -174,14 +176,14 @@ void GameWindow::on_line_player3_cursorPositionChanged(PokerPlayer* player)
         }
     }
 }
-void GameWindow::on_line_player4_cursorPositionChanged(PokerPlayer* player)
+void GameWindow::on_line_player4_cursorPositionChanged()
 {
-    if (player->tableInfo.player_num >= 4){
+    if (game_player->tableInfo.player_num >= 4){
         QString text_line = ui->line_player4->text();
         std::string text = text_line.toStdString();
 
-        std::string name = player->tableInfo.playerInfo[3].name;
-        std::string stack =  std::to_string(player->tableInfo.playerInfo[3].stack_size);
+        std::string name = game_player->tableInfo.playerInfo[3].name;
+        std::string stack =  std::to_string(game_player->tableInfo.playerInfo[3].stack_size);
 
         if (text == stack){
             QString name_qt = QString::fromStdString(name);
@@ -193,14 +195,14 @@ void GameWindow::on_line_player4_cursorPositionChanged(PokerPlayer* player)
         }
     }
 }
-void GameWindow::on_line_player5_cursorPositionChanged(PokerPlayer* player)
+void GameWindow::on_line_player5_cursorPositionChanged()
 {
-    if (player->tableInfo.player_num >= 5){
+    if (game_player->tableInfo.player_num >= 5){
         QString text_line = ui->line_player5->text();
         std::string text = text_line.toStdString();
 
-        std::string name = player->tableInfo.playerInfo[4].name;
-        std::string stack =  std::to_string(player->tableInfo.playerInfo[4].stack_size);
+        std::string name = game_player->tableInfo.playerInfo[4].name;
+        std::string stack =  std::to_string(game_player->tableInfo.playerInfo[4].stack_size);
 
         if (text == stack){
             QString name_qt = QString::fromStdString(name);
@@ -212,14 +214,14 @@ void GameWindow::on_line_player5_cursorPositionChanged(PokerPlayer* player)
         }
     }
 }
-void GameWindow::on_line_player6_cursorPositionChanged(PokerPlayer* player)
+void GameWindow::on_line_player6_cursorPositionChanged()
 {
-    if (player->tableInfo.player_num >= 6){
+    if (game_player->tableInfo.player_num >= 6){
         QString text_line = ui->line_player6->text();
         std::string text = text_line.toStdString();
 
-        std::string name = player->tableInfo.playerInfo[5].name;
-        std::string stack =  std::to_string(player->tableInfo.playerInfo[5].stack_size);
+        std::string name = game_player->tableInfo.playerInfo[5].name;
+        std::string stack =  std::to_string(game_player->tableInfo.playerInfo[5].stack_size);
 
         if (text == stack){
             QString name_qt = QString::fromStdString(name);
@@ -231,14 +233,14 @@ void GameWindow::on_line_player6_cursorPositionChanged(PokerPlayer* player)
         }
     }
 }
-void GameWindow::on_line_player7_cursorPositionChanged(PokerPlayer* player)
+void GameWindow::on_line_player7_cursorPositionChanged()
 {
-    if (player->tableInfo.player_num >= 7){
+    if (game_player->tableInfo.player_num >= 7){
         QString text_line = ui->line_player7->text();
         std::string text = text_line.toStdString();
 
-        std::string name = player->tableInfo.playerInfo[6].name;
-        std::string stack =  std::to_string(player->tableInfo.playerInfo[6].stack_size);
+        std::string name = game_player->tableInfo.playerInfo[6].name;
+        std::string stack =  std::to_string(game_player->tableInfo.playerInfo[6].stack_size);
 
         if (text == stack){
             QString name_qt = QString::fromStdString(name);
@@ -250,14 +252,14 @@ void GameWindow::on_line_player7_cursorPositionChanged(PokerPlayer* player)
         }
     }
 }
-void GameWindow::on_line_player8_cursorPositionChanged(PokerPlayer* player)
+void GameWindow::on_line_player8_cursorPositionChanged()
 {
-    if (player->tableInfo.player_num == 8){
+    if (game_player->tableInfo.player_num == 8){
         QString text_line = ui->line_player8->text();
         std::string text = text_line.toStdString();
 
-        std::string name = player->tableInfo.playerInfo[7].name;
-        std::string stack =  std::to_string(player->tableInfo.playerInfo[7].stack_size);
+        std::string name = game_player->tableInfo.playerInfo[7].name;
+        std::string stack =  std::to_string(game_player->tableInfo.playerInfo[7].stack_size);
 
         if (text == stack){
             QString name_qt = QString::fromStdString(name);

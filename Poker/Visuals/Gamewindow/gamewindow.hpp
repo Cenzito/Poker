@@ -19,7 +19,7 @@ public:
     ~GameWindow();
     const QString Get_image_path(const std::string &suit, const std::string &value, bool back = false); // to display the back call with args ("back", "back", true)
     void update_to_display(PokerPlayer* player);
-    void update_from_display(PokerPlayer* player);
+    void update_from_display();
 
 private slots:
 
@@ -33,25 +33,27 @@ private slots:
 
     // beginning of switch from name tag to bank display
 
-    void on_line_player1_cursorPositionChanged(PokerPlayer* player);
+    void on_line_player1_cursorPositionChanged();
 
-    void on_line_player2_cursorPositionChanged(PokerPlayer* player);
+    void on_line_player2_cursorPositionChanged();
 
-    void on_line_player3_cursorPositionChanged(PokerPlayer* player);
+    void on_line_player3_cursorPositionChanged();
 
-    void on_line_player4_cursorPositionChanged(PokerPlayer* player);
+    void on_line_player4_cursorPositionChanged();
 
-    void on_line_player5_cursorPositionChanged(PokerPlayer* player);
+    void on_line_player5_cursorPositionChanged();
 
-    void on_line_player6_cursorPositionChanged(PokerPlayer* player);
+    void on_line_player6_cursorPositionChanged();
 
-    void on_line_player7_cursorPositionChanged(PokerPlayer* player);
+    void on_line_player7_cursorPositionChanged();
 
-    void on_line_player8_cursorPositionChanged(PokerPlayer* player);
+    void on_line_player8_cursorPositionChanged();
 
     // end of switch from name tag to bank display
 private:
+
     Ui::GameWindow *ui;
+    PokerPlayer* game_player;
 
 };
 
