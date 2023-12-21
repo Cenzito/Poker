@@ -18,19 +18,23 @@ void GameLocal::JoinGame(PokerPlayer player) {
         tableInfo.playerInfo.insert({getFreeSeat(), playerinfo});
         players.push_back(player);
     }
+    updatePlayersTable();
 }
 
 void GameLocal::addBot(PokerPlayer bot) {
     GameLocal::JoinGame(bot);
+    updatePlayersTable();
 }
 
 
 void GameLocal::pay(int position, int sum) {
     tableInfo.playerInfo[position].stack_size -= sum;
+    updatePlayersTable();
 };
 
 void GameLocal::win(int position, int sum) {
     tableInfo.playerInfo[position].stack_size += sum;
+    updatePlayersTable();
 };
 
 
@@ -49,10 +53,11 @@ void GameLocal::nextHand(){
     tableInfo.pot=0;
     tableInfo.smallBlindPlayer += 1;
     tableInfo.communityCards=std::vector<Card>();
+    updatePlayersTable();
 }
 
 void GameLocal::testGameLocal(int num_rounds){
-    //add 2 bots and 1 player
+    //add 2 bots
     //initialize the table
 
 }
