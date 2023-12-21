@@ -31,13 +31,12 @@ void Game::JoinGame(PokerPlayer player) {
     //or do other stuff
     PlayerInfo playerinfo = PlayerInfo(player.getName(), 1000, 0);
 
-    getFreeSeat();
-    //would need to do a try in case of error if room is full
-    if (tableInfo.player_num >= tableInfo.seats)  {
+    if (tableInfo.player_num >= tableInfo.seats)  { //checking if there are seats left
         return;
     } else {
-        tableInfo.playerInfo.insert({getFreeSeat(), playerinfo});
-        players.push_back(player);
+        tableInfo.playerInfo.insert({getFreeSeat(), playerinfo}); //add the player to the hashmap
+        players.push_back(player); //add the player to the player vector
+        tableInfo.player_num+=1 //add a player to the total
     }
 }
 
