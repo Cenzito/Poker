@@ -8,7 +8,7 @@
 #include "./GameLogic/Monte_Carlo_Probability_Simulator.cpp"
 #include "./GameLogic/PokerPlayer.cpp"
 #include "./GameLogic/Table.cpp"
-
+#include <chrono>
 //#include <QApplication>
 
 
@@ -109,12 +109,21 @@ int main(int argc, char *argv[]) {
     table.communityCards.emplace_back(newDeck.dealCard());
     std::cout<<"Good for now!"<<std::endl;
     std::vector<float> probabilities;
-    probabilities=Winning_Probability(table, player1, 4, 1000);
+    auto start = std::chrono::high_resolution_clock::now();
+    probabilities=Winning_Probability(table, player1, 3, 10000);
+    auto end = std::chrono::high_resolution_clock::now();
     for (int i = 0; i < probabilities.size(); i++) {
         std::cout << probabilities[i] << " ";
     }
+    std::chrono::duration<double> duration = end - start;
+    std::cout << std::endl << "Time taken: " << duration.count() << " seconds" << std::endl;
+    std::cout<<player1.hand[0]<<std::endl;
+    std::cout<<player1.hand[1]<<std::endl;
+    std::cout<<table.communityCards[0]<<std::endl;
+    std::cout<<table.communityCards[1]<<std::endl;
+    std::cout<<table.communityCards[2]<<std::endl;
     return 0;
-
+    
 
 }
 

@@ -4,7 +4,7 @@
 #include <iostream>
 #include "Table.hpp"
 // function that for any given hand, number of current players, state of the table, computes the probability of winning, making draws or losing
-std::vector<float> Winning_Probability (Table table, PokerPlayer player, int num_players, int num_simulations) {
+std::vector<float> Winning_Probability (Table table, PokerPlayer player, int num_players, int num_simulations) { //num_players is the number of other players
     //std::cout<<"Entered the function!"<<std::endl;
     int wins = 0; //number of times player wins
     int losses = 0; //number of times player loses
