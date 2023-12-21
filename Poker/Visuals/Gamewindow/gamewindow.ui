@@ -23,9 +23,7 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-image: url(:/images/pokertable.png);
-background-repeat: no-repeat;
-background-position: center center;
+   <string notr="true">
 </string>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -174,8 +172,8 @@ color: rgb(15, 96, 0);</string>
    <widget class="QWidget" name="horizontalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>300</x>
-      <y>310</y>
+      <x>340</x>
+      <y>520</y>
       <width>160</width>
       <height>80</height>
      </rect>

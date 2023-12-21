@@ -12,6 +12,13 @@ GameWindow::GameWindow(QWidget *parent) :
     ui(new Ui::GameWindow)
 {
     ui->setupUi(this);
+    //this->setStyleSheet("{background-image: url(qrc:/images/pokertable.png);}");
+    QPixmap bg(":/images/pokertable.png");
+    bg = bg.scaled(this->size(), Qt::IgnoreAspectRatio);
+    QPalette palette;
+    palette.setBrush(QPalette::Window, bg);
+    this->setPalette(palette);
+
     connect(ui->pushButton, &QPushButton::clicked, this, &GameWindow::onPlayButtonClicked);
     //player = PokerPlayer('John', 3) ;
 }
@@ -72,8 +79,9 @@ void GameWindow::display_player_hand(PokerPlayer* player){ // to test
     int v2 = C2.getValue() ;
     // we have the two cards of the player, the suit and value of both those cards
     // following are the path to both corresponding image cards
-    QString p1 = Get_image_path(suitToString(S1),std::to_string(v1)) ;
-    QString p2 = Get_image_path(suitToString(S2),std::to_string(v2)) ;
+    QString p1 = Get_image_path(suitToString(S1),std::to_string(v1),false) ;
+    QString p2 = Get_image_path(suitToString(S2),std::to_string(v2),false) ;
+
     //below the two images
     QPixmap first_card(p1) ;
     QPixmap second_card(p2) ;
@@ -81,11 +89,12 @@ void GameWindow::display_player_hand(PokerPlayer* player){ // to test
     ui->label->setPixmap(first_card) ;
     ui ->label_2->setPixmap(second_card) ;
 
+
 }
 
 void GameWindow::update_to_display(PokerPlayer* player, PlayerInfo* info){
 
-
+    display_player_hand(player) ;
     //bug
     //ui->name_line->setText(QString::fromStdString(player->getName()));
     // need to add the card displays,
@@ -97,4 +106,34 @@ void GameWindow::update_from_display(PokerPlayer* player, PlayerInfo* info){
 }
 
 
+//switch function that makes the bet function appear only when it's the player's turn
 
+
+void GameWindow::switch_bet_button_on(PokerPlayer* player){
+    int current_player = player->tableInfo.current_player ;
+    //auto current_player_info = player->tableInfo.playerInfo[current_player] ;
+    //auto current_player_info = player->tableInfo.playerInfo[current_player] ;
+    //std::string current_player_info_name = current_player_info.name ;
+
+    std::string player_name = player->name ;
+
+    if (ui->BetButton->isVisible()==false){ //if the button is already visible, does nothing
+        if (player->tableInfo.playerInfo.find(current_player)!=player->tableInfo.playerInfo.end()){ // check if the player is there
+            std::cout << "works" ;
+        }
+        if (player_name==player->tableInfo.playerInfo.at(current_player).name){
+            ui->BetButton->show() ;
+        }
+    }
+}
+
+void GameWindow::switch_bet_button_off(PokerPlayer* player){
+    int current_player = player->tableInfo.current_player ;
+    std::string player_name = player->name ;
+
+    if (ui->BetButton->isVisible() == true){ //if the button already hidden, does nothing
+        if (player_name == player->tableInfo.playerInfo.at(current_player).name){
+            ui->BetButton->hide() ;
+        }
+    }
+}

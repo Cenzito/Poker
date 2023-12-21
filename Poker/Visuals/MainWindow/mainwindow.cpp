@@ -11,8 +11,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
     // Apply stylesheets
-    ui->pushButton->setStyleSheet("background-color: #3498db; color: white;");
-    ui->pushButton_2->setStyleSheet("background-color: #3498db; color: white;");
+    //ui->pushButton->setStyleSheet("background-color: #3498db; color: white;");
+    //ui->pushButton_2->setStyleSheet("background-color: #3498db; color: white;");
 
 
     connect(ui->pushButton, &QPushButton::clicked, this, &MainWindow::onPlayButtonClicked);
