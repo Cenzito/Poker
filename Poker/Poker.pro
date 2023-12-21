@@ -9,6 +9,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    Analysis/analysis.cpp \
     Bots/Medium/MediumLeal.cpp \
     GameLogic/PlayerInfo.cpp \
     Visuals/RulesWindow/ruleswindow.cpp \
@@ -35,6 +36,7 @@ SOURCES += \
     Visuals/MainWindow/mainwindow.cpp \
 
 HEADERS += \
+    Analysis/analysis.h \
     Bots/Bot.hpp \
     Bots/Easy/BotDrunk.hpp \
     Bots/Easy/BotEasy.hpp \
