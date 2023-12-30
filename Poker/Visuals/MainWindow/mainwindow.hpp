@@ -2,7 +2,6 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "GameLogic/Game.hpp"
 
 
 QT_BEGIN_NAMESPACE

@@ -1,21 +1,30 @@
 
 
-#include "./Visuals/MainWindow/mainwindow.hpp"
-#include "./GameLogic/Game.hpp"
-#include "./GameLogic/Card.cpp"
-#include "./GameLogic/Deck.cpp"
-#include "./GameLogic/PokerHand.cpp"
+//#include "./Visuals/MainWindow/mainwindow.hpp"
+//#include "./GameLogic/Game.hpp"
 
+#include "./GameLogic/GameLocal.hpp"
 #include <QApplication>
 
 
 int main(int argc, char *argv[]) {
 
+    GameLocal pokerGame(5);
+    PokerPlayerLocal me("Remi");
+    //Bot bot1("bot1", 1);
+    //Bot bot2("bot2", 2);
+    pokerGame.JoinGame(me);
+    //pokerGame.addBot(bot1);
+    //pokerGame.addBot(bot2);
 
+    //pokerGame.tableInfo.Print();
+
+    return 1;
     //Game pokerGame(4);
     //pokerGame.startGame();
 
     //commented these 4 because of conflicts (delete and recreate pull request if this is unneccesary)
+    /*
     QApplication a(argc, argv);
     MainWindow w;
     w.show();
@@ -95,7 +104,7 @@ int main(int argc, char *argv[]) {
     std::cout << compare_hands(hand1, hand2) << std::endl;
     return 0;
 
-
+*/
 }
 
 //test

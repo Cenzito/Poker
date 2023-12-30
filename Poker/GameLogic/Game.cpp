@@ -13,7 +13,7 @@ Game::Game(int numOfPlayers) {
     tableInfo=Table(numOfPlayers);
 
 }
-
+/*
 int Game::getFreeSeat() {
     Table &t = tableInfo;
     for (int i = 0; i<t.seats; i++) {
@@ -22,8 +22,8 @@ int Game::getFreeSeat() {
         }
     }
     return -1;
-}
-
+}*/
+/*
 void Game::JoinGame(PokerPlayer player) {
 
     //player joins game so we add him to the table
@@ -38,12 +38,12 @@ void Game::JoinGame(PokerPlayer player) {
         players.push_back(player); //add the player to the player vector
         tableInfo.player_num+=1; //add a player to the total
     }
-}
+}*/
 
-
+/*
 void Game::addBot(PokerPlayer bot) {
     Game::JoinGame(bot);
-}
+}*/
 
 
 //to implement
@@ -159,40 +159,6 @@ void Game::turn(int turn_index, PokerPlayer player) { //turn() turn in a round f
     }*/
 }
 
-void Game::round_of_betting(int turn_index) {
-    /*
-    //while (players_standing != number_callers)
-    while (players_standing != number_callers) {
-
-        if (players[turn_index].stopped_playing()) { //if player is not playing, i.e. has folded
-            turn_index = (turn_index + 1) % tableInfo.player_num; //increase turn_index by 1
-            continue; //and skip to next iteration of while loop
-        }
-
-        else { //if player is still playing, hasn't folded
-            turn(turn_index, players[turn_index]); //player plays his turn (can raise, call, fold: check turn() function)
-            turn_index = (turn_index + 1) % tableInfo.player_num; //increase index_of_turn by 1
-        }
-    }
-    //We finished the first round: either >=2 players called or 1 player won as everybody else folded
-    if (players_standing == 1) { //if 1 player won as everybody else folded
-        end_round();
-        return;
-    }
-    else { //if >=2 players called we put their bets in the pot
-
-        for (int i = 0; i<tableInfo.player_num; i++) { //we go over the table and collect the bets
-            if (players[i].stopped_playing()) { //if player is not playing, i.e. has folded
-                continue; //skip to next iteration of while loop
-            }
-            else {//if player has called
-                tableInfo.pot += players[i].get_bet(); //Add bet to the pot
-                players[i].make_bet_zero(); //Remove bet from the player's hand
-            }
-        }
-        bet_on_table = 0;
-    }*/
-}
 
 void Game::end_round() { //TO COMPLETE!
     /*
@@ -235,11 +201,6 @@ void Game::DealCards() {
     }
 }
 
-void Game::ChangeRound() {
-    //going from round 1 to 2 etc, shifting the small and big blind
-    tableInfo. = (small_blind_index + 1) % tableInfo.player_num; //we shift the small blind (consequently big blind) by 1
-    current_player = 0; //resetting
-}
 
 
 void Game::startGame() {

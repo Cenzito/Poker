@@ -1,12 +1,12 @@
-#include "../GameLogic/PokerPlayer.hpp"
+#include "../GameLogic/PokerPlayerLocal.hpp"
 
-class Bot : public PokerPlayer {
+class Bot : public PokerPlayerLocal {
 public :
-    Bot(const std::string& name, int level) : PokerPlayer(name) {
+    Bot(const std::string& name, int level) : PokerPlayerLocal(name) {
         this -> level = level;
     };
 
-   virtual void action(int minAmount, int type) = 0;
+   virtual int Action();
 
 protected:
     int level;

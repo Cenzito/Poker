@@ -1,8 +1,17 @@
 #include "GameLocal.hpp"
 
+GameLocal::GameLocal(int seats){;}
 
-GameLocal::GameLocal(int seats): Game(seats) {;}
 
+int GameLocal::getFreeSeat() {
+    Table &t = tableInfo;
+    for (int i = 0; i<t.seats; i++) {
+        if (!(t.playerInfo.find(i) == t.playerInfo.end())) {
+            return i;
+        }
+    }
+    return -1;
+}
 
 void GameLocal::JoinGame(PokerPlayerLocal player) {
 
@@ -11,14 +20,19 @@ void GameLocal::JoinGame(PokerPlayerLocal player) {
         return;
     } else {
         //player joins game so we add him to the table with an initial amount of money
-        PlayerInfo playerinfo = PlayerInfo(player.getName(), 1000, 0);
-        tableInfo.playerInfo.insert({getFreeSeat(), playerinfo});
+        std::cout << player.getName();
+        PlayerInfo playerinfo(player.getName(), 1000, 0);
+        std::cout << playerinfo.name;
+        tableInfo.playerInfo.insert({0, playerinfo});
+        tableInfo.player_num += 1;
+        tableInfo.Print();
         players.push_back(player);
+        tableInfo.player_num += 1;
     }
     updatePlayersTable();
 }
 
-void GameLocal::addBot(PokerPlayerLocal bot) {
+void GameLocal::addBot(Bot bot) {
     GameLocal::JoinGame(bot);
     updatePlayersTable();
 }
@@ -26,6 +40,8 @@ void GameLocal::addBot(PokerPlayerLocal bot) {
 
 void GameLocal::pay(PlayerInfo& PlayerPay, int sum) {
     PlayerPay.stack_size -= sum;
+    PlayerPay.bet += sum;
+    tableInfo.pot += sum;
     updatePlayersTable();
 };
 
@@ -37,13 +53,9 @@ void GameLocal::win(PlayerInfo& PlayerWin, int sum) {
 //only consider one player rn
 void GameLocal::endHand(PlayerInfo& winner) {
     win(winner, tableInfo.pot);
-    nextHand();
 }
 
 void GameLocal::fold(PlayerInfo& foldPlayer) {
-    //returns a boolean
-    //if we need to end the round ( 1 player remaining), return false
-    //otherwise: return true
     foldPlayer.isFold = true;
     players_standing -= 1;
 }
@@ -117,12 +129,107 @@ PokerPlayerLocal GameLocal::findPlayer(std::string name) {
     }
 };
 
-void GameLocal::testGameLocal(int num_rounds){
-    //add 2 bots
-    //initialize the table
+void GameLocal::newHand() {
+    //setting small and big blind
+    pay(tableInfo.playerInfo[(tableInfo.ButtonPlayer + 1) % tableInfo.player_num], tableInfo.SBValue);
+
+    pay(tableInfo.playerInfo[(tableInfo.ButtonPlayer + 2) % tableInfo.player_num], tableInfo.BBValue);
+
+    updatePlayersTable();
+
+    deck.shuffleDeck();
+    //give cards to players
+    for (PokerPlayer& player : players) {
+        std::vector<Card> cards;
+        cards.push_back(deck.dealCard());
+        cards.push_back(deck.dealCard());
+        player.receiveCards(cards);
+    }
+    //first betting round
+    bettingRound((tableInfo.ButtonPlayer + 3)% tableInfo.player_num, true);
+
+    if (players_standing == 1) {
+        PlayerInfo winner;
+        for (int i = 0; i < tableInfo.player_num; i++) {
+            if (!tableInfo.playerInfo[i].isFold) {
+                winner = tableInfo.playerInfo[i];
+            }
+        }
+        endHand(winner);
+        return;
+    }
+    //second betting round
+    tableInfo.communityCards.push_back(deck.dealCard());
+    tableInfo.communityCards.push_back(deck.dealCard());
+    tableInfo.communityCards.push_back(deck.dealCard());
+    updatePlayersTable();
+    bettingRound((tableInfo.ButtonPlayer + 1)%tableInfo.player_num, false);
+
+    if (players_standing == 1) {
+        PlayerInfo winner;
+        for (int i = 0; i < tableInfo.player_num; i++) {
+            if (!tableInfo.playerInfo[i].isFold) {
+                winner = tableInfo.playerInfo[i];
+            }
+        }
+        endHand(winner);
+        return;
+    }
+    //third betting round
+    tableInfo.communityCards.push_back(deck.dealCard());
+    updatePlayersTable();
+    bettingRound((tableInfo.ButtonPlayer + 1)% tableInfo.player_num, false);
+
+    if (players_standing == 1) {
+        PlayerInfo winner;
+        for (int i = 0; i < tableInfo.player_num; i++) {
+            if (!tableInfo.playerInfo[i].isFold) {
+                winner = tableInfo.playerInfo[i];
+            }
+        }
+        endHand(winner);
+        return;
+    }
+    //fourth and last betting round
+    tableInfo.communityCards.push_back(deck.dealCard());
+    updatePlayersTable();
+    bettingRound((tableInfo.ButtonPlayer + 1)% tableInfo.player_num, false);
+
+    if (players_standing == 1) {
+        PlayerInfo winner;
+        for (int i = 0; i < tableInfo.player_num; i++) {
+            if (!tableInfo.playerInfo[i].isFold) {
+                winner = tableInfo.playerInfo[i];
+            }
+        }
+        endHand(winner);
+        return;
+    } else {
+        std::vector<Card> community = tableInfo.communityCards;
+        //showdown
+        PlayerInfo winner = tableInfo.playerInfo[0];
+        std::vector<Card> winnerHandVect;
+        merge(community.begin(), community.end(), findPlayer(winner.name).getHand().begin(), findPlayer(winner.name).getHand().end(), winnerHandVect.begin());
+
+        PokerHand winnerHand(winnerHandVect);
+
+        for (int i = 1; i < tableInfo.player_num; i++) {
+            if (!tableInfo.playerInfo[i].isFold) {
+                PlayerInfo current = tableInfo.playerInfo[i];
+                std::vector<Card> currentHandVect;
+                merge(community.begin(), community.end(), findPlayer(winner.name).getHand().begin(), findPlayer(winner.name).getHand().end(), winnerHandVect.begin());
+
+                PokerHand currentHand(currentHandVect);
+                if (compare_hands(winnerHand, currentHand) == 2) {
+                    winner = current;
+                    winnerHand = currentHand;
+                }
+            }
+        }
+        endHand(winner);
+    }
 
 }
-
 
 
 

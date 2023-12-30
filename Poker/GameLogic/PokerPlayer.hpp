@@ -30,7 +30,7 @@ public:
     //void receiveCards(const std::vector<Card>& hand);
     void updateTable(Table table);
 
-    void receiveCards(const std::vector<Card>& cards);
+    void receiveCards(const std::vector<Card> cards);
     void removeCards();
     std::vector<Card> getHand() const;
 
@@ -41,6 +41,8 @@ public:
 
     int chips;
     void updateChips();
+
+    int bet = -2;
 
     std::string name;
     std::vector<Card> hand;

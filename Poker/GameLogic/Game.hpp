@@ -8,7 +8,6 @@
 #include "./PokerPlayer.hpp"
 #include "Deck.hpp"
 #include "table.hpp"
-#include "PokerPlayer.hpp"
 #include "PlayerInfo.hpp"
 #include "./Bots/Bot.hpp"
 
@@ -22,7 +21,7 @@ enum Action { //will be used for implementation of turn()
 class Game {
 public:
     Game(int numOfPlayers);
-    void JoinGame(PokerPlayer);
+    //void JoinGame(PokerPlayer);
 
     void startGame();
     void updateTable(const Table& tableInfo);
@@ -42,19 +41,20 @@ protected:
 
 
     void turn(int turn_index, PokerPlayer player);
-    void round_of_betting(int turn_index);
+    //void bettingRound(int first_player, bool isfirst_round);
     void end_round();
 
 
     void startRound();
-    void addBot(PokerPlayer bot);
+    void ChangeRound();
+    //void addBot(PokerPlayer bot);
 
     //start a new hand
     void DealCards();
     void nextHand();
     void addBet(int pos, int amount);
     void winMoney(int pos, int amount);
-    int getFreeSeat();
+    //int getFreeSeat();
     void addCard(Card card);
     void leaveGame(PokerPlayer);
 

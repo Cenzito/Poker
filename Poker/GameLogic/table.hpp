@@ -16,6 +16,8 @@ public:
     Table(int seats);
     Table(); //default 5 seats
 
+    void Print();
+
     //Card information
     std::vector<Card> communityCards; //Cards that anyone can see
 
@@ -30,12 +32,6 @@ public:
     int SBValue;
     int BBValue;
     int pot;
-
-
-
-
-
-
 };
 
 #endif // TABLE_HPP
