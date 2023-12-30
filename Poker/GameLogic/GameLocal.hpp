@@ -14,12 +14,11 @@ class GameLocal
 public:
     GameLocal(int seats);
 
-    void StartGame();
-
 
     void JoinGame(PokerPlayerLocal);
     void addBot(Bot bot);
     int getFreeSeat();
+    void startGame();
 
     //actions on the player
     void pay(PlayerInfo& PlayerPay, int sum);

@@ -11,13 +11,14 @@ int main(int argc, char *argv[]) {
 
     GameLocal pokerGame(5);
     PokerPlayerLocal me("Remi");
-    //Bot bot1("bot1", 1);
-    //Bot bot2("bot2", 2);
+    Bot bot1("bot1", 1);
+    Bot bot2("bot2", 2);
     pokerGame.JoinGame(me);
-    //pokerGame.addBot(bot1);
-    //pokerGame.addBot(bot2);
+    pokerGame.addBot(bot1);
+    pokerGame.addBot(bot2);
 
-    //pokerGame.tableInfo.Print();
+    pokerGame.tableInfo.Print();
+    pokerGame.startGame();
 
     return 1;
     //Game pokerGame(4);

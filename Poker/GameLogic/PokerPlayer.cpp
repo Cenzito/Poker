@@ -21,7 +21,6 @@ void PokerPlayer::receiveCards(const std::vector<Card> newHand) {
 
 void PokerPlayer::updateTable(const Table table) {
     tableInfo = table;
-    tableInfo.Print();
 }
 
 const std::string& PokerPlayer::getName() const {

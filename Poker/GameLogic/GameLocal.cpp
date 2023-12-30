@@ -6,7 +6,7 @@ GameLocal::GameLocal(int seats){;}
 int GameLocal::getFreeSeat() {
     Table &t = tableInfo;
     for (int i = 0; i<t.seats; i++) {
-        if (!(t.playerInfo.find(i) == t.playerInfo.end())) {
+        if (t.playerInfo.find(i) == t.playerInfo.end()) {
             return i;
         }
     }
@@ -20,12 +20,8 @@ void GameLocal::JoinGame(PokerPlayerLocal player) {
         return;
     } else {
         //player joins game so we add him to the table with an initial amount of money
-        std::cout << player.getName();
         PlayerInfo playerinfo(player.getName(), 1000, 0);
-        std::cout << playerinfo.name;
-        tableInfo.playerInfo.insert({0, playerinfo});
-        tableInfo.player_num += 1;
-        tableInfo.Print();
+        tableInfo.playerInfo.insert({getFreeSeat(), playerinfo});
         players.push_back(player);
         tableInfo.player_num += 1;
     }
@@ -34,9 +30,19 @@ void GameLocal::JoinGame(PokerPlayerLocal player) {
 
 void GameLocal::addBot(Bot bot) {
     GameLocal::JoinGame(bot);
-    updatePlayersTable();
 }
 
+void GameLocal::startGame() {
+    //need to be more than 3 to play
+    for (int i = 0 ; i < 3; i++) {
+        newHand();
+    }
+    /*
+    while (tableInfo.player_num >= 3) {
+        newHand();
+    }*/
+    std::cout << "not enough players";
+}
 
 void GameLocal::pay(PlayerInfo& PlayerPay, int sum) {
     PlayerPay.stack_size -= sum;
@@ -64,6 +70,7 @@ void GameLocal::updatePlayersTable() {
     for (PokerPlayer& player : players) {
         player.updateTable(tableInfo);
     }
+    tableInfo.Print();
 }
 
 
@@ -130,6 +137,8 @@ PokerPlayerLocal GameLocal::findPlayer(std::string name) {
 };
 
 void GameLocal::newHand() {
+    std::cout << "start hand \n\n";
+
     //setting small and big blind
     pay(tableInfo.playerInfo[(tableInfo.ButtonPlayer + 1) % tableInfo.player_num], tableInfo.SBValue);
 
@@ -195,6 +204,7 @@ void GameLocal::newHand() {
     updatePlayersTable();
     bettingRound((tableInfo.ButtonPlayer + 1)% tableInfo.player_num, false);
 
+
     if (players_standing == 1) {
         PlayerInfo winner;
         for (int i = 0; i < tableInfo.player_num; i++) {
@@ -205,28 +215,40 @@ void GameLocal::newHand() {
         endHand(winner);
         return;
     } else {
+        //get all the people who haven't folded
+        std::vector<PlayerInfo> playersNotFold;
+        for (int i = 0; i < tableInfo.player_num; i++) {
+            if (!tableInfo.playerInfo[i].isFold) {
+                playersNotFold.push_back(tableInfo.playerInfo[i]);
+            }
+        }
+
         std::vector<Card> community = tableInfo.communityCards;
+
         //showdown
-        PlayerInfo winner = tableInfo.playerInfo[0];
+        PlayerInfo winner = playersNotFold[0];
         std::vector<Card> winnerHandVect;
         merge(community.begin(), community.end(), findPlayer(winner.name).getHand().begin(), findPlayer(winner.name).getHand().end(), winnerHandVect.begin());
 
         PokerHand winnerHand(winnerHandVect);
 
-        for (int i = 1; i < tableInfo.player_num; i++) {
-            if (!tableInfo.playerInfo[i].isFold) {
-                PlayerInfo current = tableInfo.playerInfo[i];
-                std::vector<Card> currentHandVect;
-                merge(community.begin(), community.end(), findPlayer(winner.name).getHand().begin(), findPlayer(winner.name).getHand().end(), winnerHandVect.begin());
+        //iterate over players and compute their hand score
+        //if their score is better than the current best, they become best
+        //haven't taken into account ties yet, in that case, first player considered wins
+        for (PlayerInfo current : playersNotFold) {
+            std::vector<Card> currentHandVect;
+            //getting hands throught the "getHand" function in the PokerPlayer class which is bad
+            //need to store the hands of the players in the Game in order to retrieve and compare them
+            merge(community.begin(), community.end(), findPlayer(winner.name).getHand().begin(), findPlayer(winner.name).getHand().end(), winnerHandVect.begin());
 
-                PokerHand currentHand(currentHandVect);
-                if (compare_hands(winnerHand, currentHand) == 2) {
-                    winner = current;
-                    winnerHand = currentHand;
-                }
+            PokerHand currentHand(currentHandVect);
+            if (compare_hands(winnerHand, currentHand) == 2) {
+                winner = current;
+                winnerHand = currentHand;
             }
         }
         endHand(winner);
+        return;
     }
 
 }

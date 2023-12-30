@@ -15,7 +15,6 @@ class PokerPlayerLocal : public PokerPlayer
 public:
     PokerPlayerLocal(std::string name);
 
-
     signed int Action();
 
 
