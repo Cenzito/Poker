@@ -4,11 +4,12 @@
 //#include "./GameLogic/Game.hpp"
 
 #include "./GameLogic/GameLocal.hpp"
+#include "Visuals/MainWindow/mainwindow.hpp"
 #include <QApplication>
 
 
 int main(int argc, char *argv[]) {
-
+    /*
     GameLocal pokerGame(5);
     PokerPlayerLocal me("Remi");
     Bot bot1("bot1", 1);
@@ -18,14 +19,14 @@ int main(int argc, char *argv[]) {
     pokerGame.addBot(bot2);
 
     pokerGame.tableInfo.Print();
-    pokerGame.startGame();
+    pokerGame.startGame();*/
 
-    return 1;
+
     //Game pokerGame(4);
     //pokerGame.startGame();
 
     //commented these 4 because of conflicts (delete and recreate pull request if this is unneccesary)
-    /*
+
     QApplication a(argc, argv);
     MainWindow w;
     w.show();
@@ -105,7 +106,7 @@ int main(int argc, char *argv[]) {
     std::cout << compare_hands(hand1, hand2) << std::endl;
     return 0;
 
-*/
+
 }
 
 //test
