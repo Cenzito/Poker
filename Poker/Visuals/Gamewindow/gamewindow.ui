@@ -65,10 +65,10 @@
      </rect>
     </property>
     <property name="text">
-     <string>Check</string>
+     <string>Check/Call</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="BetButton">
+   <widget class="QPushButton" name="RaiseButton">
     <property name="geometry">
      <rect>
       <x>600</x>
@@ -78,7 +78,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Bet/Raise</string>
+     <string>Raise</string>
     </property>
    </widget>
    <widget class="QPushButton" name="FoldButton">
@@ -439,7 +439,7 @@
    <zorder>label_table</zorder>
    <zorder>label_card2</zorder>
    <zorder>CheckButton</zorder>
-   <zorder>BetButton</zorder>
+   <zorder>RaiseButton</zorder>
    <zorder>FoldButton</zorder>
    <zorder>raise_box</zorder>
    <zorder>label_card1</zorder>
@@ -469,7 +469,7 @@
      <x>0</x>
      <y>0</y>
      <width>1000</width>
-     <height>24</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

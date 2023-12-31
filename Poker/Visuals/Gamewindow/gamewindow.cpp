@@ -58,7 +58,7 @@ void GameWindow::onPlayButtonClicked()
     rulesWindow->show();
 }
 
-void GameWindow::on_BetButton_clicked()
+void GameWindow::onRaiseButtonClicked()
 {
     int add_bet = ui->raise_box->value();
     int current = (ui->cumulative_bet_line->text()).toInt();
@@ -73,8 +73,11 @@ void GameWindow::update_to_display(PokerPlayer* player){
 
 }
 
-void GameWindow::update_from_display(){
+void GameWindow::update_from_display(PokerPlayer* player){
+    game_player = player;
 
+    //If any button is pressed from the display, activate this function
+    // link call/raise/fold with turn in game.cpp
 }
 
 
