@@ -12,6 +12,7 @@
 class PokerPlayer {
 public:
     PokerPlayer(const std::string& name);
+    PokerPlayer();
     const std::string& getName() const;
 
     //Action functions call raise fold
