@@ -26,6 +26,7 @@ GameWindow::GameWindow(QWidget *parent) :
     QSize table_background_size = ui->label_table->size();
     ui->label_table->setPixmap(QPixmap::fromImage(table_background).scaled(table_background_size, Qt::KeepAspectRatio, Qt::SmoothTransformation));
 
+
 }
 
 GameWindow::~GameWindow()
@@ -94,6 +95,33 @@ void GameWindow::update_to_display(PokerPlayer* player){
     GameWindow::display_names_bet(player);
     GameWindow::updateCallButtonLabel();
 
+
+    // Update community cards (middle cards)
+    update_community_cards();
+
+}
+
+
+void GameWindow::update_community_cards() {
+    Table table;
+    const std::vector<Card>& communityCards = table.communityCards;
+
+    // Display the first three community cards initially
+    for (int i = 0; i < 3; ++i) {
+        update_middle_card_display(i + 1, communityCards[i]);
+    }
+}
+
+void GameWindow::update_middle_card_display(int cardIndex, const Card& card) {
+    QLabel* middleCardLabel = findChild<QLabel*>(QString("label_middlecard%1").arg(cardIndex));
+    if (middleCardLabel) {
+        // Get the image path for the card
+        //QString imagePath = Get_image_path(card.suit, std::to_string(card.getValue()), false);
+//many bugs but i will solve them
+        // Loading and setting the image to the QLabel
+        //QPixmap image(imagePath);
+        //ui->middleCardLabel->setPixmap(image);
+    }
 }
 
 /*
@@ -302,6 +330,7 @@ void GameWindow::on_line_player8_cursorPositionChanged()
 // end of switch from name tag to bank display
 
 //Function to change the label of call/check
+
 
 void GameWindow::updateCallButtonLabel(){
     //bool condition = /* your condition here */; SHOULD BE WHETHER TRUE IF SOMEONE PLACES A BET, FALSE IF NO BETS SO FAR IN THE TURN
