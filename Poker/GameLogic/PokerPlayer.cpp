@@ -8,7 +8,6 @@
 
 PokerPlayer::PokerPlayer(const std::string& name) : name(name) {}
 
-PokerPlayer::PokerPlayer(){}
 
 int PokerPlayer::decideBet(int currentHighestBet, int money, int minimumRaise) {
     // Implement player decision logic here
@@ -67,7 +66,6 @@ void PokerPlayer::raise(int bet_on_table) { //TO BE DONE
 
 void PokerPlayer::fold() {
     //tell server you want to fold
-    std::cout<< "FOLD"; //debug
 }
 
 
