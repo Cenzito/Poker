@@ -55,7 +55,7 @@
      <string>Rules</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="CheckButton">
+   <widget class="QPushButton" name="CallButton">
     <property name="geometry">
      <rect>
       <x>600</x>
@@ -438,7 +438,7 @@
    </widget>
    <zorder>label_table</zorder>
    <zorder>label_card2</zorder>
-   <zorder>CheckButton</zorder>
+   <zorder>CallButton</zorder>
    <zorder>RaiseButton</zorder>
    <zorder>FoldButton</zorder>
    <zorder>raise_box</zorder>

@@ -13,6 +13,14 @@ GameWindow::GameWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     connect(ui->pushButton, &QPushButton::clicked, this, &GameWindow::onPlayButtonClicked);
+    connect(ui->FoldButton, &QPushButton::clicked, this, &GameWindow::onFoldButtonClicked);
+    connect(ui->RaiseButton, &QPushButton::clicked, this, &GameWindow::onRaiseButtonClicked);
+    connect(ui->CallButton, &QPushButton::clicked, this, &GameWindow::onCallButtonClicked);
+
+
+
+    //game_player (need to initialise here or not?)
+    //Also I think we need to include a Game object at some point, in order to properly interact with game logic
 
     QImage table_background(":/images/table.png");
     QSize table_background_size = ui->label_table->size();
@@ -58,11 +66,25 @@ void GameWindow::onPlayButtonClicked()
     rulesWindow->show();
 }
 
+void GameWindow::onFoldButtonClicked(){
+    //PokerPlayer player = game_player
+    PokerPlayer player;
+    player.fold();
+}
+
 void GameWindow::onRaiseButtonClicked()
 {
     int add_bet = ui->raise_box->value();
     int current = (ui->cumulative_bet_line->text()).toInt();
     ui->cumulative_bet_line->setText(QString::number(add_bet+current));
+    //PokerPlayer player = game_player
+    PokerPlayer player;
+    player.raise(current);
+}
+
+void GameWindow::onCallButtonClicked(){ //Reminder: this is check/call button, need to work on changing the name in accordance with the situation, but functionallity should work fine for now
+    PokerPlayer player;
+    player.call(0);
 }
 
 void GameWindow::update_to_display(PokerPlayer* player){
@@ -70,17 +92,19 @@ void GameWindow::update_to_display(PokerPlayer* player){
     game_player = player;
 
     GameWindow::display_names_bet(player);
+    GameWindow::updateCallButtonLabel();
 
 }
 
+/*
 void GameWindow::update_from_display(PokerPlayer* player){
     game_player = player;
 
     //If any button is pressed from the display, activate this function
-    // link call/raise/fold with turn in game.cpp
+    // link call/raise/fold with PokerPlayer object
 }
 
-
+*/
 
 
 // Minor functions used for updates :
@@ -277,7 +301,15 @@ void GameWindow::on_line_player8_cursorPositionChanged()
 
 // end of switch from name tag to bank display
 
+//Function to change the label of call/check
 
+void GameWindow::updateCallButtonLabel(){
+    //bool condition = /* your condition here */; SHOULD BE WHETHER TRUE IF SOMEONE PLACES A BET, FALSE IF NO BETS SO FAR IN THE TURN
+    bool condition = false;
+    // Set the new label based on the condition
+    QString newLabel = (condition) ? "Call" : "Check";
+    ui->CallButton->setText(newLabel);
+}
 
 
 
