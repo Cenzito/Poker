@@ -67,7 +67,7 @@ void GameWindow::on_BetButton_clicked()
 
 void GameWindow::update_to_display(PokerPlayer* player){
 
-    game_player = player;
+    *game_player = *player;
 
     GameWindow::display_names_bet(player);
 
