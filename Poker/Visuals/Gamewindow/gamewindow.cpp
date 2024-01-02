@@ -65,7 +65,7 @@ void GameWindow::on_BetButton_clicked()
     ui->cumulative_bet_line->setText(QString::number(add_bet+current));
 }
 
-void GameWindow::update_to_display(PokerPlayer* player, PlayerInfo* info){
+void GameWindow::update_to_display(PokerPlayer* player){
 
     if (player->tableInfo.player_num<=1) {
         std::string playerName1 = player->tableInfo.playerInfo[0].name;
@@ -267,7 +267,7 @@ void GameWindow::update_middle_card_display(int cardIndex, const Card& card) {
 }
 
 
-void GameWindow::update_from_display(PokerPlayer* player, PlayerInfo* info){
+void GameWindow::update_from_display(PokerPlayer* player){
 
 }
 
