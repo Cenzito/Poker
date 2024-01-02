@@ -29,7 +29,11 @@ private slots:
 
     void onPlayButtonClicked();
 
-    void on_BetButton_clicked();
+    void onRaiseButtonClicked();
+
+    void onFoldButtonClicked();
+
+    void onCallButtonClicked();
 
     // beginning of switch from name tag to bank display
 
@@ -50,6 +54,9 @@ private slots:
     void on_line_player8_cursorPositionChanged(PokerPlayer* player);
 
     // end of switch from name tag to bank display
+
+    void updateCallButtonLabel();
+
 private:
     Ui::GameWindow *ui;
 
