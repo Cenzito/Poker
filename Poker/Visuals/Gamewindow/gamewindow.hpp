@@ -15,6 +15,7 @@ class GameWindow : public QMainWindow
     Q_OBJECT
 
 public:
+
     explicit GameWindow(QWidget *parent = nullptr);
     ~GameWindow();
     const QString Get_image_path(const std::string &suit, const std::string &value, bool back = false); // to display the back call with args ("back", "back", true)
@@ -22,6 +23,7 @@ public:
     void update_from_display(PokerPlayer* player);
     void update_community_cards();
     void update_middle_card_display(int cardIndex, const Card& card);
+    void display_names_bet(PokerPlayer* player);
 
 private slots:
 
