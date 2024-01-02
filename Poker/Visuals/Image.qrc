@@ -52,7 +52,7 @@
         <file>images/cards/S/11.png</file>
         <file>images/cards/S/12.png</file>
         <file>images/cards/S/13.png</file>
-        <file>images/table.png</file>
         <file>images/cards/back_card.png</file>
+        <file>images/table.png</file>
     </qresource>
 </RCC>
