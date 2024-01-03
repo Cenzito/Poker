@@ -237,7 +237,7 @@ void GameWindow::update_to_display(PokerPlayer* player, PlayerInfo* info){
         ui->line_bet7->setText(QString::fromStdString(std::to_string(playerbet7)));
         ui->line_bet8->setText(QString::fromStdString(std::to_string(playerbet7)));
     }
-
+}
 void GameWindow::update_to_display(PokerPlayer* player){
 
     // update game_player member
