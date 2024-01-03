@@ -1,6 +1,6 @@
 
 #pragma once
-#include "../GameLogic/PokerPlayer.hpp"
+#include "../GameLogic/PokerPlayerLocal.hpp"
 
 class Bot : public PokerPlayerLocal {
 public :

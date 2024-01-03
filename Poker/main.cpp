@@ -1,7 +1,7 @@
 
 
 //#include "./Visuals/MainWindow/mainwindow.hpp"
-//#include "./GameLogic/Game.hpp"
+#include "./GameLogic/Game.hpp"
 
 #include "./GameLogic/GameLocal.hpp"
 #include "Visuals/MainWindow/mainwindow.hpp"

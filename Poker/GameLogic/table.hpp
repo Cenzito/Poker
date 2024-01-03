@@ -36,9 +36,6 @@ public:
 
     int bet_on_table; //Used to see if players have matched the bet required to call
 
-    //hash map associating each position to the player there
-    //position is just their placement at the table (not BB, SB...)
-    std::unordered_map <int, PlayerInfo> playerInfo;
 };
 
 #endif // TABLE_HPP
