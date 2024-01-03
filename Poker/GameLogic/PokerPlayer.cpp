@@ -15,7 +15,7 @@ int PokerPlayer::decideBet(int currentHighestBet, int money, int minimumRaise) {
     return currentHighestBet + minimumRaise;
 }
 
-void PokerPlayer::receiveCards(const std::vector<Card>& newHand) {
+void PokerPlayer::receiveCards(const std::vector<Card> newHand) {
     hand = newHand;
 }
 

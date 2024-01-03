@@ -12,24 +12,27 @@
 //It contains public information that every player should know
 class Table {
 public:
+    //constructors
     Table(int seats);
-    //default to 5 players
-    Table();
+    Table(); //default 5 seats
 
-    //Cards that anyone can see
-    std::vector<Card> communityCards;
+    void Print();
 
-    //max number of players at table
-    int seats;
-    //current number of players
-    int player_num;
-    int pot;
+    //Card information
+    std::vector<Card> communityCards; //Cards that anyone can see
+
+    //Player information
+    int seats; //max number of players at table
+    int player_num; //current number of players
     int current_player;
+    int ButtonPlayer; //0 set as the button initially, so 1 is small blind, 2 is big blind, 3 is under the gun etc and then alternates
+    std::unordered_map <int, PlayerInfo> playerInfo; //hash map associating each position to the player there (playerInfo[0] is the first player that joined)
 
-    int smallBlindPlayer;
-
+    //Money information
     int SBValue;
     int BBValue;
+
+    int pot;
 
     int bet_on_table; //Used to see if players have matched the bet required to call
 

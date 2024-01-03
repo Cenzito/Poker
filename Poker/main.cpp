@@ -1,23 +1,30 @@
 
 
 //#include "./Visuals/MainWindow/mainwindow.hpp"
-#include "./GameLogic/Game.hpp"
-#include "./GameLogic/Card.cpp"
-#include "./GameLogic/Deck.cpp"
-#include "./GameLogic/PokerHand.cpp"
-#include "./GameLogic/Monte_Carlo_Probability_Simulator.cpp"
-#include "./GameLogic/PokerPlayer.cpp"
-#include "./GameLogic/Table.cpp"
+//#include "./GameLogic/Game.hpp"
+
+#include "./GameLogic/GameLocal.hpp"
 #include "Visuals/MainWindow/mainwindow.hpp"
-#include <chrono>
 #include <QApplication>
 
 
 int main(int argc, char *argv[]) {
+    /*
+    GameLocal pokerGame(5);
+    PokerPlayerLocal me("Remi");
+    Bot bot1("bot1", 1);
+    Bot bot2("bot2", 2);
+    pokerGame.JoinGame(me);
+    pokerGame.addBot(bot1);
+    pokerGame.addBot(bot2);
+
+    pokerGame.tableInfo.Print();
+    pokerGame.startGame();*/
 
 
     Game pokerGame(4);
     pokerGame.startGame();
+
 
     QApplication a(argc, argv);
     MainWindow w;
@@ -27,7 +34,7 @@ int main(int argc, char *argv[]) {
 
 
 
-
+    /*
     //darius testing
     std::cout << "Hello World!" << std::endl;
     Card card1(Suit::Spades, 1);
@@ -127,9 +134,8 @@ int main(int argc, char *argv[]) {
     std::cout<<table.communityCards[1]<<std::endl;
     std::cout<<table.communityCards[2]<<std::endl;
     return 0;
-    
+    */
 
 }
 
-//test
 
