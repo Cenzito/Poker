@@ -13,7 +13,10 @@ GameWindow::GameWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     connect(ui->pushButton, &QPushButton::clicked, this, &GameWindow::onPlayButtonClicked);
-    connect(ui->FoldButton, &QPushButton::clicked, this, &GameWindow::onFoldButtonClicked);
+    //connect(ui->FoldButton, &QPushButton::clicked, this, &GameWindow::onFoldButtonClicked(PokerPlayer* game_player));
+    connect(ui->FoldButton, &QPushButton::clicked, [=]() {
+        onFoldButtonClicked(game_player);
+    });
     connect(ui->RaiseButton, &QPushButton::clicked, this, &GameWindow::onRaiseButtonClicked);
     connect(ui->CallButton, &QPushButton::clicked, this, &GameWindow::onCallButtonClicked);
 
@@ -61,10 +64,10 @@ void GameWindow::onCallButtonClicked(){ //Reminder: this is check/call button, n
 }
 
 
-void GameWindow::onFoldButtonClicked(){
+void GameWindow::onFoldButtonClicked(PokerPlayer* player){
     //PokerPlayer player = game_player
-    PokerPlayer player("temp");
-    player.fold();
+    //PokerPlayer player("temp");
+    player->fold();
 }
 
 

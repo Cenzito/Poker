@@ -32,7 +32,7 @@ private slots:
 
     void onRaiseButtonClicked();
 
-    void onFoldButtonClicked();
+    void onFoldButtonClicked(PokerPlayer* game_player);
 
     void onCallButtonClicked();
 
