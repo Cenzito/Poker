@@ -20,3 +20,25 @@ I also gave information about the workflow we would adopt and how Github works t
 I will regularly be checking the files and commits made to the repository, making sure everything is working.
 
 I also worked on the Game logic aspect of the project. I created a Table class which will contain information that each player will have access to at any time at the table. This object will be updated by the server and sent to every player everytime a change is detected.
+
+
+## Week 2 (03/12 09/12)
+
+Second week. Decided to focus on the logic of the project. 
+Upgraded the Table class with missing information and removed functions from it. Now a Table object is simply used as a way to pass information. It has no practical functionalities. As such all of it's variables are public. The Game will directly modify them and the Player will be able to access them. 
+Also decided on the way the player would interact with the server. Mainly explained the interactions of the player and the server to the people working on the logic part. The Game class will run on the server and the Player class on the user's computer. These two classes will need to be able to interact.
+After experiencing a few issues with the main branch not compiling after a bad merge, we have also implemented a satisfactory mean to verify every merge request to main.
+A few people still had trouble working with Github so took some time to get everyone together and show them the workflow.
+
+## Week 3
+
+The developpment of the logic is taking some time. The previous implementations weren't addapted for a client/server relation so made remarks to the people in charge as to what to change. Meanwhile decided to start implementing a local version of the game in order for the team in charge of making the bots to have a way of testing them. Made a subclass of Game and PokerPlayer and implementing functions that would be different then that of the online version. 
+In the end, got stuck on how to ask the player his raise amount. Spent some time on that. Cenzo also offered to help me and took on the rest of the functions in the local game. 
+About the Visuals, I asked the people in charge for a function that would update the display based on the current state of the Table inside the PokerPlayer instance. The Table contains all the information available to the player and can thus be used to display it. The objective would be to call this function every time the Table is modified.
+We also need a function to create betting buttons when it is the players turn to bet.
+
+## Week 4
+
+
+
+

@@ -1,8 +1,11 @@
-#include "../GameLogic/PokerPlayerLocal.hpp"
+
+#pragma once
+#include "../GameLogic/PokerPlayer.hpp"
 
 class Bot : public PokerPlayerLocal {
 public :
     Bot(const std::string& name, int level) : PokerPlayerLocal(name) {
+
         this -> level = level;
     };
 

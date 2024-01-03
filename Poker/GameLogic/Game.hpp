@@ -9,7 +9,7 @@
 #include "Deck.hpp"
 #include "table.hpp"
 #include "PlayerInfo.hpp"
-#include "./Bots/Bot.hpp"
+//#include "./Bots/Bot.hpp"
 
 
 enum Action { //will be used for implementation of turn()
