@@ -1,15 +1,15 @@
 
 #pragma once
-#include "../GameLogic/PokerPlayerLocal.hpp"
+#include "../GameLogic/PokerPlayer.hpp"
 
-class Bot : public PokerPlayerLocal {
+class Bot : public PokerPlayer {
 public :
-    Bot(const std::string& name, int level) : PokerPlayerLocal(name) {
+    Bot(const std::string& name, int level) : PokerPlayer(name) {
 
         this -> level = level;
     };
 
-   virtual int Action();
+   virtual signed int Action();
 
 protected:
     int level;
