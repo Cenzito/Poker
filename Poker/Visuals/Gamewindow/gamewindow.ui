@@ -472,7 +472,7 @@ color: rgb(15, 96, 0);</string>
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="label_mcard1">
+   <widget class="QLabel" name="label_middlecard1">
     <property name="geometry">
      <rect>
       <x>320</x>
@@ -488,7 +488,7 @@ color: rgb(15, 96, 0);</string>
      <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="label_mcard2">
+   <widget class="QLabel" name="label_middlecard2">
     <property name="geometry">
      <rect>
       <x>390</x>
@@ -504,7 +504,7 @@ color: rgb(15, 96, 0);</string>
      <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="label_mcard3">
+   <widget class="QLabel" name="label_middlecard3">
     <property name="geometry">
      <rect>
       <x>460</x>
@@ -520,7 +520,7 @@ color: rgb(15, 96, 0);</string>
      <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="label_mcard4">
+   <widget class="QLabel" name="label_middlecard4">
     <property name="geometry">
      <rect>
       <x>530</x>
@@ -536,7 +536,7 @@ color: rgb(15, 96, 0);</string>
      <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="label_mcard5">
+   <widget class="QLabel" name="label_middlecard5">
     <property name="geometry">
      <rect>
       <x>600</x>
@@ -579,11 +579,11 @@ color: rgb(15, 96, 0);</string>
    <zorder>line_bet3</zorder>
    <zorder>line_bet4</zorder>
    <zorder>line_bet2</zorder>
-   <zorder>label_mcard1</zorder>
-   <zorder>label_mcard2</zorder>
-   <zorder>label_mcard3</zorder>
-   <zorder>label_mcard4</zorder>
-   <zorder>label_mcard5</zorder>
+   <zorder>label_middlecard1</zorder>
+   <zorder>label_middlecard2</zorder>
+   <zorder>label_middlecard3</zorder>
+   <zorder>label_middlecard4</zorder>
+   <zorder>label_middlecard5</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

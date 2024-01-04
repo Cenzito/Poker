@@ -74,7 +74,6 @@ void GameWindow::update_to_display(PokerPlayer* player){
     // Update game_player member
     *game_player = *player;
   
-  
     // Display players hand
     display_player_hand(player) ;
   
@@ -82,12 +81,13 @@ void GameWindow::update_to_display(PokerPlayer* player){
     display_names_bet(game_player);
 
     // Update community cards (middle cards)
-    update_community_cards();
+    //update_community_cards();
 
 }
 
+//many bugs, i will solve them
 
-void GameWindow::update_community_cards() {
+/*void GameWindow::update_community_cards() {
     Table table;
     const std::vector<Card>& communityCards = table.communityCards;
 
@@ -98,16 +98,15 @@ void GameWindow::update_community_cards() {
 }
 
 void GameWindow::update_middle_card_display(int cardIndex, const Card& card) {
-    QLabel* middleCardLabel = findChild<QLabel*>(QString("label_mcard%1").arg(cardIndex));
+    QLabel* middleCardLabel = findChild<QLabel*>(QString("label_middlecard%1").arg(cardIndex));
     if (middleCardLabel) {
         // Get the image path for the card
-        //QString imagePath = Get_image_path(card.suit, std::to_string(card.getValue()), false);
-//many bugs but i will solve them
+        QString imagePath = Get_image_path(card.suit, std::to_string(card.getValue()), false);
         // Loading and setting the image to the QLabel
-        //QPixmap image(imagePath);
-        //ui->middleCardLabel->setPixmap(image);
+        QPixmap image(imagePath);
+        ui->middleCardLabel->setPixmap(image);
     }
-}
+}*/
 
 
 void GameWindow::update_from_display(PokerPlayer* player){
@@ -152,12 +151,12 @@ void GameWindow::switch_bet_button_on(PokerPlayer* player){
 
     std::string player_name = player->name ;
 
-    if (ui->BetButton->isVisible()==false){ //if the button is already visible, does nothing
+    if (ui->RaiseButton->isVisible()==false){ //if the button is already visible, does nothing
         if (player->tableInfo.playerInfo.find(current_player)!=player->tableInfo.playerInfo.end()){ // check if the player is there
             std::cout << "works" ;
         }
         if (player_name==player->tableInfo.playerInfo.at(current_player).name){
-            ui->BetButton->show() ;
+            ui->RaiseButton->show() ;
         }
     }
 }
@@ -166,9 +165,9 @@ void GameWindow::switch_bet_button_off(PokerPlayer* player){
     int current_player = player->tableInfo.current_player ;
     std::string player_name = player->name ;
 
-    if (ui->BetButton->isVisible() == true){ //if the button already hidden, does nothing
+    if (ui->RaiseButton->isVisible() == true){ //if the button already hidden, does nothing
         if (player_name == player->tableInfo.playerInfo.at(current_player).name){
-            ui->BetButton->hide() ;
+            ui->RaiseButton->hide() ;
         }
     }
 }
