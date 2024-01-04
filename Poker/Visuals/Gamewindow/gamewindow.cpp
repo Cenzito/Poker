@@ -152,12 +152,12 @@ void GameWindow::switch_bet_button_on(PokerPlayer* player){
 
     std::string player_name = player->name ;
 
-    if (ui->BetButton->isVisible()==false){ //if the button is already visible, does nothing
+    if (ui->RaiseButton->isVisible()==false){ //if the button is already visible, does nothing
         if (player->tableInfo.playerInfo.find(current_player)!=player->tableInfo.playerInfo.end()){ // check if the player is there
             std::cout << "works" ;
         }
         if (player_name==player->tableInfo.playerInfo.at(current_player).name){
-            ui->BetButton->show() ;
+            ui->RaiseButton->show() ;
         }
     }
 }
@@ -166,9 +166,9 @@ void GameWindow::switch_bet_button_off(PokerPlayer* player){
     int current_player = player->tableInfo.current_player ;
     std::string player_name = player->name ;
 
-    if (ui->BetButton->isVisible() == true){ //if the button already hidden, does nothing
+    if (ui->RaiseButton->isVisible() == true){ //if the button already hidden, does nothing
         if (player_name == player->tableInfo.playerInfo.at(current_player).name){
-            ui->BetButton->hide() ;
+            ui->RaiseButton->hide() ;
         }
     }
 }

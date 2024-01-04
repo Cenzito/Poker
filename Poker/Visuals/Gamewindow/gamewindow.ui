@@ -23,8 +23,7 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">
-</string>
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLabel" name="label_card2">
@@ -70,7 +69,7 @@ color: rgb(15, 96, 0);</string>
      </rect>
     </property>
     <property name="text">
-     <string>Check/Call</string>
+     <string>Call</string>
     </property>
    </widget>
    <widget class="QPushButton" name="RaiseButton">
@@ -473,6 +472,7 @@ color: rgb(15, 96, 0);</string>
      <bool>true</bool>
     </property>
    </widget>
+   <zorder>horizontalLayoutWidget</zorder>
    <zorder>label_table</zorder>
    <zorder>label_card2</zorder>
    <zorder>CallButton</zorder>
@@ -506,7 +506,7 @@ color: rgb(15, 96, 0);</string>
      <x>0</x>
      <y>0</y>
      <width>1000</width>
-     <height>21</height>
+     <height>24</height>
     </rect>
    </property>
   </widget>
