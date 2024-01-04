@@ -23,7 +23,8 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true"/>
+   <string notr="true">
+</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLabel" name="label_card2">
@@ -50,6 +51,10 @@
       <width>100</width>
       <height>32</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background: none;
+color: rgb(15, 96, 0);</string>
     </property>
     <property name="text">
      <string>Rules</string>
@@ -163,6 +168,38 @@
     <property name="readOnly">
      <bool>true</bool>
     </property>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>520</y>
+      <width>160</width>
+      <height>80</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="styleSheet">
+        <string notr="true">background: none;</string>
+       </property>
+       <property name="text">
+        <string>TextLabel</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_2">
+       <property name="styleSheet">
+        <string notr="true">background: none;</string>
+       </property>
+       <property name="text">
+        <string>TextLabel</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
    <widget class="QLabel" name="label_table">
     <property name="geometry">

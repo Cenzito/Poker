@@ -10,7 +10,7 @@ namespace Ui {
 class GameWindow;
 }
 
-class GameWindow : public QMainWindow
+class GameWindow: public QMainWindow
 {
     Q_OBJECT
 
@@ -24,6 +24,10 @@ public:
     void update_community_cards();
     void update_middle_card_display(int cardIndex, const Card& card);
     void display_names_bet(PokerPlayer* player);
+
+    void display_player_hand(PokerPlayer* player);
+    void switch_bet_button_on(PokerPlayer* player);
+    void switch_bet_button_off(PokerPlayer* player);
 
 private slots:
 
