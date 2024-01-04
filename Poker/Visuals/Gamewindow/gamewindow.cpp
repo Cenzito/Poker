@@ -98,7 +98,7 @@ void GameWindow::update_community_cards() {
 }
 
 void GameWindow::update_middle_card_display(int cardIndex, const Card& card) {
-    QLabel* middleCardLabel = findChild<QLabel*>(QString("label_middlecard%1").arg(cardIndex));
+    QLabel* middleCardLabel = findChild<QLabel*>(QString("label_mcard%1").arg(cardIndex));
     if (middleCardLabel) {
         // Get the image path for the card
         //QString imagePath = Get_image_path(card.suit, std::to_string(card.getValue()), false);

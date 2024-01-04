@@ -23,8 +23,7 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">
-</string>
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLabel" name="label_card2">
@@ -204,8 +203,8 @@ color: rgb(15, 96, 0);</string>
    <widget class="QLabel" name="label_table">
     <property name="geometry">
      <rect>
-      <x>87</x>
-      <y>0</y>
+      <x>80</x>
+      <y>10</y>
       <width>821</width>
       <height>461</height>
      </rect>
@@ -473,6 +472,87 @@ color: rgb(15, 96, 0);</string>
      <bool>true</bool>
     </property>
    </widget>
+   <widget class="QLabel" name="label_mcard1">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>160</y>
+      <width>61</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_mcard2">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>160</y>
+      <width>61</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_mcard3">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>160</y>
+      <width>61</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_mcard4">
+    <property name="geometry">
+     <rect>
+      <x>530</x>
+      <y>160</y>
+      <width>61</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_mcard5">
+    <property name="geometry">
+     <rect>
+      <x>600</x>
+      <y>160</y>
+      <width>61</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <zorder>horizontalLayoutWidget</zorder>
    <zorder>label_table</zorder>
    <zorder>label_card2</zorder>
    <zorder>CallButton</zorder>
@@ -499,6 +579,11 @@ color: rgb(15, 96, 0);</string>
    <zorder>line_bet3</zorder>
    <zorder>line_bet4</zorder>
    <zorder>line_bet2</zorder>
+   <zorder>label_mcard1</zorder>
+   <zorder>label_mcard2</zorder>
+   <zorder>label_mcard3</zorder>
+   <zorder>label_mcard4</zorder>
+   <zorder>label_mcard5</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -506,7 +591,7 @@ color: rgb(15, 96, 0);</string>
      <x>0</x>
      <y>0</y>
      <width>1000</width>
-     <height>21</height>
+     <height>23</height>
     </rect>
    </property>
   </widget>
