@@ -51,6 +51,10 @@
       <height>32</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background: none;
+color: rgb(15, 96, 0);</string>
+    </property>
     <property name="text">
      <string>Rules</string>
     </property>
@@ -164,11 +168,43 @@
      <bool>true</bool>
     </property>
    </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>520</y>
+      <width>160</width>
+      <height>80</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="styleSheet">
+        <string notr="true">background: none;</string>
+       </property>
+       <property name="text">
+        <string>TextLabel</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_2">
+       <property name="styleSheet">
+        <string notr="true">background: none;</string>
+       </property>
+       <property name="text">
+        <string>TextLabel</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
    <widget class="QLabel" name="label_table">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>0</y>
+      <x>80</x>
+      <y>10</y>
       <width>821</width>
       <height>461</height>
      </rect>
@@ -436,6 +472,87 @@
      <bool>true</bool>
     </property>
    </widget>
+   <widget class="QLabel" name="label_middlecard1">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>160</y>
+      <width>61</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_middlecard2">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>160</y>
+      <width>61</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_middlecard3">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>160</y>
+      <width>61</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_middlecard4">
+    <property name="geometry">
+     <rect>
+      <x>530</x>
+      <y>160</y>
+      <width>61</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_middlecard5">
+    <property name="geometry">
+     <rect>
+      <x>600</x>
+      <y>160</y>
+      <width>61</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <zorder>horizontalLayoutWidget</zorder>
    <zorder>label_table</zorder>
    <zorder>label_card2</zorder>
    <zorder>CallButton</zorder>
@@ -462,6 +579,11 @@
    <zorder>line_bet3</zorder>
    <zorder>line_bet4</zorder>
    <zorder>line_bet2</zorder>
+   <zorder>label_middlecard1</zorder>
+   <zorder>label_middlecard2</zorder>
+   <zorder>label_middlecard3</zorder>
+   <zorder>label_middlecard4</zorder>
+   <zorder>label_middlecard5</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -469,7 +591,7 @@
      <x>0</x>
      <y>0</y>
      <width>1000</width>
-     <height>21</height>
+     <height>23</height>
     </rect>
    </property>
   </widget>
