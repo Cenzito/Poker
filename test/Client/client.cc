@@ -101,6 +101,7 @@ void PokerClient::sendCredentials() {
             std::getline(std::cin, password);
         }while(account.login(username, password)); 
     }
+    //create the Pokerplayer based on the username by PokerPlayer()
     isCredentialsSent = true;
 }
 
