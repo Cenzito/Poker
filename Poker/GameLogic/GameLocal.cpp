@@ -1,4 +1,5 @@
 #include "GameLocal.hpp"
+#include <QApplication>
 
 GameLocal::GameLocal(int seats){;}
 
@@ -58,6 +59,7 @@ void GameLocal::win(PlayerInfo& PlayerWin, int sum) {
 
 //only consider one player rn
 void GameLocal::endHand(PlayerInfo& winner) {
+    qDebug() << "winner is " << QString::fromStdString(winner.name);
     win(winner, tableInfo.pot);
 }
 
@@ -125,6 +127,7 @@ void GameLocal::bettingRound(int first_player, bool isfirst_round) {
             }
         }
         tableInfo.current_player = (tableInfo.current_player + 1) % tableInfo.seats;
+        qDebug() << "p standing" << players_standing;
     } while (first_actor != tableInfo.current_player && players_standing > 1); // continue until same person that put the highest bet needs to bet again or only one person left
 }
 
@@ -137,7 +140,8 @@ PokerPlayer GameLocal::findPlayer(std::string name) {
 };
 
 void GameLocal::newHand() {
-    std::cout << "start hand \n\n";
+    qDebug() << "start hand \n\n";
+    players_standing = tableInfo.player_num;
 
     //setting small and big blind
     pay(tableInfo.playerInfo[(tableInfo.ButtonPlayer + 1) % tableInfo.player_num], tableInfo.SBValue);
@@ -228,6 +232,7 @@ void GameLocal::newHand() {
         //showdown
         PlayerInfo winner = playersNotFold[0];
         std::vector<Card> winnerHandVect;
+        qDebug() << "a";
         merge(community.begin(), community.end(), findPlayer(winner.name).getHand().begin(), findPlayer(winner.name).getHand().end(), winnerHandVect.begin());
 
         PokerHand winnerHand(winnerHandVect);

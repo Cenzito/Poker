@@ -9,19 +9,24 @@
 
 
 int main(int argc, char *argv[]) {
-    /*
+    QTextStream outStream(stdout);
+    qDebug() << "hello";
+    qDebug() << 1;
     GameLocal pokerGame(5);
-    PokerPlayerLocal me("Remi");
+    Bot me("Remi", 3);
     Bot bot1("bot1", 1);
     Bot bot2("bot2", 2);
-    pokerGame.JoinGame(me);
+    me.tableInfo.Print();
+    pokerGame.addBot(me);
     pokerGame.addBot(bot1);
     pokerGame.addBot(bot2);
 
     pokerGame.tableInfo.Print();
-    pokerGame.startGame();*/
 
 
+    pokerGame.startGame();
+    return 0;
+    /*
     Game pokerGame(4);
     pokerGame.startGame();
 
@@ -29,7 +34,7 @@ int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
     MainWindow w;
     w.show();
-    return a.exec();
+    return a.exec();*/
 
 
 

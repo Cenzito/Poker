@@ -1,5 +1,5 @@
 #include "PlayerInfo.hpp"
-
+#include <QApplication>
 
 
 
@@ -15,8 +15,8 @@ PlayerInfo::PlayerInfo(){
 
 
 void PlayerInfo::Print() {
-    std::cout << "name " << name << "\n";
-    std::cout << "stack_size " << stack_size << "\n";
-    std::cout << "Bet " << bet << "\n";
-    std::cout << "IsFold IsAllin " << isFold << isAllin << "\n";
+    qDebug() << "name " << QString::fromStdString(name);
+    qDebug() << "stack_size " << stack_size;
+    qDebug() << "Bet " << bet;
+    qDebug() << "IsFold IsAllin " << isFold << isAllin;
 };
