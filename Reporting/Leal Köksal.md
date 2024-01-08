@@ -6,3 +6,10 @@ Week 2 (27.11 - 03.12)
 This week I implemented the header files for my medium bot. the code for the logic was not complete yet, so I made sure for the outline of the bot to be good. Further, I decided on a method for my difficult bot: Q-learning. I conducted a lot of research.
 
 Week 3 (04.12 - 10.12)
+
+
+Week 4 (11.12 - 17.12)
+
+
+Week 5 (18.12 - 24.12)
+
