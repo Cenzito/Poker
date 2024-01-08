@@ -1,5 +1,5 @@
 #include "table.hpp"
-
+#include <QApplication>
 
 Table::Table(){
     this-> seats = 5;
@@ -25,18 +25,18 @@ Table::Table(int seats){
 
 
 void Table::Print() {
-    std::cout << "\n\n\n\n\n\n";
-    std::cout << "seats " << seats << "\n";
-    std::cout << "number players " << player_num << "\n";
-    std::cout << "current player " << current_player << "\n";
-    std::cout << "Button player " << ButtonPlayer << "\n";
-    std::cout << "SB, BB" << SBValue << " " << BBValue << "\n" << "\n";
+    qDebug() << "\n\n\n\n\n\n";
+    qDebug() << "seats " << seats;
+    qDebug() << "number players " << player_num;
+    qDebug() << "current player " << current_player;
+    qDebug() << "Button player " << ButtonPlayer;
+    qDebug() << "SB, BB" << SBValue << " " << BBValue << "\n";
 
-    std::cout << "POT " << pot << "\n";
+    qDebug() << "POT " << pot;
 
     for (int i = 0; i < player_num; i++ ) {
         playerInfo[i].Print();
-        std::cout << "\n";
+        qDebug() << "\n";
     }
 }
 

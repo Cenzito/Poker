@@ -45,11 +45,7 @@ void PokerPlayer::removeCards() {
 signed int PokerPlayer::Action() {
     //need to connect to buttons in order to chose the bet size
 
-    int n;
-    std::cout << "What do you want to do? \n -1: fold \n 0: call/check \n a number: raise to that \n";
-    std::cin >> n;
-
-    return n;
+    return -1;
 }
 
 
