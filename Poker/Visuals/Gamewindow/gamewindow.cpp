@@ -240,7 +240,7 @@ void GameWindow::update_to_display(PokerPlayer* player, PlayerInfo* info){
         ui->line_bet5->setText(QString::fromStdString(std::to_string(playerbet5)));
         ui->line_bet6->setText(QString::fromStdString(std::to_string(playerbet6)));
         ui->line_bet7->setText(QString::fromStdString(std::to_string(playerbet7)));
-        ui->line_bet8->setText(QString::fromStdString(std::to_string(playerbet7)));
+        ui->line_bet8->setText(QString::fromStdString(std::to_string(playerbet8)));
     }
 }
 void GameWindow::update_to_display(PokerPlayer* player){
