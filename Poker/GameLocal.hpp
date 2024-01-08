@@ -42,6 +42,12 @@ public:
 
     int players_standing;
     bool hand_finished;
+
+private:
+    // Map to store hands of each player
+    std::unordered_map<std::string, std::vector<Card>> playerHands;
+    // Helper function to update hands of all players
+    void updatePlayerHands();
 };
 
 #endif // GAMELOCAL_HPP

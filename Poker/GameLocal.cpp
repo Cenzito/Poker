@@ -6,15 +6,18 @@ GameLocal::GameLocal(int seats){;}
 
 int GameLocal::getFreeSeat() {
     Table &t = tableInfo;
-    for (int i = 0; i<t.seats; i++) {
-        if (t.playerInfo.find(i) == t.playerInfo.end()) {
-            return i;
+    for (const auto& entry : t.playerInfo) {
+// Using a range-based for loop with iterators to iterate over the playerInfo map
+// ensures that we cover all players, regardless of the specific keys they have.
+// This resolves the issue of assuming consecutive keys, making the code more robust.
+        if (entry.second.find(i) == entry.second.end()) {
+            return entry.first;
         }
     }
     return -1;
 }
 
-void GameLocal::JoinGame(PokerPlayer player) {
+void GameLocal::JoinGame(const PokerPlayer player) { //passing by const reference allows us not to create copy of player
 
     //would need to do a try in case of error if room is full
     if (tableInfo.player_num >= tableInfo.seats)  {
@@ -58,7 +61,7 @@ void GameLocal::win(PlayerInfo& PlayerWin, int sum) {
 };
 
 //only consider one player rn
-void GameLocal::endHand(PlayerInfo& winner) {
+void GameLocal::endHand(const PlayerInfo& winner) {
     qDebug() << "winner is " << QString::fromStdString(winner.name);
     win(winner, tableInfo.pot);
 }
@@ -86,9 +89,10 @@ void GameLocal::nextHand(){
     tableInfo.communityCards=std::vector<Card>();
     hand_finished = false;
     updatePlayersTable();
+    updatePlayerHands();
 }
 
-signed int GameLocal::askAction(PokerPlayer player) {
+signed int GameLocal::askAction(const PokerPlayer player) {
     return player.Action();
 }
 
@@ -131,7 +135,7 @@ void GameLocal::bettingRound(int first_player, bool isfirst_round) {
     } while (first_actor != tableInfo.current_player && players_standing > 1); // continue until same person that put the highest bet needs to bet again or only one person left
 }
 
-PokerPlayer GameLocal::findPlayer(std::string name) {
+PokerPlayer GameLocal::findPlayer(const std::string name) {
     for (PokerPlayer& player : players) {
         if (player.name == name) {
             return player;
@@ -158,14 +162,15 @@ void GameLocal::newHand() {
         cards.push_back(deck.dealCard());
         player.receiveCards(cards);
     }
+    updatePlayerHands(); //update their hands
     //first betting round
     bettingRound((tableInfo.ButtonPlayer + 3)% tableInfo.player_num, true);
 
     if (players_standing == 1) {
         PlayerInfo winner;
-        for (int i = 0; i < tableInfo.player_num; i++) {
-            if (!tableInfo.playerInfo[i].isFold) {
-                winner = tableInfo.playerInfo[i];
+        for (const auto& playerEntry : tableInfo.playerInfo) {
+            if (!playerEntry.second.isFold) {
+                winner = playerEntry.second;
             }
         }
         endHand(winner);
@@ -180,9 +185,9 @@ void GameLocal::newHand() {
 
     if (players_standing == 1) {
         PlayerInfo winner;
-        for (int i = 0; i < tableInfo.player_num; i++) {
-            if (!tableInfo.playerInfo[i].isFold) {
-                winner = tableInfo.playerInfo[i];
+        for (const auto& playerEntry : tableInfo.playerInfo) {
+            if (!playerEntry.second.isFold) {
+                winner = playerEntry.second;
             }
         }
         endHand(winner);
@@ -195,9 +200,9 @@ void GameLocal::newHand() {
 
     if (players_standing == 1) {
         PlayerInfo winner;
-        for (int i = 0; i < tableInfo.player_num; i++) {
-            if (!tableInfo.playerInfo[i].isFold) {
-                winner = tableInfo.playerInfo[i];
+        for (const auto& playerEntry : tableInfo.playerInfo) {
+            if (!playerEntry.second.isFold) {
+                winner = playerEntry.second;
             }
         }
         endHand(winner);
@@ -211,9 +216,9 @@ void GameLocal::newHand() {
 
     if (players_standing == 1) {
         PlayerInfo winner;
-        for (int i = 0; i < tableInfo.player_num; i++) {
-            if (!tableInfo.playerInfo[i].isFold) {
-                winner = tableInfo.playerInfo[i];
+        for (const auto& playerEntry : tableInfo.playerInfo) {
+            if (!playerEntry.second.isFold) {
+                winner = playerEntry.second;
             }
         }
         endHand(winner);
@@ -221,9 +226,9 @@ void GameLocal::newHand() {
     } else {
         //get all the people who haven't folded
         std::vector<PlayerInfo> playersNotFold;
-        for (int i = 0; i < tableInfo.player_num; i++) {
-            if (!tableInfo.playerInfo[i].isFold) {
-                playersNotFold.push_back(tableInfo.playerInfo[i]);
+        for (const auto& playerEntry : tableInfo.playerInfo) {
+            if (!playerEntry.second.isFold) {
+                playersNotFold.push_back(playerEntry.second);
             }
         }
 
@@ -240,13 +245,14 @@ void GameLocal::newHand() {
         //iterate over players and compute their hand score
         //if their score is better than the current best, they become best
         //haven't taken into account ties yet, in that case, first player considered wins
-        for (PlayerInfo current : playersNotFold) {
-            std::vector<Card> currentHandVect;
-            //getting hands throught the "getHand" function in the PokerPlayer class which is bad
-            //need to store the hands of the players in the Game in order to retrieve and compare them
-            merge(community.begin(), community.end(), findPlayer(winner.name).getHand().begin(), findPlayer(winner.name).getHand().end(), winnerHandVect.begin());
+        for (const PlayerInfo& current : playersNotFold) {
+            // Use stored hands for comparison
+            const std::vector<Card>& currentHandVect = playerHands[current.name];
+            currentHandVect.insert(currentHandVect.end(), tableInfo.communityCards.begin(), tableInfo.communityCards.end());
+
 
             PokerHand currentHand(currentHandVect);
+            
             if (compare_hands(winnerHand, currentHand) == 2) {
                 winner = current;
                 winnerHand = currentHand;
@@ -258,7 +264,9 @@ void GameLocal::newHand() {
 
 }
 
-
-
-
-
+//Function to retrieve hands from players
+void GameLocal::updatePlayerHands() {
+    for (const PokerPlayer& player : players) {
+        playerHands[player.getName()] = player.getHand();
+    }
+}
