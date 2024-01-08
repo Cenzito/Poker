@@ -35,32 +35,34 @@ void GameLocal::addBot(Bot bot) {
 
 void GameLocal::startGame() {
     //need to be more than 3 to play
-    for (int i = 0 ; i < 3; i++) {
-        newHand();
-    }
-    /*
     while (tableInfo.player_num >= 3) {
         newHand();
-    }*/
-    std::cout << "not enough players";
+    }
+    //std::cout << "not enough players";
 }
 
 void GameLocal::pay(PlayerInfo& PlayerPay, int sum) {
     PlayerPay.stack_size -= sum;
     PlayerPay.bet += sum;
     tableInfo.pot += sum;
-    updatePlayersTable();
 };
 
 void GameLocal::win(PlayerInfo& PlayerWin, int sum) {
-    PlayerWin.stack_size += sum;
-    updatePlayersTable();
+    qDebug() << sum;
+    for (int i = 0; i <= tableInfo.player_num; i++) {
+        if (tableInfo.playerInfo[i].name == PlayerWin.name) {
+            tableInfo.playerInfo[i].stack_size += sum;
+        }
+    }
 };
 
-//only consider one player rn
+//only consider one player winning rn
 void GameLocal::endHand(PlayerInfo& winner) {
     qDebug() << "winner is " << QString::fromStdString(winner.name);
     win(winner, tableInfo.pot);
+    resetHand();
+
+    tableInfo.Print();
 }
 
 void GameLocal::fold(PlayerInfo& foldPlayer) {
@@ -76,9 +78,16 @@ void GameLocal::updatePlayersTable() {
 }
 
 
-void GameLocal::nextHand(){
+void GameLocal::resetHand(){
+    //reset cards
     for (PokerPlayer& player : players) {
         player.removeCards();
+    }
+    //reset bets
+    for (int i = 0; i <= tableInfo.player_num; i++) {
+        tableInfo.playerInfo[i].bet = 0;
+        tableInfo.playerInfo[i].isAllin = false;
+        tableInfo.playerInfo[i].isFold = false;
     }
 
     tableInfo.pot=0;
