@@ -1,7 +1,7 @@
 #ifndef GAMELOCAL_HPP
 #define GAMELOCAL_HPP
 
-#include "PokerPlayerLocal.hpp"
+#include "PokerPlayer.hpp"
 #include "Table.hpp"
 #include "Deck.hpp"
 #include "../Bots/Bot.hpp"
@@ -15,7 +15,7 @@ public:
     GameLocal(int seats);
 
 
-    void JoinGame(PokerPlayerLocal);
+    void JoinGame(PokerPlayer);
     void addBot(Bot bot);
     int getFreeSeat();
     void startGame();
@@ -31,11 +31,11 @@ public:
     void updatePlayersTable();
     void nextHand();
 
-    signed int askAction(PokerPlayerLocal player);
+    signed int askAction(PokerPlayer player);
     void bettingRound(int first_player, bool isfirst_round);
 
-    PokerPlayerLocal findPlayer(std::string name);
-    std::vector<PokerPlayerLocal> players;
+    PokerPlayer findPlayer(std::string name);
+    std::vector<PokerPlayer> players;
 
     Deck deck;
     Table tableInfo;

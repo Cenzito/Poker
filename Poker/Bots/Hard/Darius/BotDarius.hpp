@@ -14,7 +14,7 @@ public:
         this -> level = level;
         this->name = name;
     };
-    void action();
+    signed int Action();
     float optimalBet();
     int expected_win(int bet); // this function computes the expected win given a bet and given a state of the game
     private:

@@ -17,12 +17,10 @@ public:
     PokerPlayer(const std::string& name);
     const std::string& getName() const;
 
-    //Action functions call raise fold
-    void call(int);
-    void raise(int);
-    void fold();
+    //Action function, will be called to know what the player does
+    signed int Action();
 
-    //void receiveCards(const std::vector<Card>& cards);
+
     void showHand() const;
     bool canBet(int amount) const;
     int decideBet(int currentHighestBet, int money, int minimumRaise);

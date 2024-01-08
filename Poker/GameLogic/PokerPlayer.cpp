@@ -42,31 +42,16 @@ void PokerPlayer::removeCards() {
     hand = std::vector<Card>();
 }
 
-/*
-void PokerPlayer::action(std::vector<int> table, int minAmount, int type) {
-    std::cout << "Pot: " << table[0] << std::endl;
-    for (int i = 1; i < table.size();i++) {
-        std::cout << "Bet" << table[i] << std::endl;
-    }
-};*/
+signed int PokerPlayer::Action() {
+    //need to connect to buttons in order to chose the bet size
 
-void PokerPlayer::call(int bet_on_table) {
-    //tell server you want to call
+    int n;
+    std::cout << "What do you want to do? \n -1: fold \n 0: call/check \n a number: raise to that \n";
+    std::cin >> n;
+
+    return n;
 }
 
-void PokerPlayer::raise(int bet_on_table) { //TO BE DONE
-    //: Ask raise amount !!!there are minimums (check poker rules) TO DO THE MINIMUMS IF statements
-    std::string userInput;
-    std::cout << "By how much woud you like to raise: ";
-    std::cin >> userInput;
-    int amount_to_raise = std::stoi(userInput); //stoi = string to integer
-
-    //tell server how much you want to raise
-}
-
-void PokerPlayer::fold() {
-    //tell server you want to fold
-}
 
 
 

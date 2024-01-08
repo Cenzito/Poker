@@ -13,7 +13,7 @@ int GameLocal::getFreeSeat() {
     return -1;
 }
 
-void GameLocal::JoinGame(PokerPlayerLocal player) {
+void GameLocal::JoinGame(PokerPlayer player) {
 
     //would need to do a try in case of error if room is full
     if (tableInfo.player_num >= tableInfo.seats)  {
@@ -86,7 +86,7 @@ void GameLocal::nextHand(){
     updatePlayersTable();
 }
 
-signed int GameLocal::askAction(PokerPlayerLocal player) {
+signed int GameLocal::askAction(PokerPlayer player) {
     return player.Action();
 }
 
@@ -128,8 +128,8 @@ void GameLocal::bettingRound(int first_player, bool isfirst_round) {
     } while (first_actor != tableInfo.current_player && players_standing > 1); // continue until same person that put the highest bet needs to bet again or only one person left
 }
 
-PokerPlayerLocal GameLocal::findPlayer(std::string name) {
-    for (PokerPlayerLocal& player : players) {
+PokerPlayer GameLocal::findPlayer(std::string name) {
+    for (PokerPlayer& player : players) {
         if (player.name == name) {
             return player;
         }
