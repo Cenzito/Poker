@@ -29,6 +29,7 @@ public:
     void display_player_hand(PokerPlayer* player);
     void switch_bet_button_on(PokerPlayer* player);
     void switch_bet_button_off(PokerPlayer* player);
+    void switch_players_display(PokerPlayer* player);
 
 private slots:
 
