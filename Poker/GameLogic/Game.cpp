@@ -44,6 +44,8 @@ void Game::JoinGame(PokerPlayer player) {
 
 
 
+
+
 //to implement
 void Game::nextHand(){
     for (PokerPlayer& player : players) {
