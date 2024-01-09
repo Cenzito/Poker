@@ -1,0 +1,1889 @@
+﻿PokerStars Hand #246679297456:  Hold'em No Limit (50/100) - 2023/10/22 17:19:45 CET [2023/10/22 11:19:45 ET]
+Table 'Pamela' 6-max (Play Money) Seat #2 is the button
+Seat 1: remi418 (10000 in chips) 
+Seat 2: BadCowboyTB8 (65641 in chips) 
+Seat 3: dj_planets (9650 in chips) 
+Seat 4: becsapi591 (10292 in chips) 
+Seat 5: DryHorseD311 (9900 in chips) 
+Seat 6: akqjt5000000 (9600 in chips) 
+dj_planets: posts small blind 50
+becsapi591: posts big blind 100
+remi418: posts big blind 100
+*** HOLE CARDS ***
+Dealt to remi418 [4c 8s]
+DryHorseD311: calls 100
+akqjt5000000: raises 200 to 300
+remi418: folds 
+BadCowboyTB8: calls 300
+dj_planets: calls 250
+becsapi591: calls 200
+DryHorseD311: folds 
+*** FLOP *** [2d 9c 2s]
+DryHorseD311 leaves the table
+dj_planets: checks 
+becsapi591: checks 
+akqjt5000000: bets 661
+BadCowboyTB8: folds 
+dj_planets: calls 661
+becsapi591: folds 
+*** TURN *** [2d 9c 2s] [Qs]
+Jopeda joins the table at seat #5 
+dj_planets: checks 
+akqjt5000000: bets 600
+dj_planets: calls 600
+*** RIVER *** [2d 9c 2s Qs] [6s]
+dj_planets: checks 
+akqjt5000000: checks 
+*** SHOW DOWN ***
+dj_planets: shows [8c Ad] (a pair of Deuces)
+akqjt5000000: shows [Kc Ac] (a pair of Deuces - Ace+King kicker)
+akqjt5000000 collected 3706 from pot
+*** SUMMARY ***
+Total pot 3922 | Rake 216 
+Board [2d 9c 2s Qs 6s]
+Seat 1: remi418 folded before Flop (didn't bet)
+Seat 2: BadCowboyTB8 (button) folded on the Flop
+Seat 3: dj_planets (small blind) showed [8c Ad] and lost with a pair of Deuces
+Seat 4: becsapi591 (big blind) folded on the Flop
+Seat 5: DryHorseD311 folded before Flop
+Seat 6: akqjt5000000 showed [Kc Ac] and won (3706) with a pair of Deuces
+
+
+
+PokerStars Hand #246679318291:  Hold'em No Limit (50/100) - 2023/10/22 17:20:52 CET [2023/10/22 11:20:52 ET]
+Table 'Pamela' 6-max (Play Money) Seat #3 is the button
+Seat 1: remi418 (9900 in chips) 
+Seat 2: BadCowboyTB8 (65341 in chips) 
+Seat 3: dj_planets (8089 in chips) 
+Seat 4: becsapi591 (9992 in chips) 
+Seat 5: Jopeda (10000 in chips) 
+Seat 6: akqjt5000000 (11745 in chips) 
+becsapi591: posts small blind 50
+Jopeda: posts big blind 100
+*** HOLE CARDS ***
+Dealt to remi418 [6s 7h]
+akqjt5000000: calls 100
+remi418: folds 
+BadCowboyTB8: calls 100
+dj_planets: calls 100
+becsapi591: calls 50
+Jopeda: checks 
+*** FLOP *** [Tc 2d 3c]
+becsapi591: checks 
+Jopeda: checks 
+akqjt5000000: checks 
+BadCowboyTB8: bets 400
+dj_planets: calls 400
+becsapi591: calls 400
+Jopeda: calls 400
+akqjt5000000: calls 400
+*** TURN *** [Tc 2d 3c] [Qd]
+becsapi591: checks 
+Jopeda: checks 
+akqjt5000000: checks 
+BadCowboyTB8: checks 
+dj_planets: checks 
+*** RIVER *** [Tc 2d 3c Qd] [Jc]
+becsapi591: checks 
+Jopeda: checks 
+akqjt5000000: checks 
+BadCowboyTB8: folds 
+dj_planets: checks 
+*** SHOW DOWN ***
+becsapi591: shows [Ah Ts] (a pair of Tens)
+Jopeda: mucks hand 
+akqjt5000000: mucks hand 
+dj_planets: mucks hand 
+becsapi591 collected 2362 from pot
+*** SUMMARY ***
+Total pot 2500 | Rake 138 
+Board [Tc 2d 3c Qd Jc]
+Seat 1: remi418 folded before Flop (didn't bet)
+Seat 2: BadCowboyTB8 folded on the River
+Seat 3: dj_planets (button) mucked [Kc 7s]
+Seat 4: becsapi591 (small blind) showed [Ah Ts] and won (2362) with a pair of Tens
+Seat 5: Jopeda (big blind) mucked [Td 9s]
+Seat 6: akqjt5000000 mucked [6h Th]
+
+
+
+PokerStars Hand #246679341996:  Hold'em No Limit (50/100) - 2023/10/22 17:22:09 CET [2023/10/22 11:22:09 ET]
+Table 'Pamela' 6-max (Play Money) Seat #4 is the button
+Seat 1: remi418 (9900 in chips) 
+Seat 2: BadCowboyTB8 (64841 in chips) 
+Seat 3: dj_planets (7589 in chips) 
+Seat 4: becsapi591 (11854 in chips) 
+Seat 5: Jopeda (9500 in chips) 
+Seat 6: akqjt5000000 (11245 in chips) 
+Jopeda: posts small blind 50
+akqjt5000000: posts big blind 100
+*** HOLE CARDS ***
+Dealt to remi418 [5d Ad]
+remi418: raises 100 to 200
+BadCowboyTB8: folds 
+dj_planets: calls 200
+BadCowboyTB8 leaves the table
+becsapi591: calls 200
+Jopeda: calls 150
+akqjt5000000: calls 100
+*** FLOP *** [4c 5s 2d]
+Jopeda: checks 
+akqjt5000000: checks 
+remi418: bets 800
+dj_planets: folds 
+becsapi591: folds 
+Jopeda: folds 
+akqjt5000000: folds 
+Uncalled bet (800) returned to remi418
+remi418 collected 945 from pot
+remi418: doesn't show hand 
+*** SUMMARY ***
+Total pot 1000 | Rake 55 
+Board [4c 5s 2d]
+Seat 1: remi418 collected (945)
+Seat 2: BadCowboyTB8 folded before Flop (didn't bet)
+Seat 3: dj_planets folded on the Flop
+Seat 4: becsapi591 (button) folded on the Flop
+Seat 5: Jopeda (small blind) folded on the Flop
+Seat 6: akqjt5000000 (big blind) folded on the Flop
+
+
+
+PokerStars Hand #246679355735:  Hold'em No Limit (50/100) - 2023/10/22 17:22:52 CET [2023/10/22 11:22:52 ET]
+Table 'Pamela' 6-max (Play Money) Seat #5 is the button
+Seat 1: remi418 (10645 in chips) 
+Seat 3: dj_planets (7389 in chips) 
+Seat 4: becsapi591 (11654 in chips) 
+Seat 5: Jopeda (9300 in chips) 
+Seat 6: akqjt5000000 (11045 in chips) 
+akqjt5000000: posts small blind 50
+remi418: posts big blind 100
+*** HOLE CARDS ***
+Dealt to remi418 [3d 2s]
+dj_planets: calls 100
+becsapi591: calls 100
+Jopeda: calls 100
+akqjt5000000: raises 300 to 400
+remi418: folds 
+dj_planets: calls 300
+becsapi591: calls 300
+Jopeda: folds 
+*** FLOP *** [6d 9s Td]
+akqjt5000000: bets 400
+dj_planets: calls 400
+becsapi591: folds 
+*** TURN *** [6d 9s Td] [Qc]
+akqjt5000000: checks 
+dj_planets: checks 
+*** RIVER *** [6d 9s Td Qc] [Kc]
+akqjt5000000: bets 600
+dj_planets: folds 
+Uncalled bet (600) returned to akqjt5000000
+akqjt5000000 collected 2079 from pot
+*** SUMMARY ***
+Total pot 2200 | Rake 121 
+Board [6d 9s Td Qc Kc]
+Seat 1: remi418 (big blind) folded before Flop
+Seat 3: dj_planets folded on the River
+Seat 4: becsapi591 folded on the Flop
+Seat 5: Jopeda (button) folded before Flop
+Seat 6: akqjt5000000 (small blind) collected (2079)
+
+
+
+PokerStars Hand #246679375668:  Hold'em No Limit (50/100) - 2023/10/22 17:23:56 CET [2023/10/22 11:23:56 ET]
+Table 'Pamela' 6-max (Play Money) Seat #6 is the button
+Seat 1: remi418 (10545 in chips) 
+Seat 3: dj_planets (6589 in chips) 
+Seat 4: becsapi591 (11254 in chips) 
+Seat 5: Jopeda (9200 in chips) 
+Seat 6: akqjt5000000 (12324 in chips) 
+remi418: posts small blind 50
+dj_planets: posts big blind 100
+*** HOLE CARDS ***
+Dealt to remi418 [6d 4c]
+seven08 joins the table at seat #2 
+becsapi591: folds 
+Jopeda: calls 100
+akqjt5000000: calls 100
+remi418: folds 
+dj_planets: checks 
+*** FLOP *** [Ad 6s 3h]
+dj_planets: checks 
+Jopeda: checks 
+akqjt5000000: checks 
+*** TURN *** [Ad 6s 3h] [Jh]
+dj_planets: checks 
+Jopeda: checks 
+akqjt5000000: bets 200
+dj_planets: folds 
+Jopeda: folds 
+Uncalled bet (200) returned to akqjt5000000
+akqjt5000000 collected 331 from pot
+*** SUMMARY ***
+Total pot 350 | Rake 19 
+Board [Ad 6s 3h Jh]
+Seat 1: remi418 (small blind) folded before Flop
+Seat 3: dj_planets (big blind) folded on the Turn
+Seat 4: becsapi591 folded before Flop (didn't bet)
+Seat 5: Jopeda folded on the Turn
+Seat 6: akqjt5000000 (button) collected (331)
+
+
+
+PokerStars Hand #246679389764:  Hold'em No Limit (50/100) - 2023/10/22 17:24:41 CET [2023/10/22 11:24:41 ET]
+Table 'Pamela' 6-max (Play Money) Seat #1 is the button
+Seat 2: seven08 (4000 in chips) is sitting out
+Seat 1: remi418 (10495 in chips) 
+Seat 3: dj_planets (6489 in chips) 
+Seat 4: becsapi591 (11254 in chips) 
+Seat 5: Jopeda (9100 in chips) 
+Seat 6: akqjt5000000 (12555 in chips) 
+dj_planets: posts small blind 50
+becsapi591: posts big blind 100
+*** HOLE CARDS ***
+Dealt to remi418 [7c Ts]
+Jopeda: calls 100
+akqjt5000000: calls 100
+remi418: raises 100 to 200
+dj_planets: calls 150
+becsapi591: calls 100
+Jopeda: calls 100
+akqjt5000000: calls 100
+*** FLOP *** [2c 2s Qh]
+dj_planets: checks 
+becsapi591: checks 
+Jopeda: checks 
+akqjt5000000: bets 200
+remi418: raises 800 to 1000
+dj_planets: folds 
+becsapi591: folds 
+Jopeda: folds 
+akqjt5000000: calls 800
+*** TURN *** [2c 2s Qh] [Jh]
+akqjt5000000: checks 
+remi418: bets 2700
+akqjt5000000: folds 
+Uncalled bet (2700) returned to remi418
+remi418 collected 2835 from pot
+remi418: doesn't show hand 
+*** SUMMARY ***
+Total pot 3000 | Rake 165 
+Board [2c 2s Qh Jh]
+Seat 2: seven08
+Seat 1: remi418 (button) collected (2835)
+Seat 3: dj_planets (small blind) folded on the Flop
+Seat 4: becsapi591 (big blind) folded on the Flop
+Seat 5: Jopeda folded on the Flop
+Seat 6: akqjt5000000 folded on the Turn
+
+
+
+PokerStars Hand #246679411876:  Hold'em No Limit (50/100) - 2023/10/22 17:25:52 CET [2023/10/22 11:25:52 ET]
+Table 'Pamela' 6-max (Play Money) Seat #3 is the button
+Seat 1: remi418 (12130 in chips) 
+Seat 2: seven08 (4000 in chips) 
+Seat 3: dj_planets (6289 in chips) 
+Seat 4: becsapi591 (11054 in chips) 
+Seat 5: Jopeda (8900 in chips) 
+Seat 6: akqjt5000000 (11355 in chips) 
+becsapi591: posts small blind 50
+Jopeda: posts big blind 100
+seven08: posts big blind 100
+*** HOLE CARDS ***
+Dealt to remi418 [2s 5c]
+akqjt5000000: calls 100
+remi418: folds 
+seven08: checks 
+dj_planets: calls 100
+becsapi591: calls 50
+Jopeda: checks 
+*** FLOP *** [4s 4d Jh]
+becsapi591: checks 
+Jopeda: checks 
+akqjt5000000: checks 
+seven08: checks 
+dj_planets: checks 
+*** TURN *** [4s 4d Jh] [Kh]
+becsapi591: checks 
+Jopeda: checks 
+akqjt5000000: checks 
+seven08: bets 100
+dj_planets: calls 100
+becsapi591: folds 
+Jopeda: calls 100
+akqjt5000000: calls 100
+*** RIVER *** [4s 4d Jh Kh] [Qs]
+Jopeda: checks 
+akqjt5000000: bets 850
+seven08: calls 850
+dj_planets: raises 1850 to 2700
+Jopeda: folds 
+akqjt5000000: folds 
+seven08: folds 
+Uncalled bet (1850) returned to dj_planets
+dj_planets collected 3260 from pot
+*** SUMMARY ***
+Total pot 3450 | Rake 190 
+Board [4s 4d Jh Kh Qs]
+Seat 1: remi418 folded before Flop (didn't bet)
+Seat 2: seven08 folded on the River
+Seat 3: dj_planets (button) collected (3260)
+Seat 4: becsapi591 (small blind) folded on the Turn
+Seat 5: Jopeda (big blind) folded on the River
+Seat 6: akqjt5000000 folded on the River
+
+
+
+PokerStars Hand #246679431390:  Hold'em No Limit (50/100) - 2023/10/22 17:26:55 CET [2023/10/22 11:26:55 ET]
+Table 'Pamela' 6-max (Play Money) Seat #4 is the button
+Seat 1: remi418 (12130 in chips) 
+Seat 2: seven08 (2950 in chips) 
+Seat 3: dj_planets (8499 in chips) 
+Seat 4: becsapi591 (10954 in chips) 
+Seat 5: Jopeda (8700 in chips) 
+Seat 6: akqjt5000000 (10305 in chips) 
+Jopeda: posts small blind 50
+akqjt5000000: posts big blind 100
+*** HOLE CARDS ***
+Dealt to remi418 [Kd Kh]
+remi418: raises 300 to 400
+seven08: folds 
+dj_planets: calls 400
+becsapi591: calls 400
+Jopeda: calls 350
+akqjt5000000: calls 300
+*** FLOP *** [4c 7d Jh]
+Jopeda: checks 
+akqjt5000000: checks 
+remi418: bets 1800
+dj_planets: calls 1800
+becsapi591: calls 1800
+Jopeda: folds 
+akqjt5000000: calls 1800
+*** TURN *** [4c 7d Jh] [2c]
+akqjt5000000: checks 
+remi418: bets 5800
+dj_planets: calls 5800
+becsapi591: calls 5800
+akqjt5000000: folds 
+*** RIVER *** [4c 7d Jh 2c] [8c]
+remi418: bets 4000
+dj_planets: calls 499 and is all-in
+becsapi591: calls 2954 and is all-in
+Uncalled bet (1046) returned to remi418
+*** SHOW DOWN ***
+remi418: shows [Kd Kh] (a pair of Kings)
+becsapi591: shows [4d 4s] (three of a kind, Fours)
+becsapi591 collected 4640 from side pot
+dj_planets: shows [5h Jd] (a pair of Jacks)
+becsapi591 collected 26552 from main pot
+*** SUMMARY ***
+Total pot 33007 Main pot 26552. Side pot 4640. | Rake 1815 
+Board [4c 7d Jh 2c 8c]
+Seat 1: remi418 showed [Kd Kh] and lost with a pair of Kings
+Seat 2: seven08 folded before Flop (didn't bet)
+Seat 3: dj_planets showed [5h Jd] and lost with a pair of Jacks
+Seat 4: becsapi591 (button) showed [4d 4s] and won (31192) with three of a kind, Fours
+Seat 5: Jopeda (small blind) folded on the Flop
+Seat 6: akqjt5000000 (big blind) folded on the Turn
+
+
+
+PokerStars Hand #246679452619:  Hold'em No Limit (50/100) - 2023/10/22 17:28:04 CET [2023/10/22 11:28:04 ET]
+Table 'Pamela' 6-max (Play Money) Seat #5 is the button
+Seat 3: dj_planets (0 in chips) is sitting out
+Seat 1: remi418 (1176 in chips) 
+Seat 2: seven08 (2950 in chips) 
+Seat 4: becsapi591 (31192 in chips) 
+Seat 5: Jopeda (8300 in chips) 
+Seat 6: akqjt5000000 (8105 in chips) 
+akqjt5000000: posts small blind 50
+remi418: posts big blind 100
+*** HOLE CARDS ***
+Dealt to remi418 [8h Kd]
+seven08: calls 100
+becsapi591: calls 100
+Jopeda: calls 100
+akqjt5000000: folds 
+remi418: raises 1076 to 1176 and is all-in
+seven08: folds 
+becsapi591: folds 
+Jopeda: calls 1076
+akqjt5000000 leaves the table
+*** FLOP *** [Ac Jh Qc]
+Rimas67 joins the table at seat #6 
+*** TURN *** [Ac Jh Qc] [6c]
+*** RIVER *** [Ac Jh Qc 6c] [As]
+*** SHOW DOWN ***
+remi418: shows [8h Kd] (a pair of Aces)
+Jopeda: shows [Ad Ks] (three of a kind, Aces)
+Jopeda collected 2459 from pot
+*** SUMMARY ***
+Total pot 2602 | Rake 143 
+Board [Ac Jh Qc 6c As]
+Seat 3: dj_planets
+Seat 1: remi418 (big blind) showed [8h Kd] and lost with a pair of Aces
+Seat 2: seven08 folded before Flop
+Seat 4: becsapi591 folded before Flop
+Seat 5: Jopeda (button) showed [Ad Ks] and won (2459) with three of a kind, Aces
+Seat 6: akqjt5000000 (small blind) folded before Flop
+
+
+
+PokerStars Hand #246679474731:  Hold'em No Limit (50/100) - 2023/10/22 17:29:16 CET [2023/10/22 11:29:16 ET]
+Table 'Pamela' 6-max (Play Money) Seat #3 is the button
+Seat 2: seven08 (0 in chips) is sitting out
+Seat 1: remi418 (10000 in chips) 
+Seat 3: dj_planets (12820 in chips) 
+Seat 5: Jopeda (9483 in chips) 
+Seat 6: Rimas67 (9900 in chips) 
+Jopeda: posts small blind 50
+Rimas67: posts big blind 100
+*** HOLE CARDS ***
+Dealt to remi418 [4d 4h]
+BenBen5454 joins the table at seat #4 
+remi418: raises 200 to 300
+dj_planets: calls 300
+seven08 leaves the table
+Jopeda: calls 250
+Rimas67: calls 200
+*** FLOP *** [7c 3h 2s]
+Jopeda: checks 
+Rimas67: checks 
+remi418: bets 900
+dj_planets: calls 900
+Jopeda: folds 
+Rimas67: folds 
+*** TURN *** [7c 3h 2s] [2c]
+arazua joins the table at seat #2 
+remi418: checks 
+dj_planets: checks 
+*** RIVER *** [7c 3h 2s 2c] [Kd]
+remi418: checks 
+dj_planets: bets 1600
+remi418: folds 
+Uncalled bet (1600) returned to dj_planets
+dj_planets collected 2835 from pot
+*** SUMMARY ***
+Total pot 3000 | Rake 165 
+Board [7c 3h 2s 2c Kd]
+Seat 2: seven08
+Seat 1: remi418 folded on the River
+Seat 3: dj_planets (button) collected (2835)
+Seat 5: Jopeda (small blind) folded on the Flop
+Seat 6: Rimas67 (big blind) folded on the Flop
+
+
+
+PokerStars Hand #246679487807:  Hold'em No Limit (50/100) - 2023/10/22 17:29:58 CET [2023/10/22 11:29:58 ET]
+Table 'Pamela' 6-max (Play Money) Seat #5 is the button
+Seat 1: remi418 (8800 in chips) 
+Seat 2: arazua (8000 in chips) 
+Seat 3: dj_planets (14455 in chips) 
+Seat 4: BenBen5454 (10000 in chips) 
+Seat 5: Jopeda (9183 in chips) 
+Seat 6: Rimas67 (9600 in chips) 
+Rimas67: posts small blind 50
+remi418: posts big blind 100
+arazua: posts big blind 100
+BenBen5454: posts big blind 100
+*** HOLE CARDS ***
+Dealt to remi418 [8c 8d]
+arazua: checks 
+dj_planets: calls 100
+BenBen5454: checks 
+Jopeda: calls 100
+Rimas67: calls 50
+remi418: raises 400 to 500
+arazua: folds 
+dj_planets: calls 400
+BenBen5454: folds 
+Jopeda: calls 400
+Rimas67: calls 400
+*** FLOP *** [6h 8s 3c]
+Rimas67: checks 
+remi418: bets 2079
+dj_planets: folds 
+Jopeda: folds 
+Rimas67: calls 2079
+*** TURN *** [6h 8s 3c] [4d]
+Rimas67: checks 
+remi418: bets 6221 and is all-in
+Rimas67: calls 6221
+*** RIVER *** [6h 8s 3c 4d] [7h]
+*** SHOW DOWN ***
+Rimas67: shows [Tc 7d] (a pair of Sevens)
+remi418: shows [8c 8d] (three of a kind, Eights)
+remi418 collected 17766 from pot
+*** SUMMARY ***
+Total pot 18800 | Rake 1034 
+Board [6h 8s 3c 4d 7h]
+Seat 1: remi418 (big blind) showed [8c 8d] and won (17766) with three of a kind, Eights
+Seat 2: arazua folded before Flop (didn't bet)
+Seat 3: dj_planets folded on the Flop
+Seat 4: BenBen5454 folded before Flop (didn't bet)
+Seat 5: Jopeda (button) folded on the Flop
+Seat 6: Rimas67 (small blind) showed [Tc 7d] and lost with a pair of Sevens
+
+
+
+PokerStars Hand #246679513375:  Hold'em No Limit (50/100) - 2023/10/22 17:31:20 CET [2023/10/22 11:31:20 ET]
+Table 'Pamela' 6-max (Play Money) Seat #6 is the button
+Seat 1: remi418 (17766 in chips) 
+Seat 2: arazua (9900 in chips) 
+Seat 3: dj_planets (13955 in chips) 
+Seat 4: BenBen5454 (9900 in chips) 
+Seat 5: Jopeda (8683 in chips) 
+Seat 6: Rimas67 (800 in chips) 
+remi418: posts small blind 50
+arazua: posts big blind 100
+*** HOLE CARDS ***
+Dealt to remi418 [Ad Ah]
+dj_planets: calls 100
+BenBen5454: calls 100
+Jopeda: calls 100
+Rimas67: folds 
+remi418: raises 300 to 400
+arazua: folds 
+dj_planets: calls 300
+BenBen5454: calls 300
+Jopeda: calls 300
+*** FLOP *** [6c Qc 4s]
+remi418: bets 1606
+dj_planets: calls 1606
+BenBen5454: folds 
+Jopeda: folds 
+*** TURN *** [6c Qc 4s] [Ks]
+remi418: bets 4642
+dj_planets: calls 4642
+*** RIVER *** [6c Qc 4s Ks] [Kc]
+remi418: bets 11118 and is all-in
+dj_planets: calls 7307 and is all-in
+Uncalled bet (3811) returned to remi418
+*** SHOW DOWN ***
+remi418: shows [Ad Ah] (two pair, Aces and Kings)
+dj_planets: shows [Qh 6h] (two pair, Kings and Queens)
+remi418 collected 27225 from pot
+*** SUMMARY ***
+Total pot 28810 | Rake 1585 
+Board [6c Qc 4s Ks Kc]
+Seat 1: remi418 (small blind) showed [Ad Ah] and won (27225) with two pair, Aces and Kings
+Seat 2: arazua (big blind) folded before Flop
+Seat 3: dj_planets showed [Qh 6h] and lost with two pair, Kings and Queens
+Seat 4: BenBen5454 folded on the Flop
+Seat 5: Jopeda folded on the Flop
+Seat 6: Rimas67 (button) folded before Flop (didn't bet)
+
+
+
+PokerStars Hand #246679530573:  Hold'em No Limit (50/100) - 2023/10/22 17:32:16 CET [2023/10/22 11:32:16 ET]
+Table 'Pamela' 6-max (Play Money) Seat #1 is the button
+Seat 3: dj_planets (0 in chips) is sitting out
+Seat 1: remi418 (31036 in chips) 
+Seat 2: arazua (9800 in chips) 
+Seat 4: BenBen5454 (9500 in chips) 
+Seat 5: Jopeda (8283 in chips) 
+Seat 6: Rimas67 (800 in chips) 
+arazua: posts small blind 50
+BenBen5454: posts big blind 100
+*** HOLE CARDS ***
+Dealt to remi418 [8d 6c]
+Jopeda: calls 100
+Rimas67: calls 100
+remi418: folds 
+arazua: calls 50
+BenBen5454: raises 900 to 1000
+Jopeda: folds 
+Rimas67: calls 700 and is all-in
+arazua: folds 
+Uncalled bet (200) returned to BenBen5454
+*** FLOP *** [2h Kd 2d]
+*** TURN *** [2h Kd 2d] [2c]
+*** RIVER *** [2h Kd 2d 2c] [7d]
+*** SHOW DOWN ***
+BenBen5454: shows [3d Ad] (a flush, Ace high)
+Rimas67: shows [9d Kh] (a full house, Deuces full of Kings)
+Rimas67 collected 1701 from pot
+*** SUMMARY ***
+Total pot 1800 | Rake 99 
+Board [2h Kd 2d 2c 7d]
+Seat 3: dj_planets
+Seat 1: remi418 (button) folded before Flop (didn't bet)
+Seat 2: arazua (small blind) folded before Flop
+Seat 4: BenBen5454 (big blind) showed [3d Ad] and lost with a flush, Ace high
+Seat 5: Jopeda folded before Flop
+Seat 6: Rimas67 showed [9d Kh] and won (1701) with a full house, Deuces full of Kings
+
+
+
+PokerStars Hand #246679539621:  Hold'em No Limit (50/100) - 2023/10/22 17:32:45 CET [2023/10/22 11:32:45 ET]
+Table 'Pamela' 6-max (Play Money) Seat #2 is the button
+Seat 3: dj_planets (10000 in chips) is sitting out
+Seat 1: remi418 (31036 in chips) 
+Seat 2: arazua (9700 in chips) 
+Seat 4: BenBen5454 (8700 in chips) 
+Seat 5: Jopeda (8183 in chips) 
+Seat 6: Rimas67 (1701 in chips) 
+BenBen5454: posts small blind 50
+Jopeda: posts big blind 100
+*** HOLE CARDS ***
+Dealt to remi418 [8c 6h]
+Rimas67: calls 100
+remi418: folds 
+arazua: calls 100
+BenBen5454: calls 50
+Jopeda: checks 
+*** FLOP *** [Ts Qs 6d]
+BenBen5454: checks 
+Jopeda: checks 
+Rimas67: checks 
+arazua: checks 
+*** TURN *** [Ts Qs 6d] [2d]
+BenBen5454: checks 
+Jopeda: checks 
+Rimas67: checks 
+arazua: checks 
+*** RIVER *** [Ts Qs 6d 2d] [9s]
+BenBen5454: checks 
+Jopeda: checks 
+Rimas67: checks 
+arazua: checks 
+*** SHOW DOWN ***
+BenBen5454: shows [3s 7d] (high card Queen)
+Jopeda: shows [3h 2c] (a pair of Deuces)
+Rimas67: mucks hand 
+arazua: mucks hand 
+Jopeda collected 378 from pot
+*** SUMMARY ***
+Total pot 400 | Rake 22 
+Board [Ts Qs 6d 2d 9s]
+Seat 3: dj_planets
+Seat 1: remi418 folded before Flop (didn't bet)
+Seat 2: arazua (button) mucked [7s Kh]
+Seat 4: BenBen5454 (small blind) showed [3s 7d] and lost with high card Queen
+Seat 5: Jopeda (big blind) showed [3h 2c] and won (378) with a pair of Deuces
+Seat 6: Rimas67 mucked [3c 5c]
+
+
+
+PokerStars Hand #246679551500:  Hold'em No Limit (50/100) - 2023/10/22 17:33:23 CET [2023/10/22 11:33:23 ET]
+Table 'Pamela' 6-max (Play Money) Seat #4 is the button
+Seat 1: remi418 (31036 in chips) 
+Seat 2: arazua (9600 in chips) 
+Seat 3: dj_planets (10000 in chips) 
+Seat 4: BenBen5454 (8600 in chips) 
+Seat 5: Jopeda (8461 in chips) 
+Seat 6: Rimas67 (1601 in chips) 
+Jopeda: posts small blind 50
+Rimas67: posts big blind 100
+dj_planets: posts small & big blinds 150
+*** HOLE CARDS ***
+Dealt to remi418 [2d 4c]
+remi418: folds 
+arazua: calls 100
+dj_planets: checks 
+BenBen5454: raises 900 to 1000
+Jopeda: folds 
+Rimas67: calls 900
+arazua: folds 
+dj_planets: calls 900
+*** FLOP *** [8h 4s Td]
+Rimas67: checks 
+dj_planets: checks 
+BenBen5454: bets 7600 and is all-in
+Rimas67: calls 601 and is all-in
+dj_planets: calls 7600
+*** TURN *** [8h 4s Td] [5s]
+*** RIVER *** [8h 4s Td 5s] [7d]
+*** SHOW DOWN ***
+dj_planets: shows [9s Jh] (a straight, Seven to Jack)
+BenBen5454: shows [Qc As] (high card Ace)
+dj_planets collected 13228 from side pot
+Rimas67: shows [4h Kh] (a pair of Fours)
+dj_planets collected 4728 from main pot
+*** SUMMARY ***
+Total pot 19001 Main pot 4728. Side pot 13228. | Rake 1045 
+Board [8h 4s Td 5s 7d]
+Seat 1: remi418 folded before Flop (didn't bet)
+Seat 2: arazua folded before Flop
+Seat 3: dj_planets showed [9s Jh] and won (17956) with a straight, Seven to Jack
+Seat 4: BenBen5454 (button) showed [Qc As] and lost with high card Ace
+Seat 5: Jopeda (small blind) folded before Flop
+Seat 6: Rimas67 (big blind) showed [4h Kh] and lost with a pair of Fours
+
+
+
+PokerStars Hand #246679566942:  Hold'em No Limit (50/100) - 2023/10/22 17:34:13 CET [2023/10/22 11:34:13 ET]
+Table 'Pamela' 6-max (Play Money) Seat #5 is the button
+Seat 4: BenBen5454 (0 in chips) is sitting out
+Seat 6: Rimas67 (0 in chips) is sitting out
+Seat 1: remi418 (31036 in chips) 
+Seat 2: arazua (9500 in chips) 
+Seat 3: dj_planets (19306 in chips) 
+Seat 5: Jopeda (8411 in chips) 
+remi418: posts small blind 50
+arazua: posts big blind 100
+*** HOLE CARDS ***
+Dealt to remi418 [3c 9s]
+Rimas67 leaves the table
+dj_planets: calls 100
+Jopeda: calls 100
+remi418: folds 
+arazua: checks 
+*** FLOP *** [Qs Tc Th]
+arazua: bets 100
+dj_planets: calls 100
+Jopeda: folds 
+*** TURN *** [Qs Tc Th] [Qh]
+makita59 joins the table at seat #6 
+arazua: checks 
+dj_planets: checks 
+*** RIVER *** [Qs Tc Th Qh] [Ah]
+arazua: bets 9300 and is all-in
+dj_planets: calls 9300
+*** SHOW DOWN ***
+arazua: shows [Qc 8h] (a full house, Queens full of Tens)
+dj_planets: shows [4d Qd] (a full house, Queens full of Tens)
+arazua collected 9049 from pot
+dj_planets collected 9048 from pot
+*** SUMMARY ***
+Total pot 19150 | Rake 1053 
+Board [Qs Tc Th Qh Ah]
+Seat 4: BenBen5454
+Seat 6: Rimas67
+Seat 1: remi418 (small blind) folded before Flop
+Seat 2: arazua (big blind) showed [Qc 8h] and won (9049) with a full house, Queens full of Tens
+Seat 3: dj_planets showed [4d Qd] and won (9048) with a full house, Queens full of Tens
+Seat 5: Jopeda (button) folded on the Flop
+
+
+
+PokerStars Hand #246679578483:  Hold'em No Limit (50/100) - 2023/10/22 17:34:50 CET [2023/10/22 11:34:50 ET]
+Table 'Pamela' 6-max (Play Money) Seat #1 is the button
+Seat 1: remi418 (30986 in chips) 
+Seat 2: arazua (9049 in chips) 
+Seat 3: dj_planets (18854 in chips) 
+Seat 4: BenBen5454 (10000 in chips) 
+Seat 5: Jopeda (8311 in chips) 
+Seat 6: makita59 (10000 in chips) 
+arazua: posts small blind 50
+dj_planets: posts big blind 100
+makita59: posts big blind 100
+*** HOLE CARDS ***
+Dealt to remi418 [2c Ac]
+BenBen5454: calls 100
+Jopeda: calls 100
+makita59: checks 
+remi418: raises 200 to 300
+arazua: folds 
+dj_planets: calls 200
+BenBen5454: raises 9700 to 10000 and is all-in
+Jopeda: folds 
+makita59: folds 
+remi418: calls 9700
+dj_planets: calls 9700
+*** FLOP *** [8h 7s As]
+dj_planets: checks 
+remi418: bets 1200
+dj_planets: calls 1200
+*** TURN *** [8h 7s As] [4h]
+dj_planets: checks 
+remi418: checks 
+*** RIVER *** [8h 7s As 4h] [Td]
+dj_planets: checks 
+remi418: checks 
+*** SHOW DOWN ***
+dj_planets: shows [Qd 9h] (high card Ace)
+remi418: shows [2c Ac] (a pair of Aces)
+remi418 collected 2268 from side pot
+BenBen5454: mucks hand 
+remi418 collected 28586 from main pot
+*** SUMMARY ***
+Total pot 32650 Main pot 28586. Side pot 2268. | Rake 1796 
+Board [8h 7s As 4h Td]
+Seat 1: remi418 (button) showed [2c Ac] and won (30854) with a pair of Aces
+Seat 2: arazua (small blind) folded before Flop
+Seat 3: dj_planets (big blind) showed [Qd 9h] and lost with high card Ace
+Seat 4: BenBen5454 mucked [6h 6s]
+Seat 5: Jopeda folded before Flop
+Seat 6: makita59 folded before Flop (didn't bet)
+
+
+
+PokerStars Hand #246679599331:  Hold'em No Limit (50/100) - 2023/10/22 17:35:56 CET [2023/10/22 11:35:56 ET]
+Table 'Pamela' 6-max (Play Money) Seat #2 is the button
+Seat 4: BenBen5454 (0 in chips) is sitting out
+Seat 1: remi418 (50640 in chips) 
+Seat 2: arazua (8999 in chips) 
+Seat 3: dj_planets (7654 in chips) 
+Seat 5: Jopeda (8211 in chips) 
+Seat 6: makita59 (9900 in chips) 
+dj_planets: posts small blind 50
+Jopeda: posts big blind 100
+*** HOLE CARDS ***
+Dealt to remi418 [2d Ac]
+makita59: folds 
+remi418: raises 200 to 300
+arazua: folds 
+dj_planets: calls 250
+Jopeda: calls 200
+*** FLOP *** [Qh Ks 7h]
+dj_planets: checks 
+Jopeda: checks 
+remi418: bets 700
+dj_planets: calls 700
+Jopeda: calls 700
+*** TURN *** [Qh Ks 7h] [Jh]
+dj_planets: checks 
+Jopeda: checks 
+remi418: checks 
+*** RIVER *** [Qh Ks 7h Jh] [8c]
+dj_planets: checks 
+Jopeda: checks 
+remi418: checks 
+*** SHOW DOWN ***
+dj_planets: shows [Ts 5h] (high card King)
+Jopeda: shows [6s As] (high card Ace)
+remi418: shows [2d Ac] (high card Ace)
+Jopeda collected 1418 from pot
+remi418 collected 1417 from pot
+*** SUMMARY ***
+Total pot 3000 | Rake 165 
+Board [Qh Ks 7h Jh 8c]
+Seat 4: BenBen5454
+Seat 1: remi418 showed [2d Ac] and won (1417) with high card Ace
+Seat 2: arazua (button) folded before Flop (didn't bet)
+Seat 3: dj_planets (small blind) showed [Ts 5h] and lost with high card King
+Seat 5: Jopeda (big blind) showed [6s As] and won (1418) with high card Ace
+Seat 6: makita59 folded before Flop (didn't bet)
+
+
+
+PokerStars Hand #246679615577:  Hold'em No Limit (50/100) - 2023/10/22 17:36:48 CET [2023/10/22 11:36:48 ET]
+Table 'Pamela' 6-max (Play Money) Seat #3 is the button
+Seat 4: BenBen5454 (10000 in chips) is sitting out
+Seat 1: remi418 (51057 in chips) 
+Seat 2: arazua (8999 in chips) 
+Seat 3: dj_planets (6654 in chips) 
+Seat 5: Jopeda (8629 in chips) 
+Seat 6: makita59 (9900 in chips) 
+Jopeda: posts small blind 50
+makita59: posts big blind 100
+*** HOLE CARDS ***
+Dealt to remi418 [Ts 3d]
+remi418: folds 
+arazua: folds 
+dj_planets: calls 100
+Jopeda: calls 50
+makita59: checks 
+*** FLOP *** [3c As Jd]
+Jopeda: checks 
+makita59: checks 
+dj_planets: checks 
+*** TURN *** [3c As Jd] [Qs]
+Jopeda: checks 
+makita59: checks 
+dj_planets: checks 
+*** RIVER *** [3c As Jd Qs] [7d]
+Jopeda: checks 
+makita59: checks 
+dj_planets: checks 
+*** SHOW DOWN ***
+Jopeda: shows [6h 4h] (high card Ace)
+makita59: shows [Tc Jc] (a pair of Jacks)
+dj_planets: shows [3h 7h] (two pair, Sevens and Threes)
+dj_planets collected 283 from pot
+*** SUMMARY ***
+Total pot 300 | Rake 17 
+Board [3c As Jd Qs 7d]
+Seat 4: BenBen5454
+Seat 1: remi418 folded before Flop (didn't bet)
+Seat 2: arazua folded before Flop (didn't bet)
+Seat 3: dj_planets (button) showed [3h 7h] and won (283) with two pair, Sevens and Threes
+Seat 5: Jopeda (small blind) showed [6h 4h] and lost with high card Ace
+Seat 6: makita59 (big blind) showed [Tc Jc] and lost with a pair of Jacks
+
+
+
+PokerStars Hand #246679627088:  Hold'em No Limit (50/100) - 2023/10/22 17:37:25 CET [2023/10/22 11:37:25 ET]
+Table 'Pamela' 6-max (Play Money) Seat #5 is the button
+Seat 1: remi418 (51057 in chips) 
+Seat 2: arazua (8999 in chips) 
+Seat 3: dj_planets (6837 in chips) 
+Seat 4: BenBen5454 (10000 in chips) 
+Seat 5: Jopeda (8529 in chips) 
+Seat 6: makita59 (9800 in chips) 
+makita59: posts small blind 50
+remi418: posts big blind 100
+BenBen5454: posts small & big blinds 150
+*** HOLE CARDS ***
+Dealt to remi418 [6h 9d]
+arazua: calls 100
+dj_planets: raises 1000 to 1100
+BenBen5454: folds 
+Jopeda: folds 
+makita59: calls 1050
+remi418: folds 
+arazua: folds 
+*** FLOP *** [Kh 8h 3c]
+makita59: bets 200
+dj_planets: calls 200
+*** TURN *** [Kh 8h 3c] [2c]
+makita59: bets 300
+dj_planets: calls 300
+*** RIVER *** [Kh 8h 3c 2c] [4h]
+makita59: bets 3355
+dj_planets: folds 
+Uncalled bet (3355) returned to makita59
+makita59 collected 3355 from pot
+makita59: doesn't show hand 
+*** SUMMARY ***
+Total pot 3550 | Rake 195 
+Board [Kh 8h 3c 2c 4h]
+Seat 1: remi418 (big blind) folded before Flop
+Seat 2: arazua folded before Flop
+Seat 3: dj_planets folded on the River
+Seat 4: BenBen5454 folded before Flop (didn't bet)
+Seat 5: Jopeda (button) folded before Flop (didn't bet)
+Seat 6: makita59 (small blind) collected (3355)
+
+
+
+PokerStars Hand #246679641432:  Hold'em No Limit (50/100) - 2023/10/22 17:38:11 CET [2023/10/22 11:38:11 ET]
+Table 'Pamela' 6-max (Play Money) Seat #6 is the button
+Seat 1: remi418 (50957 in chips) 
+Seat 2: arazua (8899 in chips) 
+Seat 3: dj_planets (5237 in chips) 
+Seat 4: BenBen5454 (9850 in chips) 
+Seat 5: Jopeda (8529 in chips) 
+Seat 6: makita59 (11555 in chips) 
+remi418: posts small blind 50
+arazua: posts big blind 100
+*** HOLE CARDS ***
+Dealt to remi418 [Qh 8s]
+dj_planets: calls 100
+BenBen5454: calls 100
+Jopeda: calls 100
+makita59: calls 100
+remi418: calls 50
+arazua: checks 
+*** FLOP *** [8h 6s 4h]
+remi418: checks 
+arazua: checks 
+dj_planets: bets 500
+BenBen5454: calls 500
+Jopeda: calls 500
+makita59: folds 
+remi418: calls 500
+arazua: folds 
+*** TURN *** [8h 6s 4h] [5c]
+remi418: checks 
+dj_planets: bets 1400
+BenBen5454: folds 
+Jopeda: raises 1400 to 2800
+remi418: folds 
+dj_planets: calls 1400
+*** RIVER *** [8h 6s 4h 5c] [7c]
+dj_planets: checks 
+Jopeda: checks 
+*** SHOW DOWN ***
+dj_planets: shows [6h 6c] (a straight, Four to Eight)
+Jopeda: shows [7h 5h] (a straight, Four to Eight)
+dj_planets collected 3875 from pot
+Jopeda collected 3874 from pot
+*** SUMMARY ***
+Total pot 8200 | Rake 451 
+Board [8h 6s 4h 5c 7c]
+Seat 1: remi418 (small blind) folded on the Turn
+Seat 2: arazua (big blind) folded on the Flop
+Seat 3: dj_planets showed [6h 6c] and won (3875) with a straight, Four to Eight
+Seat 4: BenBen5454 folded on the Turn
+Seat 5: Jopeda showed [7h 5h] and won (3874) with a straight, Four to Eight
+Seat 6: makita59 (button) folded on the Flop
+
+
+
+PokerStars Hand #246679659762:  Hold'em No Limit (50/100) - 2023/10/22 17:39:10 CET [2023/10/22 11:39:10 ET]
+Table 'Pamela' 6-max (Play Money) Seat #1 is the button
+Seat 1: remi418 (50357 in chips) 
+Seat 2: arazua (10000 in chips) 
+Seat 3: dj_planets (5712 in chips) 
+Seat 4: BenBen5454 (9250 in chips) 
+Seat 5: Jopeda (9003 in chips) 
+Seat 6: makita59 (11455 in chips) 
+arazua: posts small blind 50
+dj_planets: posts big blind 100
+*** HOLE CARDS ***
+Dealt to remi418 [3h Qc]
+BenBen5454: raises 100 to 200
+Jopeda: calls 200
+makita59: folds 
+remi418: calls 200
+arazua: folds 
+dj_planets: calls 100
+*** FLOP *** [3d Kh 4h]
+dj_planets: checks 
+BenBen5454: checks 
+Jopeda: checks 
+remi418: checks 
+*** TURN *** [3d Kh 4h] [7d]
+dj_planets: bets 1000
+BenBen5454: folds 
+Jopeda: calls 1000
+remi418: folds 
+*** RIVER *** [3d Kh 4h 7d] [9c]
+dj_planets: bets 2000
+Jopeda: calls 2000
+*** SHOW DOWN ***
+dj_planets: shows [4d 7h] (two pair, Sevens and Fours)
+Jopeda: mucks hand 
+dj_planets collected 6473 from pot
+*** SUMMARY ***
+Total pot 6850 | Rake 377 
+Board [3d Kh 4h 7d 9c]
+Seat 1: remi418 (button) folded on the Turn
+Seat 2: arazua (small blind) folded before Flop
+Seat 3: dj_planets (big blind) showed [4d 7h] and won (6473) with two pair, Sevens and Fours
+Seat 4: BenBen5454 folded on the Turn
+Seat 5: Jopeda mucked [Kc 5h]
+Seat 6: makita59 folded before Flop (didn't bet)
+
+
+
+PokerStars Hand #246679678529:  Hold'em No Limit (50/100) - 2023/10/22 17:40:10 CET [2023/10/22 11:40:10 ET]
+Table 'Pamela' 6-max (Play Money) Seat #2 is the button
+Seat 1: remi418 (50157 in chips) 
+Seat 2: arazua (9950 in chips) 
+Seat 3: dj_planets (8985 in chips) 
+Seat 4: BenBen5454 (9050 in chips) 
+Seat 5: Jopeda (5803 in chips) 
+Seat 6: makita59 (11455 in chips) 
+dj_planets: posts small blind 50
+BenBen5454: posts big blind 100
+*** HOLE CARDS ***
+Dealt to remi418 [2h Ah]
+Jopeda: calls 100
+makita59: calls 100
+remi418: raises 200 to 300
+arazua: folds 
+dj_planets: calls 250
+BenBen5454: raises 200 to 500
+Jopeda: calls 400
+makita59: folds 
+remi418: calls 200
+dj_planets: calls 200
+*** FLOP *** [Qh 5h As]
+dj_planets: checks 
+BenBen5454: bets 1984
+Jopeda: folds 
+remi418: raises 1984 to 3968
+dj_planets: calls 3968
+BenBen5454: folds 
+*** TURN *** [Qh 5h As] [9d]
+dj_planets: checks 
+remi418: checks 
+*** RIVER *** [Qh 5h As 9d] [6s]
+dj_planets: checks 
+remi418: checks 
+*** SHOW DOWN ***
+dj_planets: shows [8c Qc] (a pair of Queens)
+remi418: shows [2h Ah] (a pair of Aces)
+remi418 collected 11359 from pot
+*** SUMMARY ***
+Total pot 12020 | Rake 661 
+Board [Qh 5h As 9d 6s]
+Seat 1: remi418 showed [2h Ah] and won (11359) with a pair of Aces
+Seat 2: arazua (button) folded before Flop (didn't bet)
+Seat 3: dj_planets (small blind) showed [8c Qc] and lost with a pair of Queens
+Seat 4: BenBen5454 (big blind) folded on the Flop
+Seat 5: Jopeda folded on the Flop
+Seat 6: makita59 folded before Flop
+
+
+
+PokerStars Hand #246679698823:  Hold'em No Limit (50/100) - 2023/10/22 17:41:15 CET [2023/10/22 11:41:15 ET]
+Table 'Pamela' 6-max (Play Money) Seat #3 is the button
+Seat 1: remi418 (57048 in chips) 
+Seat 2: arazua (9950 in chips) 
+Seat 3: dj_planets (4517 in chips) 
+Seat 4: BenBen5454 (6566 in chips) 
+Seat 5: Jopeda (5303 in chips) 
+Seat 6: makita59 (11355 in chips) 
+BenBen5454: posts small blind 50
+Jopeda: posts big blind 100
+*** HOLE CARDS ***
+Dealt to remi418 [Kd Tc]
+makita59: calls 100
+remi418: raises 200 to 300
+arazua: folds 
+dj_planets: calls 300
+BenBen5454: calls 250
+Jopeda: calls 200
+makita59: calls 200
+*** FLOP *** [Qs Td 2h]
+BenBen5454: checks 
+Jopeda: checks 
+makita59: checks 
+remi418: bets 1100
+dj_planets: raises 1100 to 2200
+BenBen5454: folds 
+Jopeda: folds 
+makita59: folds 
+remi418: calls 1100
+*** TURN *** [Qs Td 2h] [Js]
+remi418: checks 
+dj_planets: bets 2017 and is all-in
+remi418: calls 2017
+*** RIVER *** [Qs Td 2h Js] [4c]
+*** SHOW DOWN ***
+remi418: shows [Kd Tc] (a pair of Tens)
+dj_planets: shows [4s Qd] (two pair, Queens and Fours)
+dj_planets collected 9388 from pot
+*** SUMMARY ***
+Total pot 9934 | Rake 546 
+Board [Qs Td 2h Js 4c]
+Seat 1: remi418 showed [Kd Tc] and lost with a pair of Tens
+Seat 2: arazua folded before Flop (didn't bet)
+Seat 3: dj_planets (button) showed [4s Qd] and won (9388) with two pair, Queens and Fours
+Seat 4: BenBen5454 (small blind) folded on the Flop
+Seat 5: Jopeda (big blind) folded on the Flop
+Seat 6: makita59 folded on the Flop
+
+
+
+PokerStars Hand #246679716323:  Hold'em No Limit (50/100) - 2023/10/22 17:42:11 CET [2023/10/22 11:42:11 ET]
+Table 'Pamela' 6-max (Play Money) Seat #4 is the button
+Seat 1: remi418 (52531 in chips) 
+Seat 2: arazua (9950 in chips) 
+Seat 3: dj_planets (9388 in chips) 
+Seat 4: BenBen5454 (6266 in chips) 
+Seat 5: Jopeda (5003 in chips) 
+Seat 6: makita59 (11055 in chips) 
+Jopeda: posts small blind 50
+makita59: posts big blind 100
+*** HOLE CARDS ***
+Dealt to remi418 [7h 5h]
+remi418: folds 
+arazua: calls 100
+dj_planets: calls 100
+BenBen5454: folds 
+Jopeda: folds 
+makita59: checks 
+*** FLOP *** [6h 8c Jc]
+makita59: checks 
+arazua: checks 
+dj_planets: checks 
+*** TURN *** [6h 8c Jc] [4d]
+makita59: checks 
+arazua: checks 
+dj_planets: checks 
+*** RIVER *** [6h 8c Jc 4d] [As]
+makita59: checks 
+arazua: checks 
+dj_planets: checks 
+*** SHOW DOWN ***
+makita59: shows [Ks 7d] (high card Ace)
+arazua: mucks hand 
+dj_planets: shows [Jd 2s] (a pair of Jacks)
+dj_planets collected 331 from pot
+*** SUMMARY ***
+Total pot 350 | Rake 19 
+Board [6h 8c Jc 4d As]
+Seat 1: remi418 folded before Flop (didn't bet)
+Seat 2: arazua mucked [2h Th]
+Seat 3: dj_planets showed [Jd 2s] and won (331) with a pair of Jacks
+Seat 4: BenBen5454 (button) folded before Flop (didn't bet)
+Seat 5: Jopeda (small blind) folded before Flop
+Seat 6: makita59 (big blind) showed [Ks 7d] and lost with high card Ace
+
+
+
+PokerStars Hand #246679724854:  Hold'em No Limit (50/100) - 2023/10/22 17:42:39 CET [2023/10/22 11:42:39 ET]
+Table 'Pamela' 6-max (Play Money) Seat #5 is the button
+Seat 1: remi418 (52531 in chips) 
+Seat 2: arazua (9850 in chips) 
+Seat 3: dj_planets (9619 in chips) 
+Seat 4: BenBen5454 (6266 in chips) 
+Seat 5: Jopeda (4953 in chips) 
+Seat 6: makita59 (10955 in chips) 
+makita59: posts small blind 50
+remi418: posts big blind 100
+*** HOLE CARDS ***
+Dealt to remi418 [Jh 9s]
+arazua: calls 100
+dj_planets: folds 
+BenBen5454: folds 
+Jopeda: calls 100
+makita59: calls 50
+remi418: checks 
+*** FLOP *** [8c 9h 5s]
+makita59: checks 
+remi418: bets 400
+arazua: folds 
+Jopeda: calls 400
+makita59: folds 
+*** TURN *** [8c 9h 5s] [Ad]
+remi418: checks 
+Jopeda: checks 
+*** RIVER *** [8c 9h 5s Ad] [Qd]
+remi418: checks 
+Jopeda: checks 
+*** SHOW DOWN ***
+remi418: shows [Jh 9s] (a pair of Nines)
+Jopeda: mucks hand 
+remi418 collected 1134 from pot
+*** SUMMARY ***
+Total pot 1200 | Rake 66 
+Board [8c 9h 5s Ad Qd]
+Seat 1: remi418 (big blind) showed [Jh 9s] and won (1134) with a pair of Nines
+Seat 2: arazua folded on the Flop
+Seat 3: dj_planets folded before Flop (didn't bet)
+Seat 4: BenBen5454 folded before Flop (didn't bet)
+Seat 5: Jopeda (button) mucked [7h 7d]
+Seat 6: makita59 (small blind) folded on the Flop
+
+
+
+PokerStars Hand #246679737540:  Hold'em No Limit (50/100) - 2023/10/22 17:43:20 CET [2023/10/22 11:43:20 ET]
+Table 'Pamela' 6-max (Play Money) Seat #6 is the button
+Seat 1: remi418 (53165 in chips) 
+Seat 2: arazua (9750 in chips) 
+Seat 3: dj_planets (9619 in chips) 
+Seat 4: BenBen5454 (6266 in chips) 
+Seat 5: Jopeda (4453 in chips) 
+Seat 6: makita59 (10855 in chips) 
+remi418: posts small blind 50
+arazua: posts big blind 100
+*** HOLE CARDS ***
+Dealt to remi418 [Ah 7c]
+dj_planets: calls 100
+BenBen5454: calls 100
+Jopeda: calls 100
+makita59: calls 100
+remi418: raises 100 to 200
+arazua: calls 100
+dj_planets: raises 800 to 1000
+BenBen5454: folds 
+Jopeda: folds 
+makita59: folds 
+remi418: calls 800
+arazua: folds 
+*** FLOP *** [8h Kd 8d]
+remi418: checks 
+dj_planets: bets 5100
+remi418: folds 
+Uncalled bet (5100) returned to dj_planets
+dj_planets collected 2362 from pot
+*** SUMMARY ***
+Total pot 2500 | Rake 138 
+Board [8h Kd 8d]
+Seat 1: remi418 (small blind) folded on the Flop
+Seat 2: arazua (big blind) folded before Flop
+Seat 3: dj_planets collected (2362)
+Seat 4: BenBen5454 folded before Flop
+Seat 5: Jopeda folded before Flop
+Seat 6: makita59 (button) folded before Flop
+
+
+
+PokerStars Hand #246679753528:  Hold'em No Limit (50/100) - 2023/10/22 17:44:11 CET [2023/10/22 11:44:11 ET]
+Table 'Pamela' 6-max (Play Money) Seat #1 is the button
+Seat 1: remi418 (52165 in chips) 
+Seat 2: arazua (9550 in chips) 
+Seat 3: dj_planets (10981 in chips) 
+Seat 4: BenBen5454 (6166 in chips) 
+Seat 5: Jopeda (4353 in chips) 
+Seat 6: makita59 (10755 in chips) 
+arazua: posts small blind 50
+dj_planets: posts big blind 100
+*** HOLE CARDS ***
+Dealt to remi418 [Qc 2s]
+BenBen5454: folds 
+Jopeda: calls 100
+makita59: raises 350 to 450
+remi418: folds 
+arazua: folds 
+dj_planets: calls 350
+Jopeda: calls 350
+*** FLOP *** [9c 7h Jd]
+dj_planets: checks 
+Jopeda: checks 
+makita59: bets 1323
+dj_planets: calls 1323
+Jopeda: calls 1323
+*** TURN *** [9c 7h Jd] [6d]
+dj_planets: checks 
+Jopeda: bets 2580 and is all-in
+makita59: calls 2580
+dj_planets: calls 2580
+*** RIVER *** [9c 7h Jd 6d] [3c]
+dj_planets: checks 
+makita59: checks 
+*** SHOW DOWN ***
+dj_planets: shows [Ts 6c] (a pair of Sixes)
+Jopeda: mucks hand 
+makita59: shows [Qh Qd] (a pair of Queens)
+makita59 collected 12388 from pot
+*** SUMMARY ***
+Total pot 13109 | Rake 721 
+Board [9c 7h Jd 6d 3c]
+Seat 1: remi418 (button) folded before Flop (didn't bet)
+Seat 2: arazua (small blind) folded before Flop
+Seat 3: dj_planets (big blind) showed [Ts 6c] and lost with a pair of Sixes
+Seat 4: BenBen5454 folded before Flop (didn't bet)
+Seat 5: Jopeda mucked [8c Ad]
+Seat 6: makita59 showed [Qh Qd] and won (12388) with a pair of Queens
+
+
+
+PokerStars Hand #246679769740:  Hold'em No Limit (50/100) - 2023/10/22 17:45:03 CET [2023/10/22 11:45:03 ET]
+Table 'Pamela' 6-max (Play Money) Seat #2 is the button
+Seat 1: remi418 (52165 in chips) 
+Seat 2: arazua (9500 in chips) 
+Seat 3: dj_planets (6628 in chips) 
+Seat 4: BenBen5454 (6166 in chips) 
+Seat 6: makita59 (18790 in chips) 
+dj_planets: posts small blind 50
+BenBen5454: posts big blind 100
+*** HOLE CARDS ***
+Dealt to remi418 [Ah 7h]
+makita59: folds 
+remi418: raises 200 to 300
+arazua: calls 300
+dj_planets: raises 1900 to 2200
+BenBen5454: folds 
+remi418: folds 
+ionela329 joins the table at seat #5 
+arazua: folds 
+Uncalled bet (1900) returned to dj_planets
+dj_planets collected 1000 from pot
+*** SUMMARY ***
+Total pot 1000 | Rake 0 
+Seat 1: remi418 folded before Flop
+Seat 2: arazua (button) folded before Flop
+Seat 3: dj_planets (small blind) collected (1000)
+Seat 4: BenBen5454 (big blind) folded before Flop
+Seat 6: makita59 folded before Flop (didn't bet)
+
+
+
+PokerStars Hand #246679778159:  Hold'em No Limit (50/100) - 2023/10/22 17:45:30 CET [2023/10/22 11:45:30 ET]
+Table 'Pamela' 6-max (Play Money) Seat #3 is the button
+Seat 1: remi418 (51865 in chips) 
+Seat 2: arazua (9700 in chips) 
+Seat 3: dj_planets (7328 in chips) 
+Seat 4: BenBen5454 (6066 in chips) 
+Seat 5: ionela329 (10000 in chips) 
+Seat 6: makita59 (18790 in chips) 
+BenBen5454: posts small blind 50
+ionela329: posts big blind 100
+*** HOLE CARDS ***
+Dealt to remi418 [8h Jh]
+makita59: folds 
+remi418: raises 300 to 400
+arazua: folds 
+dj_planets: calls 400
+BenBen5454: raises 5666 to 6066 and is all-in
+ionela329: raises 3934 to 10000 and is all-in
+remi418: folds 
+dj_planets: calls 6928 and is all-in
+Uncalled bet (2672) returned to ionela329
+*** FLOP *** [7s Jd 8c]
+*** TURN *** [7s Jd 8c] [4s]
+*** RIVER *** [7s Jd 8c 4s] [Ah]
+*** SHOW DOWN ***
+ionela329: shows [9d Qh] (high card Ace)
+dj_planets: shows [Kd Kh] (a pair of Kings)
+dj_planets collected 2385 from side pot
+BenBen5454: shows [Qd Tc] (high card Ace)
+dj_planets collected 17575 from main pot
+*** SUMMARY ***
+Total pot 21122 Main pot 17575. Side pot 2385. | Rake 1162 
+Board [7s Jd 8c 4s Ah]
+Seat 1: remi418 folded before Flop
+Seat 2: arazua folded before Flop (didn't bet)
+Seat 3: dj_planets (button) showed [Kd Kh] and won (19960) with a pair of Kings
+Seat 4: BenBen5454 (small blind) showed [Qd Tc] and lost with high card Ace
+Seat 5: ionela329 (big blind) showed [9d Qh] and lost with high card Ace
+Seat 6: makita59 folded before Flop (didn't bet)
+
+
+
+PokerStars Hand #246679789793:  Hold'em No Limit (50/100) - 2023/10/22 17:46:08 CET [2023/10/22 11:46:08 ET]
+Table 'Pamela' 6-max (Play Money) Seat #5 is the button
+Seat 4: BenBen5454 (0 in chips) is sitting out
+Seat 1: remi418 (51465 in chips) 
+Seat 2: arazua (10000 in chips) 
+Seat 3: dj_planets (19960 in chips) 
+Seat 5: ionela329 (2672 in chips) 
+Seat 6: makita59 (18790 in chips) 
+makita59: posts small blind 50
+remi418: posts big blind 100
+*** HOLE CARDS ***
+Dealt to remi418 [Ad 7h]
+arazua: calls 100
+dj_planets: calls 100
+BenBen5454 leaves the table
+ionela329: raises 2572 to 2672 and is all-in
+makita59: folds 
+remi418: folds 
+arazua: folds 
+dj_planets: folds 
+Uncalled bet (2572) returned to ionela329
+ionela329 collected 450 from pot
+*** SUMMARY ***
+Total pot 450 | Rake 0 
+Seat 4: BenBen5454
+Seat 1: remi418 (big blind) folded before Flop
+Seat 2: arazua folded before Flop
+Seat 3: dj_planets folded before Flop
+Seat 5: ionela329 (button) collected (450)
+Seat 6: makita59 (small blind) folded before Flop
+
+
+
+PokerStars Hand #246679795760:  Hold'em No Limit (50/100) - 2023/10/22 17:46:27 CET [2023/10/22 11:46:27 ET]
+Table 'Pamela' 6-max (Play Money) Seat #6 is the button
+Seat 1: remi418 (51365 in chips) 
+Seat 2: arazua (9900 in chips) 
+Seat 3: dj_planets (19860 in chips) 
+Seat 5: ionela329 (3022 in chips) 
+Seat 6: makita59 (18740 in chips) 
+remi418: posts small blind 50
+arazua: posts big blind 100
+*** HOLE CARDS ***
+Dealt to remi418 [4s Ks]
+dj_planets: calls 100
+ionela329: raises 2922 to 3022 and is all-in
+makita59: calls 3022
+remi418: calls 2972
+arazua: folds 
+dj_planets: folds 
+*** FLOP *** [5d 5h Th]
+remi418: checks 
+makita59: checks 
+*** TURN *** [5d 5h Th] [As]
+remi418: checks 
+makita59: checks 
+*** RIVER *** [5d 5h Th As] [7h]
+remi418: checks 
+Banggog joins the table at seat #4 
+makita59: checks 
+*** SHOW DOWN ***
+remi418: shows [4s Ks] (a pair of Fives)
+ionela329: shows [Ts Qs] (two pair, Tens and Fives)
+makita59: mucks hand 
+ionela329 collected 8756 from pot
+*** SUMMARY ***
+Total pot 9266 | Rake 510 
+Board [5d 5h Th As 7h]
+Seat 1: remi418 (small blind) showed [4s Ks] and lost with a pair of Fives
+Seat 2: arazua (big blind) folded before Flop
+Seat 3: dj_planets folded before Flop
+Seat 5: ionela329 showed [Ts Qs] and won (8756) with two pair, Tens and Fives
+Seat 6: makita59 (button) mucked [3s 3h]
+
+
+
+PokerStars Hand #246679806454:  Hold'em No Limit (50/100) - 2023/10/22 17:47:02 CET [2023/10/22 11:47:02 ET]
+Table 'Pamela' 6-max (Play Money) Seat #1 is the button
+Seat 1: remi418 (48343 in chips) 
+Seat 2: arazua (9800 in chips) 
+Seat 3: dj_planets (19760 in chips) 
+Seat 4: Banggog (10000 in chips) 
+Seat 5: ionela329 (8756 in chips) 
+Seat 6: makita59 (15718 in chips) 
+arazua: posts small blind 50
+dj_planets: posts big blind 100
+Banggog: posts big blind 100
+*** HOLE CARDS ***
+Dealt to remi418 [Td Ts]
+Banggog: checks 
+ionela329: calls 100
+makita59: calls 100
+remi418: raises 1800 to 1900
+arazua: folds 
+dj_planets: folds 
+Banggog: folds 
+ionela329: calls 1800
+makita59: folds 
+*** FLOP *** [7h 9c 7c]
+Banggog leaves the table
+ionela329: checks 
+remi418: bets 3400
+ionela329: folds 
+Uncalled bet (3400) returned to remi418
+remi418 collected 3922 from pot
+remi418: doesn't show hand 
+*** SUMMARY ***
+Total pot 4150 | Rake 228 
+Board [7h 9c 7c]
+Seat 1: remi418 (button) collected (3922)
+Seat 2: arazua (small blind) folded before Flop
+Seat 3: dj_planets (big blind) folded before Flop
+Seat 4: Banggog folded before Flop (didn't bet)
+Seat 5: ionela329 folded on the Flop
+Seat 6: makita59 folded before Flop
+
+
+
+PokerStars Hand #246679820412:  Hold'em No Limit (50/100) - 2023/10/22 17:47:47 CET [2023/10/22 11:47:47 ET]
+Table 'Pamela' 6-max (Play Money) Seat #2 is the button
+Seat 5: ionela329 (6856 in chips) is sitting out
+Seat 1: remi418 (50365 in chips) 
+Seat 2: arazua (9750 in chips) 
+Seat 3: dj_planets (19660 in chips) 
+Seat 6: makita59 (15618 in chips) 
+dj_planets: posts small blind 50
+ionela329: is sitting out 
+makita59: posts big blind 100
+*** HOLE CARDS ***
+Dealt to remi418 [Kh 3c]
+remi418: folds 
+arazua: calls 100
+dj_planets has timed out
+dj_planets: folds 
+makita59: checks 
+*** FLOP *** [4s Ad Jc]
+makita59: checks 
+arazua: checks 
+*** TURN *** [4s Ad Jc] [8c]
+makita59 has timed out
+makita59: checks 
+arazua: checks 
+*** RIVER *** [4s Ad Jc 8c] [As]
+makita59 has timed out
+makita59: checks 
+arazua: checks 
+*** SHOW DOWN ***
+makita59: shows [3d Th] (a pair of Aces)
+arazua: shows [Ks 6s] (a pair of Aces - King kicker)
+arazua collected 236 from pot
+*** SUMMARY ***
+Total pot 250 | Rake 14 
+Board [4s Ad Jc 8c As]
+Seat 5: ionela329
+Seat 1: remi418 folded before Flop (didn't bet)
+Seat 2: arazua (button) showed [Ks 6s] and won (236) with a pair of Aces
+Seat 3: dj_planets (small blind) folded before Flop
+Seat 6: makita59 (big blind) showed [3d Th] and lost with a pair of Aces
+
+
+
+PokerStars Hand #246679843567:  Hold'em No Limit (50/100) - 2023/10/22 17:49:02 CET [2023/10/22 11:49:02 ET]
+Table 'Pamela' 6-max (Play Money) Seat #1 is the button
+Seat 3: dj_planets (19610 in chips) is sitting out
+Seat 5: ionela329 (10000 in chips) is sitting out
+Seat 6: makita59 (15518 in chips) is sitting out
+Seat 1: remi418 (50365 in chips) 
+Seat 2: arazua (9886 in chips) 
+remi418: posts small blind 50
+arazua: posts big blind 100
+*** HOLE CARDS ***
+Dealt to remi418 [As 2c]
+remi418: raises 100 to 200
+arazua: calls 100
+*** FLOP *** [5s 8c Jc]
+dj_planets is disconnected 
+arazua: checks 
+remi418: bets 400
+arazua: folds 
+Uncalled bet (400) returned to remi418
+remi418 collected 378 from pot
+remi418: doesn't show hand 
+*** SUMMARY ***
+Total pot 400 | Rake 22 
+Board [5s 8c Jc]
+Seat 3: dj_planets
+Seat 5: ionela329
+Seat 6: makita59
+Seat 1: remi418 (button) (small blind) collected (378)
+Seat 2: arazua (big blind) folded on the Flop
+
+
+
+PokerStars Hand #246679849119:  Hold'em No Limit (50/100) - 2023/10/22 17:49:20 CET [2023/10/22 11:49:20 ET]
+Table 'Pamela' 6-max (Play Money) Seat #2 is the button
+Seat 3: dj_planets (19610 in chips) is sitting out
+Seat 5: ionela329 (10000 in chips) is sitting out
+Seat 6: makita59 (15518 in chips) is sitting out
+Seat 1: remi418 (50543 in chips) 
+Seat 2: arazua (9686 in chips) 
+arazua: posts small blind 50
+remi418: posts big blind 100
+*** HOLE CARDS ***
+Dealt to remi418 [Qs 9s]
+arazua: calls 50
+remi418: raises 100 to 200
+arazua: calls 100
+*** FLOP *** [Td 6d Ks]
+remi418: checks 
+arazua: checks 
+*** TURN *** [Td 6d Ks] [4d]
+remi418: checks 
+arazua: checks 
+*** RIVER *** [Td 6d Ks 4d] [Jd]
+remi418: bets 48600
+arazua: folds 
+Uncalled bet (48600) returned to remi418
+remi418 collected 378 from pot
+remi418: doesn't show hand 
+*** SUMMARY ***
+Total pot 400 | Rake 22 
+Board [Td 6d Ks 4d Jd]
+Seat 3: dj_planets
+Seat 5: ionela329
+Seat 6: makita59
+Seat 1: remi418 (big blind) collected (378)
+Seat 2: arazua (button) (small blind) folded on the River
+
+
+
+PokerStars Hand #246679856919:  Hold'em No Limit (50/100) - 2023/10/22 17:49:45 CET [2023/10/22 11:49:45 ET]
+Table 'Pamela' 6-max (Play Money) Seat #1 is the button
+Seat 5: ionela329 (10000 in chips) is sitting out
+Seat 6: makita59 (15518 in chips) is sitting out
+Seat 1: remi418 (50721 in chips) 
+Seat 2: arazua (9486 in chips) 
+Seat 3: dj_planets (19610 in chips) 
+arazua: posts small blind 50
+dj_planets: posts big blind 100
+*** HOLE CARDS ***
+Dealt to remi418 [Td As]
+remi418: raises 50621 to 50721 and is all-in
+arazua: folds 
+dj_planets: folds 
+Uncalled bet (50621) returned to remi418
+remi418 collected 250 from pot
+remi418: doesn't show hand 
+*** SUMMARY ***
+Total pot 250 | Rake 0 
+Seat 5: ionela329
+Seat 6: makita59
+Seat 1: remi418 (button) collected (250)
+Seat 2: arazua (small blind) folded before Flop
+Seat 3: dj_planets (big blind) folded before Flop
+
+
+
+PokerStars Hand #246679861721:  Hold'em No Limit (50/100) - 2023/10/22 17:50:00 CET [2023/10/22 11:50:00 ET]
+Table 'Pamela' 6-max (Play Money) Seat #2 is the button
+Seat 5: ionela329 (10000 in chips) is sitting out
+Seat 6: makita59 (15518 in chips) is sitting out
+Seat 1: remi418 (50871 in chips) 
+Seat 2: arazua (9436 in chips) 
+Seat 3: dj_planets (19510 in chips) 
+dj_planets: posts small blind 50
+remi418: posts big blind 100
+*** HOLE CARDS ***
+Dealt to remi418 [7h 9c]
+arazua: calls 100
+dj_planets: calls 50
+remi418: checks 
+*** FLOP *** [2d Kc 2c]
+dj_planets: checks 
+remi418: checks 
+arazua: checks 
+*** TURN *** [2d Kc 2c] [Ts]
+dj_planets: checks 
+remi418: checks 
+arazua: checks 
+*** RIVER *** [2d Kc 2c Ts] [5d]
+dj_planets: checks 
+remi418: checks 
+arazua: checks 
+*** SHOW DOWN ***
+dj_planets: shows [Th 6d] (two pair, Tens and Deuces)
+remi418: mucks hand 
+arazua: mucks hand 
+dj_planets collected 283 from pot
+*** SUMMARY ***
+Total pot 300 | Rake 17 
+Board [2d Kc 2c Ts 5d]
+Seat 5: ionela329
+Seat 6: makita59
+Seat 1: remi418 (big blind) mucked [7h 9c]
+Seat 2: arazua (button) mucked [As 8c]
+Seat 3: dj_planets (small blind) showed [Th 6d] and won (283) with two pair, Tens and Deuces
+
+
+
+PokerStars Hand #246679872639:  Hold'em No Limit (50/100) - 2023/10/22 17:50:35 CET [2023/10/22 11:50:35 ET]
+Table 'Pamela' 6-max (Play Money) Seat #3 is the button
+Seat 5: ionela329 (10000 in chips) is sitting out
+Seat 6: makita59 (15518 in chips) is sitting out
+Seat 1: remi418 (50771 in chips) 
+Seat 2: arazua (9336 in chips) 
+Seat 3: dj_planets (19693 in chips) 
+remi418: posts small blind 50
+arazua: posts big blind 100
+*** HOLE CARDS ***
+Dealt to remi418 [Qs 5s]
+dj_planets: calls 100
+remi418: calls 50
+arazua: checks 
+*** FLOP *** [Jc 7h Qh]
+Corcho43 joins the table at seat #4 
+remi418: bets 400
+arazua: folds 
+dj_planets: calls 400
+*** TURN *** [Jc 7h Qh] [Tc]
+remi418: bets 900
+dj_planets: calls 900
+*** RIVER *** [Jc 7h Qh Tc] [Kd]
+remi418: checks 
+dj_planets: checks 
+*** SHOW DOWN ***
+remi418: shows [Qs 5s] (a pair of Queens)
+dj_planets: mucks hand 
+remi418 collected 2740 from pot
+*** SUMMARY ***
+Total pot 2900 | Rake 160 
+Board [Jc 7h Qh Tc Kd]
+Seat 5: ionela329
+Seat 6: makita59
+Seat 1: remi418 (small blind) showed [Qs 5s] and won (2740) with a pair of Queens
+Seat 2: arazua (big blind) folded on the Flop
+Seat 3: dj_planets (button) mucked [7d 4h]
+
+
+
+PokerStars Hand #246679885884:  Hold'em No Limit (50/100) - 2023/10/22 17:51:18 CET [2023/10/22 11:51:18 ET]
+Table 'Pamela' 6-max (Play Money) Seat #1 is the button
+Seat 1: remi418 (52111 in chips) 
+Seat 2: arazua (9236 in chips) 
+Seat 3: dj_planets (18293 in chips) 
+Seat 4: Corcho43 (6064 in chips) 
+Seat 5: ionela329 (10000 in chips) 
+Seat 6: makita59 (15518 in chips) 
+arazua: posts small blind 50
+dj_planets: posts big blind 100
+Corcho43: posts big blind 100
+ionela329: posts small & big blinds 150
+makita59: posts small & big blinds 150
+*** HOLE CARDS ***
+Dealt to remi418 [As Kh]
+Corcho43 has timed out
+Corcho43: checks 
+ionela329: checks 
+makita59: raises 1100 to 1200
+remi418: raises 50911 to 52111 and is all-in
+arazua: folds 
+dj_planets: folds 
+Corcho43: folds 
+ionela329: calls 9850 and is all-in
+makita59: calls 14268 and is all-in
+Uncalled bet (36643) returned to remi418
+*** FLOP *** [3c 6d Tc]
+*** TURN *** [3c 6d Tc] [Ks]
+*** RIVER *** [3c 6d Tc Ks] [Ac]
+*** SHOW DOWN ***
+makita59: shows [Qd Ah] (a pair of Aces)
+remi418: shows [As Kh] (two pair, Aces and Kings)
+remi418 collected 10429 from side pot
+ionela329: shows [8d 9s] (high card Ace)
+remi418 collected 28539 from main pot
+*** SUMMARY ***
+Total pot 41236 Main pot 28539. Side pot 10429. | Rake 2268 
+Board [3c 6d Tc Ks Ac]
+Seat 1: remi418 (button) showed [As Kh] and won (38968) with two pair, Aces and Kings
+Seat 2: arazua (small blind) folded before Flop
+Seat 3: dj_planets (big blind) folded before Flop
+Seat 4: Corcho43 folded before Flop (didn't bet)
+Seat 5: ionela329 showed [8d 9s] and lost with high card Ace
+Seat 6: makita59 showed [Qd Ah] and lost with a pair of Aces
+
+
+
+PokerStars Hand #246679901313:  Hold'em No Limit (50/100) - 2023/10/22 17:52:08 CET [2023/10/22 11:52:08 ET]
+Table 'Pamela' 6-max (Play Money) Seat #2 is the button
+Seat 5: ionela329 (0 in chips) is sitting out
+Seat 6: makita59 (0 in chips) is sitting out
+Seat 1: remi418 (75611 in chips) 
+Seat 2: arazua (9186 in chips) 
+Seat 3: dj_planets (18193 in chips) 
+Seat 4: Corcho43 (5964 in chips) 
+dj_planets: posts small blind 50
+Corcho43: posts big blind 100
+*** HOLE CARDS ***
+Dealt to remi418 [3d 3c]
+makita59 leaves the table
+remi418: raises 100 to 200
+arazua: folds 
+dj_planets: calls 150
+Corcho43: calls 100
+*** FLOP *** [Js 8h 2h]
+dj_planets: checks 
+Corcho43: checks 
+remi418: bets 500
+dj_planets: calls 500
+Corcho43: folds 
+*** TURN *** [Js 8h 2h] [2s]
+ramage41 joins the table at seat #6 
+dj_planets: checks 
+remi418: checks 
+*** RIVER *** [Js 8h 2h 2s] [5h]
+dj_planets: checks 
+remi418: checks 
+*** SHOW DOWN ***
+dj_planets: shows [Kc 9c] (a pair of Deuces)
+remi418: shows [3d 3c] (two pair, Threes and Deuces)
+remi418 collected 1512 from pot
+*** SUMMARY ***
+Total pot 1600 | Rake 88 
+Board [Js 8h 2h 2s 5h]
+Seat 5: ionela329
+Seat 6: makita59
+Seat 1: remi418 showed [3d 3c] and won (1512) with two pair, Threes and Deuces
+Seat 2: arazua (button) folded before Flop (didn't bet)
+Seat 3: dj_planets (small blind) showed [Kc 9c] and lost with a pair of Deuces
+Seat 4: Corcho43 (big blind) folded on the Flop
+
+
+
+PokerStars Hand #246679917151:  Hold'em No Limit (50/100) - 2023/10/22 17:52:58 CET [2023/10/22 11:52:58 ET]
+Table 'Pamela' 6-max (Play Money) Seat #3 is the button
+Seat 1: remi418 (76423 in chips) 
+Seat 2: arazua (9186 in chips) 
+Seat 3: dj_planets (17493 in chips) 
+Seat 4: Corcho43 (5764 in chips) 
+Seat 5: ionela329 (10000 in chips) 
+Seat 6: ramage41 (10000 in chips) 
+Corcho43: posts small blind 50
+ionela329: posts big blind 100
+ramage41: posts big blind 100
+*** HOLE CARDS ***
+Dealt to remi418 [9s Td]
+ramage41: checks 
+remi418: calls 100
+arazua: calls 100
+dj_planets: calls 100
+Corcho43: calls 50
+ionela329: checks 
+*** FLOP *** [Qc 2c 6h]
+Corcho43: checks 
+ionela329: bets 9900 and is all-in
+ramage41: folds 
+remi418: folds 
+arazua: folds 
+dj_planets: calls 9900
+Corcho43: folds 
+*** TURN *** [Qc 2c 6h] [5d]
+*** RIVER *** [Qc 2c 6h 5d] [Tc]
+*** SHOW DOWN ***
+ionela329: shows [Qd 3c] (a pair of Queens)
+dj_planets: shows [Qh 5c] (two pair, Queens and Fives)
+dj_planets collected 19278 from pot
+*** SUMMARY ***
+Total pot 20400 | Rake 1122 
+Board [Qc 2c 6h 5d Tc]
+Seat 1: remi418 folded on the Flop
+Seat 2: arazua folded on the Flop
+Seat 3: dj_planets (button) showed [Qh 5c] and won (19278) with two pair, Queens and Fives
+Seat 4: Corcho43 (small blind) folded on the Flop
+Seat 5: ionela329 (big blind) showed [Qd 3c] and lost with a pair of Queens
+Seat 6: ramage41 folded on the Flop (didn't bet)
+
+
+
