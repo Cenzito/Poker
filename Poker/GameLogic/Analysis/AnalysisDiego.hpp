@@ -12,7 +12,7 @@ public:
     std::string street;  // Street (e.g., 'preflop', 'flop', 'turn', 'river')
     Action action;       // Action taken by the player
 
-    Hand(std::string player, std::string street, Action action);
+    Hand(const std::string& player, const std::string& street, Action action);
 };
 
 double calculate_af(const std::vector<Hand>& hand_history, const std::string& player_name);

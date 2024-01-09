@@ -52,7 +52,7 @@ std::vector<Hand> parseHandHistory(const std::string& fileName) {
 
                 Hand hand1 = Hand(playerName, street, action);
 
-                handHistory.emplace_back(hand1);
+                handHistory.emplace_back(playerName, street, action);
             }
         }
     }
