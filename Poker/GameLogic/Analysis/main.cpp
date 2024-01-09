@@ -3,7 +3,7 @@
 
 int main() {
     // Sample data (replace this with your actual hand history data)
-    std::vector<PokerHand> hand_history = { // HERE WE HAVE TO ADD OUR HANDS HISTORY, THAT WE EXTRACTED FROM POKERSTARS AND TURNED INTO A .TXT FILE.
+    std::vector<Hand> hand_history = { // HERE WE HAVE TO ADD OUR HANDS HISTORY, THAT WE EXTRACTED FROM POKERSTARS AND TURNED INTO A .TXT FILE.
         {"Player1", "preflop", Raise},
         {"Player2", "preflop", Fold},
         {"Player1", "flop", Bet},
