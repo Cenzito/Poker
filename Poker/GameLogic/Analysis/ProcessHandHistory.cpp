@@ -50,7 +50,9 @@ std::vector<Hand> parseHandHistory(const std::string& fileName) {
                     continue;
                 }
 
-                handHistory.emplace_back(playerName, street, action);
+                Hand hand1 = Hand(playerName, street, action);
+
+                handHistory.emplace_back(hand1);
             }
         }
     }
@@ -60,8 +62,9 @@ std::vector<Hand> parseHandHistory(const std::string& fileName) {
 }
 
 int main() {
+
     // Replace "" with the actual file name
-    std::string fileName = "Hands1.txt";
+    std::string fileName = "PokerHands1.txt";
     std::vector<Hand> handHistory = parseHandHistory(fileName);
 
     // Display the parsed hand history
