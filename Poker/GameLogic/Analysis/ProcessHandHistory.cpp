@@ -5,8 +5,8 @@
 #include "AnalysisDiego.hpp" 
 
 
-std::vector<PokerHand> parseHandHistory(const std::string& fileName) {
-    std::vector<PokerHand> handHistory;
+std::vector<Hand> parseHandHistory(const std::string& fileName) {
+    std::vector<Hand> handHistory;
     std::ifstream inputFile(fileName);
 
     if (!inputFile.is_open()) {
@@ -61,8 +61,8 @@ std::vector<PokerHand> parseHandHistory(const std::string& fileName) {
 
 int main() {
     // Replace "" with the actual file name
-    std::string fileName = "PokerHands1.txt";
-    std::vector<PokerHand> handHistory = parseHandHistory(fileName);
+    std::string fileName = "Hands1.txt";
+    std::vector<Hand> handHistory = parseHandHistory(fileName);
 
     // Display the parsed hand history
     for (const auto& hand : handHistory) {

@@ -1,13 +1,13 @@
 #include "AnalysisDiego.hpp"
 
 
-PokerHand::PokerHand(const std::string& player, const std::string& street, Action action)
+Hand::Hand(const std::string& player, const std::string& street, Action action)
     : player(player), street(street), action(action) {}
 
 
 
 
-double calculate_af(const std::vector<PokerHand>& hand_history, const std::string& player_name) {
+double calculate_af(const std::vector<Hand>& hand_history, const std::string& player_name) {
     int total_bets_raises = 0;
     int total_calls = 0;
 
@@ -26,11 +26,11 @@ double calculate_af(const std::vector<PokerHand>& hand_history, const std::strin
     return aggression_factor;
 }
 
-double calculate_vpip_percentage(const std::vector<PokerHand>& hand_history, const std::string& player_name) {
+double calculate_vpip_percentage(const std::vector<Hand>& hand_history, const std::string& player_name) {
     int total_hands = 0;
     int vpip_hands = 0;
 
-    for (const PokerHand& hand : hand_history) {
+    for (const Hand& hand : hand_history) {
         if (hand.player == player_name && hand.street == "preflop") {
             total_hands++;
 
