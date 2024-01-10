@@ -1,5 +1,3 @@
-#ifndef ANALYSISDIEGO_HPP
-#define ANALYSISDIEGO_HPP
 
 #include <string>
 #include <vector>
@@ -17,5 +15,3 @@ public:
 
 double calculate_af(const std::vector<Hand>& hand_history, const std::string& player_name);
 double calculate_vpip_percentage(const std::vector<Hand>& hand_history, const std::string& player_name);
-
-#endif // POKER_STATS_HPP

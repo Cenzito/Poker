@@ -5,8 +5,6 @@ Hand::Hand(const std::string& player, const std::string& street, Action action)
     : player(player), street(street), action(action) {}
 
 
-
-
 double calculate_af(const std::vector<Hand>& hand_history, const std::string& player_name) {
     int total_bets_raises = 0;
     int total_calls = 0;
