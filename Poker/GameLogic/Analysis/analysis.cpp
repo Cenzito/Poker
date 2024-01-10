@@ -28,6 +28,9 @@ std::vector<Hand> ReadPlayerHands(std::string file_name, std::string player_name
 
         if (line.empty()){
             // Print "empty line"
+            std::cout << "empty line" << std::endl;
+            street = "";
+            action = "";
             continue;
         }
 
@@ -37,48 +40,49 @@ std::vector<Hand> ReadPlayerHands(std::string file_name, std::string player_name
             if (line.find("*** HOLE CARDS ***") != std::string::npos){
                 // Print "Hole cards"
                 std::cout << "Hole cards" << std::endl;
-                std::string street = "Preflop";
+                street = "Preflop";
                 }
             if (line.find("*** FLOP ***") != std::string::npos){
                 // Print "Flop"
                 std::cout << "Flop" << std::endl;
-                std::string street = "Flop";
+                street = "Flop";
                 }
             if (line.find("*** TURN ***") != std::string::npos){
                 // Print "Turn"
                 std::cout << "Turn" << std::endl;
-                std::string street = "Turn";
+                street = "Turn";
                 }
             if (line.find("*** RIVER ***") != std::string::npos){
                 // Print "River"
                 std::cout << "River" << std::endl;
-                std::string street = "River";
+                street = "River";
 
             if (line.find(player_name) != std::string::npos){
                 if (line.find("folds") != std::string::npos){
                     // Print "Fold"
                     std::cout << "Fold" << std::endl;
-                    std::string action = "Fold";
+                    action = "Fold";
                 }
                 if (line.find("calls") != std::string::npos){
                     // Print "Call"
                     std::cout << "Call" << std::endl;
-                    std::string action = "Call";
+                    action = "Call";
                 }
                 if (line.find("bets") != std::string::npos){
                     // Print "Bet"
                     std::cout << "Bet" << std::endl;
-                    std::string action = "Bet";
+                    action = "Bet";
                 }
                 if (line.find("raises") != std::string::npos){
                     // Print "Raise"
                     std::cout << "Raise" << std::endl;
-                    std::string action = "Raise";
+                    action = "Raise";
                 }
             }
             // If we have a defined street , we can create a Hand and add it to the vector of hands.
-
             if (street != "" && action != ""){
+                // Print "Hand created"
+                std::cout << "Hand created" << std::endl;
                 Hand hand = {player_name, street, action};
                 player_hands.push_back(hand);
             }
