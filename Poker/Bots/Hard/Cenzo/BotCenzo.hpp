@@ -8,6 +8,7 @@ class BotCenzo
 public:
     BotCenzo();
     //matrix raisefunction;
+    //matrix foldfunction;
     signed int Action();
     //matrix adjustraise;
 
