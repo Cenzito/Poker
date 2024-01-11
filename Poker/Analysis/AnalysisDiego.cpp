@@ -1,7 +1,7 @@
 #include "AnalysisDiego.hpp"
 
 
-Hand::Hand(const std::string& player, const std::string& street, Action action)
+Hand::Hand(const std::string& player, const std::string& street, Action2 action)
     : player(player), street(street), action(action) {}
 
 
