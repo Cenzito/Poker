@@ -14,6 +14,5 @@ public:
 
 
 std::vector<Hand> ReadPlayerHands(std::string file_name, std::string player_name);
-int Display_Hand_size();
 
 #endif // ANALYSIS_HPP
