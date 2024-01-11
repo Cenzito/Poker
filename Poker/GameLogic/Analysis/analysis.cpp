@@ -27,16 +27,13 @@ std::vector<Hand> ReadPlayerHands(std::string file_name, std::string player_name
     while (std::getline(file,line)){
 
         if (line.empty()){
-            // Print "empty line"
-            std::cout << "empty line" << std::endl;
             street = "";
             action = "";
             continue;
         }
 
         else{
-            // Print "not empty line"
-            std::cout << "not empty line" << std::endl;
+            
             if (line.find("*** HOLE CARDS ***") != std::string::npos){
                 // Print "Hole cards"
                 std::cout << "Hole cards" << std::endl;
@@ -56,8 +53,14 @@ std::vector<Hand> ReadPlayerHands(std::string file_name, std::string player_name
                 // Print "River"
                 std::cout << "River" << std::endl;
                 street = "River";
+                }
+            
+            // print line
+            std::cout << "line: " << line << std::endl;
 
             if (line.find(player_name) != std::string::npos){
+                // Print "Player name found"    
+                std::cout << "Player name found" << std::endl;
                 if (line.find("folds") != std::string::npos){
                     // Print "Fold"
                     std::cout << "Fold" << std::endl;
@@ -79,7 +82,14 @@ std::vector<Hand> ReadPlayerHands(std::string file_name, std::string player_name
                     action = "Raise";
                 }
             }
+            else{
+                action = "";
+            }
             // If we have a defined street , we can create a Hand and add it to the vector of hands.
+            // Print street and action to debug
+            std::cout << "street: " << street << std::endl;
+            std::cout << "action: " << action << std::endl;
+
             if (street != "" && action != ""){
                 // Print "Hand created"
                 std::cout << "Hand created" << std::endl;
@@ -89,14 +99,16 @@ std::vector<Hand> ReadPlayerHands(std::string file_name, std::string player_name
         }
     
     }
-    }
     return player_hands;
 }
+    
 
 int main() {
     // Sample data (replace this with your actual hand history data)
     std::vector<Hand> hand_history = ReadPlayerHands("PokerHands1.txt", "remi418");
-    // Print size of hand history
-    std::cout << "Hand history size: " << hand_history.size() << std::endl;
+    // Print the hand history
+    for (auto hand : hand_history) {
+        std::cout << hand.player << " " << hand.street << " " << hand.action << std::endl;
+    }
     return 0;
 }
