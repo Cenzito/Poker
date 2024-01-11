@@ -25,6 +25,9 @@ GameWindow::GameWindow(QWidget *parent) :
     QImage table_background(":/images/table.png");
     QSize table_background_size = ui->label_table->size();
     ui->label_table->setPixmap(QPixmap::fromImage(table_background).scaled(table_background_size, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    QImage pot_image(":/images/huge_player_stack.png");
+    QSize pot_image_size = ui->label_pot->size();
+    ui->label_pot->setPixmap(QPixmap::fromImage(pot_image).scaled(pot_image_size, Qt::KeepAspectRatio, Qt::SmoothTransformation));
 
 }
 

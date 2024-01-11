@@ -54,5 +54,6 @@
         <file>images/cards/S/13.png</file>
         <file>images/cards/back_card.png</file>
         <file>images/table.png</file>
+	<file>images/huge_player_stack.png</file>
     </qresource>
 </RCC>
