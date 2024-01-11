@@ -57,6 +57,7 @@ HEADERS += \
     GameLogic/Table.hpp \
     Visuals/Gamewindow/gamewindow.hpp \
     Visuals/MainWindow/mainwindow.hpp \
+    Visuals/RulesWindow/ruleswindow.cpp.autosave \
     Visuals/RulesWindow/ruleswindow.h
 
 
@@ -76,3 +77,5 @@ RESOURCES += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES +=
