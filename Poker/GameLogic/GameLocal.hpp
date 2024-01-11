@@ -29,7 +29,7 @@ public:
     void newHand();
 
     void updatePlayersTable();
-    void nextHand();
+    void resetHand();
 
     signed int askAction(PokerPlayer player);
     void bettingRound(int first_player, bool isfirst_round);
