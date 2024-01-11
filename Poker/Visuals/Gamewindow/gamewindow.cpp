@@ -12,7 +12,7 @@ GameWindow::GameWindow(QWidget *parent) :
     ui(new Ui::GameWindow)
 {
     ui->setupUi(this);
-    
+
 
     connect(ui->pushButton, &QPushButton::clicked, this, &GameWindow::onPlayButtonClicked);
     //connect(ui->FoldButton, &QPushButton::clicked, this, &GameWindow::onFoldButtonClicked(PokerPlayer* game_player));
@@ -22,9 +22,9 @@ GameWindow::GameWindow(QWidget *parent) :
     connect(ui->RaiseButton, &QPushButton::clicked, this, &GameWindow::onRaiseButtonClicked);
     connect(ui->CallButton, &QPushButton::clicked, this, &GameWindow::onCallButtonClicked);
 
-    QImage table_background(":/images/table.png");
+    /*QImage table_background(":/images/table.png");
     QSize table_background_size = ui->label_table->size();
-    ui->label_table->setPixmap(QPixmap::fromImage(table_background).scaled(table_background_size, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    ui->label_table->setPixmap(QPixmap::fromImage(table_background).scaled(table_background_size, Qt::KeepAspectRatio, Qt::SmoothTransformation));*/
     QImage pot_image(":/images/huge_player_stack.png");
     QSize pot_image_size = ui->label_pot->size();
     ui->label_pot->setPixmap(QPixmap::fromImage(pot_image).scaled(pot_image_size, Qt::KeepAspectRatio, Qt::SmoothTransformation));
