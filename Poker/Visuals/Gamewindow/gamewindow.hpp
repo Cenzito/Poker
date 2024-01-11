@@ -2,7 +2,6 @@
 #define GAMEWINDOW_H
 
 #include <QMainWindow>
-#include "GameLogic/Game.hpp"
 #include "GameLogic/PokerPlayer.hpp"
 #include "GameLogic/PlayerInfo.hpp"
 
@@ -15,7 +14,7 @@ class GameWindow: public QMainWindow
     Q_OBJECT
 
 public:
-    explicit GameWindow(QWidget *parent = nullptr);
+    explicit GameWindow(QWidget *parent = nullptr, PokerPlayer p = PokerPlayer("name"));
     ~GameWindow();
     const QString Get_image_path(const std::string &suit, const std::string &value, bool back = false); // to display the back call with args ("back", "back", true)
     void update_to_display(PokerPlayer* player, PlayerInfo* info);
@@ -33,8 +32,7 @@ private slots:
 
 private:
     Ui::GameWindow *ui;
-    //PokerPlayer player ; //
-
+    PokerPlayer player;
 };
 
 
