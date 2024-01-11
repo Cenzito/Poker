@@ -4,7 +4,6 @@
 #include "../../GameLogic/PokerHand.hpp"
 #include "../../GameLogic/Card.hpp"
 #include "../../GameLogic/Table.hpp"
-#include "../../GameLogic/Game.hpp"
 
 class MediumLeal : public Bot {
 public:
@@ -18,7 +17,7 @@ public:
     };
 
     //the bot's decision on what to do
-    void action();
+    signed int Action();
 
 private:
     int CalcCardValue();

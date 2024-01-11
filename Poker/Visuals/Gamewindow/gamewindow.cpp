@@ -7,13 +7,13 @@
 #include "GameLogic/PokerPlayer.hpp"
 #include "GameLogic/Game.hpp"
 
-GameWindow::GameWindow(QWidget *parent) :
+GameWindow::GameWindow(QWidget *parent, PokerPlayer p) :
     QMainWindow(parent),
-    ui(new Ui::GameWindow)
+    ui(new Ui::GameWindow),
+    player(p)
 {
     ui->setupUi(this);
     connect(ui->pushButton, &QPushButton::clicked, this, &GameWindow::onPlayButtonClicked);
-    //player = PokerPlayer('John', 3) ;
 }
 
 GameWindow::~GameWindow()

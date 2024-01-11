@@ -37,26 +37,25 @@ bool MediumLeal::ShouldRaise(int threshold) {
 
 }
 
-void MediumLeal::action() { //syntax changes as soon as we can make it an inhereted class
+signed int MediumLeal::Action() { //syntax changes as soon as we can make it an inhereted class
 
     if (ShouldFold() == false && ShouldRaise(threshold) == false) {
-        call(tableInfo.bet_on_table);
+        return tableInfo.bet_on_table;
     }
+
     if (ShouldFold() == false && ShouldRaise(threshold) == true) {
         //raise by 2 x small blind
+
         if (chips > 2*tableInfo.bet_on_table) {
-            raise(2*tableInfo.bet_on_table);
-
+            return 2*tableInfo.bet_on_table;
         }
-
         else {
-            call(tableInfo.bet_on_table);
-
+            return tableInfo.bet_on_table;
         }
-
 
     }
+
     if (ShouldFold() == true) {
-        fold();
+        return -1;
     }
 }
