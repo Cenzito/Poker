@@ -2,15 +2,18 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
-#include "AnalysisDiego.hpp" 
+#include "AnalysisDiego.hpp"
+#include <QApplication>
+
 
 
 std::vector<Hand> parseHandHistory(const std::string& fileName) {
     std::vector<Hand> handHistory;
     std::ifstream inputFile(fileName);
 
+
     if (!inputFile.is_open()) {
-        std::cerr << "Error: Unable to open file " << fileName << std::endl;
+        qDebug() << "Error: Unable to open file " << QString::fromStdString(fileName);
         return handHistory;
     }
 
@@ -36,7 +39,7 @@ std::vector<Hand> parseHandHistory(const std::string& fileName) {
 
                 iss >> street >> actionStr;
 
-                Action action;
+                Action2 action;
                 if (actionStr == "calls") {
                     action = Call;
                 } else if (actionStr == "raises") {
@@ -61,15 +64,19 @@ std::vector<Hand> parseHandHistory(const std::string& fileName) {
     return handHistory;
 }
 
-int main() {
-
+int displayParsed() {
     // Replace "" with the actual file name
-    std::string fileName = "PokerHands1.txt";
+    std::string fileName = "../Poker/Analysis/PokerHands1.txt";
+
     std::vector<Hand> handHistory = parseHandHistory(fileName);
 
+
+    qDebug() << 1;
     // Display the parsed hand history
+    qDebug() << handHistory.size();
     for (const auto& hand : handHistory) {
-        std::cout << "Player: " << hand.player << ", Street: " << hand.street << ", Action: " << hand.action << std::endl;
+        qDebug() << "ppp";
+        qDebug() << "Player: " << QString::fromStdString(hand.player) << ", Street: " << QString::fromStdString(hand.street) << ", Action: " << hand.action;
     }
 
     return 0;

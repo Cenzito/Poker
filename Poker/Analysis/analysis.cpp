@@ -3,6 +3,7 @@
 #include <sstream>
 #include <unordered_map>
 #include "analysis.hpp"
+#include <QApplication>
 
 // Add the missing constructor for the Hand class
 Hand::Hand(std::string& player, std::string& street, std::string& action)
@@ -93,10 +94,12 @@ std::vector<Hand> ReadPlayerHands(std::string file_name, std::string player_name
     return player_hands;
 }
 
-int main() {
+
+int Display_Hand_size() {
     // Sample data (replace this with your actual hand history data)
     std::vector<Hand> hand_history = ReadPlayerHands("PokerHands1.txt", "remi418");
     // Print size of hand history
-    std::cout << "Hand history size: " << hand_history.size() << std::endl;
+    qDebug() << "Hand history size: " << hand_history.size();
     return 0;
 }
+
