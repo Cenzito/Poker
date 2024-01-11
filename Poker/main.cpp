@@ -7,9 +7,18 @@
 #include "Visuals/MainWindow/mainwindow.hpp"
 #include <QApplication>
 
+#include "Analysis/ProcessHandHistory.cpp"
+
 
 int main(int argc, char *argv[]) {
     QTextStream outStream(stdout);
+    qDebug() << "Hey";
+    displayParsed();
+
+    return 1;
+
+
+    /*
     qDebug() << "hello";
     qDebug() << 1;
     GameLocal pokerGame(5);
@@ -25,7 +34,7 @@ int main(int argc, char *argv[]) {
 
 
     pokerGame.startGame();
-    return 0;
+    return 0;*/
     /*
     Game pokerGame(4);
     pokerGame.startGame();

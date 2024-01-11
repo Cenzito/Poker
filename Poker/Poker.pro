@@ -35,6 +35,9 @@ SOURCES += \
     GameLogic/Monte_Carlo_Probability_Simulator.cpp \
     Visuals/Gamewindow/gamewindow.cpp \
     Visuals/MainWindow/mainwindow.cpp \
+    Analysis/analysis.cpp \
+    Analysis/AnalysisDiego.cpp \
+    Analysis/ProcessHandHistory.cpp \
 
 HEADERS += \
     Bots/Bot.hpp \
@@ -60,7 +63,9 @@ HEADERS += \
     Visuals/Gamewindow/gamelocalwindow.hpp \
     Visuals/Gamewindow/gamewindow.hpp \
     Visuals/MainWindow/mainwindow.hpp \
-    Visuals/RulesWindow/ruleswindow.h
+    Visuals/RulesWindow/ruleswindow.h \
+    Analysis/analysis.hpp \
+    Analysis/AnalysisDiego.hpp \
 
 
 
