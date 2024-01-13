@@ -7,12 +7,13 @@
 #include "Table.hpp"
 #include "Card.hpp"
 #include <unordered_map>
-
+#include <QObject>
 
 
 
 
 class PokerPlayer {
+    Q_OBJECT
 public:
     PokerPlayer(const std::string& name);
     const std::string& getName() const;
@@ -46,6 +47,11 @@ public:
     std::vector<Card> hand;
     //isActive tells if it's the players turn to bet
     bool isBot, isActive;
+
+signals:
+    void Raise(int amount);
+    void Fold();
+    void Call();
     
 };
 
