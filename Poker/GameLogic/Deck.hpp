@@ -10,7 +10,7 @@ public:
     Deck();
     void shuffleDeck();
     Card dealCard();
-
+    Card getCurrentCard() const;
 private:
     std::vector<Card> cards;
     int currentCardIndex;

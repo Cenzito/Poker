@@ -2,7 +2,6 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "GameLogic/Game.hpp"
 
 
 QT_BEGIN_NAMESPACE
@@ -23,6 +22,7 @@ private:
 private slots:
     void onPlayButtonClicked();
     void onRulesButtonClicked();
+    void onLocalPlayButtonClicked();
 
 };
 #endif // MAINWINDOW_H

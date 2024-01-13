@@ -24,3 +24,30 @@ Building on the momentum from the first week, I further enhanced our server proj
 3. **Account Creation Support**: Another major milestone was the implementation of account creation support. This feature enables users to create their own accounts, laying the groundwork for personalized and secure interactions within our network. The account creation process is integrated with the server's architecture, ensuring a seamless and user-friendly experience. This addition marks an important step towards a fully-featured and user-centric application.
 
 These advancements collectively mark a significant progression in our project, showcasing the potential of our server-client architecture and setting a solid foundation for future enhancements and features.
+
+### Week 3 and Week 4
+
+This weeks, I focused and will focus on merging the backend with the server and client, a critical step for our project's functionality.
+
+**Backend-Server Integration:**
+- Established a stable connection between the backend and the server.
+- Configured server settings and implemented API endpoints.
+- Overcame server load balancing issues.
+- Achieved a responsive backend-server connection.
+
+**Backend-Client Integration:**
+- Integrated the backend with the client interface for user interaction.
+- Developed APIs and ensured data security.
+- Addressed latency issues for better user experience.
+- Completed a smooth and secure backend-client integration.
+
+**Testing and Optimization:**
+- Conducted load, stress, and user acceptance tests.
+- Optimized code for enhanced performance.
+- Resolved performance bottlenecks.
+
+**Next Steps:**
+- Refine integration based on test feedback.
+- Prepare for next steps and develop documentation.
+
+This week's achievements have significantly advanced our project, setting a strong foundation for the upcoming steps.

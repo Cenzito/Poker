@@ -9,17 +9,18 @@
 #include <unordered_map>
 
 
+
+
+
 class PokerPlayer {
 public:
     PokerPlayer(const std::string& name);
     const std::string& getName() const;
 
-    //Action functions call raise fold
-    void call(int);
-    void raise(int);
-    void fold();
+    //Action function, will be called to know what the player does
+    signed int Action();
 
-    //void receiveCards(const std::vector<Card>& cards);
+
     void showHand() const;
     bool canBet(int amount) const;
     int decideBet(int currentHighestBet, int money, int minimumRaise);
@@ -27,7 +28,7 @@ public:
     //void receiveCards(const std::vector<Card>& hand);
     void updateTable(Table table);
 
-    void receiveCards(const std::vector<Card>& cards);
+    void receiveCards(const std::vector<Card> cards);
     void removeCards();
     std::vector<Card> getHand() const;
 
@@ -39,9 +40,12 @@ public:
     int chips;
     void updateChips();
 
+    int bet = -2;
+
     std::string name;
     std::vector<Card> hand;
-    bool isBot;
+    //isActive tells if it's the players turn to bet
+    bool isBot, isActive;
     
 };
 
