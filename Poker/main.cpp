@@ -1,7 +1,8 @@
 
 
 #include "./Visuals/MainWindow/mainwindow.hpp"
-#include "./GameLogic/Game.hpp"
+#include "./Visuals/Gamewindow/gamewindow.hpp"
+
 #include "./GameLogic/Card.cpp"
 #include "./GameLogic/Deck.cpp"
 #include "./GameLogic/PokerHand.cpp"
@@ -17,8 +18,13 @@ int main(int argc, char *argv[]) {
 
     //commented these 4 because of conflicts (delete and recreate pull request if this is unneccesary)
     QApplication a(argc, argv);
-    MainWindow w;
+    GameWindow w;
+
     w.show();
+    w.game_player.hand.push_back(Card(Suit::Spades, 4));
+    w.game_player.hand.push_back(Card(Suit::Hearts, 12));
+    w.update_display();
+
     return a.exec();
 
   

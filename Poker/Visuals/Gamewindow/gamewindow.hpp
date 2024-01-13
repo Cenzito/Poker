@@ -16,20 +16,20 @@ class GameWindow: public QMainWindow
 
 public:
 
-    explicit GameWindow(QWidget *parent = nullptr);
+    explicit GameWindow(QWidget *parent = nullptr, std::string name = "John");
     ~GameWindow();
     const QString Get_image_path(const std::string &suit, const std::string &value, bool back = false); // to display the back call with args ("back", "back", true)
-    void update_to_display(PokerPlayer* player, PlayerInfo* info);
-    void update_to_display(PokerPlayer* player);
-    void update_from_display(PokerPlayer* player);
+    void update_display();
     void update_community_cards();
     void update_middle_card_display(int cardIndex, const Card& card);
-    void display_names_bet(PokerPlayer* player);
+    void display_names_bet();
 
-    void display_player_hand(PokerPlayer* player);
-    void switch_bet_button_on(PokerPlayer* player);
-    void switch_bet_button_off(PokerPlayer* player);
-    void switch_players_display(PokerPlayer* player);
+    void display_player_hand();
+    void switch_bet_button_on();
+    void switch_bet_button_off();
+    void switch_players_display();
+
+    PokerPlayer game_player;
 
 private slots:
 
@@ -37,7 +37,7 @@ private slots:
 
     void onRaiseButtonClicked();
 
-    void onFoldButtonClicked(PokerPlayer* game_player);
+    void onFoldButtonClicked();
 
     void onCallButtonClicked();
 
@@ -65,7 +65,7 @@ private slots:
 
 private:
     Ui::GameWindow *ui;
-    PokerPlayer* game_player;
+
 
 };
 
