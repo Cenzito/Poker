@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(197, 220, 199);
+     <string notr="true">background-color: rgb(136, 170, 111);
 </string>
     </property>
     <property name="readOnly">
@@ -37,16 +37,16 @@ p, li { white-space: pre-wrap; }
 hr { height: 1px; border-width: 0; }
 li.unchecked::marker { content: &quot;\2610&quot;; }
 li.checked::marker { content: &quot;\2612&quot;; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:9.75pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'.AppleSystemUIFont'; font-size:13pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>280</x>
+      <x>239</x>
       <y>150</y>
-      <width>100</width>
+      <width>141</width>
       <height>32</height>
      </rect>
     </property>
@@ -54,12 +54,12 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <cursorShape>OpenHandCursor</cursorShape>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 255, 255);
-color: rgb(197, 220, 199);
-font: 13pt &quot;Bodoni 72&quot;;</string>
+     <string notr="true">background-color: rgb(15, 96, 0);
+font: 13pt &quot;Bodoni 72&quot;;
+color: rgb(197, 220, 199);</string>
     </property>
     <property name="text">
-     <string>PLAY as guest</string>
+     <string>PLAY AS GUEST</string>
     </property>
    </widget>
    <widget class="QLabel" name="label">
@@ -84,7 +84,7 @@ color: rgb(15, 96, 0);</string>
      <rect>
       <x>400</x>
       <y>150</y>
-      <width>100</width>
+      <width>141</width>
       <height>32</height>
      </rect>
     </property>
@@ -124,7 +124,8 @@ color: rgb(197, 220, 199);</string>
     </property>
     <property name="styleSheet">
      <string notr="true">color: rgb(15, 96, 0);
-background-color: rgb(197, 220, 199);</string>
+background-color: rgb(136, 170, 111);
+</string>
     </property>
     <property name="text">
      <string>Username</string>
@@ -141,7 +142,8 @@ background-color: rgb(197, 220, 199);</string>
     </property>
     <property name="styleSheet">
      <string notr="true">color: rgb(15, 96, 0);
-background-color: rgb(197, 220, 199);</string>
+background-color: rgb(136, 170, 111);
+</string>
     </property>
     <property name="text">
      <string>Password</string>
@@ -157,7 +159,7 @@ background-color: rgb(197, 220, 199);</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(197, 220, 199);
+     <string notr="true">background-color: rgb(136, 170, 111);
 color: rgb(15, 96, 0);
 font: 13pt &quot;Bodoni 72&quot;;</string>
     </property>
@@ -192,6 +194,9 @@ font: 13pt &quot;Bodoni 72&quot;;</string>
        <width>75</width>
        <height>26</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(197, 220, 199);</string>
      </property>
      <property name="text">
       <string>Login</string>
@@ -240,7 +245,7 @@ font: 13pt &quot;Bodoni 72&quot;;</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(197, 220, 199);
+     <string notr="true">background-color: rgb(136, 170, 111);
 color: rgb(15, 96, 0);
 font: 13pt &quot;Bodoni 72&quot;;</string>
     </property>
@@ -275,6 +280,9 @@ font: 13pt &quot;Bodoni 72&quot;;</string>
        <width>75</width>
        <height>26</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(197, 220, 199);</string>
      </property>
      <property name="text">
       <string>Signin</string>
@@ -319,9 +327,11 @@ font: 13pt &quot;Bodoni 72&quot;;</string>
    <zorder>layoutWidget</zorder>
    <zorder>layoutWidget</zorder>
    <zorder>textEdit_background</zorder>
+   <zorder>label_2</zorder>
+   <zorder>layoutWidget</zorder>
+   <zorder>layoutWidget</zorder>
    <zorder>groupBox_signin</zorder>
    <zorder>groupBox_login</zorder>
-   <zorder>label_2</zorder>
    <zorder>pushButton</zorder>
    <zorder>label</zorder>
    <zorder>pushButton_2</zorder>
@@ -337,7 +347,7 @@ font: 13pt &quot;Bodoni 72&quot;;</string>
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>21</height>
+     <height>23</height>
     </rect>
    </property>
   </widget>
