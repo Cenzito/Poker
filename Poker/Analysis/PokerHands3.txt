@@ -1,0 +1,106 @@
+PokerStars Hand #246679297456:  Hold'em No Limit (50/100) - 2023/10/22 17:19:45 CET [2023/10/22 11:19:45 ET]
+Table 'Pamela' 6-max (Play Money) Seat #2 is the button
+Seat 1: remi418 (10000 in chips) 
+Seat 2: BadCowboyTB8 (65641 in chips) 
+Seat 3: dj_planets (9650 in chips) 
+Seat 4: becsapi591 (10292 in chips) 
+Seat 5: DryHorseD311 (9900 in chips) 
+Seat 6: akqjt5000000 (9600 in chips) 
+dj_planets: posts small blind 50
+becsapi591: posts big blind 100
+remi418: posts big blind 100
+*** HOLE CARDS ***
+Dealt to remi418 [4c 8s]
+DryHorseD311: calls 100
+akqjt5000000: raises 200 to 300
+remi418: folds 
+BadCowboyTB8: calls 300
+dj_planets: calls 250
+becsapi591: calls 200
+DryHorseD311: folds 
+*** FLOP *** [2d 9c 2s]
+DryHorseD311 leaves the table
+dj_planets: checks 
+becsapi591: checks 
+akqjt5000000: bets 661
+BadCowboyTB8: folds 
+dj_planets: calls 661
+becsapi591: folds 
+*** TURN *** [2d 9c 2s] [Qs]
+Jopeda joins the table at seat #5 
+dj_planets: checks 
+akqjt5000000: bets 600
+dj_planets: calls 600
+*** RIVER *** [2d 9c 2s Qs] [6s]
+dj_planets: checks 
+akqjt5000000: checks 
+*** SHOW DOWN ***
+dj_planets: shows [8c Ad] (a pair of Deuces)
+akqjt5000000: shows [Kc Ac] (a pair of Deuces - Ace+King kicker)
+akqjt5000000 collected 3706 from pot
+*** SUMMARY ***
+Total pot 3922 | Rake 216 
+Board [2d 9c 2s Qs 6s]
+Seat 1: remi418 folded before Flop (didn't bet)
+Seat 2: BadCowboyTB8 (button) folded on the Flop
+Seat 3: dj_planets (small blind) showed [8c Ad] and lost with a pair of Deuces
+Seat 4: becsapi591 (big blind) folded on the Flop
+Seat 5: DryHorseD311 folded before Flop
+Seat 6: akqjt5000000 showed [Kc Ac] and won (3706) with a pair of Deuces
+
+
+
+PokerStars Hand #246679318291:  Hold'em No Limit (50/100) - 2023/10/22 17:20:52 CET [2023/10/22 11:20:52 ET]
+Table 'Pamela' 6-max (Play Money) Seat #3 is the button
+Seat 1: remi418 (9900 in chips) 
+Seat 2: BadCowboyTB8 (65341 in chips) 
+Seat 3: dj_planets (8089 in chips) 
+Seat 4: becsapi591 (9992 in chips) 
+Seat 5: Jopeda (10000 in chips) 
+Seat 6: akqjt5000000 (11745 in chips) 
+becsapi591: posts small blind 50
+Jopeda: posts big blind 100
+*** HOLE CARDS ***
+Dealt to remi418 [6s 7h]
+akqjt5000000: calls 100
+remi418: folds 
+BadCowboyTB8: calls 100
+dj_planets: calls 100
+becsapi591: calls 50
+Jopeda: checks 
+*** FLOP *** [Tc 2d 3c]
+becsapi591: checks 
+Jopeda: checks 
+akqjt5000000: checks 
+BadCowboyTB8: bets 400
+dj_planets: calls 400
+becsapi591: calls 400
+Jopeda: calls 400
+akqjt5000000: calls 400
+*** TURN *** [Tc 2d 3c] [Qd]
+becsapi591: checks 
+Jopeda: checks 
+akqjt5000000: checks 
+BadCowboyTB8: checks 
+dj_planets: checks 
+*** RIVER *** [Tc 2d 3c Qd] [Jc]
+becsapi591: checks 
+Jopeda: checks 
+akqjt5000000: checks 
+BadCowboyTB8: folds 
+dj_planets: checks 
+*** SHOW DOWN ***
+becsapi591: shows [Ah Ts] (a pair of Tens)
+Jopeda: mucks hand 
+akqjt5000000: mucks hand 
+dj_planets: mucks hand 
+becsapi591 collected 2362 from pot
+*** SUMMARY ***
+Total pot 2500 | Rake 138 
+Board [Tc 2d 3c Qd Jc]
+Seat 1: remi418 folded before Flop (didn't bet)
+Seat 2: BadCowboyTB8 folded on the River
+Seat 3: dj_planets (button) mucked [Kc 7s]
+Seat 4: becsapi591 (small blind) showed [Ah Ts] and won (2362) with a pair of Tens
+Seat 5: Jopeda (big blind) mucked [Td 9s]
+Seat 6: akqjt5000000 mucked [6h Th]
