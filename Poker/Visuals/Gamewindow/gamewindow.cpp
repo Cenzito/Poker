@@ -79,8 +79,8 @@ void GameWindow::update_display(){
     // Display players hand
     display_player_hand();
   
-    // Display names and bet
-    display_names_bet();
+    // Display names and stacks
+    display_names_stacks_bets();
 
     // Update community cards (middle cards)
     //update_community_cards();
@@ -230,200 +230,60 @@ void GameWindow::switch_players_display(){
 
 // end of switch display players
 
-// beginning of switch from name tag to bank display
+// beginning of display of names, stacks and bets
 
-void GameWindow::on_line_player1_cursorPositionChanged()
-{
-    QString text_line = ui->line_player1->text();
-    std::string text = text_line.toStdString();
-
-    std::string name = game_player.tableInfo.playerInfo[0].name;
-    std::string stack =  std::to_string(game_player.tableInfo.playerInfo[0].stack_size);
-
-    if (text == stack){
-        QString name_qt = QString::fromStdString(name);
-        ui->line_player1->setText(name_qt);
-    }
-    else {
-        QString stack_qt = QString::fromStdString(stack);
-        ui->line_player1->setText(stack_qt);
-    }
-}
-void GameWindow::on_line_player2_cursorPositionChanged()
-{
-    if (game_player.tableInfo.player_num >= 2){
-        QString text_line = ui->line_player2->text();
-        std::string text = text_line.toStdString();
-
-        std::string name = game_player.tableInfo.playerInfo[1].name;
-        std::string stack =  std::to_string(game_player.tableInfo.playerInfo[1].stack_size);
-
-        if (text == stack){
-            QString name_qt = QString::fromStdString(name);
-            ui->line_player2->setText(name_qt);
-        }
-        else {
-            QString stack_qt = QString::fromStdString(stack);
-            ui->line_player2->setText(stack_qt);
-        }
-    }
-
-}
-void GameWindow::on_line_player3_cursorPositionChanged()
-{
-    if (game_player.tableInfo.player_num >= 3){
-        QString text_line = ui->line_player3->text();
-        std::string text = text_line.toStdString();
-
-        std::string name = game_player.tableInfo.playerInfo[2].name;
-        std::string stack =  std::to_string(game_player.tableInfo.playerInfo[2].stack_size);
-
-        if (text == stack){
-            QString name_qt = QString::fromStdString(name);
-            ui->line_player3->setText(name_qt);
-        }
-        else {
-            QString stack_qt = QString::fromStdString(stack);
-            ui->line_player3->setText(stack_qt);
-        }
-    }
-}
-void GameWindow::on_line_player4_cursorPositionChanged()
-{
-    if (game_player.tableInfo.player_num >= 4){
-        QString text_line = ui->line_player4->text();
-        std::string text = text_line.toStdString();
-      
-        std::string name = game_player.tableInfo.playerInfo[3].name;
-        std::string stack =  std::to_string(game_player.tableInfo.playerInfo[3].stack_size);
-
-        if (text == stack){
-            QString name_qt = QString::fromStdString(name);
-            ui->line_player4->setText(name_qt);
-        }
-        else {
-            QString stack_qt = QString::fromStdString(stack);
-            ui->line_player4->setText(stack_qt);
-        }
-    }
-}
-void GameWindow::on_line_player5_cursorPositionChanged()
-{
-    if (game_player.tableInfo.player_num >= 5){
-        QString text_line = ui->line_player5->text();
-        std::string text = text_line.toStdString();
-
-        std::string name = game_player.tableInfo.playerInfo[4].name;
-        std::string stack =  std::to_string(game_player.tableInfo.playerInfo[4].stack_size);
-
-        if (text == stack){
-            QString name_qt = QString::fromStdString(name);
-            ui->line_player5->setText(name_qt);
-        }
-        else {
-            QString stack_qt = QString::fromStdString(stack);
-            ui->line_player5->setText(stack_qt);
-        }
-    }
-}
-void GameWindow::on_line_player6_cursorPositionChanged()
-{
-    if (game_player.tableInfo.player_num >= 6){
-        QString text_line = ui->line_player6->text();
-        std::string text = text_line.toStdString();
-
-        std::string name = game_player.tableInfo.playerInfo[5].name;
-        std::string stack =  std::to_string(game_player.tableInfo.playerInfo[5].stack_size);
-
-        if (text == stack){
-            QString name_qt = QString::fromStdString(name);
-            ui->line_player6->setText(name_qt);
-        }
-        else {
-            QString stack_qt = QString::fromStdString(stack);
-            ui->line_player6->setText(stack_qt);
-        }
-    }
-}
-void GameWindow::on_line_player7_cursorPositionChanged()
-{
-    if (game_player.tableInfo.player_num >= 7){
-        QString text_line = ui->line_player7->text();
-        std::string text = text_line.toStdString();
-
-        std::string name = game_player.tableInfo.playerInfo[6].name;
-        std::string stack =  std::to_string(game_player.tableInfo.playerInfo[6].stack_size);
-
-        if (text == stack){
-            QString name_qt = QString::fromStdString(name);
-            ui->line_player7->setText(name_qt);
-        }
-        else {
-            QString stack_qt = QString::fromStdString(stack);
-            ui->line_player7->setText(stack_qt);
-        }
-    }
-}
-void GameWindow::on_line_player8_cursorPositionChanged()
-{
-    if (game_player.tableInfo.player_num == 8){
-        QString text_line = ui->line_player8->text();
-        std::string text = text_line.toStdString();
-
-        std::string name = game_player.tableInfo.playerInfo[7].name;
-        std::string stack =  std::to_string(game_player.tableInfo.playerInfo[7].stack_size);
-
-        if (text == stack){
-            QString name_qt = QString::fromStdString(name);
-            ui->line_player8->setText(name_qt);
-        }
-        else {
-            QString stack_qt = QString::fromStdString(stack);
-            ui->line_player8->setText(stack_qt);
-        }
-    }
-}
-
-// end of switch from name tag to bank display
-
-// beginning of display of names and bets
-
-void GameWindow::display_names_bet(){
+void GameWindow::display_names_stacks_bets(){
 
     if (game_player.tableInfo.player_num<=1) {
-        std::string playerName1 = game_player.tableInfo.playerInfo[0].name;
+        std::string playerName1 = game_player.tableInfo.playerInfo[0].name+" | "+std::to_string(game_player.tableInfo.playerInfo[0].stack_size);
         qDebug() << QString::fromStdString(playerName1);
         ui ->line_player1->setText(QString::fromStdString(playerName1));
+        std::string betplayer1 = std::to_string(game_player.tableInfo.playerInfo[0].bet);
+        ui->line_bet1->setText(QString::fromStdString(betplayer1));
     }
     if (game_player.tableInfo.player_num<=2) {
-        std::string playerName2 = game_player.tableInfo.playerInfo[1].name;
+        std::string playerName2 = game_player.tableInfo.playerInfo[1].name+" | "+std::to_string(game_player.tableInfo.playerInfo[1].stack_size);
         ui ->line_player2->setText(QString::fromStdString(playerName2));
+        std::string betplayer2 = std::to_string(game_player.tableInfo.playerInfo[1].bet);
+        ui->line_bet2->setText(QString::fromStdString(betplayer2));
     }
     if (game_player.tableInfo.player_num<=3) {
 
-        std::string playerName3 = game_player.tableInfo.playerInfo[2].name;
+        std::string playerName3 = game_player.tableInfo.playerInfo[2].name+" | "+std::to_string(game_player.tableInfo.playerInfo[2].stack_size);
         ui ->line_player3->setText(QString::fromStdString(playerName3));
+        std::string betplayer3 = std::to_string(game_player.tableInfo.playerInfo[2].bet);
+        ui->line_bet3->setText(QString::fromStdString(betplayer3));
     }
     if (game_player.tableInfo.player_num<=4) {
-        std::string playerName4 = game_player.tableInfo.playerInfo[3].name;
+        std::string playerName4 = game_player.tableInfo.playerInfo[3].name+" | "+std::to_string(game_player.tableInfo.playerInfo[3].stack_size);
         ui ->line_player4->setText(QString::fromStdString(playerName4));
+        std::string betplayer4 = std::to_string(game_player.tableInfo.playerInfo[3].bet);
+        ui->line_bet4->setText(QString::fromStdString(betplayer4));
     }
     if (game_player.tableInfo.player_num<=5) {
-        std::string playerName5 = game_player.tableInfo.playerInfo[4].name;
+        std::string playerName5 = game_player.tableInfo.playerInfo[4].name+" | "+std::to_string(game_player.tableInfo.playerInfo[4].stack_size);
         ui ->line_player5->setText(QString::fromStdString(playerName5));
+        std::string betplayer5 = std::to_string(game_player.tableInfo.playerInfo[4].bet);
+        ui->line_bet5->setText(QString::fromStdString(betplayer5));
     }
     if (game_player.tableInfo.player_num<=6) {
-        std::string playerName6 = game_player.tableInfo.playerInfo[5].name;
+        std::string playerName6 = game_player.tableInfo.playerInfo[5].name+" | "+std::to_string(game_player.tableInfo.playerInfo[5].stack_size);
         ui ->line_player6->setText(QString::fromStdString(playerName6));
+        std::string betplayer6 = std::to_string(game_player.tableInfo.playerInfo[5].bet);
+        ui->line_bet6->setText(QString::fromStdString(betplayer6));
     }
     if (game_player.tableInfo.player_num<=7) {
-        std::string playerName7 = game_player.tableInfo.playerInfo[6].name;
+        std::string playerName7 = game_player.tableInfo.playerInfo[6].name+" | "+std::to_string(game_player.tableInfo.playerInfo[6].stack_size);
         ui ->line_player7->setText(QString::fromStdString(playerName7));
+        std::string betplayer7 = std::to_string(game_player.tableInfo.playerInfo[6].bet);
+        ui->line_bet7->setText(QString::fromStdString(betplayer7));
     }
     if (game_player.tableInfo.player_num<=8) {
-        std::string playerName8 = game_player.tableInfo.playerInfo[7].name;
+        std::string playerName8 = game_player.tableInfo.playerInfo[7].name+" | "+std::to_string(game_player.tableInfo.playerInfo[7].stack_size);
         ui ->line_player8->setText(QString::fromStdString(playerName8));
+        std::string betplayer8 = std::to_string(game_player.tableInfo.playerInfo[7].bet);
+        ui->line_bet8->setText(QString::fromStdString(betplayer8));
     }
 }
 
-// end of display of names and bets
+// end of display of names, stacks and bets

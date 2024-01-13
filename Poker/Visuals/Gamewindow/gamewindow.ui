@@ -225,11 +225,20 @@ color: rgb(15, 96, 0);</string>
       <height>21</height>
      </rect>
     </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="echoMode">
+     <enum>QLineEdit::Normal</enum>
+    </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
     </property>
     <property name="readOnly">
      <bool>true</bool>
+    </property>
+    <property name="clearButtonEnabled">
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QLineEdit" name="line_player3">
@@ -608,7 +617,7 @@ color: rgb(15, 96, 0);</string>
      <x>0</x>
      <y>0</y>
      <width>1000</width>
-     <height>21</height>
+     <height>24</height>
     </rect>
    </property>
   </widget>

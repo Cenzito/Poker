@@ -21,7 +21,7 @@ public:
     void update_display();
     void update_community_cards();
     void update_middle_card_display(int cardIndex, const Card& card);
-    void display_names_bet();
+    void display_names_stacks_bets();
 
     void display_player_hand();
     void switch_bet_button_on();
@@ -39,26 +39,6 @@ private slots:
     void onFoldButtonClicked();
 
     void onCallButtonClicked();
-
-    // beginning of switch from name tag to bank display
-
-    void on_line_player1_cursorPositionChanged();
-
-    void on_line_player2_cursorPositionChanged();
-
-    void on_line_player3_cursorPositionChanged();
-
-    void on_line_player4_cursorPositionChanged();
-
-    void on_line_player5_cursorPositionChanged();
-
-    void on_line_player6_cursorPositionChanged();
-
-    void on_line_player7_cursorPositionChanged();
-
-    void on_line_player8_cursorPositionChanged();
-
-    // end of switch from name tag to bank display
 
     void updateCallButtonLabel();
 
