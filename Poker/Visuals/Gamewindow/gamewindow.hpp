@@ -2,7 +2,6 @@
 #define GAMEWINDOW_H
 
 #include <QMainWindow>
-#include "GameLogic/Game.hpp"
 #include "GameLogic/PokerPlayer.hpp"
 #include "GameLogic/PlayerInfo.hpp"
 

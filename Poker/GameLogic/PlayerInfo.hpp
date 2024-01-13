@@ -18,6 +18,7 @@ class PlayerInfo
         int bet;
 
         bool isAllin, isFold;
+        void Print();
 
 };
 

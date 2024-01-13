@@ -5,7 +5,6 @@
 #include "GameLogic/PokerHand.hpp"
 #include "GameLogic/Card.hpp"
 #include "GameLogic/Table.hpp"
-#include "GameLogic/Game.hpp"
 
 class BotDarius : public Bot
 {

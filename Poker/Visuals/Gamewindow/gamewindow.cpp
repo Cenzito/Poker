@@ -5,7 +5,6 @@
 #include "GameLogic/table.hpp"
 #include"GameLogic/PlayerInfo.hpp"
 #include "GameLogic/PokerPlayer.hpp"
-#include "GameLogic/Game.hpp"
 
 GameWindow::GameWindow(QWidget *parent, std::string name) : game_player(name),
     QMainWindow(parent),
