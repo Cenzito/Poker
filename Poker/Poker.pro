@@ -31,7 +31,6 @@ SOURCES += \
     GameLogic/Card.cpp \
     GameLogic/Deck.cpp \
     GameLogic/Table.cpp \
-    GameLogic/Game.cpp \
     GameLogic/Monte_Carlo_Probability_Simulator.cpp \
     Visuals/Gamewindow/gamewindow.cpp \
     Visuals/MainWindow/mainwindow.cpp \
@@ -55,7 +54,6 @@ HEADERS += \
     GameLogic/PokerHand.hpp \
     GameLogic/Card.hpp \
     GameLogic/Deck.hpp \
-    GameLogic/Game.hpp \
     GameLogic/Table.hpp \
     Visuals/Gamewindow/gamelocalwindow.hpp \
     Visuals/Gamewindow/gamewindow.hpp \

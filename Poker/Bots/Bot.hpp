@@ -9,7 +9,7 @@ public :
         this -> level = level;
     };
 
-   virtual signed int Action();
+   virtual void Action();
 
 protected:
     int level;

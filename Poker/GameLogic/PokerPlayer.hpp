@@ -12,14 +12,14 @@
 
 
 
-class PokerPlayer {
+class PokerPlayer : public QObject {
     Q_OBJECT
 public:
     PokerPlayer(const std::string& name);
     const std::string& getName() const;
 
-    //Action function, will be called to know what the player does
-    signed int Action();
+    //Action function, will be called when the player must act
+    virtual void Action();
 
 
     void showHand() const;

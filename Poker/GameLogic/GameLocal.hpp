@@ -11,7 +11,7 @@
 #include <algorithm>
 
 
-class GameLocal
+class GameLocal : public QObject
 {
     Q_OBJECT
 public:
@@ -29,17 +29,11 @@ public:
     void fold(PlayerInfo& foldPlayer);
 
     void endHand(PlayerInfo& winner);
-    void newHand();
 
     void updatePlayersTable();
     void nextHand();
 
     void nextBettingRound();
-
-    void askBet();
-
-    signed int askAction(PokerPlayer* player);
-    void bettingRound(int first_player, bool isfirst_round);
 
     PokerPlayer* findPlayer(std::string name);
     std::vector<PokerPlayer*> players;
