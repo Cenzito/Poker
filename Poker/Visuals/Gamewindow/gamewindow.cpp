@@ -393,6 +393,7 @@ void GameWindow::display_names_bet(){
 
     if (game_player.tableInfo.player_num<=1) {
         std::string playerName1 = game_player.tableInfo.playerInfo[0].name;
+        qDebug() << QString::fromStdString(playerName1);
         ui ->line_player1->setText(QString::fromStdString(playerName1));
     }
     if (game_player.tableInfo.player_num<=2) {
