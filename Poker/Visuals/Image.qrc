@@ -1,6 +1,6 @@
 <RCC>
     <qresource prefix="/">
-        <file>images/cards/C/1.png</file>
+        <file>images/cards/C/14.png</file>
         <file>images/cards/C/2.png</file>
         <file>images/cards/C/3.png</file>
         <file>images/cards/C/4.png</file>
@@ -13,7 +13,7 @@
         <file>images/cards/C/11.png</file>
         <file>images/cards/C/12.png</file>
         <file>images/cards/C/13.png</file>
-        <file>images/cards/D/1.png</file>
+        <file>images/cards/D/14.png</file>
         <file>images/cards/D/2.png</file>
         <file>images/cards/D/3.png</file>
         <file>images/cards/D/4.png</file>
@@ -26,7 +26,7 @@
         <file>images/cards/D/11.png</file>
         <file>images/cards/D/12.png</file>
         <file>images/cards/D/13.png</file>
-        <file>images/cards/H/1.png</file>
+        <file>images/cards/H/14.png</file>
         <file>images/cards/H/2.png</file>
         <file>images/cards/H/3.png</file>
         <file>images/cards/H/4.png</file>
@@ -39,7 +39,7 @@
         <file>images/cards/H/11.png</file>
         <file>images/cards/H/12.png</file>
         <file>images/cards/H/13.png</file>
-        <file>images/cards/S/1.png</file>
+        <file>images/cards/S/14.png</file>
         <file>images/cards/S/2.png</file>
         <file>images/cards/S/3.png</file>
         <file>images/cards/S/4.png</file>
