@@ -90,16 +90,18 @@ void GameWindow::update_display(){
       //  switch_bet_button_on();
     //}
     switch_players_display();
+    update_community_cards();
 }
 
 //many bugs, i will solve them
 
-/*void GameWindow::update_community_cards() {
-    Table table;
-    const std::vector<Card>& communityCards = table.communityCards;
+void GameWindow::update_community_cards() {
+    const std::vector<Card>& communityCards = game_player.tableInfo.communityCards;
+
+    qDebug() << "number center cards: " << communityCards.size();
 
     // Display the first three community cards initially
-    for (int i = 0; i < 3; ++i) {
+    for (int i = 0; i < communityCards.size(); ++i) {
         update_middle_card_display(i + 1, communityCards[i]);
     }
 }
@@ -108,12 +110,16 @@ void GameWindow::update_middle_card_display(int cardIndex, const Card& card) {
     QLabel* middleCardLabel = findChild<QLabel*>(QString("label_middlecard%1").arg(cardIndex));
     if (middleCardLabel) {
         // Get the image path for the card
-        QString imagePath = Get_image_path(card.suit, std::to_string(card.getValue()), false);
+        QString imagePath = Get_image_path(suitToString(card.getSuit()), std::to_string(card.getValue()), false);
         // Loading and setting the image to the QLabel
         QPixmap image(imagePath);
-        ui->middleCardLabel->setPixmap(image);
+
+        QSize labelSize = middleCardLabel->size();
+
+        QPixmap resized_card = image.scaled(labelSize, Qt::KeepAspectRatio);
+        middleCardLabel->setPixmap(resized_card);
     }
-}*/
+}
 
 
 

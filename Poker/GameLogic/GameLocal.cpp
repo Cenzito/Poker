@@ -223,6 +223,9 @@ void GameLocal::nextBettingRound() {
             tableInfo.communityCards.push_back(deck.dealCard());
 
 
+            qDebug() << "cards " << tableInfo.communityCards.size();
+
+
             updatePlayersTable();
             break;
 
