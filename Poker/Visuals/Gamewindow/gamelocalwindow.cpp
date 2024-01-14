@@ -8,4 +8,5 @@ GameLocalWindow::GameLocalWindow(QWidget *parent, std::string p) : GameWindow(pa
 
 
     game.JoinGame(&game_player);
+
 }

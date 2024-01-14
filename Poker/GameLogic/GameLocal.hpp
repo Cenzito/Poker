@@ -33,6 +33,7 @@ public:
 
     void nextHand();
 
+
     void nextBettingRound();
 
     void setNextCurrentPlayer();

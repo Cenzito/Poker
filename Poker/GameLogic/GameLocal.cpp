@@ -45,12 +45,12 @@ void GameLocal::addBot(Bot* bot) {
 }
 
 
-
 void GameLocal::pay(PlayerInfo& PlayerPay, int sum) {
     PlayerPay.stack_size -= sum;
     PlayerPay.bet += sum;
     tableInfo.pot += sum;
     qDebug() << "payed" << QString::fromStdString(PlayerPay.name) << " " << sum;
+
 };
 
 void GameLocal::win(PlayerInfo& PlayerWin, int sum) {
@@ -83,9 +83,16 @@ void GameLocal::updatePlayersTable() {
 }
 
 
+
 void GameLocal::nextHand(){
     for (PokerPlayer* player : players) {
         player->removeCards();
+    }
+    //reset bets
+    for (int i = 0; i <= tableInfo.player_num; i++) {
+        tableInfo.playerInfo[i].bet = 0;
+        tableInfo.playerInfo[i].isAllin = false;
+        tableInfo.playerInfo[i].isFold = false;
     }
     //reset bets
     for (int i = 0; i <= tableInfo.player_num; i++) {

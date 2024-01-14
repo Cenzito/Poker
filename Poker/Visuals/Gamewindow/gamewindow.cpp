@@ -32,6 +32,7 @@ GameWindow::GameWindow(QWidget *parent, std::string name) : game_player(name),
 
 
     switch_bet_button_off();
+
 }
 
 GameWindow::~GameWindow()
@@ -66,6 +67,12 @@ void GameWindow::onRaiseButtonClicked(){
 
 void GameWindow::onCallButtonClicked(){ //Reminder: this is check/call button, need to work on changing the name in accordance with the situation, but functionallity should work fine for now
     emit game_player.Call();
+
+}
+
+void GameWindow::onCallButtonClicked(){ //Reminder: this is check/call button, need to work on changing the name in accordance with the situation, but functionallity should work fine for now
+    //game_player->call(0);
+    switch_bet_button_on();
 }
 
 
@@ -144,6 +151,7 @@ void GameWindow::display_player_hand(){ // to test
     if (H.size() != 2) {
         return;
     }
+
     Card C1 = H[0] ;
     Card C2 = H[1] ;
     Suit S1 = C1.getSuit() ;
@@ -151,7 +159,7 @@ void GameWindow::display_player_hand(){ // to test
     int v1 = C1.getValue() ;
     int v2 = C2.getValue() ;
     qDebug() << v1;
-    qDebug() << "adsaf";
+
     // we have the two cards of the player, the suit and value of both those cards
     // following are the path to both corresponding image cards
     QString p1 = Get_image_path(suitToString(S1),std::to_string(v1),false) ;
@@ -172,6 +180,19 @@ void GameWindow::display_player_hand(){ // to test
     ui->label_card1->setPixmap(resized_card1) ;
     ui ->label_card2->setPixmap(resized_card2) ;
 }
+  
+// end of display poker hand
+  
+// beginning of switch for buttons
+  
+void GameWindow::switch_bet_button_on(){
+    int current_player = game_player.tableInfo.current_player ;
+    //auto current_player_info = player->tableInfo.playerInfo[current_player] ;
+    //auto current_player_info = player->tableInfo.playerInfo[current_player] ;
+    //std::string current_player_info_name = current_player_info.name ;
+
+    std::string player_name = game_player.name ;
+
 
 // end of display poker hand
   
@@ -194,6 +215,7 @@ void GameWindow::switch_bet_button_on(){
         }
     }
 }
+
 
 void GameWindow::switch_bet_button_off(){
     int current_player = game_player.tableInfo.current_player ;
@@ -225,9 +247,11 @@ void GameWindow::switch_players_display(){
     if (number_player < 2){
         ui->line_player2->hide();
         ui->line_bet2->hide();
+
     }else {
         ui->line_player2->show();
         ui->line_bet2->show();
+
     }
     if (number_player < 3){
         ui->line_player3->hide();
@@ -293,7 +317,6 @@ void GameWindow::display_names_stacks_bets(){
         ui->line_bet2->setText(QString::fromStdString(betplayer2));
     }
     if (game_player.tableInfo.player_num>=3) {
-
         std::string playerName3 = game_player.tableInfo.playerInfo[2].name+" | "+std::to_string(game_player.tableInfo.playerInfo[2].stack_size);
         ui ->line_player3->setText(QString::fromStdString(playerName3));
         std::string betplayer3 = std::to_string(game_player.tableInfo.playerInfo[2].bet);
