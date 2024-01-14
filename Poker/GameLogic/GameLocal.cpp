@@ -28,6 +28,14 @@ void GameLocal::JoinGame(PokerPlayer* player) {
         tableInfo.playerInfo.insert({getFreeSeat(), playerinfo});
         players.push_back(player);
         tableInfo.player_num += 1;
+
+
+        //connect slots to signals
+        QObject::connect(player, &PokerPlayer::Call, this, &GameLocal::onCall);
+        QObject::connect(player, &PokerPlayer::Fold, this, &GameLocal::onFold);
+        QObject::connect(player, &PokerPlayer::Raise, this,&GameLocal::onRaise);
+        QObject::connect(this, &GameLocal::updatePTable, player, &PokerPlayer::updateTable);
+
     }
     updatePlayersTable();
 }
@@ -58,6 +66,7 @@ void GameLocal::win(PlayerInfo& PlayerWin, int sum) {
 void GameLocal::endHand(PlayerInfo& winner) {
     qDebug() << "winner is " << QString::fromStdString(winner.name);
     win(winner, tableInfo.pot);
+
     updatePlayersTable();
     nextHand();
 }
@@ -94,17 +103,12 @@ void GameLocal::nextHand(){
 
     tableInfo.current_player = tableInfo.ButtonPlayer;
 
+    tableInfo.communityCards.clear();
+    qDebug() << tableInfo.communityCards.size();
+
     hand_finished = false;
     updatePlayersTable();
 
-
-    // Connect the custom slot to the player's signal
-    for (PokerPlayer* player: players) {
-        QObject::connect(player, &PokerPlayer::Call, this, &GameLocal::onCall);
-        QObject::connect(player, &PokerPlayer::Fold, this, &GameLocal::onFold);
-        QObject::connect(player, &PokerPlayer::Raise, this,&GameLocal::onRaise);
-        QObject::connect(this, &GameLocal::updatePTable, player, &PokerPlayer::updateTable);
-    }
 
     //only start a new round if there are at least 3 players
     if (tableInfo.player_num >= 3){
@@ -279,8 +283,6 @@ void GameLocal::nextBettingRound() {
                     winnerHand = currentHand;
                 }
             }
-
-            qDebug() <<"finedddd";
             endHand(winner);
             break;
     }

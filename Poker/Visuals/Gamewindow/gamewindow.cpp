@@ -101,14 +101,20 @@ void GameWindow::update_community_cards() {
     qDebug() << "number center cards: " << communityCards.size();
 
     // Display the first three community cards initially
-    for (int i = 0; i < communityCards.size(); ++i) {
-        update_middle_card_display(i + 1, communityCards[i]);
+    int i = 0;
+    for (; i < communityCards.size(); i++) {
+        update_middle_card_display(i+1, communityCards[i]);
+    }
+
+    for (; i< 5; i++) {
+        remove_middle_card_display(i+1);
     }
 }
 
 void GameWindow::update_middle_card_display(int cardIndex, const Card& card) {
     QLabel* middleCardLabel = findChild<QLabel*>(QString("label_middlecard%1").arg(cardIndex));
     if (middleCardLabel) {
+        //middleCardLabel->show();
         // Get the image path for the card
         QString imagePath = Get_image_path(suitToString(card.getSuit()), std::to_string(card.getValue()), false);
         // Loading and setting the image to the QLabel
@@ -118,6 +124,15 @@ void GameWindow::update_middle_card_display(int cardIndex, const Card& card) {
 
         QPixmap resized_card = image.scaled(labelSize, Qt::KeepAspectRatio);
         middleCardLabel->setPixmap(resized_card);
+
+    }
+}
+
+void GameWindow::remove_middle_card_display(int cardIndex) {
+    qDebug() << "111";
+    QLabel* middleCardLabel = findChild<QLabel*>(QString("label_middlecard%1").arg(cardIndex));
+    if (middleCardLabel) {
+        middleCardLabel->clear();
     }
 }
 
