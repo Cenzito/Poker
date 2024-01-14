@@ -22,6 +22,7 @@ void GameLocal::JoinGame(PokerPlayer* player) {
     if (tableInfo.player_num >= tableInfo.seats)  {
         return;
     } else {
+        qDebug() << QString::fromStdString(player->name);
         //player joins game so we add him to the table with an initial amount of money
         PlayerInfo playerinfo(player->getName(), 1000, 0);
         tableInfo.playerInfo.insert({getFreeSeat(), playerinfo});
@@ -41,6 +42,7 @@ void GameLocal::pay(PlayerInfo& PlayerPay, int sum) {
     PlayerPay.stack_size -= sum;
     PlayerPay.bet += sum;
     tableInfo.pot += sum;
+    qDebug() << "payed" << QString::fromStdString(PlayerPay.name) << " " << sum;
 };
 
 void GameLocal::win(PlayerInfo& PlayerWin, int sum) {
@@ -66,9 +68,8 @@ void GameLocal::fold(PlayerInfo& foldPlayer) {
 }
 
 void GameLocal::updatePlayersTable() {
-    for (PokerPlayer* player : players) {
-        player->updateTable(tableInfo);
-    }
+    emit updatePTable(tableInfo);
+
     tableInfo.Print();
 }
 
@@ -85,10 +86,13 @@ void GameLocal::nextHand(){
     }
 
     tableInfo.pot=0;
-    tableInfo.ButtonPlayer += 1;
+    tableInfo.ButtonPlayer = (tableInfo.ButtonPlayer + 1)% tableInfo.player_num;
     tableInfo.communityCards=std::vector<Card>();
     tableInfo.current_biggest_bet = 0;
     tableInfo.betting_round = -1;
+    players_standing = tableInfo.player_num;
+
+    tableInfo.current_player = tableInfo.ButtonPlayer;
 
     hand_finished = false;
     updatePlayersTable();
@@ -99,6 +103,7 @@ void GameLocal::nextHand(){
         QObject::connect(player, &PokerPlayer::Call, this, &GameLocal::onCall);
         QObject::connect(player, &PokerPlayer::Fold, this, &GameLocal::onFold);
         QObject::connect(player, &PokerPlayer::Raise, this,&GameLocal::onRaise);
+        QObject::connect(this, &GameLocal::updatePTable, player, &PokerPlayer::updateTable);
     }
 
     //only start a new round if there are at least 3 players
@@ -121,13 +126,9 @@ void GameLocal::onAction() {
     }
     else {
         //get next current_player
-        for (int elt = 1; elt <= tableInfo.player_num; elt++) {
-            tableInfo.current_player = (tableInfo.current_player + 1) % tableInfo.player_num;
-            if ( tableInfo.playerInfo[tableInfo.current_player].isFold ) {
-                break;
-            }
-        }
-        tableInfo.current_player = (tableInfo.current_player + 1) % tableInfo.player_num;
+        setNextCurrentPlayer();
+
+        qDebug() << tableInfo.current_player << " " << tableInfo.lastRaiser;
 
         // we end round of betting
         if (tableInfo.current_player == tableInfo.lastRaiser) {
@@ -138,6 +139,7 @@ void GameLocal::onAction() {
     }
 }
 void GameLocal::onCall() {
+    qDebug() << "called it";
 
     PlayerInfo &currentPlayerInfo = tableInfo.playerInfo[tableInfo.current_player];
 
@@ -161,12 +163,14 @@ void GameLocal::onFold() {
 void GameLocal::onRaise(int bet) {
     PlayerInfo &currentPlayerInfo = tableInfo.playerInfo[tableInfo.current_player];
     //if bets too little or doesn't have the money to bet: fold
-    if (currentPlayerInfo.stack_size < bet || bet + currentPlayerInfo.bet < tableInfo.current_biggest_bet) {
+    if (currentPlayerInfo.stack_size < tableInfo.current_biggest_bet + bet) {
         fold(currentPlayerInfo);
     } else {
+        qDebug() << "raised " << bet;
         pay(currentPlayerInfo, bet);
         tableInfo.current_biggest_bet = currentPlayerInfo.bet;
         tableInfo.lastRaiser = tableInfo.current_player;
+
     }
     onAction();
 }
@@ -174,20 +178,31 @@ void GameLocal::onRaise(int bet) {
 
 void GameLocal::nextBettingRound() {
     tableInfo.betting_round += 1;
-    //last round finished so finish the game
+    for (int i = 0; i <= tableInfo.player_num; i++) {
+        tableInfo.playerInfo[i].bet = 0;
+    }
+    tableInfo.current_biggest_bet = 0;
+    tableInfo.current_player = tableInfo.ButtonPlayer;
+    setNextCurrentPlayer();
+    tableInfo.lastRaiser = tableInfo.current_player;
 
+
+
+    qDebug() << "betting round " << tableInfo.betting_round;
     switch (tableInfo.betting_round) {
         case 0:
+
             //preflop
             qDebug() << "start hand \n\n";
             players_standing = tableInfo.player_num;
 
+            tableInfo.current_biggest_bet = tableInfo.BBValue;
             //setting small and big blind
             pay(tableInfo.playerInfo[(tableInfo.ButtonPlayer + 1) % tableInfo.player_num], tableInfo.SBValue);
 
             pay(tableInfo.playerInfo[(tableInfo.ButtonPlayer + 2) % tableInfo.player_num], tableInfo.BBValue);
 
-            updatePlayersTable();
+
 
             deck.shuffleDeck();
             //give cards to players
@@ -198,27 +213,30 @@ void GameLocal::nextBettingRound() {
                 player->receiveCards(cards);
             }
 
+            updatePlayersTable();
+            break;
 
         case 1:
             // second betting round
+            tableInfo.communityCards.push_back(deck.dealCard());
+            tableInfo.communityCards.push_back(deck.dealCard());
+            tableInfo.communityCards.push_back(deck.dealCard());
 
-            tableInfo.communityCards.push_back(deck.dealCard());
-            tableInfo.communityCards.push_back(deck.dealCard());
-            tableInfo.communityCards.push_back(deck.dealCard());
-            tableInfo.current_player = (tableInfo.ButtonPlayer + 1) % tableInfo.player_num;
+
             updatePlayersTable();
+            break;
 
         case 2:
             //third betting round
             tableInfo.communityCards.push_back(deck.dealCard());
-            tableInfo.current_player = (tableInfo.ButtonPlayer + 1) % tableInfo.player_num;
             updatePlayersTable();
+            break;
 
         case 3:
             //last betting round
             tableInfo.communityCards.push_back(deck.dealCard());
-            tableInfo.current_player = (tableInfo.ButtonPlayer + 1) % tableInfo.player_num;
             updatePlayersTable();
+            break;
 
         case 4:
             // show hands and declare winner
@@ -257,10 +275,8 @@ void GameLocal::nextBettingRound() {
                 }
             }
             endHand(winner);
+            break;
     }
-
-
-
 }
 
 PokerPlayer* GameLocal::findPlayer(std::string name) {
@@ -271,7 +287,15 @@ PokerPlayer* GameLocal::findPlayer(std::string name) {
     }
 };
 
-
+void GameLocal::setNextCurrentPlayer() {
+    //get next current_player
+    for (int elt = 1; elt <= tableInfo.player_num; elt++) {
+        tableInfo.current_player = (tableInfo.current_player + 1) % tableInfo.player_num;
+        if ( !tableInfo.playerInfo[tableInfo.current_player].isFold ) {
+            break;
+        }
+    }
+}
 
 
 

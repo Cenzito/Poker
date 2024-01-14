@@ -30,10 +30,12 @@ public:
 
     void endHand(PlayerInfo& winner);
 
-    void updatePlayersTable();
+
     void nextHand();
 
     void nextBettingRound();
+
+    void setNextCurrentPlayer();
 
     PokerPlayer* findPlayer(std::string name);
     std::vector<PokerPlayer*> players;
@@ -45,10 +47,16 @@ public:
     bool hand_finished;
 
     void onAction();
+
 public slots:
     void onRaise(int amount);
     void onFold();
     void onCall();
+
+    void updatePlayersTable();
+
+signals:
+    void updatePTable(Table t);
 };
 
 #endif // GAMELOCAL_HPP

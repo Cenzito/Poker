@@ -28,7 +28,10 @@ GameWindow::GameWindow(QWidget *parent, std::string name) : game_player(name),
     QSize pot_image_size = ui->label_pot->size();
     ui->label_pot->setPixmap(QPixmap::fromImage(pot_image).scaled(pot_image_size, Qt::KeepAspectRatio, Qt::SmoothTransformation));
 
+    QObject::connect(&game_player, &PokerPlayer::callUpdateDisplay, this, &GameWindow::update_display);
 
+
+    switch_bet_button_off();
 }
 
 GameWindow::~GameWindow()
@@ -58,20 +61,17 @@ void GameWindow::onRaiseButtonClicked(){
     int add_bet = ui->raise_box->value();
     int current = (ui->cumulative_bet_line->text()).toInt();
     ui->cumulative_bet_line->setText(QString::number(add_bet+current));
-
-    //game_player->raise(current);
-    switch_bet_button_on();
+    qDebug() << add_bet;
+    emit game_player.Raise(add_bet);
 }
 
 void GameWindow::onCallButtonClicked(){ //Reminder: this is check/call button, need to work on changing the name in accordance with the situation, but functionallity should work fine for now
-    //game_player->call(0);
-    switch_bet_button_on();
+    emit game_player.Call();
 }
 
 
 void GameWindow::onFoldButtonClicked(){
-    //game_player->fold();
-    switch_bet_button_on();
+    emit game_player.Fold();
 }
 
 void GameWindow::update_display(){
@@ -86,9 +86,10 @@ void GameWindow::update_display(){
     //update_community_cards();
 
     //if you are the current player
-    if (game_player.tableInfo.playerInfo[game_player.tableInfo.current_player].name == game_player.getName()) {
-        switch_bet_button_on();
-    }
+    //if (game_player.tableInfo.playerInfo[game_player.tableInfo.current_player].name == game_player.getName()) {
+      //  switch_bet_button_on();
+    //}
+    switch_players_display();
 }
 
 //many bugs, i will solve them
@@ -119,8 +120,10 @@ void GameWindow::update_middle_card_display(int cardIndex, const Card& card) {
 // beginning of display poker hand 
   
 void GameWindow::display_player_hand(){ // to test
-    qDebug() << "hey";
     std::vector<Card> H = game_player.getHand() ; //get the player's hand, to access the cards that need to be displayed
+    if (H.size() != 2) {
+        return;
+    }
     Card C1 = H[0] ;
     Card C2 = H[1] ;
     Suit S1 = C1.getSuit() ;
@@ -128,6 +131,7 @@ void GameWindow::display_player_hand(){ // to test
     int v1 = C1.getValue() ;
     int v2 = C2.getValue() ;
     qDebug() << v1;
+    qDebug() << "adsaf";
     // we have the two cards of the player, the suit and value of both those cards
     // following are the path to both corresponding image cards
     QString p1 = Get_image_path(suitToString(S1),std::to_string(v1),false) ;
@@ -148,7 +152,7 @@ void GameWindow::display_player_hand(){ // to test
     ui->label_card1->setPixmap(resized_card1) ;
     ui ->label_card2->setPixmap(resized_card2) ;
 }
-  
+
 // end of display poker hand
   
 // beginning of switch for buttons
@@ -201,30 +205,51 @@ void GameWindow::switch_players_display(){
     if (number_player < 2){
         ui->line_player2->hide();
         ui->line_bet2->hide();
+    }else {
+        ui->line_player2->show();
+        ui->line_bet2->show();
     }
     if (number_player < 3){
         ui->line_player3->hide();
         ui->line_bet3->hide();
+    }else {
+        ui->line_player3->show();
+        ui->line_bet3->show();
     }
     if (number_player < 4){
         ui->line_player4->hide();
         ui->line_bet4->hide();
+    }else {
+        ui->line_player4->show();
+        ui->line_bet4->show();
     }
     if (number_player < 5){
         ui->line_player5->hide();
         ui->line_bet5->hide();
+    }else {
+        ui->line_player5->show();
+        ui->line_bet5->show();
     }
     if (number_player < 6){
         ui->line_player6->hide();
         ui->line_bet6->hide();
+    }else {
+        ui->line_player6->show();
+        ui->line_bet6->show();
     }
     if (number_player < 7){
         ui->line_player7->hide();
         ui->line_bet7->hide();
+    }else {
+        ui->line_player7->show();
+        ui->line_bet7->show();
     }
     if (number_player < 8){
         ui->line_player8->hide();
         ui->line_bet8->hide();
+    }else {
+        ui->line_player8->show();
+        ui->line_bet8->show();
     }
 }
 
@@ -234,51 +259,51 @@ void GameWindow::switch_players_display(){
 
 void GameWindow::display_names_stacks_bets(){
 
-    if (game_player.tableInfo.player_num<=1) {
+    if (game_player.tableInfo.player_num>=1) {
         std::string playerName1 = game_player.tableInfo.playerInfo[0].name+" | "+std::to_string(game_player.tableInfo.playerInfo[0].stack_size);
         qDebug() << QString::fromStdString(playerName1);
         ui ->line_player1->setText(QString::fromStdString(playerName1));
         std::string betplayer1 = std::to_string(game_player.tableInfo.playerInfo[0].bet);
         ui->line_bet1->setText(QString::fromStdString(betplayer1));
     }
-    if (game_player.tableInfo.player_num<=2) {
+    if (game_player.tableInfo.player_num>=2) {
         std::string playerName2 = game_player.tableInfo.playerInfo[1].name+" | "+std::to_string(game_player.tableInfo.playerInfo[1].stack_size);
         ui ->line_player2->setText(QString::fromStdString(playerName2));
         std::string betplayer2 = std::to_string(game_player.tableInfo.playerInfo[1].bet);
         ui->line_bet2->setText(QString::fromStdString(betplayer2));
     }
-    if (game_player.tableInfo.player_num<=3) {
+    if (game_player.tableInfo.player_num>=3) {
 
         std::string playerName3 = game_player.tableInfo.playerInfo[2].name+" | "+std::to_string(game_player.tableInfo.playerInfo[2].stack_size);
         ui ->line_player3->setText(QString::fromStdString(playerName3));
         std::string betplayer3 = std::to_string(game_player.tableInfo.playerInfo[2].bet);
         ui->line_bet3->setText(QString::fromStdString(betplayer3));
     }
-    if (game_player.tableInfo.player_num<=4) {
+    if (game_player.tableInfo.player_num>=4) {
         std::string playerName4 = game_player.tableInfo.playerInfo[3].name+" | "+std::to_string(game_player.tableInfo.playerInfo[3].stack_size);
         ui ->line_player4->setText(QString::fromStdString(playerName4));
         std::string betplayer4 = std::to_string(game_player.tableInfo.playerInfo[3].bet);
         ui->line_bet4->setText(QString::fromStdString(betplayer4));
     }
-    if (game_player.tableInfo.player_num<=5) {
+    if (game_player.tableInfo.player_num>=5) {
         std::string playerName5 = game_player.tableInfo.playerInfo[4].name+" | "+std::to_string(game_player.tableInfo.playerInfo[4].stack_size);
         ui ->line_player5->setText(QString::fromStdString(playerName5));
         std::string betplayer5 = std::to_string(game_player.tableInfo.playerInfo[4].bet);
         ui->line_bet5->setText(QString::fromStdString(betplayer5));
     }
-    if (game_player.tableInfo.player_num<=6) {
+    if (game_player.tableInfo.player_num>=6) {
         std::string playerName6 = game_player.tableInfo.playerInfo[5].name+" | "+std::to_string(game_player.tableInfo.playerInfo[5].stack_size);
         ui ->line_player6->setText(QString::fromStdString(playerName6));
         std::string betplayer6 = std::to_string(game_player.tableInfo.playerInfo[5].bet);
         ui->line_bet6->setText(QString::fromStdString(betplayer6));
     }
-    if (game_player.tableInfo.player_num<=7) {
+    if (game_player.tableInfo.player_num>=7) {
         std::string playerName7 = game_player.tableInfo.playerInfo[6].name+" | "+std::to_string(game_player.tableInfo.playerInfo[6].stack_size);
         ui ->line_player7->setText(QString::fromStdString(playerName7));
         std::string betplayer7 = std::to_string(game_player.tableInfo.playerInfo[6].bet);
         ui->line_bet7->setText(QString::fromStdString(betplayer7));
     }
-    if (game_player.tableInfo.player_num<=8) {
+    if (game_player.tableInfo.player_num>=8) {
         std::string playerName8 = game_player.tableInfo.playerInfo[7].name+" | "+std::to_string(game_player.tableInfo.playerInfo[7].stack_size);
         ui ->line_player8->setText(QString::fromStdString(playerName8));
         std::string betplayer8 = std::to_string(game_player.tableInfo.playerInfo[7].bet);
