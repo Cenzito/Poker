@@ -255,28 +255,32 @@ void GameLocal::nextBettingRound() {
             std::vector<Card> community = tableInfo.communityCards;
 
             //showdown
+            qDebug() << playersNotFold.size();
             PlayerInfo winner = playersNotFold[0];
-            std::vector<Card> winnerHandVect;
-            qDebug() << "a";
-            merge(community.begin(), community.end(), findPlayer(winner.name)->getHand().begin(), findPlayer(winner.name)->getHand().end(), winnerHandVect.begin());
+            std::vector<Card> winnerHandVect = findPlayer(winner.name)->getHand();
 
+            winnerHandVect.insert(winnerHandVect.end(), community.begin(), community.end());
+
+            qDebug() << winnerHandVect.size();
             PokerHand winnerHand(winnerHandVect);
-
+            qDebug() << "a";
             //iterate over players and compute their hand score
             //if their score is better than the current best, they become best
             //haven't taken into account ties yet, in that case, first player considered wins
             for (PlayerInfo current : playersNotFold) {
-                std::vector<Card> currentHandVect;
+                std::vector<Card> currentHandVect = findPlayer(current.name)->getHand();;
                 //getting hands throught the "getHand" function in the PokerPlayer class which is bad
                 //need to store the hands of the players in the Game in order to retrieve and compare them
-                merge(community.begin(), community.end(), findPlayer(winner.name)->getHand().begin(), findPlayer(winner.name)->getHand().end(), winnerHandVect.begin());
 
+                currentHandVect.insert(currentHandVect.end(), community.begin(), community.end());
                 PokerHand currentHand(currentHandVect);
                 if (compare_hands(winnerHand, currentHand) == 2) {
-                winner = current;
-                winnerHand = currentHand;
+                    winner = current;
+                    winnerHand = currentHand;
                 }
             }
+
+            qDebug() <<"finedddd";
             endHand(winner);
             break;
     }
