@@ -5,12 +5,12 @@
 #include <sstream>
 #include <unordered_map>
 #include "expected_money.hpp"
-#include <regex>
 
 Hand::Hand(std::string& player, std::string& street, std::string& action, double chips)
     : player(player), street(street), action(action), chips(chips) {}
 
 Hand::Hand() {}
+
 
 std::vector<Hand> ReadPlayerHands(std::string file_name, std::string player_name) {
     std::ifstream file(file_name);
@@ -28,17 +28,35 @@ std::vector<Hand> ReadPlayerHands(std::string file_name, std::string player_name
             continue;
         } else {
 
-            if (line.find("Seat") != std::string::npos && line.find(player_name) != std::string::npos){
-                // Extract chip count from the line
-                std::regex chipRegex("Seat \\d+: " + player_name + " \\((\\d+) in chips\\)");
-                std::smatch chipMatch;
-                if (std::regex_search(line, chipMatch, chipRegex)) {
-                    chips = std::stod(chipMatch[1]);
-                    std::cout << "Chips: " << chips << std::endl;
-                    // You can store 'chips' in a variable if needed
-                }
+            // Extract chip count
+            if (line.find("Seat") != std::string::npos && line.find(player_name) != std::string::npos) {
+            
+            std::string chipsStartSubstring = " (";
+            std::string chipsEndSubstring = " in chips)";
 
+            // Find the position of the chips start substring
+            size_t chipsStartPos = line.find(chipsStartSubstring);
+        
+            // If the chips start substring is found, proceed to extract the chip count
+            if (chipsStartPos != std::string::npos) {
+            // Adjust the start position to point to the character after the chips start substring
+            chipsStartPos += chipsStartSubstring.length();
+            
+            // Find the position of the chips end substring
+            size_t chipsEndPos = line.find(chipsEndSubstring, chipsStartPos);
+            
+            // If the chips end substring is found, extract the chip count substring
+            if (chipsEndPos != std::string::npos) {
+                std::string chipsStr = line.substr(chipsStartPos, chipsEndPos - chipsStartPos);
+                
+                // Convert the extracted chip count substring to an integer
+                int chips = std::stoi(chipsStr);
+                
+                // Print the result
+                std::cout << "Chips: " << chips << std::endl;
             }
+        } }
+    
 
             if (line.find("*** HOLE CARDS ***") != std::string::npos) {
                 street = "Preflop";
@@ -82,7 +100,7 @@ std::vector<Hand> ReadPlayerHands(std::string file_name, std::string player_name
 
 int main() {
     // Sample data (replace this with your actual hand history data)
-    std::vector<Hand> hand_history = ReadPlayerHands("PokerHands3.txt", "remi418");
+    std::vector<Hand> hand_history = ReadPlayerHands("PokerHands1.txt", "remi418");
     // Print the hand history
     for (auto hand : hand_history) {
         std::cout << hand.player << " " << hand.street << " " << hand.action << std::endl;
