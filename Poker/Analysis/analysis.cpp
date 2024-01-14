@@ -105,7 +105,7 @@ std::vector<Hand> ReadPlayerHands(std::string file_name, std::string player_name
 
 int main() {
     // Sample data (replace this with your actual hand history data)
-    std::vector<Hand> hand_history = ReadPlayerHands("PokerHands1.txt", "remi418");
+    std::vector<Hand> hand_history = ReadPlayerHands("PokerHands3.txt", "remi418");
     // Print the hand history
     for (auto hand : hand_history) {
         std::cout << hand.player << " " << hand.street << " " << hand.action << std::endl;

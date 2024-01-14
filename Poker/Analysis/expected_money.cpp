@@ -5,9 +5,10 @@
 #include <sstream>
 #include <unordered_map>
 #include "expected_money.hpp"
+#include <regex>
 
-Hand::Hand(std::string& player, std::string& street, std::string& action, double money_won)
-    : player(player), street(street), action(action), money_won(money_won) {}
+Hand::Hand(std::string& player, std::string& street, std::string& action, double chips)
+    : player(player), street(street), action(action), chips(chips) {}
 
 Hand::Hand() {}
 
@@ -17,14 +18,28 @@ std::vector<Hand> ReadPlayerHands(std::string file_name, std::string player_name
     std::vector<Hand> player_hands;
     std::string street;
     std::string action;
-    double money_won = 0.0;
+    double chips = 0.0;
 
     while (std::getline(file, line)) {
         if (line.empty()) {
             street = "";
             action = "";
+            chips = 0.0;
             continue;
         } else {
+
+            if (line.find("Seat") != std::string::npos && line.find(player_name) != std::string::npos){
+                // Extract chip count from the line
+                std::regex chipRegex("Seat \\d+: " + player_name + " \\((\\d+) in chips\\)");
+                std::smatch chipMatch;
+                if (std::regex_search(line, chipMatch, chipRegex)) {
+                    chips = std::stod(chipMatch[1]);
+                    std::cout << "Chips: " << chips << std::endl;
+                    // You can store 'chips' in a variable if needed
+                }
+
+            }
+
             if (line.find("*** HOLE CARDS ***") != std::string::npos) {
                 street = "Preflop";
             }
@@ -51,19 +66,13 @@ std::vector<Hand> ReadPlayerHands(std::string file_name, std::string player_name
                 if (line.find("raises") != std::string::npos) {
                     action = "Raise";
                 }
-                if (line.find("wins") != std::string::npos) {
-                    size_t pos = line.find("$");
-                    if (pos != std::string::npos) {
-                        std::istringstream money_stream(line.substr(pos + 1));
-                        money_stream >> money_won;
-                    }
-                }
+    
             } else {
                 action = "";
             }
 
             if (street != "" && action != "") {
-                Hand hand = {player_name, street, action, money_won};
+                Hand hand = {player_name, street, action, chips};
                 player_hands.push_back(hand);
             }
         }
@@ -72,24 +81,11 @@ std::vector<Hand> ReadPlayerHands(std::string file_name, std::string player_name
 }
 
 int main() {
-    std::vector<Hand> hand_history = ReadPlayerHands("PokerHands1.txt", "remi418");
-
-    double total_money_won = 0.0;
-    int hands_played = 0;
-
-    for (const auto& hand : hand_history) {
-        if (hand.player == "remi418") {
-            total_money_won += hand.money_won;
-            hands_played++;
-        }
+    // Sample data (replace this with your actual hand history data)
+    std::vector<Hand> hand_history = ReadPlayerHands("PokerHands3.txt", "remi418");
+    // Print the hand history
+    for (auto hand : hand_history) {
+        std::cout << hand.player << " " << hand.street << " " << hand.action << std::endl;
     }
-
-    if (hands_played > 0) {
-        double average_money_won = total_money_won / hands_played;
-        std::cout << "Average money won by remi418: $" << average_money_won << std::endl;
-    } else {
-        std::cout << "No hands played by remi418." << std::endl;
-    }
-
     return 0;
 }
