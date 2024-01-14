@@ -44,7 +44,6 @@ const QString GameWindow::Get_image_path(const std::string &suit, const std::str
     if (back){
         return ":/images/cards/back_card.png";
     }
-
     std::string temp =  ":/images/cards/"+std::string(1, suit[0])+"/"+value+".png";
     QString final = QString::fromStdString(temp);
     return final;
