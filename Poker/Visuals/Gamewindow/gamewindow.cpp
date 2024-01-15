@@ -70,10 +70,6 @@ void GameWindow::onCallButtonClicked(){ //Reminder: this is check/call button, n
 
 }
 
-void GameWindow::onCallButtonClicked(){ //Reminder: this is check/call button, need to work on changing the name in accordance with the situation, but functionallity should work fine for now
-    //game_player->call(0);
-    switch_bet_button_on();
-}
 
 
 void GameWindow::onFoldButtonClicked(){
@@ -181,22 +177,6 @@ void GameWindow::display_player_hand(){ // to test
     ui ->label_card2->setPixmap(resized_card2) ;
 }
   
-// end of display poker hand
-  
-// beginning of switch for buttons
-  
-void GameWindow::switch_bet_button_on(){
-    int current_player = game_player.tableInfo.current_player ;
-    //auto current_player_info = player->tableInfo.playerInfo[current_player] ;
-    //auto current_player_info = player->tableInfo.playerInfo[current_player] ;
-    //std::string current_player_info_name = current_player_info.name ;
-
-    std::string player_name = game_player.name ;
-
-
-// end of display poker hand
-  
-// beginning of switch for buttons
   
 void GameWindow::switch_bet_button_on(){
     int current_player = game_player.tableInfo.current_player ;
