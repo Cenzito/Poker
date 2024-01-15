@@ -26,8 +26,11 @@
    <string notr="true">QMainWindow{
 background-image: url(:/images/table.png);
 background-repeat: no-repeat;
-}
+background-position: center;
 background-size: cover;
+
+}
+
 </string>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -40,12 +43,12 @@ background-size: cover;
    <property name="mouseTracking">
     <bool>false</bool>
    </property>
-   <layout class="QVBoxLayout" name="verticalLayout_2" stretch="2,2,0,2,0,4,12">
+   <layout class="QVBoxLayout" name="verticalLayout_2" stretch="2,1,2,10,4,0,6,5,20,20">
     <property name="spacing">
      <number>10</number>
     </property>
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_11" stretch="2,20">
+     <layout class="QHBoxLayout" name="horizontalLayout_11" stretch="1,10">
       <item>
        <widget class="QPushButton" name="pushButton">
         <property name="minimumSize">
@@ -65,7 +68,7 @@ color: rgb(15, 96, 0);</string>
        </widget>
       </item>
       <item>
-       <spacer name="horizontalSpacer_12">
+       <spacer name="horizontalSpacer_25">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
         </property>
@@ -80,7 +83,20 @@ color: rgb(15, 96, 0);</string>
      </layout>
     </item>
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,8,2,10,2,8,0">
+     <spacer name="verticalSpacer_3">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>40</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,8,2,0,0,1,0,0,2,8,0">
       <property name="sizeConstraint">
        <enum>QLayout::SetMinimumSize</enum>
       </property>
@@ -102,7 +118,13 @@ color: rgb(15, 96, 0);</string>
         <property name="minimumSize">
          <size>
           <width>110</width>
-          <height>25</height>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>30</height>
          </size>
         </property>
         <property name="alignment">
@@ -130,6 +152,51 @@ color: rgb(15, 96, 0);</string>
        </widget>
       </item>
       <item>
+       <widget class="QLabel" name="label_player1_card1">
+        <property name="minimumSize">
+         <size>
+          <width>45</width>
+          <height>60</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>45</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 250, 9);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_player1_card2">
+        <property name="minimumSize">
+         <size>
+          <width>45</width>
+          <height>60</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>45</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 250, 9);
+</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
        <spacer name="horizontalSpacer">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -141,6 +208,50 @@ color: rgb(15, 96, 0);</string>
          </size>
         </property>
        </spacer>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_player2_card1">
+        <property name="minimumSize">
+         <size>
+          <width>45</width>
+          <height>60</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>45</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 250, 9);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_player2_card2">
+        <property name="minimumSize">
+         <size>
+          <width>45</width>
+          <height>60</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>45</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 250, 9);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
       </item>
       <item>
        <widget class="QLineEdit" name="line_bet2">
@@ -163,7 +274,7 @@ color: rgb(15, 96, 0);</string>
         <property name="minimumSize">
          <size>
           <width>110</width>
-          <height>25</height>
+          <height>30</height>
          </size>
         </property>
         <property name="alignment">
@@ -190,17 +301,135 @@ color: rgb(15, 96, 0);</string>
      </layout>
     </item>
     <item>
-     <spacer name="verticalSpacer">
-      <property name="orientation">
-       <enum>Qt::Vertical</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>20</width>
-        <height>10</height>
-       </size>
-      </property>
-     </spacer>
+     <layout class="QHBoxLayout" name="horizontalLayout_14" stretch="1,0,0,5,0,0,1">
+      <item>
+       <spacer name="horizontalSpacer_21">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_player8_card1">
+        <property name="minimumSize">
+         <size>
+          <width>45</width>
+          <height>60</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>45</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(186, 255, 42);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_player8_card2">
+        <property name="minimumSize">
+         <size>
+          <width>45</width>
+          <height>60</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>45</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(186, 255, 42);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_22">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_player3_card1">
+        <property name="minimumSize">
+         <size>
+          <width>45</width>
+          <height>60</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>45</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(186, 255, 42);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_player3_card2">
+        <property name="minimumSize">
+         <size>
+          <width>45</width>
+          <height>60</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>45</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(186, 255, 42);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_23">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
     </item>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="6,2,0,12,0,2,6">
@@ -209,7 +438,7 @@ color: rgb(15, 96, 0);</string>
         <property name="minimumSize">
          <size>
           <width>110</width>
-          <height>25</height>
+          <height>30</height>
          </size>
         </property>
         <property name="alignment">
@@ -253,8 +482,20 @@ color: rgb(15, 96, 0);</string>
        <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item>
          <widget class="QLabel" name="label_middlecard3">
+          <property name="minimumSize">
+           <size>
+            <width>65</width>
+            <height>80</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>65</width>
+            <height>16777215</height>
+           </size>
+          </property>
           <property name="styleSheet">
-           <string notr="true"/>
+           <string notr="true">background-color: rgb(255, 128, 214);</string>
           </property>
           <property name="text">
            <string/>
@@ -263,6 +504,18 @@ color: rgb(15, 96, 0);</string>
         </item>
         <item>
          <widget class="QLabel" name="label_middlecard4">
+          <property name="minimumSize">
+           <size>
+            <width>65</width>
+            <height>80</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>65</width>
+            <height>80</height>
+           </size>
+          </property>
           <property name="styleSheet">
            <string notr="true"/>
           </property>
@@ -273,6 +526,18 @@ color: rgb(15, 96, 0);</string>
         </item>
         <item>
          <widget class="QLabel" name="label_middlecard1">
+          <property name="minimumSize">
+           <size>
+            <width>65</width>
+            <height>80</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>65</width>
+            <height>80</height>
+           </size>
+          </property>
           <property name="styleSheet">
            <string notr="true"/>
           </property>
@@ -283,6 +548,18 @@ color: rgb(15, 96, 0);</string>
         </item>
         <item>
          <widget class="QLabel" name="label_middlecard2">
+          <property name="minimumSize">
+           <size>
+            <width>65</width>
+            <height>80</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>65</width>
+            <height>80</height>
+           </size>
+          </property>
           <property name="styleSheet">
            <string notr="true"/>
           </property>
@@ -293,9 +570,20 @@ color: rgb(15, 96, 0);</string>
         </item>
         <item>
          <widget class="QLabel" name="label_middlecard5">
+          <property name="minimumSize">
+           <size>
+            <width>65</width>
+            <height>80</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>65</width>
+            <height>80</height>
+           </size>
+          </property>
           <property name="styleSheet">
-           <string notr="true">
-</string>
+           <string notr="true"/>
           </property>
           <property name="text">
            <string/>
@@ -338,7 +626,7 @@ color: rgb(15, 96, 0);</string>
         <property name="minimumSize">
          <size>
           <width>110</width>
-          <height>25</height>
+          <height>30</height>
          </size>
         </property>
         <property name="alignment">
@@ -352,7 +640,7 @@ color: rgb(15, 96, 0);</string>
      </layout>
     </item>
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_12" stretch="5,1,5">
+     <layout class="QHBoxLayout" name="horizontalLayout_12" stretch="4,1,4">
       <item>
        <spacer name="horizontalSpacer_15">
         <property name="orientation">
@@ -401,62 +689,10 @@ color: rgb(15, 96, 0);</string>
      </layout>
     </item>
     <item>
-     <layout class="QGridLayout" name="gridLayout_2" columnstretch="0,0,0,0" rowminimumheight="0,0">
+     <layout class="QGridLayout" name="gridLayout_2" rowstretch="0,0" columnstretch="0,0,0,0">
       <property name="verticalSpacing">
-       <number>20</number>
+       <number>10</number>
       </property>
-      <item row="0" column="1">
-       <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="6,2,5">
-        <property name="leftMargin">
-         <number>0</number>
-        </property>
-        <item>
-         <widget class="QLineEdit" name="line_player7">
-          <property name="minimumSize">
-           <size>
-            <width>110</width>
-            <height>25</height>
-           </size>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-          <property name="readOnly">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="line_bet7">
-          <property name="minimumSize">
-           <size>
-            <width>50</width>
-            <height>25</height>
-           </size>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-          <property name="readOnly">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <spacer name="horizontalSpacer_4">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-       </layout>
-      </item>
       <item row="1" column="3">
        <layout class="QHBoxLayout" name="horizontalLayout_9" stretch="1,6,2,3">
         <item>
@@ -477,7 +713,7 @@ color: rgb(15, 96, 0);</string>
           <property name="minimumSize">
            <size>
             <width>110</width>
-            <height>25</height>
+            <height>30</height>
            </size>
           </property>
           <property name="alignment">
@@ -516,55 +752,6 @@ color: rgb(15, 96, 0);</string>
            </size>
           </property>
          </spacer>
-        </item>
-       </layout>
-      </item>
-      <item row="0" column="3">
-       <layout class="QHBoxLayout" name="horizontalLayout_6" stretch="5,2,6">
-        <item>
-         <spacer name="horizontalSpacer_5">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="line_bet4">
-          <property name="minimumSize">
-           <size>
-            <width>50</width>
-            <height>25</height>
-           </size>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-          <property name="readOnly">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="line_player4">
-          <property name="minimumSize">
-           <size>
-            <width>110</width>
-            <height>25</height>
-           </size>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-          <property name="readOnly">
-           <bool>true</bool>
-          </property>
-         </widget>
         </item>
        </layout>
       </item>
@@ -630,42 +817,73 @@ color: rgb(15, 96, 0);</string>
         </item>
        </layout>
       </item>
-     </layout>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_10" stretch="6,6">
-      <item>
-       <layout class="QGridLayout" name="gridLayout_3" rowstretch="0,0" columnstretch="5,3">
-        <property name="horizontalSpacing">
-         <number>2</number>
-        </property>
-        <item row="1" column="1">
-         <layout class="QHBoxLayout" name="horizontalLayout">
-          <item>
-           <widget class="QLabel" name="label">
-            <property name="styleSheet">
-             <string notr="true"/>
-            </property>
-            <property name="text">
-             <string>TextLabel</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="label_2">
-            <property name="styleSheet">
-             <string notr="true">
-</string>
-            </property>
-            <property name="text">
-             <string>TextLabel</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
+      <item row="0" column="3">
+       <layout class="QHBoxLayout" name="horizontalLayout_6" stretch="0,0,0,2,6">
+        <item>
+         <widget class="QLabel" name="label_player4_card1">
+          <property name="minimumSize">
+           <size>
+            <width>45</width>
+            <height>60</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>45</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(255, 100, 12);</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
         </item>
-        <item row="0" column="1">
-         <widget class="QLineEdit" name="name_line">
+        <item>
+         <widget class="QLabel" name="label_player4_card2">
+          <property name="minimumSize">
+           <size>
+            <width>45</width>
+            <height>60</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>45</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(255, 100, 12);</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_5">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="line_bet4">
+          <property name="minimumSize">
+           <size>
+            <width>50</width>
+            <height>25</height>
+           </size>
+          </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
@@ -674,6 +892,264 @@ color: rgb(15, 96, 0);</string>
           </property>
          </widget>
         </item>
+        <item>
+         <widget class="QLineEdit" name="line_player4">
+          <property name="minimumSize">
+           <size>
+            <width>110</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="0" column="1">
+       <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="6,2,0,0,0">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QLineEdit" name="line_player7">
+          <property name="minimumSize">
+           <size>
+            <width>110</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="line_bet7">
+          <property name="minimumSize">
+           <size>
+            <width>50</width>
+            <height>25</height>
+           </size>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_4">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_player7_card1">
+          <property name="minimumSize">
+           <size>
+            <width>45</width>
+            <height>60</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>45</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(255, 100, 12);</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_player7_card2">
+          <property name="minimumSize">
+           <size>
+            <width>45</width>
+            <height>60</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>45</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(255, 100, 12);</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_13" stretch="3,1,1,2,1,1,3">
+      <item>
+       <spacer name="horizontalSpacer_19">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_player6_card1">
+        <property name="minimumSize">
+         <size>
+          <width>45</width>
+          <height>60</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>45</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 76, 159);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_player6_card2">
+        <property name="minimumSize">
+         <size>
+          <width>45</width>
+          <height>60</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>45</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 76, 159);
+</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_18">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_player5_card1">
+        <property name="minimumSize">
+         <size>
+          <width>45</width>
+          <height>60</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>45</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 76, 159);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_player5_card2">
+        <property name="minimumSize">
+         <size>
+          <width>45</width>
+          <height>60</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>45</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 76, 159);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_20">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_10" stretch="1,1">
+      <item>
+       <layout class="QGridLayout" name="gridLayout_3" rowstretch="0,0" columnstretch="4,2,0,3">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="horizontalSpacing">
+         <number>10</number>
+        </property>
         <item row="0" column="0">
          <spacer name="horizontalSpacer_11">
           <property name="orientation">
@@ -686,6 +1162,30 @@ color: rgb(15, 96, 0);</string>
            </size>
           </property>
          </spacer>
+        </item>
+        <item row="1" column="3">
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <widget class="QLabel" name="label">
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(255, 41, 76);</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_2">
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
         <item row="1" column="0">
          <spacer name="horizontalSpacer_10">
@@ -700,10 +1200,39 @@ color: rgb(15, 96, 0);</string>
           </property>
          </spacer>
         </item>
+        <item row="0" column="3">
+         <widget class="QLineEdit" name="name_line">
+          <property name="minimumSize">
+           <size>
+            <width>80</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="sizeIncrement">
+           <size>
+            <width>150</width>
+            <height>25</height>
+           </size>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QPushButton" name="NextButton">
+          <property name="text">
+           <string>next round</string>
+          </property>
+         </widget>
+        </item>
        </layout>
       </item>
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_8" stretch="4,2,5">
+       <layout class="QHBoxLayout" name="horizontalLayout_8" stretch="2,2,3">
         <item>
          <layout class="QVBoxLayout" name="verticalLayout">
           <property name="spacing">
@@ -714,7 +1243,13 @@ color: rgb(15, 96, 0);</string>
             <property name="minimumSize">
              <size>
               <width>80</width>
-              <height>20</height>
+              <height>25</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>150</width>
+              <height>25</height>
              </size>
             </property>
             <property name="inputMask">
@@ -736,7 +1271,13 @@ color: rgb(15, 96, 0);</string>
             <property name="minimumSize">
              <size>
               <width>80</width>
-              <height>25</height>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>150</width>
+              <height>40</height>
              </size>
             </property>
             <property name="text">
@@ -749,7 +1290,13 @@ color: rgb(15, 96, 0);</string>
             <property name="minimumSize">
              <size>
               <width>80</width>
-              <height>25</height>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>150</width>
+              <height>40</height>
              </size>
             </property>
             <property name="text">
@@ -762,7 +1309,13 @@ color: rgb(15, 96, 0);</string>
             <property name="minimumSize">
              <size>
               <width>80</width>
-              <height>25</height>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>150</width>
+              <height>40</height>
              </size>
             </property>
             <property name="text">
@@ -777,8 +1330,17 @@ color: rgb(15, 96, 0);</string>
           <property name="minimumSize">
            <size>
             <width>60</width>
-            <height>20</height>
+            <height>25</height>
            </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>100</width>
+            <height>25</height>
+           </size>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
           </property>
           <property name="maximum">
            <number>10000000</number>
@@ -804,6 +1366,19 @@ color: rgb(15, 96, 0);</string>
        </layout>
       </item>
      </layout>
+    </item>
+    <item>
+     <spacer name="verticalSpacer">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>40</height>
+       </size>
+      </property>
+     </spacer>
     </item>
    </layout>
   </widget>
