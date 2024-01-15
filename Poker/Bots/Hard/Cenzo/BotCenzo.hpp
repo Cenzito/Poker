@@ -10,7 +10,7 @@ public:
     BotCenzo(const std::string& name) : Bot(name,7) {};
     //matrix raisefunction;
     //matrix foldfunction;
-    signed int Action();
+    //signed int Action();
     //matrix adjustraise;
 
 
