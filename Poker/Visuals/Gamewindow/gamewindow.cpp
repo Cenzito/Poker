@@ -307,3 +307,27 @@ void GameWindow::display_names_stacks_bets(){
 }
 
 // end of display of names, stacks and bets
+
+
+// beginning of highlight current player
+
+void GameWindow::highlightActivePlayer() {
+
+    //current player
+    std::string name = game_player.getName();
+
+    // Loop through all player labels
+    for (int i = 1; i <= 8; ++i) {
+        QLabel* playerLabel = findChild<QLabel*>(QString("line_player%1").arg(i));
+        QString labelText = playerLabel->text();
+
+        //checking which player is active
+        if (labelText.toStdString() == name) {
+
+            // Highlight the active player's label
+            playerLabel->setStyleSheet("border: 2px solid yellow;"); // the style
+        }
+    }
+}
+
+// end of highlight current player

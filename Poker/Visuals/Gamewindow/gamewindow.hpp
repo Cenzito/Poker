@@ -28,6 +28,7 @@ public:
     void switch_bet_button_on();
     void switch_bet_button_off();
     void switch_players_display();
+    void highlightActivePlayer();
 
     PokerPlayer game_player;
 
