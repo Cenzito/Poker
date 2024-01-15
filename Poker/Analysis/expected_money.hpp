@@ -12,8 +12,9 @@ public:
     std::string street;  // Street (e.g., 'preflop', 'flop', 'turn', 'river')
     std::string action;  // Action taken by the player (e.g., 'Bet', 'Raise', 'Call', 'Fold')
     double chips;    // Amount of money won in this hand
+    double chips_start;
 
-    Hand(std::string& player, std::string& street, std::string& action, double chips);
+    Hand(std::string& player, std::string& street, std::string& action, double chips, double chips_start);
     Hand();
 };
 
