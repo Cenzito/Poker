@@ -27,6 +27,7 @@ std::vector<Hand> ReadPlayerHands(std::string file_name, std::string player_name
             action = "";
             chips = 0.0;
             continue;
+        
         } else {
 
             // Extract chip count
@@ -51,7 +52,7 @@ std::vector<Hand> ReadPlayerHands(std::string file_name, std::string player_name
                     std::string chipsStr = line.substr(chipsStartPos, chipsEndPos - chipsStartPos);
                 
                     // Convert the extracted chip count substring to an integer
-                    int chips = std::stoi(chipsStr);
+                    chips = std::stod(chipsStr);
                 
                     // Print the result
                     std::cout << "Chips: " << chips << std::endl;
@@ -59,21 +60,26 @@ std::vector<Hand> ReadPlayerHands(std::string file_name, std::string player_name
         } }
 
            if (line.find("blind") != std::string::npos && line.find(player_name) != std::string::npos) {
-            int i = line.length()-1;
+               
+               int i = line.length()-1;
             
 
-            while(line[i] != ' ') {
-                i--;
+               while(line[i] != ' ') {
+                  i--;
+               }
+
+               if (i >= 0) {
+                  std::string value = line.substr(i + 1);
+
+                try {
+                    double blindAmount = std::stod(value);
+                    chips -=  blindAmount;
+                    std::cout << "Chips after blind bet: " << chips << std::endl;
+                } catch (const std::invalid_argument& e) {
+                // Silently skip the line or handle the error accordingly
+                }
+                }
             }
-
-            std::string value = line.substr(i+1, line.length()-1);
-
-            //double blindAmount = std::stod(value);
-
-            chips -= std::stod(value);
-
-            std::cout << "Chips: " << chips << std::endl;
-           }
 
 
             if (line.find("*** HOLE CARDS ***") != std::string::npos) {
@@ -118,7 +124,7 @@ std::vector<Hand> ReadPlayerHands(std::string file_name, std::string player_name
 
 int main() {
     // Sample data (replace this with your actual hand history data)
-    std::vector<Hand> hand_history = ReadPlayerHands("PokerHands3.txt", "dj_planets");
+    std::vector<Hand> hand_history = ReadPlayerHands("PokerHands1.txt", "remi418");
     // Print the hand history
     for (auto hand : hand_history) {
         std::cout << hand.player << " " << hand.street << " " << hand.action << std::endl;
