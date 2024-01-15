@@ -82,8 +82,6 @@ void GameWindow::update_display(){
     // Display names and stacks
     display_names_stacks_bets();
 
-    // Update community cards (middle cards)
-    //update_community_cards();
 
     //if you are the current player
     if (game_player.tableInfo.playerInfo[game_player.tableInfo.current_player].name == game_player.getName()) {
@@ -91,28 +89,50 @@ void GameWindow::update_display(){
     }
 }
 
-//many bugs, i will solve them
 
-/*void GameWindow::update_community_cards() {
-    Table table;
-    const std::vector<Card>& communityCards = table.communityCards;
+
+
+void GameWindow::update_community_cards() {
+    const std::vector<Card>& communityCards = game_player.tableInfo.communityCards;
+
+    qDebug() << "number center cards: " << communityCards.size();
 
     // Display the first three community cards initially
-    for (int i = 0; i < 3; ++i) {
-        update_middle_card_display(i + 1, communityCards[i]);
+    int i = 0;
+    for (; i < communityCards.size(); i++) {
+        update_middle_card_display(i+1, communityCards[i]);
+    }
+
+    for (; i< 5; i++) {
+        remove_middle_card_display(i+1);
     }
 }
 
 void GameWindow::update_middle_card_display(int cardIndex, const Card& card) {
     QLabel* middleCardLabel = findChild<QLabel*>(QString("label_middlecard%1").arg(cardIndex));
     if (middleCardLabel) {
+        //middleCardLabel->show();
         // Get the image path for the card
-        QString imagePath = Get_image_path(card.suit, std::to_string(card.getValue()), false);
+        QString imagePath = Get_image_path(suitToString(card.getSuit()), std::to_string(card.getValue()), false);
         // Loading and setting the image to the QLabel
         QPixmap image(imagePath);
-        ui->middleCardLabel->setPixmap(image);
+
+        QSize labelSize = middleCardLabel->size();
+
+        QPixmap resized_card = image.scaled(labelSize, Qt::KeepAspectRatio);
+        middleCardLabel->setPixmap(resized_card);
+
     }
-}*/
+}
+
+void GameWindow::remove_middle_card_display(int cardIndex) {
+    qDebug() << "111";
+    QLabel* middleCardLabel = findChild<QLabel*>(QString("label_middlecard%1").arg(cardIndex));
+    if (middleCardLabel) {
+        middleCardLabel->clear();
+    }
+}
+
 
 
 
