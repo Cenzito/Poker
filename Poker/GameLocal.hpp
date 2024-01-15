@@ -11,15 +11,14 @@
 #include <algorithm>
 
 
-class GameLocal : public QObject
+class GameLocal
 {
-    Q_OBJECT
 public:
     GameLocal(int seats);
 
 
-    void JoinGame(PokerPlayer*);
-    void addBot(Bot* bot);
+    void JoinGame(PokerPlayer);
+    void addBot(Bot bot);
     int getFreeSeat();
     void startGame();
 
@@ -29,17 +28,16 @@ public:
     void fold(PlayerInfo& foldPlayer);
 
     void endHand(PlayerInfo& winner);
+    void newHand();
 
-
+    void updatePlayersTable();
     void nextHand();
 
+    signed int askAction(PokerPlayer player);
+    void bettingRound(int first_player, bool isfirst_round);
 
-    void nextBettingRound();
-
-    void setNextCurrentPlayer();
-
-    PokerPlayer* findPlayer(std::string name);
-    std::vector<PokerPlayer*> players;
+    PokerPlayer findPlayer(std::string name);
+    std::vector<PokerPlayer> players;
 
     Deck deck;
     Table tableInfo;
@@ -47,17 +45,11 @@ public:
     int players_standing;
     bool hand_finished;
 
-    void onAction();
-
-public slots:
-    void onRaise(int amount);
-    void onFold();
-    void onCall();
-
-    void updatePlayersTable();
-
-signals:
-    void updatePTable(Table t);
+private:
+    // Map to store hands of each player
+    std::unordered_map<std::string, std::vector<Card>> playerHands;
+    // Helper function to update hands of all players
+    void updatePlayerHands();
 };
 
 #endif // GAMELOCAL_HPP
