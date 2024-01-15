@@ -41,7 +41,15 @@ void Table::Print() {
 }
 
 
-
+int Table::active_players() {
+    int counter=0;
+    for (int i=0; i < player_num; i++) {
+        if (playerInfo[i].isFold==true) {
+            counter+=1;
+        }
+    }
+    return counter;
+}
 
 
 
