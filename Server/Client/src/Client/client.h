@@ -57,6 +57,8 @@ private:
      */
     void messageLoop();
 
+    bool Userregister(const std::string& username, const std::string& password);
+
     /**
      * @brief Processes user input and performs corresponding actions.
      * @param message The input message from the user.
@@ -107,6 +109,10 @@ private:
     std::thread recvThread; ///< Thread for handling incoming messages.
     PokerPlayer player; ///< PokerPlayer attributes for the client.
     bool roundStarted; ///< Indicator if a round has started
+
+    const char* database = "account.db";
+    CreationAccount account = CreationAccount(database);
+
 };
 
 #endif // CLIENT_H

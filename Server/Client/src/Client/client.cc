@@ -1,4 +1,6 @@
 #include "client.h"
+#include "Creationaccount.hpp"
+#include "hash.hpp"
 #include <cstring>
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -62,20 +64,56 @@ void PokerClient::startReceiverThread() {
 }
 
 void PokerClient::authenticateUser() {
+    const char* sql = "CREATE TABLE IF NOT EXISTS ACCOUNT("
+                  "USERNAME TEXT PRIMARY KEY NOT NULL, "
+                  "PASSWORD TEXT NOT NULL);";
+    account.CreationTable(sql);
+
     std::string username, password;
+    std::string choice;
 
-    std::cout << "Enter username: ";
-    std::getline(std::cin, username);
+    std::cout<<"Enter your choice"<<std::endl;
+    cin>>choice;
 
-    std::cout << "Enter password: ";
-    std::getline(std::cin, password);
+    if(choice == "login"){
+        do{                
+            std::cout << "Enter username: "<<std::endl;
+            std::getline(std::cin, username);
 
+            std::cout << "Enter password: "<<std::endl;
+            std::getline(std::cin, password);
+        }while(account.login(username, password));
+    }
+    else{
+        while(!Userregister(username, password)){
+            std::cout << "Enter username: "<<std::endl;
+            std::getline(std::cin, username);
+
+            std::cout << "Enter password: "<<std::endl;
+            std::getline(std::cin, password);
+        }
+    }
     player.set_username(username);
     player.set_password(password);
 
     std::string credentials = username + ":" + password;
     sendMessage(credentials);
-    isCredentialsSent = true;
+    isCredentialsSent = true; 
+
+}
+
+bool PokerClient::Userregister(const std::string& username, const std::string& password){
+    const char* sql = "CREATE TABLE IF NOT EXISTS ACCOUNT("
+                  "USERNAME TEXT PRIMARY KEY NOT NULL, "
+                  "PASSWORD TEXT NOT NULL);";
+    account.CreationTable(sql);
+    if(account.Check_repetition(username)){
+        account.Insertaccount(username, password);
+        return true;
+    }
+    else{
+        return false;
+    }
 }
 
 void PokerClient::messageLoop() {
