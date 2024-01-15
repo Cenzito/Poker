@@ -4,16 +4,11 @@
 #include <random>
 #include <chrono>
 #include <iterator>
+#include <qdebug.h>
 
 
 PokerPlayer::PokerPlayer(const std::string& name) : name(name) {}
 
-
-int PokerPlayer::decideBet(int currentHighestBet, int money, int minimumRaise) {
-    // Implement player decision logic here
-    // For now, returning a basic decision
-    return currentHighestBet + minimumRaise;
-}
 
 void PokerPlayer::receiveCards(const std::vector<Card> newHand) {
     hand = newHand;
@@ -21,6 +16,7 @@ void PokerPlayer::receiveCards(const std::vector<Card> newHand) {
 
 void PokerPlayer::updateTable(const Table table) {
     tableInfo = table;
+    Action();
 }
 
 const std::string& PokerPlayer::getName() const {
@@ -42,19 +38,8 @@ void PokerPlayer::removeCards() {
     hand = std::vector<Card>();
 }
 
-signed int PokerPlayer::Action() {
-    //need to connect to buttons in order to chose the bet size
-
-    int n;
-    std::cout << "What do you want to do? \n -1: fold \n 0: call/check \n a number: raise to that \n";
-    std::cin >> n;
-
-    return n;
+void PokerPlayer::Action() {
+    emit callUpdateDisplay();
 }
 
 
-
-
-void PokerPlayer::updateChips() {
-    //call server to update how many chips we have
-}
