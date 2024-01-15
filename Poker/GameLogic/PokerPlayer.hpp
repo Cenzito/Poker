@@ -4,7 +4,7 @@
 #include <vector>
 #include <string>
 #include <set>
-#include "Table.hpp"
+#include "table.hpp"
 #include "Card.hpp"
 #include <unordered_map>
 #include <QObject>
