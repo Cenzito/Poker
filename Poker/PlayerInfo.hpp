@@ -11,15 +11,15 @@
 class PlayerInfo
 {
     public:
-        PlayerInfo(std::string name, int stack_size, int bet);
+        PlayerInfo(std::string name, int stack_size, int bet = 0);
         PlayerInfo();
         std::string name;
         int stack_size;
         int bet;
 
         bool isAllin, isFold;
-
         void Print();
+
 };
 
 #endif // PLAYERINFO_H
