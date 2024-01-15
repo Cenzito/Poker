@@ -24,7 +24,7 @@ public:
     //Player information
     int seats; //max number of players at table
     int player_num; //current number of players
-    int current_player;
+    int current_player; //current person that is playing
     int ButtonPlayer; //0 set as the button initially, so 1 is small blind, 2 is big blind, 3 is under the gun etc and then alternates
     std::unordered_map <int, PlayerInfo> playerInfo; //hash map associating each position to the player there (playerInfo[0] is the first player that joined)
 
@@ -35,6 +35,12 @@ public:
     int pot;
 
     int bet_on_table; //Used to see if players have matched the bet required to call
+
+
+    //usefull variables for betting round
+    int betting_round; //current betting round (0: preflop, 1: river...)
+    int current_biggest_bet; //biggest bet of the betting round
+    int lastRaiser; //last person to raise ( if get back to him, we end betting round )
 
 };
 
