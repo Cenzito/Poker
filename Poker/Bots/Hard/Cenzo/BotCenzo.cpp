@@ -6,7 +6,7 @@
 
 
 void BotCenzo::Action(){
-    float max;
+    float max = 0;
     for (int i = 0; i < tableInfo.playerInfo.size(); i++) {
         max += tableInfo.playerInfo[i].stack_size;
     }
@@ -25,12 +25,12 @@ void BotCenzo::Action(){
 
     //check what square we are in
     if (y <= 2) {
-        col = floor(x/0.05);
-        row = floor(y/0.1);
+        col = (int)x / 0.05;
+        row = (int)y / 0.1;
     }
     else {
-        col = floor(x/0.05);
-        row = floor((0.1 + (y - 2)) / ((max - 2) / 0.1));
+        col = (int)x / 0.05;
+        row = (int)(0.1 + (y - 2)) / ((max - 2) / 0.1);
     }
 
     //refer to matrix for probability of fold
@@ -46,4 +46,12 @@ void BotCenzo::Action(){
     }
 
     //else refer to matrix for probability of raise
+
+    if (static_cast<float>(rand()) / RAND_MAX < raisefunction[row][col]) {
+        //raise
+    }
+
+    else {
+        //call
+    }
 }
