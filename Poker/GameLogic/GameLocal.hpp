@@ -9,6 +9,7 @@
 #include <QObject>
 #include <QTimer>
 #include <algorithm>
+#include <QSignalMapper>
 
 
 class GameLocal : public QObject
@@ -47,6 +48,7 @@ public:
     int players_standing;
     bool hand_finished;
 
+    void askBet(PokerPlayer* p);
     void onAction();
 
 public slots:
@@ -58,6 +60,7 @@ public slots:
 
 signals:
     void updatePTable(Table t);
+    void askAction();
 };
 
 #endif // GAMELOCAL_HPP

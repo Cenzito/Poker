@@ -16,7 +16,7 @@ void PokerPlayer::receiveCards(const std::vector<Card> newHand) {
 
 void PokerPlayer::updateTable(const Table table) {
     tableInfo = table;
-    Action();
+    emit callUpdateDisplay();
 }
 
 const std::string& PokerPlayer::getName() const {
@@ -39,6 +39,7 @@ void PokerPlayer::removeCards() {
 }
 
 void PokerPlayer::Action() {
+    //to be changed only to display betting buttons
     emit callUpdateDisplay();
 }
 
