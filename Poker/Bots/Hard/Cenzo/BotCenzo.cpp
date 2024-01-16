@@ -17,7 +17,7 @@ void BotCenzo::Action(){
     float win;
     //check previous call
     int last_bet = tableInfo.playerInfo[tableInfo.current_player - 1].bet;
-    float x; //the % of winning
+    float x = 0; //the % of winning
     float y = last_bet / tableInfo.pot;
 
     float col;
