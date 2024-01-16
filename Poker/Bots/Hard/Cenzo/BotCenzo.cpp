@@ -6,7 +6,7 @@
 
 
 void BotCenzo::Action(){
-    float max;
+    float max = 0;
     for (int i = 0; i < tableInfo.playerInfo.size(); i++) {
         max += tableInfo.playerInfo[i].stack_size;
     }
