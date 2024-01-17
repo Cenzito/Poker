@@ -4,7 +4,7 @@
 #include <fstream>
 #include <sstream>
 #include <unordered_map>
-#include "expected_money.hpp"
+#include "margin.hpp"
 
 
 Hand::Hand(std::string& player, std::string& street, std::string& action, double chips, double chips_start)
@@ -13,7 +13,7 @@ Hand::Hand(std::string& player, std::string& street, std::string& action, double
 Hand::Hand() {}
 
 
-std::vector<Hand> ReadPlayerHands(std::string file_name, std::string player_name) {
+std::vector<double> ReadMargins(std::string file_name, std::string player_name) {
     std::ifstream file(file_name);
     std::string line;
     std::vector<Hand> player_hands;
@@ -61,7 +61,7 @@ std::vector<Hand> ReadPlayerHands(std::string file_name, std::string player_name
 
                 
                     // Print the result
-                    std::cout << "Chips at the start of the game of " << player_name << ": " << chips << std::endl;
+                    //std::cout << "Chips at the start of the game of " << player_name << ": " << chips << std::endl;
             }
         } }
 
@@ -82,7 +82,7 @@ std::vector<Hand> ReadPlayerHands(std::string file_name, std::string player_name
                 try {
                     double blindAmount = std::stod(value);
                     chips -=  blindAmount;
-                    std::cout << "Chips after blind bet: " << chips << std::endl;
+                    //std::cout << "Chips after blind bet: " << chips << std::endl;
                 } catch (const std::invalid_argument& e) {
                 // Silently skip the line or handle the error accordingly
                 }
@@ -115,8 +115,8 @@ std::vector<Hand> ReadPlayerHands(std::string file_name, std::string player_name
                     chips += won;
                 
                     // Print the result
-                    std::cout << "Chips won: " << won << std::endl;
-                    std::cout << "Chips afer winning: " << chips << std::endl;
+                    //std::cout << "Chips won: " << won << std::endl;
+                    //std::cout << "Chips afer winning: " << chips << std::endl;
 
             }
         } }
@@ -137,11 +137,11 @@ std::vector<Hand> ReadPlayerHands(std::string file_name, std::string player_name
 
             if (line.find("*** SUMMARY ***") != std::string::npos){
                 double chips_end = chips;
-                std::cout << "Chips at the end of the game: " << chips << std::endl;
+                //std::cout << "Chips at the end of the game: " << chips << std::endl;
                 double balance = chips_end - chips_start;
                 margins.push_back(balance);
 
-                std::cout << "Margin: " << balance << std::endl;
+                //std::cout << "Margin: " << balance << std::endl;
 
                 
 
@@ -167,7 +167,7 @@ std::vector<Hand> ReadPlayerHands(std::string file_name, std::string player_name
                         try {
                             double blindAmount = std::stod(value);
                             chips -=  blindAmount;
-                            std::cout << "Chips after call: " << chips << std::endl;
+                            //std::cout << "Chips after call: " << chips << std::endl;
                         } catch (const std::invalid_argument& e) {
                         // Silently skip the line or handle the error accordingly
                         }
@@ -190,7 +190,7 @@ std::vector<Hand> ReadPlayerHands(std::string file_name, std::string player_name
                         try {
                             double blindAmount = std::stod(value);
                             chips -=  blindAmount;
-                            std::cout << "Chips after bet: " << chips << std::endl;
+                            //std::cout << "Chips after bet: " << chips << std::endl;
                         } catch (const std::invalid_argument& e) {
                         // Silently skip the line or handle the error accordingly
                         }
@@ -215,7 +215,7 @@ std::vector<Hand> ReadPlayerHands(std::string file_name, std::string player_name
                         try {
                             double blindAmount = std::stod(value);
                             chips -=  blindAmount;
-                            std::cout << "Chips after raise: " << chips << std::endl;
+                            //std::cout << "Chips after raise: " << chips << std::endl;
                         } catch (const std::invalid_argument& e) {
                         // Silently skip the line or handle the error accordingly
                         }
@@ -234,17 +234,16 @@ std::vector<Hand> ReadPlayerHands(std::string file_name, std::string player_name
             }
         }
     }
-    return player_hands;
+    return margins;
 }
 
 int main() {
     // Sample data (replace this with your actual hand history data)
-    std::vector<Hand> hand_history = ReadPlayerHands("PokerHands1.txt", "remi418");
-    // Print the hand history
-    /*for (auto hand : hand_history) {
-        std::cout << hand.player << " " << hand.street << " " << hand.action << std::endl;
+    std::vector<double> margins = ReadMargins("PokerHands3.txt", "remi418");
+
+    for (auto margin : margins) {
+        std::cout << "Margin: " << margin << std::endl;
     }
-    return 0;*/
 
     
 
