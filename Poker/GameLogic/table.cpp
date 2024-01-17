@@ -36,10 +36,18 @@ void Table::Print() {
 
     qDebug() << "POT " << pot;
 
-    for (int i = 0; i < player_num; i++ ) {
-        playerInfo[i].Print();
+    std::vector<int> keys;
+    for (const auto &entry : playerInfo) {
+        keys.push_back(entry.first);
+    }
+    std::sort(keys.begin(), keys.end());
+
+    for (int key : keys) {
+        playerInfo[key].Print(); 
         qDebug() << "\n";
     }
+
+
 }
 
 
