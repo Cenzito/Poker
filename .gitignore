@@ -128,3 +128,12 @@ compile_commands.json
 *creator.user*
 
 *_qmlcache.qrc
+
+
+# Visual Studio Code
+.vscode/
+
+*.json
+
+build/
+external/

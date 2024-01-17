@@ -1,11 +1,22 @@
+
+#pragma once
 #include "../GameLogic/PokerPlayer.hpp"
 
 class Bot : public PokerPlayer {
+    Q_OBJECT
 public :
-    Bot(const std::string& name, int initialChips, int level) : PokerPlayer(name, initialChips) {
-        this -> level = level;
+    Bot(const std::string& name, int level) : PokerPlayer(name) {
+
+        this -> level = level; //BotCenzo is level 7 (might change)
     };
-    virtual void action(int minAmount, int type);
-protected:
-    int level;
+
+    virtual void Action();
+
+public slots:
+    void call_bet();
+    void fold_bet();
+    void raise_bet(int amount);
+
+    protected:
+        int level;
 };

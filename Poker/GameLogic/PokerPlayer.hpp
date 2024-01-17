@@ -4,70 +4,59 @@
 #include <vector>
 #include <string>
 #include <set>
+#include "table.hpp"
+#include "Card.hpp"
+#include <unordered_map>
+#include <QObject>
 
-//TO IMPLEMENT:
-//Combinations class that gives which defines what combinations are possible and which are better than others
-//add to game class a function that: given player cards and cards in the middle give their combination (and probablity of success later)
-//implement betting in the game class
 
 
-class Card {
+
+class PokerPlayer : public QObject {
+    Q_OBJECT
 public:
-    Card(const std::string& suit, int value);
-    friend std::ostream& operator<<(std::ostream& os, const Card& card);
-    std::string getSuit() const;
-    int getValue() const;
-    std::string toString() const;
-
-private:
-    std::string suit; // 'H' is heart 'D' is diamond etc.
-    int value;        // cards 1 - 13, 13 is king
-};
+    PokerPlayer(const std::string& name);
+    const std::string& getName() const;
 
 
-class PokerPlayer {
-public:
-    PokerPlayer(const std::string& name, int initialChips);
-    const std::string& getName() const { return name; }
-    static std::set<std::string> names;
-    int getChips() const;
-    void placeBet(int amount);
-    void receiveCards(const std::vector<Card>& cards);
+
     void showHand() const;
-    void winChips(int amount);
+
+    //void receiveCards(const std::vector<Card>& hand);
+
+
+    void receiveCards(const std::vector<Card> cards);
+    void removeCards();
+    std::vector<Card> getHand() const;
+
+    Table tableInfo;
+
     //this is not implemented in cpp file
-    //virtual void action(int minAmount, int type); // 1 = normal round, 2 = small blind, 3 = bigblind
+    //virtual void action(Table table, int minAmount, int type); // 1 = normal round, 2 = small blind, 3 = bigblind
 
-protected:
     std::string name;
-    int chips;
     std::vector<Card> hand;
-    bool isBot, isAllin, isFold;
+    //isActive tells if it's the players turn to bet
+    bool isBot, isActive;
+
+    //Action function, will be called when table changes
+
+public slots:
+    virtual void Action();
+
+    void updateTable(Table table);
+
+signals:
+    void Raise(int amount);
+    void Fold();
+    void Call();
+
+    void callUpdateDisplay();
 };
 
-class Deck {
-public:
-    Deck();
-    void shuffleDeck();
-    Card dealCard();
-
-private:
-    std::vector<Card> cards;
-    int currentCardIndex;
-};
 
 
-class Game {
-public:
 
-    Game(int numOfPlayers);
-    void startGame();
-
-private:
-    Deck deck;
-    std::vector<PokerPlayer> players;
-    std::vector<Card> communityCards;
-};
 
 
 
