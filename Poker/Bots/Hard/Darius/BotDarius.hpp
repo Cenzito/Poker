@@ -14,9 +14,11 @@ public:
         this -> level = level;
         this->name = name;
     };
+
     void Action(); //returns the optimal action of the bot
     int optimalBet();
     
+
     private:
 
 

@@ -3,6 +3,10 @@
 
 #include <QMainWindow>
 
+#include <QVBoxLayout>
+#include <QTabWidget>
+#include <QTextBrowser>
+
 namespace Ui {
 class RulesWindow;
 }
@@ -17,6 +21,11 @@ public:
 
 private:
     Ui::RulesWindow *ui;
+    QWidget* centralWidget;
+    QVBoxLayout* layout;
+    QTabWidget* tabWidget;
+    QTextBrowser* tab1;
+    QTextBrowser* tab2;
 
 private slots:
     void CloseRulesWindow();

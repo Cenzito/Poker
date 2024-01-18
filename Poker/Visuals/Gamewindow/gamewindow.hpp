@@ -18,9 +18,10 @@ public:
     explicit GameWindow(QWidget *parent = nullptr, std::string name = "John");
     ~GameWindow();
     const QString Get_image_path(const std::string &suit, const std::string &value, bool back = false); // to display the back call with args ("back", "back", true)
-    void update_display();
+
     void update_community_cards();
     void update_middle_card_display(int cardIndex, const Card& card);
+    void remove_middle_card_display(int cardIndex);
     void display_names_stacks_bets();
 
     void display_player_hand();
@@ -41,6 +42,9 @@ private slots:
     void onCallButtonClicked();
 
     void updateCallButtonLabel();
+
+
+    void update_display();
 
 private:
     Ui::GameWindow *ui;

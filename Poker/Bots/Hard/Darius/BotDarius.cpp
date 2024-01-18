@@ -32,6 +32,7 @@ void BotDarius::Action(){
     int bet_on_table; // the current bet on the table, to be computed using the table informations
     if (bet > bet_on_table)
     {
+
         return raise_bet(bet-bet_on_table); // raises by the difference between the optimal bet and the current bet if the optimal bet is higher than the current bet
     }
     else if (bet == bet_on_table) // if the optimal bet is equal to the current bet, the bot calls
@@ -41,5 +42,6 @@ void BotDarius::Action(){
     else
     {
         return fold_bet();
+
     }
 }

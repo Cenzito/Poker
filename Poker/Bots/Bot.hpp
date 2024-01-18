@@ -3,14 +3,20 @@
 #include "../GameLogic/PokerPlayer.hpp"
 
 class Bot : public PokerPlayer {
+    Q_OBJECT
 public :
     Bot(const std::string& name, int level) : PokerPlayer(name) {
 
-        this -> level = level;
+        this -> level = level; //BotCenzo is level 7 (might change)
     };
 
-   virtual signed int Action();
+    virtual void Action();
 
-protected:
-    int level;
+public slots:
+    void call_bet();
+    void fold_bet();
+    void raise_bet(int amount);
+
+    protected:
+        int level;
 };

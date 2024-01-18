@@ -16,9 +16,6 @@ public:
         this->name = name;
     };
 
-    //the bot's decision on what to do
-    signed int Action();
-
 private:
     int CalcCardValue();
     bool ShouldFold();
