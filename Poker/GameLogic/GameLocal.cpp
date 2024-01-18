@@ -2,9 +2,7 @@
 #include <QApplication>
 
 GameLocal::GameLocal(int seats): tableInfo(seats){
-
 }
-
 
 int GameLocal::getFreeSeat() {
     Table &t = tableInfo;
@@ -78,7 +76,6 @@ void GameLocal::fold(PlayerInfo& foldPlayer) {
 
 void GameLocal::updatePlayersTable() {
     emit updatePTable(tableInfo);
-
     tableInfo.Print();
 }
 
@@ -123,6 +120,15 @@ void GameLocal::nextHand(){
     }
 }
 
+void GameLocal::askBet(PokerPlayer* p) {
+    //connect to  a player, tell him its his turn then disconnect
+    qDebug() << "Aske BET" << QString::fromStdString(p->name);
+    QObject::connect(this, &GameLocal::askAction, p, &PokerPlayer::Action, Qt::QueuedConnection);
+    emit askAction();
+    QObject::disconnect(this, &GameLocal::askAction, p, &PokerPlayer::Action);
+
+}
+
 void GameLocal::onAction() {
 
     //check if end hand
@@ -146,6 +152,7 @@ void GameLocal::onAction() {
             nextBettingRound();
         } else {
             updatePlayersTable();
+            askBet(findPlayer(tableInfo.playerInfo[tableInfo.current_player].name));
         }
     }
 }
@@ -225,6 +232,7 @@ void GameLocal::nextBettingRound() {
             }
 
             updatePlayersTable();
+            askBet(findPlayer(tableInfo.playerInfo[tableInfo.current_player].name));
             break;
 
         case 1:
@@ -238,18 +246,21 @@ void GameLocal::nextBettingRound() {
 
 
             updatePlayersTable();
+            askBet(findPlayer(tableInfo.playerInfo[tableInfo.current_player].name));
             break;
 
         case 2:
             //third betting round
             tableInfo.communityCards.push_back(deck.dealCard());
             updatePlayersTable();
+            askBet(findPlayer(tableInfo.playerInfo[tableInfo.current_player].name));
             break;
 
         case 3:
             //last betting round
             tableInfo.communityCards.push_back(deck.dealCard());
             updatePlayersTable();
+            askBet(findPlayer(tableInfo.playerInfo[tableInfo.current_player].name));
             break;
 
         case 4:

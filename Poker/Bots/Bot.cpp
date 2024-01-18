@@ -3,7 +3,6 @@
 #include <qdebug.h>
 
 void Bot::Action() {
-    if (tableInfo.playerInfo[tableInfo.current_player].name == getName()) {
         // Create a QTimer
 
         /*
@@ -18,8 +17,8 @@ void Bot::Action() {
         timer.start(100);
         */
 
-        call_bet();
-    }
+    call_bet();
+
 }
 
 
