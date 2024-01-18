@@ -1,6 +1,7 @@
 #include "Table.hpp"
 #include <QApplication>
-
+#include <iostream>
+#include <sstream>
 
 Table::Table(){
     this-> seats = 5;
@@ -53,6 +54,64 @@ int Table::active_players() {
     return counter;
 }
 
+
+
+void Table::updateTable(std::string command) {
+    // Use std::istringstream to split the string
+    std::istringstream iss(command);
+
+    // Count the number of words
+    int wordCount = 0;
+    while (iss) {
+        std::string word;
+        iss >> word;
+        wordCount++;
+    }
+
+    // Allocate memory for the array
+    std::string *wordsArray = new std::string[wordCount];
+
+    // Reset the stringstream and fill the array
+    iss.clear();
+    iss.seekg(0, std::ios::beg);
+    int i = 0;
+    while (iss >> wordsArray[i]) {
+        i++;
+    }
+
+
+    std::string identifier = wordsArray[0];
+
+    if (identifier == "/bet") {
+        // "/bet PlayerName Amount"
+        std::string PlayerName = wordsArray[1];
+        std::string Amount = wordsArray[2];
+
+    } else if (identifier == "/pay") {
+        // "/pay PlayerName Amount"
+        std::string PlayerName = wordsArray[1];
+        std::string Amount = wordsArray[2];
+    } else if (identifier == "/setActivePlayer") {
+        // "/setActivePlayer PlayerName"
+        std::string PlayerName = wordsArray[1];
+    } else if (identifier == "/addCardMid") {
+        // "/addCardMid Suit Num"
+        std::string Suit = wordsArray[1];
+        std::string Num = wordsArray[2];
+    } else if (identifier == "/addCardHand") {
+        // "/addCardHand Suit Num"
+        std::string Suit = wordsArray[1];
+        std::string Num = wordsArray[2];
+
+
+    } else if (identifier == "/nextRound") {
+
+    } else if (identifier == "/resetGame") {
+
+    }
+
+
+};
 
 
 

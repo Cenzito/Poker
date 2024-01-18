@@ -43,6 +43,10 @@ public:
     int current_biggest_bet; //biggest bet of the betting round
     int lastRaiser; //last person to raise ( if get back to him, we end betting round )
 
+
+    void updateTable(std::string command);
+    PlayerInfo getPlayerInfo(std::string name);
+
 };
 
 #endif // TABLE_HPP
