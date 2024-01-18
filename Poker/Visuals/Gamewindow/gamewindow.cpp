@@ -1,4 +1,5 @@
-    #include "gamewindow.hpp"
+#include "gamewindow.hpp"
+#include <iostream>
 #include "Visuals/RulesWindow/ruleswindow.h"
 #include "ui_gamewindow.h"
 #include <QPixmap>
@@ -12,7 +13,7 @@ GameWindow::GameWindow(QWidget *parent, std::string name) : game_player(name),
 {
     ui->setupUi(this);
     
-
+    connect(ui->AddBot, &QPushButton::clicked, this, &GameWindow::onAddBotClicked);
     connect(ui->pushButton, &QPushButton::clicked, this, &GameWindow::onPlayButtonClicked);
     //connect(ui->FoldButton, &QPushButton::clicked, this, &GameWindow::onFoldButtonClicked(PokerPlayer* game_player));
     connect(ui->FoldButton, &QPushButton::clicked, [=]() {
@@ -49,6 +50,20 @@ const QString GameWindow::Get_image_path(const std::string &suit, const std::str
     QString final = QString::fromStdString(temp);
     return final;
 
+}
+
+void GameWindow::onAddBotClicked()
+{
+    int index = ui->dropBox->currentIndex();
+    Add_Bot(index);
+}
+
+void GameWindow::Add_Bot(int index) {
+    qDebug() << index;
+    if (game_player.tableInfo.player_num < 8){
+        game_player.tableInfo.player_num += 1;
+        update_display();
+    }
 }
 
 void GameWindow::onPlayButtonClicked()
@@ -99,7 +114,12 @@ void GameWindow::update_display(){
 
 void GameWindow::update_community_cards() {
     const std::vector<Card>& communityCards = game_player.tableInfo.communityCards;
-
+    if (communityCards.size() == 0) {
+        ui->AddBot->setEnabled(true);
+    }
+    else {
+        ui->AddBot->setEnabled(false);
+    }
     qDebug() << "number center cards: " << communityCards.size();
 
     // Display the first three community cards initially

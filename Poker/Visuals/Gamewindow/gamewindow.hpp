@@ -29,6 +29,8 @@ public:
     void switch_bet_button_off();
     void switch_players_display();
 
+    void Add_Bot(int index);
+
     PokerPlayer game_player;
 
 private slots:
@@ -43,6 +45,7 @@ private slots:
 
     void updateCallButtonLabel();
 
+    void onAddBotClicked();
 
     void update_display();
 
