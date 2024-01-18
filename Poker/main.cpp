@@ -19,7 +19,7 @@ int main(int argc, char *argv[]) {
     //commented these 4 because of conflicts (delete and recreate pull request if this is unneccesary)
     QApplication a(argc, argv);
     MainWindow b;
-    GameWindow w;
+    //GameWindow w;
 
 
 
