@@ -5,6 +5,7 @@
 #include "GameLogic/table.hpp"
 #include"GameLogic/PlayerInfo.hpp"
 #include "GameLogic/PokerPlayer.hpp"
+#include <QVBoxLayout>
 
 
 GameWindow::GameWindow(QWidget *parent, std::string name) : game_player(name),
@@ -12,6 +13,13 @@ GameWindow::GameWindow(QWidget *parent, std::string name) : game_player(name),
     ui(new Ui::GameWindow)
 {
     ui->setupUi(this);
+
+    // Create a vertical layout
+    QVBoxLayout *verticalLayout = new QVBoxLayout(ui->centralwidget);
+
+    // Create and set up labels
+    QLabel *labelTable = new QLabel;
+    QLabel *labelPot = new QLabel;
 
     connect(ui->pushButton, &QPushButton::clicked, this, &GameWindow::onPlayButtonClicked);
     //connect(ui->FoldButton, &QPushButton::clicked, this, &GameWindow::onFoldButtonClicked(PokerPlayer* game_player));
@@ -24,12 +32,27 @@ GameWindow::GameWindow(QWidget *parent, std::string name) : game_player(name),
     /*QImage table_background(":/images/table.png");
     QSize table_background_size = ui->label_table->size();
     ui->label_table->setPixmap(QPixmap::fromImage(table_background).scaled(table_background_size, Qt::KeepAspectRatio, Qt::SmoothTransformation));*/
-    QImage pot_image(":/images/huge_player_stack.png");
-    QSize pot_image_size = ui->label_pot->size();
-    ui->label_pot->setPixmap(QPixmap::fromImage(pot_image).scaled(pot_image_size, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    //QImage pot_image(":/images/huge_player_stack.png");
+    //QSize pot_image_size = ui->label_pot->size();
+    //ui->label_pot->setPixmap(QPixmap::fromImage(pot_image).scaled(pot_image_size, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+\
+    // Create and set up the images
+    QImage tableImage(":/images/table.png");
+    QImage potImage(":/images/huge_player_stack.png");
 
+    // Set up the labels with initial images
+    labelTable->setPixmap(QPixmap::fromImage(tableImage));
+    labelPot->setPixmap(QPixmap::fromImage(potImage));
 
+    // Add labels to the layout
+    verticalLayout->addWidget(labelTable);
+    verticalLayout->addWidget(labelPot);
+
+    // Set size policies for labels
+    labelTable->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    labelPot->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 }
+
 
 GameWindow::~GameWindow()
 {
