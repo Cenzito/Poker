@@ -1,4 +1,4 @@
-    #include "gamewindow.hpp"
+#include "gamewindow.hpp"
 #include "Visuals/RulesWindow/ruleswindow.h"
 #include "ui_gamewindow.h"
 #include <QPixmap>
@@ -6,12 +6,12 @@
 #include"GameLogic/PlayerInfo.hpp"
 #include "GameLogic/PokerPlayer.hpp"
 
+
 GameWindow::GameWindow(QWidget *parent, std::string name) : game_player(name),
     QMainWindow(parent),
     ui(new Ui::GameWindow)
 {
     ui->setupUi(this);
-
 
     connect(ui->pushButton, &QPushButton::clicked, this, &GameWindow::onPlayButtonClicked);
     //connect(ui->FoldButton, &QPushButton::clicked, this, &GameWindow::onFoldButtonClicked(PokerPlayer* game_player));
@@ -87,6 +87,9 @@ void GameWindow::update_display(){
     if (game_player.tableInfo.playerInfo[game_player.tableInfo.current_player].name == game_player.getName()) {
         switch_bet_button_on();
     }
+
+    //display middle pot
+    display_middle_pot();
 }
 
 
@@ -218,10 +221,6 @@ void GameWindow::switch_players_display(){
 
     int number_player = game_player.tableInfo.player_num;
 
-    if (number_player < 2){
-        ui->line_player2->hide();
-        ui->line_bet2->hide();
-    }
     if (number_player < 3){
         ui->line_player3->hide();
         ui->line_bet3->hide();
@@ -331,3 +330,15 @@ void GameWindow::highlightActivePlayer() {
 }
 
 // end of highlight current player
+
+// start of display and update middle pot
+
+void GameWindow::display_middle_pot(){
+    int middle_pot = game_player.tableInfo.pot ;
+    QFont font = ui->label_pot->font();
+    font.setBold(true) ;
+    ui->label_pot->setFont(font) ;
+    ui->label_pot->setText(QString::number(middle_pot)) ; // potentially change label
+}
+
+// end of display and update middle pot

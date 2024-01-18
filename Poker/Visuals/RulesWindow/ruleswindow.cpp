@@ -54,7 +54,8 @@ RulesWindow::RulesWindow(QWidget *parent) :
 
     tab2 -> setHtml(hands_in_poker) ;
 
-    setStyleSheet("background-color:rgb(197, 220, 199);");
+    //setStyleSheet("background-color:rgb(197, 220, 199);");
+    setStyleSheet("background-color:rgb( 200, 220, 205);");
     setAutoFillBackground( true );
 
 }
