@@ -30,6 +30,7 @@ public:
     void switch_players_display();
     void highlightActivePlayer();
     void display_middle_pot();
+    void displayer_given_cards(PokerPlayer* display_player);
 
     PokerPlayer game_player;
 
