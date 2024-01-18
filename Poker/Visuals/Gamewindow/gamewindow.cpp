@@ -355,3 +355,17 @@ void GameWindow::display_middle_pot(){
 }
 
 // end of display and update middle pot
+
+
+
+void GameWindow::on_NextRound_clicked()
+{
+    //clear table
+    //potsize = 0
+    //update player states for new round
+    //shuffle deck
+    //update  UI
+    //check Game status
+
+}
+

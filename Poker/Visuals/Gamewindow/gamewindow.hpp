@@ -45,6 +45,10 @@ private slots:
 
     void updateCallButtonLabel();
 
+    void on_NextButton_clicked();
+
+    void on_NextRound_clicked();
+
 private:
     Ui::GameWindow *ui;
 
