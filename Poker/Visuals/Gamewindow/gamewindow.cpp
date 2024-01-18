@@ -82,6 +82,8 @@ void GameWindow::update_display(){
     // Display names and stacks
     display_names_stacks_bets();
 
+    // Display middle pot amount
+    display_middle_pot() ;
 
     //if you are the current player
     if (game_player.tableInfo.playerInfo[game_player.tableInfo.current_player].name == game_player.getName()) {
@@ -331,3 +333,10 @@ void GameWindow::highlightActivePlayer() {
 }
 
 // end of highlight current player
+
+void GameWindow::display_middle_pot() {
+    int middle_pot_amount = game_player.tableInfo.pot ;
+    QFont font = ui->label_middle_pot_amount->font();
+    font.setBold(true) ;
+    ui->label_middle_pot_amount->setText(QString::number(middle_pot_amount)) ;
+}

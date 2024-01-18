@@ -640,7 +640,7 @@ color: rgb(15, 96, 0);</string>
      </layout>
     </item>
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_12" stretch="4,1,4">
+     <layout class="QHBoxLayout" name="horizontalLayout_12" stretch="4,1,0,4">
       <item>
        <spacer name="horizontalSpacer_15">
         <property name="orientation">
@@ -670,6 +670,13 @@ color: rgb(15, 96, 0);</string>
         </property>
         <property name="scaledContents">
          <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_middle_pot_amount">
+        <property name="text">
+         <string>TextLabel</string>
         </property>
        </widget>
       </item>
