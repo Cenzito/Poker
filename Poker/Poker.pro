@@ -9,6 +9,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    Analysis/plot_test_mateo.cpp \
     Analysis/vpip.cpp \
     Bots/Medium/MediumLeal.cpp \
     GameLogic/GameLocal.cpp \
@@ -41,6 +42,7 @@ SOURCES += \
     Analysis/ProcessHandHistory.cpp \
 
 HEADERS += \
+    Analysis/plot_test_mateo.h \
     Analysis/vpip.h \
     Bots/Bot.hpp \
     Bots/Easy/BotDrunk.hpp \
