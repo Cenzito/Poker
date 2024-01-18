@@ -14,7 +14,12 @@
 class GameLocal : public QObject
 {
     Q_OBJECT
+private:
+    std::unordered_map<std::string, std::vector<Card>> playerHands; //To internall store hands
 public:
+    void storePlayerHand(const std::string& playerName, const std::vector<Card>& hand);
+    void clearPlayerHands();
+
     GameLocal(int seats);
 
 
