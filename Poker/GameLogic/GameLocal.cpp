@@ -66,6 +66,7 @@ void GameLocal::win(PlayerInfo& PlayerWin, int sum) {
 void GameLocal::endHand(const std::vector<PlayerInfo>& winners) {
     qDebug() << "Winner(s):";
     int numTiedPlayers = tiedPlayers.size();
+    int sum = tableInfo.pot;
     // Check if sum is divisble by numTiedPlayers and adjust it if needed
     if (sum % numTiedPlayers != 0) {
     // Remove the smallest number of integers from sum to make division integer
@@ -279,7 +280,7 @@ void GameLocal::nextBettingRound() {
             //showdown
             qDebug() << playersNotFold.size();
             PlayerInfo winner = playersNotFold[0];
-            std::vector<Card> winnerHandVect = findPlayer(winner.name)->getHand();
+            std::vector<Card> winnerHandVect = playerHands[winner.name];
 
             winnerHandVect.insert(winnerHandVect.end(), community.begin(), community.end());
 
@@ -291,7 +292,7 @@ void GameLocal::nextBettingRound() {
             //haven't taken into account ties yet, in that case, first player considered wins
             std::vector<PlayerInfo> tiedPlayers;
             for (PlayerInfo current : playersNotFold) {
-                std::vector<Card> currentHandVect = findPlayer(current.name)->getHand();;
+                std::vector<Card> currentHandVect = playerHands[current.name];
                 //getting hands throught the "getHand" function in the PokerPlayer class which is bad
                 //need to store the hands of the players in the Game in order to retrieve and compare them
 
@@ -332,6 +333,14 @@ void GameLocal::setNextCurrentPlayer() {
             break;
         }
     }
+}
+
+void GameLocal::storePlayerHand(const std::string& playerName, const std::vector<Card>& hand) {
+    playerHands[playerName] = hand;
+}
+
+void GameLocal::clearPlayerHands() {
+    playerHands.clear();
 }
 
 
