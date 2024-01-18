@@ -221,10 +221,6 @@ void GameWindow::switch_players_display(){
 
     int number_player = game_player.tableInfo.player_num;
 
-    if (number_player < 2){
-        ui->line_player2->hide();
-        ui->line_bet2->hide();
-    }
     if (number_player < 3){
         ui->line_player3->hide();
         ui->line_bet3->hide();

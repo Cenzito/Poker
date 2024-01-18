@@ -114,7 +114,7 @@ color: rgb(15, 96, 0);</string>
        </spacer>
       </item>
       <item>
-       <widget class="QLineEdit" name="line_bet1">
+       <widget class="QLineEdit" name="line_player1">
         <property name="minimumSize">
          <size>
           <width>110</width>
@@ -136,7 +136,7 @@ color: rgb(15, 96, 0);</string>
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="line_player1">
+       <widget class="QLineEdit" name="line_bet1">
         <property name="minimumSize">
          <size>
           <width>50</width>
@@ -690,6 +690,9 @@ color: rgb(15, 96, 0);</string>
     </item>
     <item>
      <layout class="QGridLayout" name="gridLayout_2" rowstretch="0,0" columnstretch="0,0,0,0">
+      <property name="horizontalSpacing">
+       <number>30</number>
+      </property>
       <property name="verticalSpacing">
        <number>10</number>
       </property>
@@ -1237,6 +1240,9 @@ color: rgb(15, 96, 0);</string>
          <layout class="QVBoxLayout" name="verticalLayout">
           <property name="spacing">
            <number>10</number>
+          </property>
+          <property name="topMargin">
+           <number>5</number>
           </property>
           <item>
            <widget class="QLineEdit" name="cumulative_bet_line">
