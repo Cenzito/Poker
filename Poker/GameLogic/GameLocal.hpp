@@ -2,7 +2,7 @@
 #define GAMELOCAL_HPP
 
 #include "PokerPlayer.hpp"
-#include "table.hpp"
+#include "Table.hpp"
 #include "Deck.hpp"
 #include "../Bots/Bot.hpp"
 #include "PokerHand.hpp"
