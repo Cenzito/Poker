@@ -93,6 +93,7 @@ void GameWindow::update_display(){
     //}
     switch_players_display();
     update_community_cards();
+    updateCallButtonLabel();
 }
 
 //many bugs, i will solve them
@@ -211,6 +212,9 @@ void GameWindow::switch_bet_button_off(){
 void GameWindow::updateCallButtonLabel(){
     //bool condition = /* your condition here */; //SHOULD BE WHETHER TRUE IF SOMEONE PLACES A BET, FALSE IF NO BETS SO FAR IN THE TURN
     bool condition = false;
+    if (game_player.tableInfo.current_biggest_bet>0){
+        condition = true;
+    }
     // Set the new label based on the condition
     QString newLabel = (condition) ? "Call" : "Check";
     ui->CallButton->setText(newLabel);
