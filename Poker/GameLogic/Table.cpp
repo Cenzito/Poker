@@ -1,4 +1,4 @@
-#include "table.hpp"
+#include "Table.hpp"
 #include <QApplication>
 
 
@@ -52,9 +52,3 @@ int Table::active_players() {
     }
     return counter;
 }
-
-
-
-
-
-
