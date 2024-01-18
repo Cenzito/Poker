@@ -615,6 +615,19 @@ color: rgb(15, 96, 0);</string>
      <string>Add Bot</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="Leave_Table">
+    <property name="geometry">
+     <rect>
+      <x>910</x>
+      <y>10</y>
+      <width>80</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Leave Table</string>
+    </property>
+   </widget>
    <zorder>horizontalLayoutWidget</zorder>
    <zorder>label_table</zorder>
    <zorder>label_card2</zorder>
@@ -650,6 +663,7 @@ color: rgb(15, 96, 0);</string>
    <zorder>label_pot</zorder>
    <zorder>dropBox</zorder>
    <zorder>AddBot</zorder>
+   <zorder>Leave_Table</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
