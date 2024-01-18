@@ -63,9 +63,20 @@ void GameLocal::win(PlayerInfo& PlayerWin, int sum) {
 };
 
 //only consider one player winning rn
-void GameLocal::endHand(PlayerInfo& winner) {
-    qDebug() << "winner is " << QString::fromStdString(winner.name);
-    win(winner, tableInfo.pot);
+void GameLocal::endHand(const std::vector<PlayerInfo>& winners) {
+    qDebug() << "Winner(s):";
+    int numTiedPlayers = tiedPlayers.size();
+    // Check if sum is divisble by numTiedPlayers and adjust it if needed
+    if (sum % numTiedPlayers != 0) {
+    // Remove the smallest number of integers from sum to make division integer
+        sum -= (sum % numTiedPlayers);
+    }       
+    // Split the sum between the tied players
+    int splitAmount = sum / numTiedPlayers;
+    for (const PlayerInfo& winner : winners) {
+        qDebug() << QString::fromStdString(winner.name);
+        win(winner, splitAmount);
+    }
 
     updatePlayersTable();
     nextHand();
@@ -278,6 +289,7 @@ void GameLocal::nextBettingRound() {
             //iterate over players and compute their hand score
             //if their score is better than the current best, they become best
             //haven't taken into account ties yet, in that case, first player considered wins
+            std::vector<PlayerInfo> tiedPlayers;
             for (PlayerInfo current : playersNotFold) {
                 std::vector<Card> currentHandVect = findPlayer(current.name)->getHand();;
                 //getting hands throught the "getHand" function in the PokerPlayer class which is bad
@@ -285,12 +297,21 @@ void GameLocal::nextBettingRound() {
 
                 currentHandVect.insert(currentHandVect.end(), community.begin(), community.end());
                 PokerHand currentHand(currentHandVect);
-                if (compare_hands(winnerHand, currentHand) == 2) {
+                int comparisonResult = compare_hands(winnerHand, currentHand);
+                if (comparisonResult == 2) {
+                    // Current hand is better than the current winner
                     winner = current;
                     winnerHand = currentHand;
+                    tiedPlayers.clear();  // Clear tied players if there was a new winner
+                } 
+                else if (comparisonResult == 0) {
+                    // Hands are tied, add the current player to the list of tied players
+                    tiedPlayers.push_back(current);
                 }
             }
-            endHand(winner);
+
+            // After the loop over players
+            endHand(tiedPlayers);
             break;
     }
 }
