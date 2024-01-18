@@ -20,7 +20,6 @@ void GameLocal::JoinGame(PokerPlayer* player) {
     if (tableInfo.player_num >= tableInfo.seats)  {
         return;
     } else {
-        qDebug() << QString::fromStdString(player->name);
         //player joins game so we add him to the table with an initial amount of money
         PlayerInfo playerinfo(player->getName(), 1000, 0);
         tableInfo.playerInfo.insert({getFreeSeat(), playerinfo});
@@ -47,12 +46,11 @@ void GameLocal::pay(PlayerInfo& PlayerPay, int sum) {
     PlayerPay.stack_size -= sum;
     PlayerPay.bet += sum;
     tableInfo.pot += sum;
-    qDebug() << "payed" << QString::fromStdString(PlayerPay.name) << " " << sum;
 
 };
 
 void GameLocal::win(PlayerInfo& PlayerWin, int sum) {
-    qDebug() << sum;
+
     for (int i = 0; i <= tableInfo.player_num; i++) {
         if (tableInfo.playerInfo[i].name == PlayerWin.name) {
             tableInfo.playerInfo[i].stack_size += sum;
@@ -62,7 +60,6 @@ void GameLocal::win(PlayerInfo& PlayerWin, int sum) {
 
 //only consider one player winning rn
 void GameLocal::endHand(PlayerInfo& winner) {
-    qDebug() << "winner is " << QString::fromStdString(winner.name);
     win(winner, tableInfo.pot);
 
     updatePlayersTable();
@@ -108,7 +105,6 @@ void GameLocal::nextHand(){
     tableInfo.current_player = tableInfo.ButtonPlayer;
 
     tableInfo.communityCards.clear();
-    qDebug() << tableInfo.communityCards.size();
 
     hand_finished = false;
     updatePlayersTable();
@@ -122,7 +118,6 @@ void GameLocal::nextHand(){
 
 void GameLocal::askBet(PokerPlayer* p) {
     //connect to  a player, tell him its his turn then disconnect
-    qDebug() << "Aske BET" << QString::fromStdString(p->name);
     QObject::connect(this, &GameLocal::askAction, p, &PokerPlayer::Action, Qt::QueuedConnection);
     emit askAction();
     QObject::disconnect(this, &GameLocal::askAction, p, &PokerPlayer::Action);
@@ -145,7 +140,6 @@ void GameLocal::onAction() {
         //get next current_player
         setNextCurrentPlayer();
 
-        qDebug() << tableInfo.current_player << " " << tableInfo.lastRaiser;
 
         // we end round of betting
         if (tableInfo.current_player == tableInfo.lastRaiser) {
@@ -157,7 +151,6 @@ void GameLocal::onAction() {
     }
 }
 void GameLocal::onCall() {
-    qDebug() << "called it";
 
     PlayerInfo &currentPlayerInfo = tableInfo.playerInfo[tableInfo.current_player];
 
@@ -184,7 +177,6 @@ void GameLocal::onRaise(int bet) {
     if (currentPlayerInfo.stack_size < tableInfo.current_biggest_bet + bet) {
         fold(currentPlayerInfo);
     } else {
-        qDebug() << "raised " << bet;
         pay(currentPlayerInfo, bet);
         tableInfo.current_biggest_bet = currentPlayerInfo.bet;
         tableInfo.lastRaiser = tableInfo.current_player;
@@ -206,12 +198,10 @@ void GameLocal::nextBettingRound() {
 
 
 
-    qDebug() << "betting round " << tableInfo.betting_round;
     switch (tableInfo.betting_round) {
         case 0:
 
             //preflop
-            qDebug() << "start hand \n\n";
             players_standing = tableInfo.player_num;
 
             tableInfo.current_biggest_bet = tableInfo.BBValue;
@@ -240,9 +230,6 @@ void GameLocal::nextBettingRound() {
             tableInfo.communityCards.push_back(deck.dealCard());
             tableInfo.communityCards.push_back(deck.dealCard());
             tableInfo.communityCards.push_back(deck.dealCard());
-
-
-            qDebug() << "cards " << tableInfo.communityCards.size();
 
 
             updatePlayersTable();
@@ -277,15 +264,12 @@ void GameLocal::nextBettingRound() {
             std::vector<Card> community = tableInfo.communityCards;
 
             //showdown
-            qDebug() << playersNotFold.size();
             PlayerInfo winner = playersNotFold[0];
             std::vector<Card> winnerHandVect = findPlayer(winner.name)->getHand();
 
             winnerHandVect.insert(winnerHandVect.end(), community.begin(), community.end());
 
-            qDebug() << winnerHandVect.size();
             PokerHand winnerHand(winnerHandVect);
-            qDebug() << "a";
             //iterate over players and compute their hand score
             //if their score is better than the current best, they become best
             //haven't taken into account ties yet, in that case, first player considered wins
