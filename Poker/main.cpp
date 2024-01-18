@@ -18,15 +18,20 @@ int main(int argc, char *argv[]) {
 
     //commented these 4 because of conflicts (delete and recreate pull request if this is unneccesary)
     QApplication a(argc, argv);
+    MainWindow b;
     GameWindow w;
 
-    w.show();
-    w.game_player.hand.push_back(Card(Suit::Spades, 4));
-    w.game_player.hand.push_back(Card(Suit::Hearts, 12));
-    w.game_player.tableInfo.playerInfo[0] = PlayerInfo("Remi", 1000, 0);
-    w.game_player.tableInfo.player_num = 1;
-    w.update_display();
 
+
+   //w.show();
+   //w.game_player.hand.push_back(Card(Suit::Spades, 4));
+   //w.game_player.hand.push_back(Card(Suit::Hearts, 12));
+   //w.game_player.tableInfo.playerInfo[0] = PlayerInfo("Remi", 1000, 0);
+   //w.game_player.tableInfo.player_num = 1;
+   // w.update_display();
+
+
+    b.show();
     return a.exec();
 
   
