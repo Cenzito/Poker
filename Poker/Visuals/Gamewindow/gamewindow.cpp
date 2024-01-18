@@ -6,6 +6,7 @@
 #include "GameLogic/Table.hpp"
 #include"GameLogic/PlayerInfo.hpp"
 #include "GameLogic/PokerPlayer.hpp"
+#include "GameLocal.cpp"
 
 GameWindow::GameWindow(QWidget *parent, std::string name) : game_player(name),
     QMainWindow(parent),
@@ -14,6 +15,7 @@ GameWindow::GameWindow(QWidget *parent, std::string name) : game_player(name),
     ui->setupUi(this);
     
     connect(ui->AddBot, &QPushButton::clicked, this, &GameWindow::onAddBotClicked);
+    connect(ui->Leave_Table, &QPushButton::clicked, this, &GameWindow::onLeaveTableClicked);
     connect(ui->pushButton, &QPushButton::clicked, this, &GameWindow::onPlayButtonClicked);
     //connect(ui->FoldButton, &QPushButton::clicked, this, &GameWindow::onFoldButtonClicked(PokerPlayer* game_player));
     connect(ui->FoldButton, &QPushButton::clicked, [=]() {
@@ -51,7 +53,10 @@ const QString GameWindow::Get_image_path(const std::string &suit, const std::str
     return final;
 
 }
+void GameWindow::onLeaveTableClicked() {
+    LeaveTable();
 
+}
 void GameWindow::onAddBotClicked()
 {
     int index = ui->dropBox->currentIndex();
