@@ -255,6 +255,9 @@ void GameWindow::display_names_stacks_bets(){
 
     //for each additional player, add 1 from the previous sum
 
+    //name of player displayed
+    ui ->name_line -> setText(QString::fromStdString(game_player.tableInfo.playerInfo[game_player.tableInfo.current_player].name));
+
     if (game_player.tableInfo.player_num <= 1){
         std::string playerName1 = game_player.tableInfo.playerInfo[0].name+" | "+std::to_string(game_player.tableInfo.playerInfo[0].stack_size);
         qDebug() <<QString::fromStdString(playerName1);
