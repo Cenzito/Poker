@@ -304,6 +304,7 @@ void GameLocal::nextBettingRound() {
                     winner = current;
                     winnerHand = currentHand;
                     tiedPlayers.clear();  // Clear tied players if there was a new winner
+                    tiedPlayers.push_back(current); //Add new player
                 } 
                 else if (comparisonResult == 0) {
                     // Hands are tied, add the current player to the list of tied players
