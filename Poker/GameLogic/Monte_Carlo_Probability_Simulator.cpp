@@ -19,7 +19,7 @@ std::vector<float> Winning_Probability (Table table, std::vector<Card> hand, int
     //std::cout<<"Number of simulations: "<<num_simulations<<std::endl;
     std::cout<<"Our cards: "<<hand[0]<<" "<<hand[1]<<std::endl;
     for (int i = 0; i < num_simulations; i++) { // we iterate through the number of simulations
-        our_hand=hand; //we reset the hand of the player
+        our_hand=hand; //we reset the hand of the player //-> where us our_hand initialised?
         std::vector<std::vector<Card>> hands; //vector of hands of other players
         for (int l=0; l<num_players; l++) {hands.emplace_back(std::vector<Card>());} //initialise the vector of hands of other players
         std::vector<PokerHand> final_hands; //vector of PokerHand objects of other players

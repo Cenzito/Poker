@@ -54,6 +54,8 @@ void GameLocal::pay(PlayerInfo& PlayerPay, int sum) {
 };
 
 void GameLocal::win(PlayerInfo& PlayerWin, int sum) {
+    //add thimgy here
+
     qDebug() << sum;
     for (int i = 0; i <= tableInfo.player_num; i++) {
         if (tableInfo.playerInfo[i].name == PlayerWin.name) {
