@@ -14,8 +14,8 @@ public:
         this -> level = level;
         this->name = name;
     };
-    signed int Action(); //returns -1 if folds, the bet it wants to make if it does not fold
-    float optimalBet();
+    void Action(); //returns the optimal action of the bot
+    int optimalBet();
     
     private:
 

@@ -1,6 +1,6 @@
 #include "BotDarius.hpp"
 
-float BotDarius::optimalBet()
+int BotDarius::optimalBet()
 {
     double optimalBet;
     std::vector<Card> our_hand_cardsvector, table_cards_cardsvector;
@@ -25,21 +25,21 @@ float BotDarius::optimalBet()
     
     return int(optimalBet);
 }
-signed int BotDarius::Action(){
+void BotDarius::Action(){
     float bet0;
     bet0 = optimalBet();
     int bet=bet0; // computes the optimal bet, uses it to see what action to take
     int bet_on_table; // the current bet on the table, to be computed using the table informations
     if (bet > bet_on_table)
     {
-        return bet-bet_on_table; // raises by the difference between the optimal bet and the current bet if the optimal bet is higher than the current bet
+        return Raise(bet-bet_on_table); // raises by the difference between the optimal bet and the current bet if the optimal bet is higher than the current bet
     }
     else if (bet == bet_on_table) // if the optimal bet is equal to the current bet, the bot calls
     {
-        return bet;
+        return Call();
     }
     else
     {
-        return -1;
+        return Fold();
     }
 }
