@@ -16,7 +16,7 @@ int BotDarius::optimalBet()
     int pot;
     pot=tableInfo.pot;
     int wealth;
-    wealth=this->chips;
+    wealth=find_stack_size();
     float optimal_bet;
     optimal_bet=win_probability*wealth/(1+(1-win_probability)/win_probability*wealth);
     //this is a very conservative strategy, we assume that making a certain bet we win just the preexisting pot, and we don't take into account the fact that we can win more money from the other players
