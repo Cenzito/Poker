@@ -25,6 +25,7 @@ int main(int argc, char *argv[]) {
     w.game_player.hand.push_back(Card(Suit::Hearts, 12));
     w.game_player.tableInfo.playerInfo[0] = PlayerInfo("Remi", 1000, 0);
     w.game_player.tableInfo.player_num = 1;
+    w.game_player.tableInfo.current_player = 1;
     w.update_display();
 
     return a.exec();

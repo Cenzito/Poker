@@ -22,9 +22,6 @@ GameWindow::GameWindow(QWidget *parent, std::string name) : game_player(name),
     connect(ui->RaiseButton, &QPushButton::clicked, this, &GameWindow::onRaiseButtonClicked);
     connect(ui->CallButton, &QPushButton::clicked, this, &GameWindow::onCallButtonClicked);
 
-    /*QImage table_background(":/images/table.png");
-    QSize table_background_size = ui->label_table->size();
-    ui->label_table->setPixmap(QPixmap::fromImage(table_background).scaled(table_background_size, Qt::KeepAspectRatio, Qt::SmoothTransformation));*/
     QImage pot_image(":/images/huge_player_stack.png");
     QSize pot_image_size = ui->label_pot->size();
     ui->label_pot->setPixmap(QPixmap::fromImage(pot_image).scaled(pot_image_size, Qt::KeepAspectRatio, Qt::SmoothTransformation));
@@ -80,7 +77,8 @@ void GameWindow::update_display(){
     // Display players hand
     display_player_hand();
   
-    // Display names and stacks
+    // Display names and stacks and put yours in red
+    display_name_red();
     display_names_stacks_bets();
 
 
@@ -91,7 +89,10 @@ void GameWindow::update_display(){
 
     //display middle pot
     display_middle_pot();
+
 }
+
+
 
 
 
@@ -136,9 +137,6 @@ void GameWindow::remove_middle_card_display(int cardIndex) {
         middleCardLabel->clear();
     }
 }
-
-
-
 
 // beginning of display poker hand 
   
@@ -308,7 +306,6 @@ void GameWindow::display_names_stacks_bets(){
 
 // end of display of names, stacks and bets
 
-
 // beginning of highlight current player
 
 void GameWindow::highlightActivePlayer() {
@@ -346,7 +343,7 @@ void GameWindow::display_middle_pot(){
 
 // start of display a given player's cards
 
-void GameWindow::displayer_given_cards(PokerPlayer* display_player){
+void GameWindow::display_given_cards(PokerPlayer* display_player){
 
     int num = display_player->tableInfo.current_player;
     Card card1 = display_player->hand[0];
@@ -420,5 +417,38 @@ void GameWindow::displayer_given_cards(PokerPlayer* display_player){
 
 // end of display a given player's cards
 
+// start display name red
 
+void GameWindow::display_name_red(){
+
+    int num = game_player.tableInfo.current_player;
+
+    if(num == 1){
+        ui->line_player1->setStyleSheet("color : red;");
+    }
+    if(num == 2){
+        ui->line_player2->setStyleSheet("color : red;");
+    }
+    if(num == 3){
+        ui->line_player3->setStyleSheet("color : red;");
+    }
+    if(num == 4){
+        ui->line_player4->setStyleSheet("color : red;");
+    }
+    if(num == 5){
+        ui->line_player5->setStyleSheet("color : red;");
+    }
+    if(num == 6){
+        ui->line_player6->setStyleSheet("color : red;");
+    }
+    if(num == 7){
+        ui->line_player7->setStyleSheet("color : red;");
+    }
+    if(num == 8){
+        ui->line_player8->setStyleSheet("color : red;");
+    }
+
+}
+
+// end display name red
 

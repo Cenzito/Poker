@@ -127,6 +127,9 @@ color: rgb(15, 96, 0);</string>
           <height>30</height>
          </size>
         </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
