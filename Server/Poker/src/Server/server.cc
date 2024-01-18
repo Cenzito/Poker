@@ -1,4 +1,5 @@
 #include "server.h"
+#include "Creationaccount.hpp"
 #include <Poco/Net/ServerSocket.h>
 #include <iostream>
 #include <cstring>
@@ -86,9 +87,11 @@ bool PokerServerConnection::processReceivedData(StreamSocket& ss, char* buffer, 
 void PokerServerConnection::processLogin(StreamSocket& ss, std::string& message) {
     auto delimiterPos = message.find(':');
     if (delimiterPos != std::string::npos) {
-        clientCredentials[&ss].username = message.substr(0, delimiterPos);
-        clientCredentials[&ss].password = message.substr(delimiterPos + 1);
-        clientCredentials[&ss].isLoggedIn = true;
+        if(account.login(message.substr(0, delimiterPos), message.substr(delimiterPos + 1))){
+            clientCredentials[&ss].username = message.substr(0, delimiterPos);
+            clientCredentials[&ss].password = message.substr(delimiterPos + 1);
+            clientCredentials[&ss].isLoggedIn = true;
+        }
     }
 }
 

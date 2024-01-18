@@ -9,6 +9,7 @@
 #include <map>
 #include <string>
 #include "dealer.h"
+#include "Creationaccount.hpp"
 
 using Poco::Net::TCPServerConnection;
 using Poco::Net::StreamSocket;
@@ -60,6 +61,8 @@ private:
     static std::mutex connectionsMutex; ///< Mutex for managing access to the connections list.
     static std::map<StreamSocket*, ClientInfo> clientCredentials; ///< Map to store client credentials
     static Dealer dealer; ///< Dealer for the poker table
+    const char* database = "account.db";
+    CreationAccount account = CreationAccount(database);
 
     /**
      * @brief Processes received data from the client.
