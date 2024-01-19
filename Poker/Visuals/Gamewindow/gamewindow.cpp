@@ -1,4 +1,4 @@
-    #include "gamewindow.hpp"
+#include "gamewindow.hpp"
 #include "Visuals/RulesWindow/ruleswindow.h"
 #include "ui_gamewindow.h"
 #include <QPixmap>
@@ -67,7 +67,6 @@ void GameWindow::onRaiseButtonClicked(){
 
 void GameWindow::onCallButtonClicked(){ //Reminder: this is check/call button, need to work on changing the name in accordance with the situation, but functionallity should work fine for now
     emit game_player.Call();
-
 }
 
 
