@@ -1,5 +1,6 @@
 #include "gamelocalwindow.hpp"
 #include <qdebug.h>
+#include "client.h"
 
 GameLocalWindow::GameLocalWindow(QWidget *parent, std::string p) : GameWindow(parent, p), game(5)
 {
