@@ -6,7 +6,7 @@
 #include "GameLogic/Table.hpp"
 #include"GameLogic/PlayerInfo.hpp"
 #include "GameLogic/PokerPlayer.hpp"
-#include "GameLocal.cpp"
+#include <QGraphicsDropShadowEffect>
 
 GameWindow::GameWindow(QWidget *parent, std::string name) : game_player(name),
     QMainWindow(parent),
@@ -15,7 +15,6 @@ GameWindow::GameWindow(QWidget *parent, std::string name) : game_player(name),
     ui->setupUi(this);
     
     connect(ui->AddBot, &QPushButton::clicked, this, &GameWindow::onAddBotClicked);
-    connect(ui->Leave_Table, &QPushButton::clicked, this, &GameWindow::onLeaveTableClicked);
     connect(ui->pushButton, &QPushButton::clicked, this, &GameWindow::onPlayButtonClicked);
     //connect(ui->FoldButton, &QPushButton::clicked, this, &GameWindow::onFoldButtonClicked(PokerPlayer* game_player));
     connect(ui->FoldButton, &QPushButton::clicked, [=]() {
@@ -23,14 +22,23 @@ GameWindow::GameWindow(QWidget *parent, std::string name) : game_player(name),
     });
     connect(ui->RaiseButton, &QPushButton::clicked, this, &GameWindow::onRaiseButtonClicked);
     connect(ui->CallButton, &QPushButton::clicked, this, &GameWindow::onCallButtonClicked);
-
+    QGraphicsDropShadowEffect* shadowEffect = new QGraphicsDropShadowEffect();
+    shadowEffect->setBlurRadius(10);
+    shadowEffect->setOffset(0);
+    shadowEffect->setColor(QColor(0, 0, 0, 150));
     QImage table_background(":/images/table.png");
     QSize table_background_size = ui->label_table->size();
     ui->label_table->setPixmap(QPixmap::fromImage(table_background).scaled(table_background_size, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    ui->label_table->setGraphicsEffect(shadowEffect);
     QImage pot_image(":/images/huge_player_stack.png");
     QSize pot_image_size = ui->label_pot->size();
     ui->label_pot->setPixmap(QPixmap::fromImage(pot_image).scaled(pot_image_size, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-
+    QImage player_background(":/images/Poker_background.png");
+    QSize player_background_size = ui->Player_background->size();
+    int scaledWidth = player_background.width() * 0.3;
+    int scaledHeight = player_background.height() * 0.3;
+    ui->Player_background->setPixmap(QPixmap::fromImage(player_background).scaled(scaledWidth, scaledHeight, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    ui->Player_background->setGraphicsEffect(shadowEffect);
     QObject::connect(&game_player, &PokerPlayer::callUpdateDisplay, this, &GameWindow::update_display);
 
 
@@ -53,10 +61,7 @@ const QString GameWindow::Get_image_path(const std::string &suit, const std::str
     return final;
 
 }
-void GameWindow::onLeaveTableClicked() {
-    LeaveTable();
 
-}
 void GameWindow::onAddBotClicked()
 {
     int index = ui->dropBox->currentIndex();

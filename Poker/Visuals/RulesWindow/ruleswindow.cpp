@@ -1,9 +1,15 @@
 #include "ruleswindow.h"
+#include "qgraphicseffect.h"
+#include "qlabel.h"
 #include "ui_ruleswindow.h"
 
 #include <QResource>
 #include <QFile>
 #include <QTextStream>
+#include <QPixmap>
+#include <QPalette>
+#include <QLabel>
+#include <QGraphicsDropShadowEffect>
 
 RulesWindow::RulesWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -21,8 +27,8 @@ RulesWindow::RulesWindow(QWidget *parent) :
     tab1 = new QTextBrowser(this);
     tab2 = new QTextBrowser(this);
 
-    tabWidget->addTab(tab1, "Tab 1");
-    tabWidget->addTab(tab2, "Tab 2");
+    tabWidget->addTab(tab1, "Rules");
+    tabWidget->addTab(tab2, "Hands");
 
     layout->addWidget(tabWidget);
 
@@ -54,9 +60,22 @@ RulesWindow::RulesWindow(QWidget *parent) :
 
     tab2 -> setHtml(hands_in_poker) ;
 
-    setStyleSheet("background-color:rgb(197, 220, 199);");
-    setAutoFillBackground( true );
+    QString styleSheet = "background-color: rgb(60, 122, 28);"
+                         "background-image: url(:/images/Poker_background.png);"
+                         "background-repeat: repeat-y;";
 
+    tab1->setStyleSheet(styleSheet);
+    tab2->setStyleSheet(styleSheet);
+
+    QGraphicsDropShadowEffect* shadowEffect = new QGraphicsDropShadowEffect();
+    shadowEffect->setBlurRadius(30);
+    shadowEffect->setOffset(0);
+    shadowEffect->setColor(QColor(0, 0, 0, 150));
+    tab1->setGraphicsEffect(shadowEffect);
+    tab2->setGraphicsEffect(shadowEffect);
+
+    setStyleSheet("background-color:rgb(60, 122, 28);");
+    setAutoFillBackground(true);
 }
 
 RulesWindow::~RulesWindow()

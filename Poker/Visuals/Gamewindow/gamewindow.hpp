@@ -47,8 +47,6 @@ private slots:
 
     void onAddBotClicked();
 
-    void onLeaveTableClicked();
-
     void update_display();
 
 private:
