@@ -6,14 +6,17 @@
 #include "GameLogic/Table.hpp"
 #include"GameLogic/PlayerInfo.hpp"
 #include "GameLogic/PokerPlayer.hpp"
-#include "GameLocal.cpp"
+#include "GameLogic/Table.hpp"
+#include "GameLogic/GameLocal.hpp"
 
-GameWindow::GameWindow(QWidget *parent, std::string name) : game_player(name),
+GameWindow::GameWindow(QWidget *parent, std::string name, GameLocal* gameLocalInstance) :
+    game_player(name),
     QMainWindow(parent),
-    ui(new Ui::GameWindow)
+    ui(new Ui::GameWindow),
+    gameLocal(gameLocalInstance)
+
 {
     ui->setupUi(this);
-    
     connect(ui->AddBot, &QPushButton::clicked, this, &GameWindow::onAddBotClicked);
     connect(ui->Leave_Table, &QPushButton::clicked, this, &GameWindow::onLeaveTableClicked);
     connect(ui->pushButton, &QPushButton::clicked, this, &GameWindow::onPlayButtonClicked);
@@ -54,8 +57,22 @@ const QString GameWindow::Get_image_path(const std::string &suit, const std::str
 
 }
 void GameWindow::onLeaveTableClicked() {
-    LeaveTable();
+    std::cout << "works1" << std::endl;
+    int playerPos = -1; // Default to an invalid position
 
+    // Iterate through the playerInfo map to find the seat of game_player
+    for (const auto& seat : gameLocal->tableInfo.playerInfo) {
+        if (seat.second.name == game_player.getName()) {
+            playerPos = seat.first;
+            break;
+            }
+        }
+    std::cout << 'works here' << std::endl;
+    if (playerPos != -1) {
+            std::cout << 'testtest' << std::endl;
+        PlayerInfo& playerInfo = gameLocal->tableInfo.playerInfo[playerPos];
+        gameLocal->LeaveTable(playerInfo, playerPos);
+        }
 }
 void GameWindow::onAddBotClicked()
 {
