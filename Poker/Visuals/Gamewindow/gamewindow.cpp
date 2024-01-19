@@ -5,6 +5,8 @@
 #include "GameLogic/Table.hpp"
 #include"GameLogic/PlayerInfo.hpp"
 #include "GameLogic/PokerPlayer.hpp"
+#include "server.h"
+#include "client.h"
 
 GameWindow::GameWindow(QWidget *parent, std::string name) : game_player(name),
     QMainWindow(parent),
@@ -62,17 +64,20 @@ void GameWindow::onRaiseButtonClicked(){
     int current = (ui->cumulative_bet_line->text()).toInt();
     ui->cumulative_bet_line->setText(QString::number(add_bet+current));
     qDebug() << add_bet;
-    emit game_player.Raise(add_bet);
+    //emit game_player.Raise(add_bet);
+    sendMessage("\bet");
 }
 
 void GameWindow::onCallButtonClicked(){ //Reminder: this is check/call button, need to work on changing the name in accordance with the situation, but functionallity should work fine for now
-    emit game_player.Call();
+    //emit game_player.Call();
+    sendMessage("\call");
 }
 
 
 
 void GameWindow::onFoldButtonClicked(){
     emit game_player.Fold();
+    sendMessage("\fold");
 }
 
 void GameWindow::update_display(){

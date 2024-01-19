@@ -35,16 +35,16 @@ private slots:
 
     void onPlayButtonClicked();
 
-    void onRaiseButtonClicked();
+    virtual void onRaiseButtonClicked();
 
-    void onFoldButtonClicked();
+    virtual void onFoldButtonClicked();
 
-    void onCallButtonClicked();
+    virtual void onCallButtonClicked();
 
-    void updateCallButtonLabel();
+    virtual void updateCallButtonLabel();
 
 
-    void update_display();
+    virtual void update_display();
 
 private:
     Ui::GameWindow *ui;

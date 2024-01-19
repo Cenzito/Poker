@@ -11,6 +11,12 @@ public:
     explicit GameLocalWindow(QWidget *parent = nullptr, std::string p = "name");
 
     GameLocal game;
+private:
+    void onRaiseButtonClicked() override;
+
+    void onCallButtonClicked() override;
+
+    void onFoldButtonClicked() override;
 };
 
 #endif // GAMELOCALWINDOW_HPP
