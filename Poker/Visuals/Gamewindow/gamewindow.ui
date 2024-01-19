@@ -628,9 +628,233 @@ color: rgb(15, 96, 0);</string>
      <string/>
     </property>
    </widget>
+   <widget class="QLabel" name="Player1_Card1">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>30</y>
+      <width>49</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Player1_Card2">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>30</y>
+      <width>49</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Player2_Card1">
+    <property name="geometry">
+     <rect>
+      <x>600</x>
+      <y>30</y>
+      <width>49</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Player2_Card2">
+    <property name="geometry">
+     <rect>
+      <x>660</x>
+      <y>30</y>
+      <width>49</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Player3_Card1">
+    <property name="geometry">
+     <rect>
+      <x>720</x>
+      <y>150</y>
+      <width>49</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Player3_Card2">
+    <property name="geometry">
+     <rect>
+      <x>780</x>
+      <y>150</y>
+      <width>49</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Player4_Card1">
+    <property name="geometry">
+     <rect>
+      <x>670</x>
+      <y>280</y>
+      <width>49</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Player4_Card2">
+    <property name="geometry">
+     <rect>
+      <x>730</x>
+      <y>280</y>
+      <width>49</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Player5_Card1">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>330</y>
+      <width>49</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Player5_Card2">
+    <property name="geometry">
+     <rect>
+      <x>580</x>
+      <y>330</y>
+      <width>49</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Player6_Card1">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>330</y>
+      <width>49</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Player6_Card2">
+    <property name="geometry">
+     <rect>
+      <x>400</x>
+      <y>330</y>
+      <width>49</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Player7_Card2">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>280</y>
+      <width>49</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Player7_Card1">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>280</y>
+      <width>49</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Player8_Card1">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>160</y>
+      <width>49</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Player8_Card2">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>160</y>
+      <width>49</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <zorder>label_table</zorder>
+   <zorder>Player8_Card1</zorder>
+   <zorder>Player8_Card2</zorder>
+   <zorder>Player7_Card2</zorder>
+   <zorder>Player7_Card1</zorder>
+   <zorder>Player6_Card2</zorder>
+   <zorder>Player6_Card1</zorder>
+   <zorder>Player5_Card2</zorder>
+   <zorder>Player5_Card1</zorder>
+   <zorder>Player4_Card2</zorder>
+   <zorder>Player4_Card1</zorder>
+   <zorder>Player3_Card2</zorder>
+   <zorder>Player3_Card1</zorder>
+   <zorder>Player2_Card2</zorder>
+   <zorder>Player2_Card1</zorder>
+   <zorder>Player1_Card2</zorder>
+   <zorder>Player1_Card1</zorder>
    <zorder>Player_background</zorder>
    <zorder>horizontalLayoutWidget</zorder>
-   <zorder>label_table</zorder>
    <zorder>label_card2</zorder>
    <zorder>CallButton</zorder>
    <zorder>RaiseButton</zorder>
@@ -640,22 +864,7 @@ color: rgb(15, 96, 0);</string>
    <zorder>cumulative_bet_line</zorder>
    <zorder>name_line</zorder>
    <zorder>pushButton</zorder>
-   <zorder>line_player1</zorder>
-   <zorder>line_player3</zorder>
-   <zorder>line_player4</zorder>
-   <zorder>line_player5</zorder>
-   <zorder>line_player7</zorder>
-   <zorder>line_player8</zorder>
-   <zorder>line_player6</zorder>
-   <zorder>line_player2</zorder>
-   <zorder>line_bet8</zorder>
-   <zorder>line_bet5</zorder>
-   <zorder>line_bet6</zorder>
-   <zorder>line_bet7</zorder>
-   <zorder>line_bet1</zorder>
-   <zorder>line_bet3</zorder>
    <zorder>line_bet4</zorder>
-   <zorder>line_bet2</zorder>
    <zorder>label_middlecard1</zorder>
    <zorder>label_middlecard2</zorder>
    <zorder>label_middlecard3</zorder>
@@ -664,6 +873,21 @@ color: rgb(15, 96, 0);</string>
    <zorder>label_pot</zorder>
    <zorder>dropBox</zorder>
    <zorder>AddBot</zorder>
+   <zorder>line_player1</zorder>
+   <zorder>line_bet1</zorder>
+   <zorder>line_bet2</zorder>
+   <zorder>line_player2</zorder>
+   <zorder>line_player3</zorder>
+   <zorder>line_bet3</zorder>
+   <zorder>line_player4</zorder>
+   <zorder>line_bet5</zorder>
+   <zorder>line_player5</zorder>
+   <zorder>line_player6</zorder>
+   <zorder>line_bet6</zorder>
+   <zorder>line_bet7</zorder>
+   <zorder>line_player7</zorder>
+   <zorder>line_player8</zorder>
+   <zorder>line_bet8</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

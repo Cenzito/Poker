@@ -41,6 +41,18 @@ GameWindow::GameWindow(QWidget *parent, std::string name) : game_player(name),
     ui->Player_background->setGraphicsEffect(shadowEffect);
     QObject::connect(&game_player, &PokerPlayer::callUpdateDisplay, this, &GameWindow::update_display);
 
+    for (int playerNumber = 1; playerNumber <= 8; ++playerNumber) {
+        for (int cardNumber = 1; cardNumber <= 2; ++cardNumber) {
+            QString labelName = QString("Player%1_Card%2").arg(playerNumber).arg(cardNumber);
+            QLabel* playerCardLabel = findChild<QLabel*>(labelName);
+
+            if (playerCardLabel) {
+                // Set the image for the player card label
+                playerCardLabel->setPixmap(QPixmap(":/images/cards/back_card.png").scaled(playerCardLabel->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
+                playerCardLabel->setGraphicsEffect(shadowEffect);
+            }
+        }
+    }
 
     switch_bet_button_off();
 
@@ -257,53 +269,81 @@ void GameWindow::switch_players_display(){
     if (number_player < 2){
         ui->line_player2->hide();
         ui->line_bet2->hide();
+        ui->Player2_Card1->hide();
+        ui->Player2_Card2->hide();
 
     }else {
         ui->line_player2->show();
         ui->line_bet2->show();
+        ui->Player2_Card1->show();
+        ui->Player2_Card2->show();
 
     }
     if (number_player < 3){
         ui->line_player3->hide();
         ui->line_bet3->hide();
+        ui->Player3_Card1->hide();
+        ui->Player3_Card2->hide();
     }else {
         ui->line_player3->show();
         ui->line_bet3->show();
+        ui->Player3_Card1->show();
+        ui->Player3_Card2->show();
     }
     if (number_player < 4){
         ui->line_player4->hide();
         ui->line_bet4->hide();
+        ui->Player4_Card1->hide();
+        ui->Player4_Card2->hide();
     }else {
         ui->line_player4->show();
         ui->line_bet4->show();
+        ui->Player4_Card1->show();
+        ui->Player4_Card2->show();
     }
     if (number_player < 5){
         ui->line_player5->hide();
         ui->line_bet5->hide();
+        ui->Player5_Card1->hide();
+        ui->Player5_Card2->hide();
     }else {
         ui->line_player5->show();
         ui->line_bet5->show();
+        ui->Player5_Card1->show();
+        ui->Player5_Card2->show();
     }
     if (number_player < 6){
         ui->line_player6->hide();
         ui->line_bet6->hide();
+        ui->Player6_Card1->hide();
+        ui->Player6_Card2->hide();
     }else {
         ui->line_player6->show();
         ui->line_bet6->show();
+        ui->Player6_Card1->show();
+        ui->Player6_Card2->show();
     }
     if (number_player < 7){
         ui->line_player7->hide();
         ui->line_bet7->hide();
+        ui->Player7_Card1->hide();
+        ui->Player7_Card2->hide();
     }else {
         ui->line_player7->show();
         ui->line_bet7->show();
+        ui->Player7_Card1->show();
+        ui->Player7_Card2->show();
     }
     if (number_player < 8){
         ui->line_player8->hide();
         ui->line_bet8->hide();
+        ui->Player8_Card1->hide();
+        ui->Player8_Card2->hide();
     }else {
         ui->line_player8->show();
         ui->line_bet8->show();
+        ui->Player8_Card1->show();
+        ui->Player8_Card2->show();
     }
 }
 
