@@ -4,19 +4,20 @@
 #include <iostream>
 #include "Table.hpp"
 // function that for any given hand, number of current players, state of the table, computes the probability of winning, making draws or losing
-std::vector<float> Winning_Probability (Table table, PokerPlayer player, int num_players, int num_simulations) { //num_players is the number of other players
+std::vector<float> Winning_Probability (Table &table, std::vector<Card> &hand, int num_players, int num_simulations) { //num_players is the number of other players
     //std::cout<<"Entered the function!"<<std::endl;
     int wins = 0; //number of times player wins
     int losses = 0; //number of times player loses
     int ties = 0; //number of times player ties 
-    std::vector<Card> our_hand, community_cards; //vector of community cards
+    std::vector<Card> community_cards; //vector of community cards
     Deck deck; //create a deck
     //std::cout<<"Initialisation worked!"<<std::endl;
     //std::cout<<"Number of players: "<<num_players<<std::endl;
     //std::cout<<"Number of simulations: "<<num_simulations<<std::endl;
-    std::cout<<"Our cards: "<<player.hand[0]<<" "<<player.hand[1]<<std::endl;
+    std::cout<<"Our cards: "<<hand[0]<<" "<<hand[1]<<std::endl;
     for (int i = 0; i < num_simulations; i++) { // we iterate through the number of simulations
-        our_hand=player.hand; //we reset the hand of the player
+        std::vector<Card> our_hand=hand; //we reconstruct the hand of the first player at each simulation
+        //std::cout<<"Entered the for loop!"<<std::endl;
         std::vector<std::vector<Card>> hands; //vector of hands of other players
         for (int l=0; l<num_players; l++) {hands.emplace_back(std::vector<Card>());} //initialise the vector of hands of other players
         std::vector<PokerHand> final_hands; //vector of PokerHand objects of other players
@@ -30,7 +31,7 @@ std::vector<float> Winning_Probability (Table table, PokerPlayer player, int num
             //std::cout<<"Player "<<j<<std::endl;
             for (int k=0; k<2; k++) { //for each player, we iterate through the 2 cards in his hand and construct both
                 //std::cout<<"Card "<<k<<std::endl;
-                if(deck.getCurrentCard() != player.hand[0] && deck.getCurrentCard()!= player.hand[1]) { // we ignore the cards that the first player already has when dealing cards
+                if(deck.getCurrentCard() != our_hand[0] && deck.getCurrentCard()!= our_hand[1]) { // we ignore the cards that the first player already has when dealing cards
                    // std::cout<<"added card "<<deck.getCurrentCard()<<" to player "<<j<<" for card "<<k<<std::endl;
                     hands[j].push_back(deck.dealCard()); 
                     //std::cout<<"Dealt a card!"<<std::endl;
@@ -42,7 +43,7 @@ std::vector<float> Winning_Probability (Table table, PokerPlayer player, int num
         //std::cout<<"Constructed the hands!"<<std::endl;
     community_cards=table.communityCards;
     while (community_cards.size()<5) { //we deal the community cards up until we have 5
-        if(deck.getCurrentCard()!= player.hand[0] && deck.getCurrentCard()!= player.hand[1]) { // we ignore the cards that the first player already has when dealing cards
+        if(deck.getCurrentCard()!= our_hand[0] && deck.getCurrentCard()!= our_hand[1]) { // we ignore the cards that the first player already has when dealing cards
             community_cards.push_back(deck.dealCard());
            // std::cout<<"Dealt a card!"<<std::endl;
         }

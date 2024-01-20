@@ -110,7 +110,7 @@ int main(int argc, char *argv[]) {
     std::cout<<"Good for now!"<<std::endl;
     std::vector<float> probabilities;
     auto start = std::chrono::high_resolution_clock::now();
-    probabilities=Winning_Probability(table, player1, 3, 10000);
+    probabilities=Winning_Probability(table, player1.hand, 3, 10000);
     auto end = std::chrono::high_resolution_clock::now();
     for (int i = 0; i < probabilities.size(); i++) {
         std::cout << probabilities[i] << " ";
