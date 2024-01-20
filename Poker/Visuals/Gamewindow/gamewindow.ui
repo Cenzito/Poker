@@ -577,44 +577,6 @@ color: rgb(15, 96, 0);</string>
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QComboBox" name="dropBox">
-    <property name="geometry">
-     <rect>
-      <x>141</x>
-      <y>600</y>
-      <width>71</width>
-      <height>24</height>
-     </rect>
-    </property>
-    <item>
-     <property name="text">
-      <string>Easy</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Medium</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Hard</string>
-     </property>
-    </item>
-   </widget>
-   <widget class="QPushButton" name="AddBot">
-    <property name="geometry">
-     <rect>
-      <x>129</x>
-      <y>570</y>
-      <width>91</width>
-      <height>24</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Add Bot</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="Leave_Table">
     <property name="geometry">
      <rect>
@@ -661,8 +623,6 @@ color: rgb(15, 96, 0);</string>
    <zorder>label_middlecard4</zorder>
    <zorder>label_middlecard5</zorder>
    <zorder>label_pot</zorder>
-   <zorder>dropBox</zorder>
-   <zorder>AddBot</zorder>
    <zorder>Leave_Table</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">

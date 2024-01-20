@@ -17,7 +17,7 @@ GameWindow::GameWindow(QWidget *parent, std::string name, GameLocal* gameLocalIn
 
 {
     ui->setupUi(this);
-    //connect(ui->AddBot, &QPushButton::clicked, this, &GameWindow::onAddBotClicked);
+
     connect(ui->Leave_Table, &QPushButton::clicked, this, &GameWindow::onLeaveTableClicked);
     connect(ui->pushButton, &QPushButton::clicked, this, &GameWindow::onPlayButtonClicked);
     //connect(ui->FoldButton, &QPushButton::clicked, this, &GameWindow::onFoldButtonClicked(PokerPlayer* game_player));
@@ -74,18 +74,6 @@ void GameWindow::onLeaveTableClicked() {
         gameLocal->LeaveTable(playerInfo, playerPos);
         }
 }
-void GameWindow::onAddBotClicked()
-{
-    int index = ui->dropBox->currentIndex();
-    Add_Bot(index);
-}
-
-void GameWindow::Add_Bot(int index) {
-    if (game_player.tableInfo.player_num < 8){
-        game_player.tableInfo.player_num += 1;
-        update_display();
-    }
-}
 
 void GameWindow::onPlayButtonClicked()
 {
@@ -134,12 +122,6 @@ void GameWindow::update_display(){
 
 void GameWindow::update_community_cards() {
     const std::vector<Card>& communityCards = game_player.tableInfo.communityCards;
-    if (communityCards.size() == 0) {
-        ui->AddBot->setEnabled(true);
-    }
-    else {
-        ui->AddBot->setEnabled(false);
-    }
 
     // Display the first three community cards initially
     int i = 0;
