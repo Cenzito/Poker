@@ -26,6 +26,15 @@ Table::Table(int seats){
 
 
 void Table::Print() {
+    qDebug() << "\n\n\n\n\n\n";
+    qDebug() << "seats " << seats;
+    qDebug() << "number players " << player_num;
+    qDebug() << "current player " << current_player;
+    qDebug() << "Button player " << ButtonPlayer;
+    qDebug() << "Active player " << QString::fromStdString(playerInfo[current_player].name);
+    qDebug() << "SB, BB" << SBValue << " " << BBValue << "\n";
+
+    qDebug() << "POT " << pot;
     for (int i = 0; i < player_num; i++ ) {
         playerInfo[i].Print();
         qDebug() << "\n";
