@@ -17,7 +17,7 @@ GameWindow::GameWindow(QWidget *parent, std::string name, GameLocal* gameLocalIn
 
 {
     ui->setupUi(this);
-    connect(ui->AddBot, &QPushButton::clicked, this, &GameWindow::onAddBotClicked);
+    //connect(ui->AddBot, &QPushButton::clicked, this, &GameWindow::onAddBotClicked);
     connect(ui->Leave_Table, &QPushButton::clicked, this, &GameWindow::onLeaveTableClicked);
     connect(ui->pushButton, &QPushButton::clicked, this, &GameWindow::onPlayButtonClicked);
     //connect(ui->FoldButton, &QPushButton::clicked, this, &GameWindow::onFoldButtonClicked(PokerPlayer* game_player));
@@ -61,21 +61,15 @@ void GameWindow::setGameLocal(GameLocal* gameLocalInstance) {
     gameLocal = gameLocalInstance;
 }
 void GameWindow::onLeaveTableClicked() {
-
-    if (gameLocal) {std::cout << 'ho ho ho' << std::endl;}
     int playerPos = -1; // Default to an invalid position
-
     std::cout << "works1" << std::endl;
     for (const auto& seat : gameLocal->tableInfo.playerInfo) {
-        std::cout << 'wowowo' << std::endl;
         if (seat.second.name == game_player.getName()) {
             playerPos = seat.first;
             break;
             }
         }
-    std::cout << 'works here' << std::endl;
     if (playerPos != -1) {
-            std::cout << 'testtest' << std::endl;
         PlayerInfo& playerInfo = gameLocal->tableInfo.playerInfo[playerPos];
         gameLocal->LeaveTable(playerInfo, playerPos);
         }
