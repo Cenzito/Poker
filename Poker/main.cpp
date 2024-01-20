@@ -1,5 +1,4 @@
 
-
 #include "./Visuals/MainWindow/mainwindow.hpp"
 #include "./Visuals/Gamewindow/gamewindow.hpp"
 
@@ -23,18 +22,18 @@ int main(int argc, char *argv[]) {
 
 
 
-   //w.show();
-   //w.game_player.hand.push_back(Card(Suit::Spades, 4));
-   //w.game_player.hand.push_back(Card(Suit::Hearts, 12));
-   //w.game_player.tableInfo.playerInfo[0] = PlayerInfo("Remi", 1000, 0);
-   //w.game_player.tableInfo.player_num = 1;
-   // w.update_display();
+    //w.show();
+    //w.game_player.hand.push_back(Card(Suit::Spades, 4));
+    //w.game_player.hand.push_back(Card(Suit::Hearts, 12));
+    //w.game_player.tableInfo.playerInfo[0] = PlayerInfo("Remi", 1000, 0);
+    //w.game_player.tableInfo.player_num = 1;
+    // w.update_display();
 
 
     b.show();
     return a.exec();
 
-  
+
     std::cout << "Hello World!" << std::endl;
     //Card card1(Suit::Spades, 1);
     //Card card2(Suit::Spades, 2);
@@ -66,7 +65,7 @@ int main(int argc, char *argv[]) {
     }
     if(hand.has_straight_flush()==true) std::cout << " Straight flush"<<std::endl;
     else std::cout << "Not Straight flush"<<std::endl;
-    
+
     if(hand.has_four_of_a_kind()==true) std::cout << " Four of a kind"<<std::endl;
     else std::cout << "Not Four of a kind"<<std::endl;
     if(hand.has_full_house()==true) std::cout << " Full house"<<std::endl;
@@ -112,4 +111,3 @@ int main(int argc, char *argv[]) {
 }
 
 //test
-
