@@ -40,7 +40,6 @@ public:
     bool isBot, isActive;
 
     //Action function, will be called when table changes
-    int get_percentage(int card1, int card2, bool IsSuited);
 public slots:
     virtual void Action();
 
