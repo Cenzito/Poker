@@ -3,6 +3,7 @@
 
 GameLocalWindow::GameLocalWindow(QWidget *parent, std::string p) : GameWindow(parent, p), game(5)
 {
+    setGameLocal(&game);
     //make player join the game
     qDebug() << QString::fromStdString(game_player.getName());
 

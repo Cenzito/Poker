@@ -33,6 +33,8 @@ public:
     void Add_Bot(int index);
 
     PokerPlayer game_player;
+
+    void setGameLocal(GameLocal* gameLocal);
     GameLocal* gameLocal;
 
 private slots:

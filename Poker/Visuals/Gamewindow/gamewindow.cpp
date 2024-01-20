@@ -56,12 +56,18 @@ const QString GameWindow::Get_image_path(const std::string &suit, const std::str
     return final;
 
 }
+
+void GameWindow::setGameLocal(GameLocal* gameLocalInstance) {
+    gameLocal = gameLocalInstance;
+}
 void GameWindow::onLeaveTableClicked() {
-    std::cout << "works1" << std::endl;
+
+    if (gameLocal) {std::cout << 'ho ho ho' << std::endl;}
     int playerPos = -1; // Default to an invalid position
 
-    // Iterate through the playerInfo map to find the seat of game_player
+    std::cout << "works1" << std::endl;
     for (const auto& seat : gameLocal->tableInfo.playerInfo) {
+        std::cout << 'wowowo' << std::endl;
         if (seat.second.name == game_player.getName()) {
             playerPos = seat.first;
             break;
@@ -81,7 +87,6 @@ void GameWindow::onAddBotClicked()
 }
 
 void GameWindow::Add_Bot(int index) {
-    qDebug() << index;
     if (game_player.tableInfo.player_num < 8){
         game_player.tableInfo.player_num += 1;
         update_display();
@@ -98,7 +103,6 @@ void GameWindow::onRaiseButtonClicked(){
     int add_bet = ui->raise_box->value();
     int current = (ui->cumulative_bet_line->text()).toInt();
     ui->cumulative_bet_line->setText(QString::number(add_bet+current));
-    qDebug() << add_bet;
     emit game_player.Raise(add_bet);
 }
 
@@ -142,7 +146,6 @@ void GameWindow::update_community_cards() {
     else {
         ui->AddBot->setEnabled(false);
     }
-    qDebug() << "number center cards: " << communityCards.size();
 
     // Display the first three community cards initially
     int i = 0;
@@ -173,7 +176,6 @@ void GameWindow::update_middle_card_display(int cardIndex, const Card& card) {
 }
 
 void GameWindow::remove_middle_card_display(int cardIndex) {
-    qDebug() << "111";
     QLabel* middleCardLabel = findChild<QLabel*>(QString("label_middlecard%1").arg(cardIndex));
     if (middleCardLabel) {
         middleCardLabel->clear();
@@ -196,13 +198,11 @@ void GameWindow::display_player_hand(){ // to test
     Suit S2 = C2.getSuit() ;
     int v1 = C1.getValue() ;
     int v2 = C2.getValue() ;
-    qDebug() << v1;
 
     // we have the two cards of the player, the suit and value of both those cards
     // following are the path to both corresponding image cards
     QString p1 = Get_image_path(suitToString(S1),std::to_string(v1),false) ;
     QString p2 = Get_image_path(suitToString(S2),std::to_string(v2),false) ;
-    qDebug() << p1;
 
     //below the two images
     QPixmap first_card(p1) ;
@@ -230,7 +230,6 @@ void GameWindow::switch_bet_button_on(){
 
     if (ui->RaiseButton->isVisible()==false){ //if the button is already visible, does nothing
         if (game_player.tableInfo.playerInfo.find(current_player)!=game_player.tableInfo.playerInfo.end()){ // check if the player is there
-            std::cout << "works" ;
         }
         if (player_name==game_player.tableInfo.playerInfo.at(current_player).name){
             ui->RaiseButton->show() ;
@@ -327,7 +326,6 @@ void GameWindow::display_names_stacks_bets(){
 
     if (game_player.tableInfo.player_num>=1) {
         std::string playerName1 = game_player.tableInfo.playerInfo[0].name+" | "+std::to_string(game_player.tableInfo.playerInfo[0].stack_size);
-        qDebug() << QString::fromStdString(playerName1);
         ui ->line_player1->setText(QString::fromStdString(playerName1));
         std::string betplayer1 = std::to_string(game_player.tableInfo.playerInfo[0].bet);
         ui->line_bet1->setText(QString::fromStdString(betplayer1));

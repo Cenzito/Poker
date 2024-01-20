@@ -77,6 +77,7 @@ void GameLocal::fold(PlayerInfo& foldPlayer) {
 
 void GameLocal::LeaveTable(PlayerInfo& Player, int pos) {
     std::cout << "works2" << std::endl;
+    std::cout << &Player, pos;
     auto playerIter = std::remove_if(players.begin(), players.end(),
                                      [&](PokerPlayer* player) {
                                          return player->name == Player.name;
