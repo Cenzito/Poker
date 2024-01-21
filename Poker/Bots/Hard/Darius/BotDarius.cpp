@@ -11,7 +11,7 @@ int BotDarius::optimalBet()
 
     int active_players = tableInfo.player_num;
     std::vector<float> win_probabilities; //to be computed using the win probability function
-    win_probabilities = Winning_Probability(tableInfo, *this, active_players, 3000); //we compute the win probabilities for the bot given the current situation
+    win_probabilities = Winning_Probability(tableInfo, this->hand, active_players, 3000); //we compute the win probabilities for the bot given the current situation
     float win_probability = win_probabilities[0]; //the probability of winning
     int pot;
     pot=tableInfo.pot;
