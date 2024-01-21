@@ -2,7 +2,6 @@
 
 int BotDarius::optimalBet()
 {
-    double optimalBet;
     std::vector<Card> our_hand_cardsvector, table_cards_cardsvector;
     our_hand_cardsvector = getHand();
     table_cards_cardsvector = tableInfo.communityCards; 
@@ -18,18 +17,19 @@ int BotDarius::optimalBet()
     int wealth;
     wealth=find_stack_size();
     float optimal_bet;
-    optimal_bet=win_probability*wealth/(1+(1-win_probability)/win_probability*wealth);
+    optimal_bet=win_probability*wealth/(1+(1-win_probability)/pot*wealth);
     //this is a very conservative strategy, we assume that making a certain bet we win just the preexisting pot, and we don't take into account the fact that we can win more money from the other players
     //also, this is prone to lots of errors, judging a big pot as "fruitfull variant", when it may be the fact that players hands are very good
     //so, it needs further improvement
     
-    return int(optimalBet);
+    return int(optimal_bet);
 }
 void BotDarius::Action(){
     float bet0;
     bet0 = optimalBet();
     int bet=bet0; // computes the optimal bet, uses it to see what action to take
     int bet_on_table; // the current bet on the table, to be computed using the table informations
+    bet_on_table=tableInfo.bet_on_table;
     if (bet > bet_on_table)
     {
 
