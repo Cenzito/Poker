@@ -59,8 +59,8 @@ HEADERS += \
     Visuals/Gamewindow/gamewindow.hpp \
     Visuals/MainWindow/mainwindow.hpp \
     Visuals/RulesWindow/ruleswindow.cpp.autosave \
-    Visuals/RulesWindow/ruleswindow.h
-
+    Visuals/RulesWindow/ruleswindow.h \
+    Visuals/Gamewindow/gamewindow.h
 
 
 FORMS += \

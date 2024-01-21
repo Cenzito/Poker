@@ -1,13 +1,13 @@
 #include "gamewindow.hpp"
 #include <iostream>
 #include "Visuals/RulesWindow/ruleswindow.h"
-#include "ui_gamewindow.h"
 #include <QPixmap>
 #include "GameLogic/Table.hpp"
 #include"GameLogic/PlayerInfo.hpp"
 #include "GameLogic/PokerPlayer.hpp"
 #include <QVBoxLayout>
 #include <QGraphicsDropShadowEffect>
+#include "ui_gamewindow.h"
 
 
 GameWindow::GameWindow(QWidget *parent, std::string name) : game_player(name),
