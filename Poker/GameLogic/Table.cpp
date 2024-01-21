@@ -52,9 +52,3 @@ int Table::active_players() {
     }
     return counter;
 }
-
-
-
-
-
-
