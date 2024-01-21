@@ -135,3 +135,5 @@ compile_commands.json
 
 *.json
 
+build/
+external/

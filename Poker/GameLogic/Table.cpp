@@ -1,5 +1,6 @@
-#include "table.hpp"
+#include "Table.hpp"
 #include <QApplication>
+
 
 Table::Table(){
     this-> seats = 5;
@@ -30,6 +31,7 @@ void Table::Print() {
     qDebug() << "number players " << player_num;
     qDebug() << "current player " << current_player;
     qDebug() << "Button player " << ButtonPlayer;
+    qDebug() << "Active player " << QString::fromStdString(playerInfo[current_player].name);
     qDebug() << "SB, BB" << SBValue << " " << BBValue << "\n";
 
     qDebug() << "POT " << pot;
@@ -41,10 +43,12 @@ void Table::Print() {
 }
 
 
-
-
-
-
-
-
-
+int Table::active_players() {
+    int counter=0;
+    for (int i=0; i < player_num; i++) {
+        if (playerInfo[i].isFold==false) {
+            counter+=1;
+        }
+    }
+    return counter;
+}

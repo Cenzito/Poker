@@ -46,5 +46,12 @@ void MainWindow::onRulesButtonClicked()
 
 void MainWindow::onLocalPlayButtonClicked() {
     GameLocalWindow *gamelocalwindow = new GameLocalWindow(this);
+
+    Bot bot1 = Bot("bot1", 0);
+    Bot bot2 = Bot("bot2", 0);
+
+    gamelocalwindow->game.addBot(&bot1);
+    gamelocalwindow->game.addBot(&bot2);
+
     gamelocalwindow -> show();
 }

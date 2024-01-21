@@ -1,10 +1,13 @@
 #include "gamewindow.hpp"
+#include <iostream>
 #include "Visuals/RulesWindow/ruleswindow.h"
 #include "ui_gamewindow.h"
 #include <QPixmap>
-#include "GameLogic/table.hpp"
+#include "GameLogic/Table.hpp"
 #include"GameLogic/PlayerInfo.hpp"
 #include "GameLogic/PokerPlayer.hpp"
+#include <QVBoxLayout>
+#include <QGraphicsDropShadowEffect>
 
 
 GameWindow::GameWindow(QWidget *parent, std::string name) : game_player(name),
@@ -13,7 +16,15 @@ GameWindow::GameWindow(QWidget *parent, std::string name) : game_player(name),
 {
     ui->setupUi(this);
 
+    // Create a vertical layout
+    QVBoxLayout *verticalLayout = new QVBoxLayout(ui->centralwidget);
+
+    // Create and set up labels
+    QLabel *labelTable = new QLabel;
+    QLabel *labelPot = new QLabel;
+
     connect(ui->pushButton, &QPushButton::clicked, this, &GameWindow::onPlayButtonClicked);
+    connect(ui->AddBot_Button, &QPushButton::clicked, this, &GameWindow::onAddBotClicked);
     //connect(ui->FoldButton, &QPushButton::clicked, this, &GameWindow::onFoldButtonClicked(PokerPlayer* game_player));
     connect(ui->FoldButton, &QPushButton::clicked, [=]() {
         onFoldButtonClicked();
@@ -24,12 +35,51 @@ GameWindow::GameWindow(QWidget *parent, std::string name) : game_player(name),
     /*QImage table_background(":/images/table.png");
     QSize table_background_size = ui->label_table->size();
     ui->label_table->setPixmap(QPixmap::fromImage(table_background).scaled(table_background_size, Qt::KeepAspectRatio, Qt::SmoothTransformation));*/
-    QImage pot_image(":/images/huge_player_stack.png");
-    QSize pot_image_size = ui->label_pot->size();
-    ui->label_pot->setPixmap(QPixmap::fromImage(pot_image).scaled(pot_image_size, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    //QImage pot_image(":/images/huge_player_stack.png");
+    //QSize pot_image_size = ui->label_pot->size();
+    //ui->label_pot->setPixmap(QPixmap::fromImage(pot_image).scaled(pot_image_size, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+\
+    // Create and set up the images
+    QImage tableImage(":/images/table.png");
+    QImage potImage(":/images/huge_player_stack.png");
+    QImage player_background(":/images/Poker_background.png");
+
+    // Set up the labels with initial images
+    labelTable->setPixmap(QPixmap::fromImage(tableImage));
+    labelPot->setPixmap(QPixmap::fromImage(potImage));
+
+    QGraphicsDropShadowEffect* shadowEffect = new QGraphicsDropShadowEffect();
+    shadowEffect->setBlurRadius(10);
+    shadowEffect->setOffset(0);
+    shadowEffect->setColor(QColor(0, 0, 0, 150));
+
+    QObject::connect(&game_player, &PokerPlayer::callUpdateDisplay, this, &GameWindow::update_display);
+
+    for (int playerNumber = 1; playerNumber <= 8; ++playerNumber) {
+        for (int cardNumber = 1; cardNumber <= 2; ++cardNumber) {
+            QString labelName = QString("label_player%1_card%2").arg(playerNumber).arg(cardNumber);
+            QLabel* playerCardLabel = findChild<QLabel*>(labelName);
+
+            if (playerCardLabel) {
+                // Set the image for the player card label
+                playerCardLabel->setPixmap(QPixmap(":/images/cards/back_card.png").scaled(playerCardLabel->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
+                playerCardLabel->setGraphicsEffect(shadowEffect);
+            }
+        }
+    }
+
+    switch_bet_button_off();
 
 
+    // Add labels to the layout
+    verticalLayout->addWidget(labelTable);
+    verticalLayout->addWidget(labelPot);
+
+    // Set size policies for labels
+    labelTable->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    labelPot->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 }
+
 
 GameWindow::~GameWindow()
 {
@@ -41,11 +91,24 @@ const QString GameWindow::Get_image_path(const std::string &suit, const std::str
     if (back){
         return ":/images/cards/back_card.png";
     }
-
     std::string temp =  ":/images/cards/"+std::string(1, suit[0])+"/"+value+".png";
     QString final = QString::fromStdString(temp);
     return final;
 
+}
+
+void GameWindow::onAddBotClicked()
+{
+    int index = ui->AddBot->currentIndex();
+    Add_Bot(index);
+}
+
+void GameWindow::Add_Bot(int index) {
+    qDebug() << index;
+    if (game_player.tableInfo.player_num < 8){
+        game_player.tableInfo.player_num += 1;
+        update_display();
+    }
 }
 
 void GameWindow::onPlayButtonClicked()
@@ -58,20 +121,19 @@ void GameWindow::onRaiseButtonClicked(){
     int add_bet = ui->raise_box->value();
     int current = (ui->cumulative_bet_line->text()).toInt();
     ui->cumulative_bet_line->setText(QString::number(add_bet+current));
-
-    //game_player->raise(current);
-    switch_bet_button_on();
+    qDebug() << add_bet;
+    emit game_player.Raise(add_bet);
 }
 
 void GameWindow::onCallButtonClicked(){ //Reminder: this is check/call button, need to work on changing the name in accordance with the situation, but functionallity should work fine for now
-    //game_player->call(0);
-    switch_bet_button_on();
+    emit game_player.Call();
+
 }
 
 
+
 void GameWindow::onFoldButtonClicked(){
-    //game_player->fold();
-    switch_bet_button_on();
+    emit game_player.Fold();
 }
 
 void GameWindow::update_display(){
@@ -90,13 +152,23 @@ void GameWindow::update_display(){
 
     //display middle pot
     display_middle_pot();
+    //if (game_player.tableInfo.playerInfo[game_player.tableInfo.current_player].name == game_player.getName()) {
+      //  switch_bet_button_on();
+    //}
+    switch_players_display();
+    update_community_cards();
 }
-
-
 
 
 void GameWindow::update_community_cards() {
     const std::vector<Card>& communityCards = game_player.tableInfo.communityCards;
+
+    if (communityCards.size() == 0) {
+        ui->AddBot->setEnabled(true);
+    }
+    else {
+        ui->AddBot->setEnabled(false);
+    }
 
     qDebug() << "number center cards: " << communityCards.size();
 
@@ -137,13 +209,14 @@ void GameWindow::remove_middle_card_display(int cardIndex) {
 }
 
 
-
-
 // beginning of display poker hand 
   
 void GameWindow::display_player_hand(){ // to test
-    qDebug() << "hey";
     std::vector<Card> H = game_player.getHand() ; //get the player's hand, to access the cards that need to be displayed
+    if (H.size() != 2) {
+        return;
+    }
+
     Card C1 = H[0] ;
     Card C2 = H[1] ;
     Suit S1 = C1.getSuit() ;
@@ -151,6 +224,7 @@ void GameWindow::display_player_hand(){ // to test
     int v1 = C1.getValue() ;
     int v2 = C2.getValue() ;
     qDebug() << v1;
+
     // we have the two cards of the player, the suit and value of both those cards
     // following are the path to both corresponding image cards
     QString p1 = Get_image_path(suitToString(S1),std::to_string(v1),false) ;
@@ -172,9 +246,6 @@ void GameWindow::display_player_hand(){ // to test
     ui ->label_card2->setPixmap(resized_card2) ;
 }
   
-// end of display poker hand
-  
-// beginning of switch for buttons
   
 void GameWindow::switch_bet_button_on(){
     int current_player = game_player.tableInfo.current_player ;
@@ -193,6 +264,7 @@ void GameWindow::switch_bet_button_on(){
         }
     }
 }
+
 
 void GameWindow::switch_bet_button_off(){
     int current_player = game_player.tableInfo.current_player ;
@@ -221,29 +293,84 @@ void GameWindow::switch_players_display(){
 
     int number_player = game_player.tableInfo.player_num;
 
+    if (number_player < 2){
+        ui->line_player2->hide();
+        ui->line_bet2->hide();
+        ui->label_player2_card1->hide();
+        ui->label_player2_card2->hide();
+
+    }else {
+        ui->line_player2->show();
+        ui->line_bet2->show();
+        ui->label_player2_card1->show();
+        ui->label_player2_card2->show();
+
+    }
     if (number_player < 3){
         ui->line_player3->hide();
         ui->line_bet3->hide();
+        ui->label_player3_card1->hide();
+        ui->label_player3_card2->hide();
+    }else {
+        ui->line_player3->show();
+        ui->line_bet3->show();
+        ui->label_player3_card1->show();
+        ui->label_player3_card2->show();
     }
     if (number_player < 4){
         ui->line_player4->hide();
         ui->line_bet4->hide();
+        ui->label_player4_card1->hide();
+        ui->label_player4_card2->hide();
+    }else {
+        ui->line_player4->show();
+        ui->line_bet4->show();
+        ui->label_player4_card1->show();
+        ui->label_player4_card2->show();
     }
     if (number_player < 5){
         ui->line_player5->hide();
         ui->line_bet5->hide();
+        ui->label_player5_card1->hide();
+        ui->label_player5_card2->hide();
+    }else {
+        ui->line_player5->show();
+        ui->line_bet5->show();
+        ui->label_player5_card1->show();
+        ui->label_player5_card2->show();
     }
     if (number_player < 6){
         ui->line_player6->hide();
         ui->line_bet6->hide();
+        ui->label_player6_card1->hide();
+        ui->label_player6_card2->hide();
+    }else {
+        ui->line_player6->show();
+        ui->line_bet6->show();
+        ui->label_player6_card1->show();
+        ui->label_player6_card2->show();
     }
     if (number_player < 7){
         ui->line_player7->hide();
         ui->line_bet7->hide();
+        ui->label_player7_card1->hide();
+        ui->label_player7_card2->hide();
+    }else {
+        ui->line_player7->show();
+        ui->line_bet7->show();
+        ui->label_player7_card1->show();
+        ui->label_player7_card2->show();
     }
     if (number_player < 8){
         ui->line_player8->hide();
         ui->line_bet8->hide();
+        ui->label_player8_card1->hide();
+        ui->label_player8_card2->hide();
+    }else {
+        ui->line_player8->show();
+        ui->line_bet8->show();
+        ui->label_player8_card1->show();
+        ui->label_player8_card2->show();
     }
 }
 

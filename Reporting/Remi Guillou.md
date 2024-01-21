@@ -30,14 +30,26 @@ Also decided on the way the player would interact with the server. Mainly explai
 After experiencing a few issues with the main branch not compiling after a bad merge, we have also implemented a satisfactory mean to verify every merge request to main.
 A few people still had trouble working with Github so took some time to get everyone together and show them the workflow.
 
-## Week 3
+## Week 3 (10/12 16/12) 
 
 The developpment of the logic is taking some time. The previous implementations weren't addapted for a client/server relation so made remarks to the people in charge as to what to change. Meanwhile decided to start implementing a local version of the game in order for the team in charge of making the bots to have a way of testing them. Made a subclass of Game and PokerPlayer and implementing functions that would be different then that of the online version. 
 In the end, got stuck on how to ask the player his raise amount. Spent some time on that. Cenzo also offered to help me and took on the rest of the functions in the local game. 
 About the Visuals, I asked the people in charge for a function that would update the display based on the current state of the Table inside the PokerPlayer instance. The Table contains all the information available to the player and can thus be used to display it. The objective would be to call this function every time the Table is modified.
 We also need a function to create betting buttons when it is the players turn to bet.
 
-## Week 4
+## Week 4 (17/12 24/12
+Implemented a working text based local version of the Poker game. This will allow the people working on the bots to start testing.
+
+
+
+## Week 5 ( 08/01 16/01)
+Restructured entirely the working of the Game class. Instead of using a linear approach which would make it unable to be responsive to user input, I utilize asynchronous programming with functions linked which have individual uses.
+
+
+
+
+
+
 
 
 
