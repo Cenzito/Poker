@@ -14,45 +14,42 @@
 
 
 int main(int argc, char *argv[]) {
-    /*
+
     QApplication a(argc, argv);
     GameLocalWindow w;
-    Bot bot1 = Bot("bot1", 0);
-    Bot bot2 = Bot("bot2", 0);
+    BotCenzo bot1 = BotCenzo("bot1");
+    BotCenzo bot2 = BotCenzo("bot2");
+    BotCenzo bot3 = BotCenzo("bot3");
     w.game.addBot(&bot1);
     w.game.addBot(&bot2);
-    w.show();
-
+    w.game.addBot(&bot3);
+    //w.show();
 
     w.game.nextHand();
 
     return a.exec();
 
 
-    //Bot bot1 = Bot("bot1", 0);
-    //Bot bot2 = Bot("bot2", 0);
-    Bot bot3 = Bot("bot3", 0);
 
-    GameLocal game(5);
-
-    game.addBot(&bot1);
-    game.addBot(&bot2);
-    game.addBot(&bot3);
-
-    */
-
+/*
     //QApplication a(argc, argv);
     GameLocal w(2);
     BotCenzo bot1 = BotCenzo("bot1", 7);
     BotCenzo bot2 = BotCenzo("bot2", 7);
+    //BotCenzo bot3 = BotCenzo("bot1", 7);
+    //BotCenzo bot4 = BotCenzo("bot2", 7);
+    //BotCenzo bot5 = BotCenzo("bot1", 7);
     w.addBot(&bot1);
     w.addBot(&bot2);
+    //w.addBot(&bot3);
+    //w.addBot(&bot4);
+    //w.addBot(&bot5);
     //w.show();
     w.nextHand();
 
     return 1;
 
-
+*/
 
 }
 

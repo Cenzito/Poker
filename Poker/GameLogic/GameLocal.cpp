@@ -92,11 +92,11 @@ void GameLocal::nextHand(){
         tableInfo.playerInfo[i].isFold = false;
     }
     //reset bets
-    for (int i = 0; i <= tableInfo.player_num; i++) {
+    /*for (int i = 0; i <= tableInfo.player_num; i++) {
         tableInfo.playerInfo[i].bet = 0;
         tableInfo.playerInfo[i].isAllin = false;
         tableInfo.playerInfo[i].isFold = false;
-    }
+    }*/
 
     tableInfo.pot=0;
     tableInfo.ButtonPlayer = (tableInfo.ButtonPlayer + 1)% tableInfo.player_num;
