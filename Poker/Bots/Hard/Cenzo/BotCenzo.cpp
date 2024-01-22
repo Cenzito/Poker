@@ -37,12 +37,12 @@ void BotCenzo::Action(){
     //refer to matrix for probability of fold
 
     if (foldfunction[row][col] == 1) {
-        //fold
+        fold_bet();
     }
 
     else {
         if (static_cast<float>(rand()) / RAND_MAX < foldfunction[row][col] ) {
-            //fold
+            fold_bet();
         }
     }
 
@@ -50,11 +50,11 @@ void BotCenzo::Action(){
 
 
     if (static_cast<float>(rand()) / RAND_MAX < raisefunction[row][col]) {
-        //raise
+        raise_bet(10); //think about how much to raise
     }
 
     else {
-        //call
+        call_bet();
     }
 }
 
