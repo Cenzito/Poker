@@ -55,6 +55,5 @@
         <file>images/cards/back_card.png</file>
         <file>images/table.png</file>
 	<file>images/huge_player_stack.png</file>
-	<file>images/Poker_background.png</file>
     </qresource>
 </RCC>

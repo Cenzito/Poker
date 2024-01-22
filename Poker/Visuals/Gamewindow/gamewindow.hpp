@@ -1,10 +1,9 @@
 #ifndef GAMEWINDOW_H
 #define GAMEWINDOW_H
-#pragma once
+
 #include <QMainWindow>
 #include "GameLogic/PokerPlayer.hpp"
 #include "GameLogic/PlayerInfo.hpp"
-#include "GameLogic/GameLocal.hpp"
 
 namespace Ui {
 class GameWindow;
@@ -16,7 +15,7 @@ class GameWindow: public QMainWindow
 
 public:
 
-    explicit GameWindow(QWidget *parent = nullptr, std::string name = "John", GameLocal* gameLocalInstance = nullptr);
+    explicit GameWindow(QWidget *parent = nullptr, std::string name = "John");
     ~GameWindow();
     const QString Get_image_path(const std::string &suit, const std::string &value, bool back = false); // to display the back call with args ("back", "back", true)
 
@@ -30,12 +29,7 @@ public:
     void switch_bet_button_off();
     void switch_players_display();
 
-    void Add_Bot(int index);
-
     PokerPlayer game_player;
-
-    void setGameLocal(GameLocal* gameLocal);
-    GameLocal* gameLocal;
 
 private slots:
 
@@ -49,9 +43,6 @@ private slots:
 
     void updateCallButtonLabel();
 
-    void onAddBotClicked();
-
-    void onLeaveTableClicked();
 
     void update_display();
 

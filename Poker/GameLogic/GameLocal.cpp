@@ -64,11 +64,7 @@ void GameLocal::win(PlayerInfo& PlayerWin, int sum) {
 //only consider one player winning rn
 void GameLocal::endHand(PlayerInfo& winner) {
     win(winner, tableInfo.pot);
-    for (int i = 0; i <= tableInfo.player_num; i++) {
-        if (tableInfo.playerInfo[i].stack_size <= 0){
-            GameLocal::LeaveTable(tableInfo.playerInfo[i], i);
-        }
-    }
+
     updatePlayersTable();
     nextHand();
 }
@@ -78,39 +74,9 @@ void GameLocal::fold(PlayerInfo& foldPlayer) {
     players_standing -= 1;
 }
 
-void GameLocal::LeaveTable(PlayerInfo& Player, int pos) {
-    std::cout << "works2" << std::endl;
-    std::cout << &Player, pos;
-    auto playerIter = std::remove_if(players.begin(), players.end(),
-                                     [&](PokerPlayer* player) {
-                                         return player->name == Player.name;
-                                     });
-    players.erase(playerIter, players.end());
-
-    // Update other variables related to the leaving player
-    tableInfo.playerInfo.erase(pos);
-    tableInfo.player_num--;
-
-    // Adjust the current player and button positions
-    if (tableInfo.current_player > pos) {
-        tableInfo.current_player--;
-    } else if (tableInfo.current_player == pos) {
-        // If the leaving player is the current player, set the next player as active
-        setNextCurrentPlayer();
-    }
-
-    if (tableInfo.ButtonPlayer > pos) {
-        tableInfo.ButtonPlayer--;
-    } else if (tableInfo.ButtonPlayer == pos) {
-        // If the leaving player is the button, move the button to the next position
-        tableInfo.ButtonPlayer = (tableInfo.ButtonPlayer + 1) % tableInfo.seats;
-    }
-
-    emit updatePlayersTable();
-}
-
 void GameLocal::updatePlayersTable() {
     emit updatePTable(tableInfo);
+    tableInfo.Print();
 }
 
 

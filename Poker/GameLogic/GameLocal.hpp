@@ -28,7 +28,7 @@ public:
     void pay(PlayerInfo& PlayerPay, int sum);
     void win(PlayerInfo& PlayerWin, int sum);
     void fold(PlayerInfo& foldPlayer);
-    void LeaveTable(PlayerInfo& Player, int pos);
+
     void endHand(PlayerInfo& winner);
 
 

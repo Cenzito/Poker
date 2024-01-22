@@ -35,6 +35,7 @@ void Table::Print() {
     qDebug() << "SB, BB" << SBValue << " " << BBValue << "\n";
 
     qDebug() << "POT " << pot;
+
     for (int i = 0; i < player_num; i++ ) {
         playerInfo[i].Print();
         qDebug() << "\n";
