@@ -8,7 +8,7 @@ int BotDarius::optimalBet()
     PokerHand our_hand(our_hand_cardsvector); //we create a PokerHand object having a vector of cards 
     PokerHand table_cards(table_cards_cardsvector); //we create a PokerHand object having a vector of cards
 
-    int active_players = tableInfo.player_num;
+    int active_players = tableInfo.active_players();
     std::vector<float> win_probabilities; //to be computed using the win probability function
     win_probabilities = Winning_Probability(tableInfo, this->hand, active_players, 3000); //we compute the win probabilities for the bot given the current situation
     float win_probability = win_probabilities[0]; //the probability of winning
