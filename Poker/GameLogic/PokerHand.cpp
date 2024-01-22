@@ -407,7 +407,7 @@ std::vector<int> PokerHand::get_score(){// for each hand, we create a score, whi
     else score[0]=0; 
     return score;
 }
-int compare_hands(PokerHand hand1, PokerHand hand2){
+int compare_hands(PokerHand &hand1, PokerHand &hand2){
     std::vector<int> score1=hand1.get_score();
     std::vector<int> score2=hand2.get_score();
     for(int i=0; i<score1.size(); i++){ // we iteratively check the kickers, from the most important to the least important
