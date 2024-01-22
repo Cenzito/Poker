@@ -45,7 +45,7 @@ public:
 
 
     void updateTable(std::string command);
-    PlayerInfo getPlayerInfo(std::string name);
+    PlayerInfo* getPlayerInfo(std::string name);
 
 };
 

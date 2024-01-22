@@ -56,10 +56,10 @@ public slots:
     void onFold();
     void onCall();
 
-    void updatePlayersTable();
+    void updatePlayersTable(std::string);
 
 signals:
-    void updatePTable(Table t);
+    void updatePTable(std::string command);
     void askAction();
 };
 

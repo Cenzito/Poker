@@ -44,7 +44,7 @@ public:
 public slots:
     virtual void Action();
 
-    void updateTable(Table table);
+    void updateTable(std::string command);
 
 signals:
     void Raise(int amount);
