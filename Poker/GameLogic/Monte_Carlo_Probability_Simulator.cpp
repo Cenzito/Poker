@@ -1,24 +1,22 @@
-#include "PokerHand.hpp"
-#include "PokerPlayer.hpp"
-#include "Deck.hpp"
-#include <iostream>
-#include "Table.hpp"
+#include "Monte_Carlo_Probability_Simulator.hpp"
 // function that for any given hand, number of current players, state of the table, computes the probability of winning, making draws or losing
+#include <qdebug.h>
+
 
 std::vector<float> Winning_Probability (Table &table, std::vector<Card> &hand, int num_players, int num_simulations) { //num_players is the number of other players
 
     //std::cout<<"Entered the function!"<<std::endl;
-    if (num_players==0){
-        num_players= table.active_players();
-    }
+    //if (num_players==0){
+        //num_players= table.active_players();
+    //}
     int wins = 0; //number of times player wins
     int losses = 0; //number of times player loses
 
-    int ties = 0; //number of times player ties 
+    int ties = 0; //number of times player ties
     std::vector<Card> community_cards; //vector of community cards
 
     Deck deck; //create a deck
-    //std::cout<<"Initialisation worked!"<<std::endl;
+    qDebug() <<"Initialisation worked!";
     //std::cout<<"Number of players: "<<num_players<<std::endl;
     //std::cout<<"Number of simulations: "<<num_simulations<<std::endl;
     std::cout<<"Our cards: "<<hand[0]<<" "<<hand[1]<<std::endl;
@@ -35,7 +33,7 @@ std::vector<float> Winning_Probability (Table &table, std::vector<Card> &hand, i
         //std::cout<<"Number of simulations: "<<num_simulations<<std::endl;
         deck.shuffleDeck(); //for each simulation, we shuffle the deck
         //std::cout<<"Shuffled the deck!"<<std::endl;
-        std::cout<<"trial "<<i<<" out of "<<num_simulations<<std::endl;
+        //qDebug() <<"trial "<<i<<" out of "<<num_simulations;
         for (int j=0; j<num_players; j++) { //for each simulation, we construct the hand of the other players
             //std::cout<<"Player "<<j<<std::endl;
             for (int k=0; k<2; k++) { //for each player, we iterate through the 2 cards in his hand and construct both
@@ -51,7 +49,7 @@ std::vector<float> Winning_Probability (Table &table, std::vector<Card> &hand, i
 
             }
         } //now we finished constructing the hand
-        //std::cout<<"Constructed the hands!"<<std::endl;
+        //qDebug()<< "Constructed the hands!";
 
     community_cards=table.communityCards;
     while (community_cards.size()<5) { //we deal the community cards up until we have 5

@@ -41,5 +41,6 @@ int Bot::find_stack_size(){
         {
             return table.playerInfo[i].stack_size;
         }
+        i++;
     }
 }
