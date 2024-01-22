@@ -4,6 +4,8 @@
 #include "../GameWindow/gamewindow.hpp"
 #include "../Gamewindow/gamelocalwindow.hpp"
 #include <Qcolor>
+#include <QLabel>
+#include <QPixmap>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent), ui(new Ui::MainWindow)
@@ -19,10 +21,22 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->pushButton, &QPushButton::clicked, this, &MainWindow::onPlayButtonClicked);
     connect(ui->pushButton_2, &QPushButton::clicked, this, &MainWindow::onRulesButtonClicked);
-    //connect(ui->play_local, &QPushButton::clicked, this, &MainWindow::onLocalPlayButtonClicked);
+    connect(ui->playlocal, &QPushButton::clicked, this, &MainWindow::on_playlocal_clicked);
     // Loading and setting the image to the QLabel
     //QPixmap image1("../Poker/Visuals/MainWindow/pokerpic.jpg");
     //ui->label->setPixmap(image1);
+    // Create a QLabel for the image
+    QLabel *imageLabel = new QLabel(this);
+    QPixmap imagePixmap(":/images/huge_player_stack.png");
+    if (imagePixmap.isNull()) {
+        qDebug() << "Failed to load image";
+    }
+    QPixmap scaledPixmap = imagePixmap.scaled(150, 150, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    imageLabel->setPixmap(scaledPixmap);
+    imageLabel->resize(scaledPixmap.size());
+    imageLabel->move(400, 200);
+
+
 
 }
 
@@ -44,7 +58,9 @@ void MainWindow::onRulesButtonClicked()
     rulesWindow->show();
 }
 
-void MainWindow::onLocalPlayButtonClicked() {
+
+void MainWindow::on_playlocal_clicked()
+{
     GameLocalWindow *gamelocalwindow = new GameLocalWindow(this);
 
     Bot bot1 = Bot("bot1", 0);

@@ -26,5 +26,6 @@ private slots:
 
     void on_pushButton_login_clicked();
     void on_pushButton_signin_clicked();
+    void on_playlocal_clicked();
 };
 #endif // MAINWINDOW_H
