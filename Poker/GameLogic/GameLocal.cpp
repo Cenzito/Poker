@@ -342,5 +342,58 @@ void GameLocal::setNextCurrentPlayer() {
 }
 
 
+void GameLocal::startGame()
+{
+    /*
+    // Add logic to start the game
+    // You might want to initialize variables, start timers, etc.
+    // For example, you can reset the game state
+    resetGameState();
+    // Start a timer for game updates (adjust interval as needed)
+    gameUpdateTimer.start(1000);  // 1000 milliseconds = 1 second
 
+    // Connect the timer to the updateGame slot
+    connect(&gameUpdateTimer, &QTimer::timeout, this, &GameLocal::updateGame);
+*/
+}
 
+void GameLocal::stopGame()
+{
+    /*
+    // You might want to clean up resources, stop timers, etc.
+    // For example, you can stop the update timer
+    gameUpdateTimer.stop();
+
+    // Disconnect the timer from the updateGame slot
+    disconnect(&gameUpdateTimer, &QTimer::timeout, this, &GameLocal::updateGame);
+*/
+}
+
+/*
+void GameLocal::resetGameState()
+{
+    // Add logic to reset the game state
+    // This could include resetting player info, pot, community cards, etc.
+
+    // Stop any ongoing betting rounds
+    tableInfo.betting_round = -1;
+
+    // Reset player info, clear community cards, etc.
+    tableInfo.reset();  // You may need to define a reset method in your Table class
+
+    // Notify players about the game reset
+    emit updatePTable(tableInfo);
+}
+
+void GameLocal::updateGame()
+{
+    // Add logic for periodic game updates
+    // This function will be called at regular intervals by the timer
+
+    // For example, you can update the display or perform other game-related tasks
+    // Call this whenever you want to update the UI during the game
+    updatePlayersTable();
+    emit askBet(findPlayer(tableInfo.playerInfo[tableInfo.current_player].name));
+}
+
+*/
