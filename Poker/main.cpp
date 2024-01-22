@@ -20,8 +20,6 @@ int main(int argc, char *argv[]) {
     MainWindow b;
     //GameWindow w;
 
-
-
     //w.show();
     //w.game_player.hand.push_back(Card(Suit::Spades, 4));
     //w.game_player.hand.push_back(Card(Suit::Hearts, 12));

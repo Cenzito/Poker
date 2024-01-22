@@ -8,6 +8,7 @@
 #include <QVBoxLayout>
 #include <QGraphicsDropShadowEffect>
 #include "ui_gamewindow.h"
+#include "GameLogic/Card.hpp"
 
 
 GameWindow::GameWindow(QWidget *parent, std::string name) : game_player(name),
@@ -69,7 +70,6 @@ GameWindow::GameWindow(QWidget *parent, std::string name) : game_player(name),
     }
 
     switch_bet_button_off();
-
 
     // Add labels to the layout
     verticalLayout->addWidget(labelTable);
@@ -141,7 +141,8 @@ void GameWindow::update_display(){
     // Display players hand
     display_player_hand();
   
-    // Display names and stacks
+    // Display names and stacks and put yours in red
+    display_name_red();
     display_names_stacks_bets();
 
 
@@ -152,12 +153,14 @@ void GameWindow::update_display(){
 
     //display middle pot
     display_middle_pot();
+
     //if (game_player.tableInfo.playerInfo[game_player.tableInfo.current_player].name == game_player.getName()) {
       //  switch_bet_button_on();
     //}
     switch_players_display();
     update_community_cards();
 }
+
 
 
 void GameWindow::update_community_cards() {
@@ -207,7 +210,6 @@ void GameWindow::remove_middle_card_display(int cardIndex) {
         middleCardLabel->clear();
     }
 }
-
 
 // beginning of display poker hand 
   
@@ -451,7 +453,6 @@ void GameWindow::display_names_stacks_bets(){
 
 }
 
-
 // beginning of highlight current player
 
 void GameWindow::highlightActivePlayer() {
@@ -486,8 +487,6 @@ void GameWindow::display_middle_pot(){
 
 // end of display and update middle pot
 
-
-
 void GameWindow::on_NextRound_clicked()
 {
     //clear table
@@ -498,4 +497,115 @@ void GameWindow::on_NextRound_clicked()
     //check Game status
 
 }
+
+// start of display a given player's cards
+
+void GameWindow::display_given_cards(PokerPlayer* display_player){
+
+    int num = display_player->tableInfo.current_player;
+    Card card1 = display_player->hand[0];
+    Card card2 = display_player->hand[1];
+    Suit suit1 = card1.getSuit();
+    Suit suit2 = card2.getSuit();
+    int value1 = card1.getValue();
+    int value2 = card2.getValue();
+    QString path1 = Get_image_path(suitToString(suit1),std::to_string(value1),false);
+    QString path2 = Get_image_path(suitToString(suit2),std::to_string(value2),false);
+    QImage image1(path1);
+    QImage image2(path2);
+
+    if(num == 1){
+        QSize size1 = ui->label_player1_card1->size();
+        QSize size2 = ui->label_player1_card2->size();
+
+        ui->label_player1_card1->setPixmap(QPixmap::fromImage(image1).scaled(size1, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->label_player1_card2->setPixmap(QPixmap::fromImage(image2).scaled(size2, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    }
+    if(num == 2){
+        QSize size1 = ui->label_player2_card1->size();
+        QSize size2 = ui->label_player2_card2->size();
+
+        ui->label_player2_card1->setPixmap(QPixmap::fromImage(image1).scaled(size1, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->label_player2_card2->setPixmap(QPixmap::fromImage(image2).scaled(size2, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    }
+    if(num == 3){
+        QSize size1 = ui->label_player3_card1->size();
+        QSize size2 = ui->label_player3_card2->size();
+
+        ui->label_player3_card1->setPixmap(QPixmap::fromImage(image1).scaled(size1, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->label_player3_card2->setPixmap(QPixmap::fromImage(image2).scaled(size2, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    }
+    if(num == 4){
+        QSize size1 = ui->label_player4_card1->size();
+        QSize size2 = ui->label_player4_card2->size();
+
+        ui->label_player4_card1->setPixmap(QPixmap::fromImage(image1).scaled(size1, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->label_player4_card2->setPixmap(QPixmap::fromImage(image2).scaled(size2, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    }
+    if(num == 5){
+        QSize size1 = ui->label_player5_card1->size();
+        QSize size2 = ui->label_player5_card2->size();
+
+        ui->label_player5_card1->setPixmap(QPixmap::fromImage(image1).scaled(size1, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->label_player5_card2->setPixmap(QPixmap::fromImage(image2).scaled(size2, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    }
+    if(num == 6){
+        QSize size1 = ui->label_player6_card1->size();
+        QSize size2 = ui->label_player6_card2->size();
+
+        ui->label_player6_card1->setPixmap(QPixmap::fromImage(image1).scaled(size1, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->label_player6_card2->setPixmap(QPixmap::fromImage(image2).scaled(size2, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    }
+    if(num == 7){
+        QSize size1 = ui->label_player7_card1->size();
+        QSize size2 = ui->label_player7_card2->size();
+
+        ui->label_player7_card1->setPixmap(QPixmap::fromImage(image1).scaled(size1, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->label_player7_card2->setPixmap(QPixmap::fromImage(image2).scaled(size2, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    }
+    if(num == 8){
+        QSize size1 = ui->label_player8_card1->size();
+        QSize size2 = ui->label_player8_card2->size();
+
+        ui->label_player8_card1->setPixmap(QPixmap::fromImage(image1).scaled(size1, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->label_player8_card2->setPixmap(QPixmap::fromImage(image2).scaled(size2, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    }
+}
+
+// end of display a given player's cards
+
+// start display name red
+
+void GameWindow::display_name_red(){
+
+    int num = game_player.tableInfo.current_player;
+
+    if(num == 1){
+        ui->line_player1->setStyleSheet("color : red;");
+    }
+    if(num == 2){
+        ui->line_player2->setStyleSheet("color : red;");
+    }
+    if(num == 3){
+        ui->line_player3->setStyleSheet("color : red;");
+    }
+    if(num == 4){
+        ui->line_player4->setStyleSheet("color : red;");
+    }
+    if(num == 5){
+        ui->line_player5->setStyleSheet("color : red;");
+    }
+    if(num == 6){
+        ui->line_player6->setStyleSheet("color : red;");
+    }
+    if(num == 7){
+        ui->line_player7->setStyleSheet("color : red;");
+    }
+    if(num == 8){
+        ui->line_player8->setStyleSheet("color : red;");
+    }
+
+}
+
+// end display name red
 

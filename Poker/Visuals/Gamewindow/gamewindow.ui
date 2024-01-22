@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>1000</width>
-    <height>748</height>
+    <height>730</height>
    </rect>
   </property>
   <property name="maximumSize">
@@ -127,6 +127,9 @@ color: rgb(15, 96, 0);</string>
           <height>30</height>
          </size>
         </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
@@ -166,7 +169,7 @@ color: rgb(15, 96, 0);</string>
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(255, 250, 9);</string>
+         <string notr="true">image: url(:/images/cards/back_card.png);</string>
         </property>
         <property name="text">
          <string/>
@@ -188,7 +191,7 @@ color: rgb(15, 96, 0);</string>
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(255, 250, 9);
+         <string notr="true">image: url(:/images/cards/back_card.png);
 </string>
         </property>
         <property name="text">
@@ -224,7 +227,7 @@ color: rgb(15, 96, 0);</string>
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(255, 250, 9);</string>
+         <string notr="true">image: url(:/images/cards/back_card.png);</string>
         </property>
         <property name="text">
          <string/>
@@ -246,7 +249,7 @@ color: rgb(15, 96, 0);</string>
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(255, 250, 9);</string>
+         <string notr="true">image: url(:/images/cards/back_card.png);</string>
         </property>
         <property name="text">
          <string/>
@@ -330,7 +333,7 @@ color: rgb(15, 96, 0);</string>
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(186, 255, 42);</string>
+         <string notr="true">image: url(:/images/cards/back_card.png);</string>
         </property>
         <property name="text">
          <string/>
@@ -352,7 +355,7 @@ color: rgb(15, 96, 0);</string>
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(186, 255, 42);</string>
+         <string notr="true">image: url(:/images/cards/back_card.png);</string>
         </property>
         <property name="text">
          <string/>
@@ -387,7 +390,7 @@ color: rgb(15, 96, 0);</string>
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(186, 255, 42);</string>
+         <string notr="true">image: url(:/images/cards/back_card.png);</string>
         </property>
         <property name="text">
          <string/>
@@ -409,7 +412,7 @@ color: rgb(15, 96, 0);</string>
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(186, 255, 42);</string>
+         <string notr="true">image: url(:/images/cards/back_card.png);</string>
         </property>
         <property name="text">
          <string/>
@@ -837,7 +840,7 @@ color: rgb(15, 96, 0);</string>
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: rgb(255, 100, 12);</string>
+           <string notr="true">image: url(:/images/cards/back_card.png);</string>
           </property>
           <property name="text">
            <string/>
@@ -859,7 +862,7 @@ color: rgb(15, 96, 0);</string>
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: rgb(255, 100, 12);</string>
+           <string notr="true">image: url(:/images/cards/back_card.png);</string>
           </property>
           <property name="text">
            <string/>
@@ -978,7 +981,7 @@ color: rgb(15, 96, 0);</string>
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: rgb(255, 100, 12);</string>
+           <string notr="true">image: url(:/images/cards/back_card.png);</string>
           </property>
           <property name="text">
            <string/>
@@ -1000,7 +1003,7 @@ color: rgb(15, 96, 0);</string>
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: rgb(255, 100, 12);</string>
+           <string notr="true">image: url(:/images/cards/back_card.png);</string>
           </property>
           <property name="text">
            <string/>
@@ -1041,7 +1044,7 @@ color: rgb(15, 96, 0);</string>
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(255, 76, 159);</string>
+         <string notr="true">image: url(:/images/cards/back_card.png);</string>
         </property>
         <property name="text">
          <string/>
@@ -1063,8 +1066,7 @@ color: rgb(15, 96, 0);</string>
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(255, 76, 159);
-</string>
+         <string notr="true">image: url(:/images/cards/back_card.png);</string>
         </property>
         <property name="text">
          <string/>
@@ -1099,7 +1101,7 @@ color: rgb(15, 96, 0);</string>
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(255, 76, 159);</string>
+         <string notr="true">image: url(:/images/cards/back_card.png);</string>
         </property>
         <property name="text">
          <string/>
@@ -1121,7 +1123,7 @@ color: rgb(15, 96, 0);</string>
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(255, 76, 159);</string>
+         <string notr="true">image: url(:/images/cards/back_card.png);</string>
         </property>
         <property name="text">
          <string/>
