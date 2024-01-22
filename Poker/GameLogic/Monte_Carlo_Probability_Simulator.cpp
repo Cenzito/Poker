@@ -16,7 +16,7 @@ std::vector<float> Winning_Probability (Table &table, std::vector<Card> &hand, i
     std::vector<Card> community_cards; //vector of community cards
 
     Deck deck; //create a deck
-    qDebug() <<"Initialisation worked!";
+    //qDebug() <<"Initialisation worked!";
     //std::cout<<"Number of players: "<<num_players<<std::endl;
     //std::cout<<"Number of simulations: "<<num_simulations<<std::endl;
     std::cout<<"Our cards: "<<hand[0]<<" "<<hand[1]<<std::endl;
