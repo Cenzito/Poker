@@ -20,6 +20,7 @@ GameWindow::GameWindow(QWidget *parent, std::string name) : game_player(name),
     });
     connect(ui->RaiseButton, &QPushButton::clicked, this, &GameWindow::onRaiseButtonClicked);
     connect(ui->CallButton, &QPushButton::clicked, this, &GameWindow::onCallButtonClicked);
+    connect(ui->StartStopButton, &QPushButton::clicked, this, &GameWindow::onStartStopButtonClicked);
 
     QImage table_background(":/images/table.png");
     QSize table_background_size = ui->label_table->size();
@@ -70,8 +71,6 @@ void GameWindow::onCallButtonClicked(){ //Reminder: this is check/call button, n
 
 }
 
-
-
 void GameWindow::onFoldButtonClicked(){
     emit game_player.Fold();
 }
@@ -97,6 +96,23 @@ void GameWindow::update_display(){
 }
 
 //many bugs, i will solve them
+
+void GameWindow::onStartStopButtonClicked()
+{
+    if (ui->StartStopButton->text() == "Start")
+    {
+        // Start the game
+        ui->StartStopButton->setText("Stop");
+        //gameLocal.startGame();  // Add a method in GameLocal to start the game
+    }
+    else
+    {
+        // Stop the game
+        ui->StartStopButton->setText("Start");
+        //gameLocal.stopGame();  // Add a method in GameLocal to stop the game
+    }
+}
+
 
 void GameWindow::update_community_cards() {
     const std::vector<Card>& communityCards = game_player.tableInfo.communityCards;

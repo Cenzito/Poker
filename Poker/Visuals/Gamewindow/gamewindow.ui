@@ -577,7 +577,7 @@ color: rgb(15, 96, 0);</string>
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="StartStopButton">
     <property name="geometry">
      <rect>
       <x>190</x>
@@ -587,7 +587,7 @@ color: rgb(15, 96, 0);</string>
      </rect>
     </property>
     <property name="text">
-     <string>Start/Stop</string>
+     <string>Start</string>
     </property>
    </widget>
    <zorder>horizontalLayoutWidget</zorder>
@@ -623,7 +623,7 @@ color: rgb(15, 96, 0);</string>
    <zorder>label_middlecard4</zorder>
    <zorder>label_middlecard5</zorder>
    <zorder>label_pot</zorder>
-   <zorder>pushButton_2</zorder>
+   <zorder>StartStopButton</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

@@ -43,6 +43,7 @@ private slots:
 
     void updateCallButtonLabel();
 
+    void onStartStopButtonClicked();
 
     void update_display();
 
