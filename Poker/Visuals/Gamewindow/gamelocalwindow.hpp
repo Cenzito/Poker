@@ -11,6 +11,8 @@ public:
     explicit GameLocalWindow(QWidget *parent = nullptr, std::string p = "name");
 
     GameLocal game;
+private:
+    GameWindow* gamewindow;
 };
 
 #endif // GAMELOCALWINDOW_HPP

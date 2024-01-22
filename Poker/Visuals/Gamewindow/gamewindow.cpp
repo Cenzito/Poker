@@ -1,18 +1,24 @@
-    #include "gamewindow.hpp"
+#include "gamewindow.hpp"
+#include <iostream>
 #include "Visuals/RulesWindow/ruleswindow.h"
 #include "ui_gamewindow.h"
 #include <QPixmap>
 #include "GameLogic/Table.hpp"
 #include"GameLogic/PlayerInfo.hpp"
 #include "GameLogic/PokerPlayer.hpp"
+#include "GameLogic/Table.hpp"
+#include "GameLogic/GameLocal.hpp"
 
-GameWindow::GameWindow(QWidget *parent, std::string name) : game_player(name),
+GameWindow::GameWindow(QWidget *parent, std::string name, GameLocal* gameLocalInstance) :
+    game_player(name),
     QMainWindow(parent),
-    ui(new Ui::GameWindow)
+    ui(new Ui::GameWindow),
+    gameLocal(gameLocalInstance)
+
 {
     ui->setupUi(this);
-    
 
+    connect(ui->Leave_Table, &QPushButton::clicked, this, &GameWindow::onLeaveTableClicked);
     connect(ui->pushButton, &QPushButton::clicked, this, &GameWindow::onPlayButtonClicked);
     //connect(ui->FoldButton, &QPushButton::clicked, this, &GameWindow::onFoldButtonClicked(PokerPlayer* game_player));
     connect(ui->FoldButton, &QPushButton::clicked, [=]() {
@@ -51,6 +57,24 @@ const QString GameWindow::Get_image_path(const std::string &suit, const std::str
 
 }
 
+void GameWindow::setGameLocal(GameLocal* gameLocalInstance) {
+    gameLocal = gameLocalInstance;
+}
+void GameWindow::onLeaveTableClicked() {
+    int playerPos = -1; // Default to an invalid position
+    std::cout << "works1" << std::endl;
+    for (const auto& seat : gameLocal->tableInfo.playerInfo) {
+        if (seat.second.name == game_player.getName()) {
+            playerPos = seat.first;
+            break;
+            }
+        }
+    if (playerPos != -1) {
+        PlayerInfo& playerInfo = gameLocal->tableInfo.playerInfo[playerPos];
+        gameLocal->LeaveTable(playerInfo, playerPos);
+        }
+}
+
 void GameWindow::onPlayButtonClicked()
 {
     RulesWindow *rulesWindow = new RulesWindow(this) ;
@@ -61,7 +85,6 @@ void GameWindow::onRaiseButtonClicked(){
     int add_bet = ui->raise_box->value();
     int current = (ui->cumulative_bet_line->text()).toInt();
     ui->cumulative_bet_line->setText(QString::number(add_bet+current));
-    qDebug() << add_bet;
     emit game_player.Raise(add_bet);
 }
 
@@ -100,8 +123,6 @@ void GameWindow::update_display(){
 void GameWindow::update_community_cards() {
     const std::vector<Card>& communityCards = game_player.tableInfo.communityCards;
 
-    qDebug() << "number center cards: " << communityCards.size();
-
     // Display the first three community cards initially
     int i = 0;
     for (; i < communityCards.size(); i++) {
@@ -131,7 +152,6 @@ void GameWindow::update_middle_card_display(int cardIndex, const Card& card) {
 }
 
 void GameWindow::remove_middle_card_display(int cardIndex) {
-    qDebug() << "111";
     QLabel* middleCardLabel = findChild<QLabel*>(QString("label_middlecard%1").arg(cardIndex));
     if (middleCardLabel) {
         middleCardLabel->clear();
@@ -154,13 +174,11 @@ void GameWindow::display_player_hand(){ // to test
     Suit S2 = C2.getSuit() ;
     int v1 = C1.getValue() ;
     int v2 = C2.getValue() ;
-    qDebug() << v1;
 
     // we have the two cards of the player, the suit and value of both those cards
     // following are the path to both corresponding image cards
     QString p1 = Get_image_path(suitToString(S1),std::to_string(v1),false) ;
     QString p2 = Get_image_path(suitToString(S2),std::to_string(v2),false) ;
-    qDebug() << p1;
 
     //below the two images
     QPixmap first_card(p1) ;
@@ -188,7 +206,6 @@ void GameWindow::switch_bet_button_on(){
 
     if (ui->RaiseButton->isVisible()==false){ //if the button is already visible, does nothing
         if (game_player.tableInfo.playerInfo.find(current_player)!=game_player.tableInfo.playerInfo.end()){ // check if the player is there
-            std::cout << "works" ;
         }
         if (player_name==game_player.tableInfo.playerInfo.at(current_player).name){
             ui->RaiseButton->show() ;
@@ -285,7 +302,6 @@ void GameWindow::display_names_stacks_bets(){
 
     if (game_player.tableInfo.player_num>=1) {
         std::string playerName1 = game_player.tableInfo.playerInfo[0].name+" | "+std::to_string(game_player.tableInfo.playerInfo[0].stack_size);
-        qDebug() << QString::fromStdString(playerName1);
         ui ->line_player1->setText(QString::fromStdString(playerName1));
         std::string betplayer1 = std::to_string(game_player.tableInfo.playerInfo[0].bet);
         ui->line_bet1->setText(QString::fromStdString(betplayer1));

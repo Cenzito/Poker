@@ -40,7 +40,6 @@ public:
     bool isBot, isActive;
 
     //Action function, will be called when table changes
-
 public slots:
     virtual void Action();
 
