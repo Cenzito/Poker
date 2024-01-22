@@ -49,10 +49,6 @@ public:
 
     void askBet(PokerPlayer* p);
     void onAction();
-    void startGame();
-    void stopGame();
-
-    bool status;
 
 public slots:
     void onRaise(int amount);
