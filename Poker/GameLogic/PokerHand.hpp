@@ -31,5 +31,5 @@ class PokerHand{
     
 
 };
-int compare_hands(PokerHand hand1, PokerHand hand2); // compares two hands and returns 1 if the first hand is better, 2 if the second hand is better and 0 if they are equal
+int compare_hands(PokerHand &hand1, PokerHand &hand2); // compares two hands and returns 1 if the first hand is better, 2 if the second hand is better and 0 if they are equal
 #endif // POKER_HAND_HPP
