@@ -19,6 +19,7 @@ public:
     ~GameWindow();
     const QString Get_image_path(const std::string &suit, const std::string &value, bool back = false); // to display the back call with args ("back", "back", true)
 
+    void update_display();
     void update_community_cards();
     void update_middle_card_display(int cardIndex, const Card& card);
     void remove_middle_card_display(int cardIndex);
@@ -49,16 +50,14 @@ private slots:
 
     void updateCallButtonLabel();
 
-    void on_NextButton_clicked();
-
     void on_NextRound_clicked();
+
+    void onAddBotClicked();
 
 private:
     Ui::GameWindow *ui;
 
 
 };
-
-
 
 #endif // GAMEWINDOW_H

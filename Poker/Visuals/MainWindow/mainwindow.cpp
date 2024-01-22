@@ -64,7 +64,6 @@ void MainWindow::on_pushButton_login_clicked()
 
 }
 
-
 void MainWindow::on_pushButton_signin_clicked()
 {
     QString user = ui->lineEdit_newuser->text();
