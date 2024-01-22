@@ -35,9 +35,6 @@ public:
 
     int pot;
 
-    int bet_on_table; //Used to see if players have matched the bet required to call
-
-
     //usefull variables for betting round
     int betting_round; //current betting round (0: preflop, 1: river...)
     int current_biggest_bet; //biggest bet of the betting round
