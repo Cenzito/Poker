@@ -19,7 +19,7 @@ class PokerHand{
     bool has_three_of_a_kind(); // returns true if the hand has three of a kind
     bool has_two_pairs(); // returns true if the hand has two pairs
     bool has_straight(); // returns true if the hand has a straight
-    int max_straight(); // returns the maximum straight that the hand has (the kicker)
+    int max_straight(); // for any hand, it returns 0 if there is no straight or returns the value of the highest card in the straight if there is one
     bool has_flush(); // returns true if the hand has a flush
     bool has_full_house(); // returns true if the hand has a full house
     bool has_four_of_a_kind(); // returns true if the hand has four of a kind
