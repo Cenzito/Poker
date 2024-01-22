@@ -16,6 +16,8 @@ public:
     PokerClient pokerclient;
 
     Creationaccount account = CreationAccount("Account.db");
+
+    string username,password;
 private:
     void onRaiseButtonClicked() override;
 

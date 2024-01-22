@@ -67,12 +67,12 @@ void GameWindow::onRaiseButtonClicked(){
     emit game_player.Raise(add_bet);
 }
 
-void Gamewindow::on_pushButton_login_clicked(){
+void GameWindow::on_pushButton_login_clicked(){
     Qstring user = ui->lineEdit_user->text();
     Qstring pass = ui->lineEdit_pass->text();
 }
 
-void Gamewindow::on_pushButton_signin_clicked(){
+void GameWindow::on_pushButton_signin_clicked(){
     Qstring user = ui->lineEdit_newuser->text();
     Qstring pass = ui->lineEdit_newpass->text();
 }

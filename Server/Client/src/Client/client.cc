@@ -93,7 +93,7 @@ void PokerClient::handleRaise(const std::string& message) {
 
 void PokerClient::handleFold() {
     player.fold();
-    sendMessage("fold");
+    //sendMessage("fold");
 }
 
 void PokerClient::executePlayerAction(const std::string& message, const std::string& action) {
@@ -102,7 +102,7 @@ void PokerClient::executePlayerAction(const std::string& message, const std::str
     int amount = std::stoi(message.substr(pos));
     try {
         player.bet(amount);
-        sendMessage(action + ":" + std::to_string(amount));
+        //sendMessage(action + ":" + std::to_string(amount));
     } catch (const std::runtime_error& e) {
         std::cerr << e.what() << std::endl;
     }

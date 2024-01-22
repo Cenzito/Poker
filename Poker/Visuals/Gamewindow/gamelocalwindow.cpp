@@ -31,6 +31,8 @@ void GameLocalWindow::on_pushButton_login_clicked(){
     Qstring pass = ui->lineEdit_pass->text();
 
     if(account.login(user, pass)){
+        this->username = user;
+        this->password = pass;
         pokerclient = PokerClient(server_ip, port);
         pokerclient.sendMessage(user + ":" + pass);
     }
@@ -48,10 +50,10 @@ void GameLocalWindow::on_pushButton_signin_clicked(){
 
     if(account.Check_repetition(user)){
         account.Insertaccount(user, pass);
+        this->username = user;
+        this->password = pass;
         pokerclient = PokerClient(server_ip, port);
     }
-
-
 }
 
 void GameLocalWindow::onRaiseButtonClicked() {
@@ -60,22 +62,37 @@ void GameLocalWindow::onRaiseButtonClicked() {
     int current = (ui->cumulative_bet_line->text()).toInt();
     ui->cumulative_bet_line->setText(QString::number(add_bet+current));
     qDebug() << add_bet;
+    int sum = add_bet + current;
     //emit game_player.Raise(add_bet);
-    pokerclient.sendMessage("/raise");
-    pokerclient.processUserInput(message);
-    
+    if(sum <= account.get_money(account.get_db(), this->username)){
+        ui.switch_bet_button_on()
+        pokerclient.sendMessage(message + "" + std::to_string(sum));
+        pokerclient.processUserInput(message + "" + sum, message);
+    }
+    else{
+        ui.switch_bet_button_off();
+    }
 }
 
-void GameLocalWindow::onCallButtonClicked() override{ //Reminder: this is check/call button, need to work on changing the name in accordance with the situation, but functionallity should work fine for now
+void GameLocalWindow::onCallButtonClicked(){ //Reminder: this is check/call button, need to work on changing the name in accordance with the situation, but functionallity should work fine for now
     //emit game_player.Call();
-    std::string message = "/call";
+    int current = (ui->cumulative_bet_line->text()).toInt();
+    std::string message = "/bet";
+        if(current <= account.get_money(account.get_db(), this->username)){
+        ui.switch_bet_button_on()
+        pokerclient.sendMessage(message + "" + std::to_string(current));
+        pokerclient.processUserInput(message + "" + current, message);
+    }
+    else{
+        ui.switch_bet_button_off();
+    }
     pokerclient.sendMessage(message);
     pokerclient.processUserInput(message);
 }
 
 
 
-void GameLocalWindow::onFoldButtonClicked() override{
+void GameLocalWindow::onFoldButtonClicked(){
     //emit game_player.Fold();
     std::string message = "fold";
     pokerclient.sendMessage(message);
