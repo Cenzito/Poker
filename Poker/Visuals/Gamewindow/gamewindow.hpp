@@ -33,7 +33,11 @@ public:
 
 private slots:
 
-    void onPlayButtonClicked();
+    virtual void onPlayButtonClicked();
+
+    virtual void on_pushButton_login_clicked();
+
+    virtual void on_pushButton_signin_clicked();
 
     virtual void onRaiseButtonClicked();
 
@@ -48,7 +52,6 @@ private slots:
 
 private:
     Ui::GameWindow *ui;
-
 
 };
 

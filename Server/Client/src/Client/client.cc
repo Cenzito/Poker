@@ -12,7 +12,7 @@ PokerClient::PokerClient(const std::string& server_ip, int port) :
     serverPort(port), 
     sockfd(-1), 
     running(true), 
-    isCredentialsSent(false), 
+    isCredentialsSent(true), 
     player("", 500),
     roundStarted(false) {}
 
@@ -28,7 +28,6 @@ PokerClient::~PokerClient() {
 
 void PokerClient::run() {
     setupConnection();
-    authenticateUser();
     messageLoop();
 }
 
@@ -59,23 +58,6 @@ void PokerClient::connectToServer() {
 
 void PokerClient::startReceiverThread() {
     recvThread = std::thread(&PokerClient::receiveMessages, this);
-}
-
-void PokerClient::authenticateUser() {
-    std::string username, password;
-
-    std::cout << "Enter username: ";
-    std::getline(std::cin, username);
-
-    std::cout << "Enter password: ";
-    std::getline(std::cin, password);
-
-    player.set_username(username);
-    player.set_password(password);
-
-    std::string credentials = username + ":" + password;
-    sendMessage(credentials);
-    isCredentialsSent = true;
 }
 
 void PokerClient::messageLoop() {

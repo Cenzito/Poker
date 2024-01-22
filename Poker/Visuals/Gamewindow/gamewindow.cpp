@@ -64,20 +64,27 @@ void GameWindow::onRaiseButtonClicked(){
     int current = (ui->cumulative_bet_line->text()).toInt();
     ui->cumulative_bet_line->setText(QString::number(add_bet+current));
     qDebug() << add_bet;
-    //emit game_player.Raise(add_bet);
-    sendMessage("\bet");
+    emit game_player.Raise(add_bet);
+}
+
+void Gamewindow::on_pushButton_login_clicked(){
+    Qstring user = ui->lineEdit_user->text();
+    Qstring pass = ui->lineEdit_pass->text();
+}
+
+void Gamewindow::on_pushButton_signin_clicked(){
+    Qstring user = ui->lineEdit_newuser->text();
+    Qstring pass = ui->lineEdit_newpass->text();
 }
 
 void GameWindow::onCallButtonClicked(){ //Reminder: this is check/call button, need to work on changing the name in accordance with the situation, but functionallity should work fine for now
-    //emit game_player.Call();
-    sendMessage("\call");
+    emit game_player.Call();
 }
 
 
 
 void GameWindow::onFoldButtonClicked(){
     emit game_player.Fold();
-    sendMessage("\fold");
 }
 
 void GameWindow::update_display(){
