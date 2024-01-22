@@ -55,3 +55,20 @@ void MainWindow::onLocalPlayButtonClicked() {
 
     gamelocalwindow -> show();
 }
+
+void MainWindow::on_pushButton_login_clicked()
+{
+    QString user = ui->lineEdit_user->text();
+    QString pass = ui->lineEdit_pass->text();
+
+
+}
+
+
+void MainWindow::on_pushButton_signin_clicked()
+{
+    QString user = ui->lineEdit_newuser->text();
+    QString pass = ui->lineEdit_newpass->text();
+
+}
+
