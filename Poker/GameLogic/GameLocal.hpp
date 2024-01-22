@@ -17,7 +17,7 @@ class GameLocal : public QObject
 private:
     std::unordered_map<std::string, std::vector<Card>> playerHands; //To internall store hands
 public:
-    void storePlayerHand(const std::string& playerName, const std::vector<Card>& hand);
+    void storePlayerHand(const std::string& playerName, const std::vector<Card>& hand) const;
     void clearPlayerHands();
 
     GameLocal(int seats);
@@ -33,7 +33,7 @@ public:
     void win(PlayerInfo& PlayerWin, int sum);
     void fold(PlayerInfo& foldPlayer);
 
-    void endHand(PlayerInfo& winner);
+    void endHand(PlayerInfo& winner) const;
 
 
     void nextHand();
