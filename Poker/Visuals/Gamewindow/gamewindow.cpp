@@ -20,6 +20,7 @@ GameWindow::GameWindow(QWidget *parent, std::string name) : game_player(name),
     });
     connect(ui->RaiseButton, &QPushButton::clicked, this, &GameWindow::onRaiseButtonClicked);
     connect(ui->CallButton, &QPushButton::clicked, this, &GameWindow::onCallButtonClicked);
+    connect(ui->NextRound, &QPushButton::clicked, this, &::GameWindow::on_NextRound_clicked);
 
     /*QImage table_background(":/images/table.png");
     QSize table_background_size = ui->label_table->size();
