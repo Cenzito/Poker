@@ -5,7 +5,7 @@
 #include "GameLogic/PokerHand.hpp"
 #include "GameLogic/Card.hpp"
 #include "GameLogic/Table.hpp"
-#include "GameLogic\Monte_Carlo_Probability_Simulator.cpp"
+#include "GameLogic/Monte_Carlo_Probability_Simulator.cpp"
 
 class BotDarius : public Bot
 {
