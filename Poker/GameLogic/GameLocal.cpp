@@ -183,7 +183,7 @@ void GameLocal::distribute() {
 }
 
 
-//only consider one player winning rn
+//distributes the money to the winner and start anew
 void GameLocal::endHand() {
 
     distribute();
@@ -335,12 +335,6 @@ void GameLocal::onAction() {
 
     //check if end hand
     if (players_standing == 1) {
-        PlayerInfo winner;
-        for (int i = 0; i < tableInfo.player_num; i++) {
-            if (!tableInfo.playerInfo[i].isFold) {
-                winner = tableInfo.playerInfo[i];
-            }
-        }
         endHand();
     }
     else {
@@ -357,6 +351,7 @@ void GameLocal::onAction() {
         }
     }
 }
+
 void GameLocal::onCall() {
 
     PlayerInfo &currentPlayerInfo = tableInfo.playerInfo[tableInfo.current_player];
