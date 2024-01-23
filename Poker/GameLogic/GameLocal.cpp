@@ -91,7 +91,7 @@ void GameLocal::setPlayerInfos(PokerPlayer* player) {
     qDebug() << QString::fromStdString(listPInf);
 
     //emit the change to the player
-    QObject::connect(this, &GameLocal::setPInf, player, &PokerPlayer::updatePInf, Qt::QueuedConnection);
+    QObject::connect(this, &GameLocal::setPInf, player, &PokerPlayer::updatePInf);
     emit setPInf(listPInf);
     QObject::disconnect(this, &GameLocal::setPInf, player, &PokerPlayer::updatePInf);
 
@@ -242,10 +242,9 @@ void GameLocal::nextBettingRound() {
             Card card3 = deck.dealCard();
 
             updatePlayersTable("/addCardMid " + suitToString(card1.getSuit()) + " " + std::to_string(card1.getValue()));
-            updatePlayersTable("/addCardMid " + suitToString(card2.getSuit()) + " " + std::to_string(card1.getValue()));
-            updatePlayersTable("/addCardMid " + suitToString(card3.getSuit()) + " " + std::to_string(card1.getValue()));
+            updatePlayersTable("/addCardMid " + suitToString(card2.getSuit()) + " " + std::to_string(card2.getValue()));
+            updatePlayersTable("/addCardMid " + suitToString(card3.getSuit()) + " " + std::to_string(card3.getValue()));
 
-            qDebug() << "cards " << tableInfo.communityCards.size();
 
             //player after button is first to act
             updatePlayersTable("/setActivePlayer " + std::to_string(tableInfo.ButtonPlayer));

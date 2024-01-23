@@ -141,9 +141,11 @@ void Table::updateTable(std::string command) {
         // "/setPInf Player1 Stack1 Player2 Stack2 ..."
         for (int i = 1; i < wordsArray.size(); i+=2) {
             //set playerInfo
+            qDebug() << "setting " << QString::fromStdString(wordsArray[i]);
             PlayerInfo playerinfo(wordsArray[i], std::stoi(wordsArray[i+1]), 0);
             playerInfo[i/2] = playerinfo;
         }
+        player_num = wordsArray.size() / 2;
     }
 
 
