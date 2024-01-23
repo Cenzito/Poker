@@ -23,7 +23,6 @@ int main(int argc, char *argv[]) {
     w.game.addBot(&bot2);
     w.show();
 
-
     w.game.nextHand();
 
     return a.exec();

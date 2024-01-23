@@ -10,6 +10,7 @@ Table::Table(){
     pot=0;
     current_player=0;
     player_num=0;
+    subpots={};
 }
 
 Table::Table(int seats){
@@ -20,6 +21,7 @@ Table::Table(int seats){
     pot=0;
     player_num=0;
     current_player=3;
+    subpots={};
 }
 
 
@@ -51,4 +53,15 @@ int Table::active_players() {
         }
     }
     return counter;
+}
+
+
+int Table::playerIndex(PlayerInfo& player_info){
+    int index;
+    for (int i = 0; i < player_num; i++) {
+        if (playerInfo[i].name == player_info.name) {
+            index=i;
+        }
+    }
+    return index;
 }

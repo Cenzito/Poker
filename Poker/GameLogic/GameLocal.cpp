@@ -23,6 +23,7 @@ void GameLocal::JoinGame(PokerPlayer* player) {
         //player joins game so we add him to the table with an initial amount of money
         PlayerInfo playerinfo(player->getName(), 1000, 0);
         tableInfo.playerInfo.insert({getFreeSeat(), playerinfo});
+        tableInfo.subpots.insert({getFreeSeat(), -1}); //just growing the subpots to match the number of players
         players.push_back(player);
         tableInfo.player_num += 1;
 
@@ -43,6 +44,19 @@ void GameLocal::addBot(Bot* bot) {
 
 
 void GameLocal::pay(PlayerInfo& PlayerPay, int sum) {
+
+    //adding to the subpots for allinners if they allinned this round
+    for (int i = 0; i < tableInfo.player_num; i++) {
+        if (!tableInfo.playerInfo[i].isAllin) { //players who are all in are not folded (you cant have both)
+            if (0<tableInfo.playerInfo[i].bet){ //checking if the all in was this round to check if subpot can still increase
+                if (PlayerPay.bet < tableInfo.playerInfo[i].bet) { //checks if has already been counted previously in allin
+                    tableInfo.subpots[i]+= (tableInfo.playerInfo[i].bet-PlayerPay.bet ); //adds what hadn't been added
+                }
+            }
+        }
+    }
+
+    //adjusting the stack, bet, and pot
     PlayerPay.stack_size -= sum;
     PlayerPay.bet += sum;
     tableInfo.pot += sum;
@@ -50,15 +64,55 @@ void GameLocal::pay(PlayerInfo& PlayerPay, int sum) {
 };
 
 void GameLocal::win(PlayerInfo& PlayerWin, int sum) {
+    //DEAL WITH THIS WINNERLIST SCHENANIGANS
+    if (winnerlist::size =1){
 
-    //add thimgy here
+        if (PlayerWin.isAllin) { //FIX THIS FIXXXXX
 
-    qDebug() << sum;
-    for (int i = 0; i <= tableInfo.player_num; i++) {
-        if (tableInfo.playerInfo[i].name == PlayerWin.name) {
-            tableInfo.playerInfo[i].stack_size += sum;
+            //transfers the money from the subpot to the players stack
+            int index=tableInfo.playerIndex(PlayerWin);
+            tableInfo.playerInfo[index].stack_size += tableInfo.subpots[index];
+
+            //decreases the value in the pot and subpots
+            tableInfo.pot -= tableInfo.subpots[index];
+            for (int i =0; i<=tableInfo.player_num; i++){
+                tableInfo.subpots[i] -= tableInfo.subpots[index];
+            }
+
+            //set the player to inactive so we can calculate who the second winner is
+            fold(PlayerWin);
+            if (tableInfo.pot>0){ //if theres still money to give...
+                if (players_standing<=1) { //if theres at most one active player, let that active player win the rest
+                    for (int i =0; i<=tableInfo.player_num; i++){
+                        if (tableInfo.playerInfo[i].isFold==false) {
+                            win(tableInfo.playerInfo[i]);
+                        }
+                    }
+                } else { //else distribute the rest with the other players
+
+
+                    //COMPLETE THIS
+
+                    //COMPLETE THIS
+
+                    //COMPLETE THIS
+
+                    //COMPLETE THIS
+
+                }
+            }
+        } else {
+            int index=tableInfo.playerIndex(PlayerWin);
+            tableInfo.playerInfo[index].stack_size += tableInfo.pot;
         }
+    } else {
+        //COMPLETE THIS
+
+        //COMPLETE THIS
+
+        //COMPLETE THIS
     }
+
 };
 
 //only consider one player winning rn
@@ -74,6 +128,35 @@ void GameLocal::fold(PlayerInfo& foldPlayer) {
     players_standing -= 1;
 }
 
+void GameLocal::allin(PlayerInfo& allinPlayerInfo) {
+    //set the player to all in
+    allinPlayerInfo.isAllin=true;
+
+    //get players who havent folded since they are the ones who might of bet more than our stack
+    //(keep in mind that if a player has folded then he certainly put in less than our stack or else this would
+    //have already been triggered earlier, and they couldn't have both called/raised and folded in that one move)
+    //creates the subpot for the allinPlayer
+    int subpot= tableInfo.pot;
+    for (int i = 0; i < tableInfo.player_num; i++) {
+        if (!tableInfo.playerInfo[i].isFold) {
+            if (tableInfo.playerInfo[i].bet>allinPlayerInfo.stack_size){
+                subpot-= (tableInfo.playerInfo[i].bet-allinPlayerInfo.stack_size); //removes the surplus that players might have put in
+            }
+        }
+    }
+
+    //find the index of the allinPlayer so we can create a subpot for it
+    int index=tableInfo.playerIndex(allinPlayerInfo);
+
+    //adds the subpot into the subpot vector
+    tableInfo.subpots[index]=subpot;
+
+
+    //pay all the money the player has to the pot
+    pay(  allinPlayerInfo, allinPlayerInfo.stack_size  );
+}
+
+
 void GameLocal::updatePlayersTable() {
     emit updatePTable(tableInfo);
     tableInfo.Print();
@@ -84,12 +167,6 @@ void GameLocal::updatePlayersTable() {
 void GameLocal::nextHand(){
     for (PokerPlayer* player : players) {
         player->removeCards();
-    }
-    //reset bets
-    for (int i = 0; i <= tableInfo.player_num; i++) {
-        tableInfo.playerInfo[i].bet = 0;
-        tableInfo.playerInfo[i].isAllin = false;
-        tableInfo.playerInfo[i].isFold = false;
     }
     //reset bets
     for (int i = 0; i <= tableInfo.player_num; i++) {
@@ -157,12 +234,12 @@ void GameLocal::onCall() {
 
     PlayerInfo &currentPlayerInfo = tableInfo.playerInfo[tableInfo.current_player];
 
-    //if doesn't have the money to bet: fold
+    //if doesn't have the money to match: all-in
     if (currentPlayerInfo.stack_size + currentPlayerInfo.bet < tableInfo.current_biggest_bet){
-        fold(currentPlayerInfo);
+        allin(currentPlayerInfo);
     } else {
         //pay that money to the pot
-        pay(currentPlayerInfo, tableInfo.current_biggest_bet - currentPlayerInfo.bet);
+        pay(currentPlayerInfo, tableInfo.current_biggest_bet - currentPlayerInfo.bet); //accounts for previous bet
     }
     onAction();
 }
@@ -176,9 +253,9 @@ void GameLocal::onFold() {
 
 void GameLocal::onRaise(int bet) {
     PlayerInfo &currentPlayerInfo = tableInfo.playerInfo[tableInfo.current_player];
-    //if bets too little or doesn't have the money to bet: fold
+    //if bets too little or doesn't have the money to bet: all in
     if (currentPlayerInfo.stack_size < tableInfo.current_biggest_bet + bet) {
-        fold(currentPlayerInfo);
+        allin(currentPlayerInfo);
     } else {
         pay(currentPlayerInfo, bet);
         tableInfo.current_biggest_bet = currentPlayerInfo.bet;

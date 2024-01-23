@@ -7,7 +7,9 @@
 #include <qdebug.h>
 
 
-PokerPlayer::PokerPlayer(const std::string& name) : name(name) {}
+PokerPlayer::PokerPlayer(const std::string& name) : name(name) {
+    this->isBot=false;
+}
 
 
 void PokerPlayer::receiveCards(const std::vector<Card> newHand) {
