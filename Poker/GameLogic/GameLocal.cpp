@@ -46,7 +46,7 @@ void GameLocal::addBot(Bot* bot) {
 
 
 void GameLocal::pay(PlayerInfo& PlayerPay, int sum) {
-    updatePlayersTable("/bet");
+    updatePlayersTable("/bet " + PlayerPay.name + " " + std::to_string(sum));
     qDebug() << "payed" << QString::fromStdString(PlayerPay.name) << " " << sum;
 
 };
@@ -210,13 +210,13 @@ void GameLocal::nextBettingRound() {
             players_standing = tableInfo.player_num;
 
             updatePlayersTable("/setBiggestBet " + std::to_string(tableInfo.BBValue));
-
+            qDebug() << "reached";
             //setting small and big blind
             pay(tableInfo.playerInfo[(tableInfo.ButtonPlayer + 1) % tableInfo.player_num], tableInfo.SBValue);
 
             pay(tableInfo.playerInfo[(tableInfo.ButtonPlayer + 2) % tableInfo.player_num], tableInfo.BBValue);
 
-
+            qDebug() << " not reached";
 
             deck.shuffleDeck();
             //give cards to players
