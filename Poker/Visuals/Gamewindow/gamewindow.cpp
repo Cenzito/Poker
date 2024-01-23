@@ -9,7 +9,8 @@
 #include <QGraphicsDropShadowEffect>
 #include "ui_gamewindow.h"
 #include "GameLogic/Card.hpp"
-
+#include <QGraphicsScene>
+#include <QGraphicsPixmapItem>
 
 GameWindow::GameWindow(QWidget *parent, std::string name) : game_player(name),
     QMainWindow(parent),
@@ -17,11 +18,10 @@ GameWindow::GameWindow(QWidget *parent, std::string name) : game_player(name),
 {
     ui->setupUi(this);
 
+
     // Create a vertical layout
     QVBoxLayout *verticalLayout = new QVBoxLayout(ui->centralwidget);
 
-    // Create and set up labels
-    QLabel *labelTable = new QLabel;
     QLabel *labelPot = new QLabel;
 
     connect(ui->pushButton, &QPushButton::clicked, this, &GameWindow::onPlayButtonClicked);
@@ -42,13 +42,11 @@ GameWindow::GameWindow(QWidget *parent, std::string name) : game_player(name),
     //QSize pot_image_size = ui->label_pot->size();
     //ui->label_pot->setPixmap(QPixmap::fromImage(pot_image).scaled(pot_image_size, Qt::KeepAspectRatio, Qt::SmoothTransformation));
 \
-    // Create and set up the images
-    QImage tableImage(":/images/table.png");
     QImage potImage(":/images/huge_player_stack.png");
     QImage player_background(":/images/Poker_background.png");
 
     // Set up the labels with initial images
-    labelTable->setPixmap(QPixmap::fromImage(tableImage));
+    ui->label_middlecard1->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     labelPot->setPixmap(QPixmap::fromImage(potImage));
 
     QGraphicsDropShadowEffect* shadowEffect = new QGraphicsDropShadowEffect();
@@ -74,11 +72,9 @@ GameWindow::GameWindow(QWidget *parent, std::string name) : game_player(name),
     switch_bet_button_off();
 
     // Add labels to the layout
-    verticalLayout->addWidget(labelTable);
     verticalLayout->addWidget(labelPot);
 
     // Set size policies for labels
-    labelTable->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     labelPot->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 }
 

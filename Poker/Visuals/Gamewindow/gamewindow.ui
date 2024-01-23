@@ -9,9 +9,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1000</width>
+    <width>1007</width>
     <height>760</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1007</width>
+    <height>0</height>
+   </size>
   </property>
   <property name="maximumSize">
    <size>
@@ -24,10 +30,10 @@
   </property>
   <property name="styleSheet">
    <string notr="true">QMainWindow{
-background-image: url(:/images/table.png);
+ border-image:  url(&quot;:/images/Poker_background2.png&quot;) 0 0 0 0 stretch stretch;
+padding-bottom: 300px;
 background-repeat: no-repeat;
 background-position: center;
-background-size: cover;
 
 }
 
@@ -37,11 +43,20 @@ background-size: cover;
    <property name="enabled">
     <bool>true</bool>
    </property>
+   <property name="minimumSize">
+    <size>
+     <width>1000</width>
+     <height>760</height>
+    </size>
+   </property>
    <property name="cursor">
     <cursorShape>OpenHandCursor</cursorShape>
    </property>
    <property name="mouseTracking">
     <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_2" stretch="2,1,2,0,0,0,0,1,0">
     <property name="spacing">
@@ -1337,7 +1352,28 @@ color: rgb(15, 96, 0);</string>
          </widget>
         </item>
         <item row="1" column="0">
-         <widget class="QComboBox" name="AddBot"/>
+         <widget class="QComboBox" name="AddBot">
+          <item>
+           <property name="text">
+            <string>Easy</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Medium</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Hard</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string/>
+           </property>
+          </item>
+         </widget>
         </item>
         <item row="0" column="3">
          <widget class="QLineEdit" name="name_line">

@@ -2,6 +2,9 @@
 #define GAMEWINDOW_H
 
 #include <QMainWindow>
+#include <QGraphicsScene>
+#include <QGraphicsView>
+#include <QGraphicsPixmapItem>
 #include "GameLogic/PokerPlayer.hpp"
 #include "GameLogic/PlayerInfo.hpp"
 
@@ -58,6 +61,9 @@ private slots:
 
 private:
     Ui::GameWindow *ui;
+    QGraphicsScene *scene;
+    QGraphicsView *view;
+    QGraphicsPixmapItem *backgroundItem;
 
 
 };
