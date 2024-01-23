@@ -32,6 +32,8 @@ GameWindow::GameWindow(QWidget *parent, std::string name) : game_player(name),
     });
     connect(ui->RaiseButton, &QPushButton::clicked, this, &GameWindow::onRaiseButtonClicked);
     connect(ui->CallButton, &QPushButton::clicked, this, &GameWindow::onCallButtonClicked);
+    connect(ui->StartStopButton, &QPushButton::clicked, this, &GameWindow::onStartStopButtonClicked);
+
 
     /*QImage table_background(":/images/table.png");
     QSize table_background_size = ui->label_table->size();
@@ -159,8 +161,25 @@ void GameWindow::update_display(){
     //}
     switch_players_display();
     update_community_cards();
+    updateCallButtonLabel();
+
 }
 
+void GameWindow::onStartStopButtonClicked()
+{
+    if (ui->StartStopButton->text() == "Start")
+    {
+        // Start the game
+        ui->StartStopButton->setText("Stop");
+        //gameLocal.startGame();  // Add a method in GameLocal to start the game
+    }
+    else
+    {
+        // Stop the game
+        ui->StartStopButton->setText("Start");
+        //gameLocal.stopGame();  // Add a method in GameLocal to stop the game
+    }
+}
 
 
 void GameWindow::update_community_cards() {
@@ -282,7 +301,9 @@ void GameWindow::switch_bet_button_off(){
 void GameWindow::updateCallButtonLabel(){
     //bool condition = /* your condition here */; //SHOULD BE WHETHER TRUE IF SOMEONE PLACES A BET, FALSE IF NO BETS SO FAR IN THE TURN
     bool condition = false;
-    // Set the new label based on the condition
+    if (game_player.tableInfo.current_biggest_bet>0){
+        condition = true;
+    }
     QString newLabel = (condition) ? "Call" : "Check";
     ui->CallButton->setText(newLabel);
 }

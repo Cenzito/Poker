@@ -1380,6 +1380,13 @@ color: rgb(15, 96, 0);</string>
           </property>
          </spacer>
         </item>
+        <item row="0" column="0">
+         <widget class="QPushButton" name="StartStopButton">
+          <property name="text">
+           <string>Start</string>
+          </property>
+         </widget>
+        </item>
        </layout>
       </item>
       <item>

@@ -54,6 +54,8 @@ private slots:
 
     void onAddBotClicked();
 
+    void onStartStopButtonClicked();
+
 private:
     Ui::GameWindow *ui;
 
