@@ -176,7 +176,10 @@ void GameLocal::distribute() {
 
             //keep distributing the money if there's any left
             if (tableInfo.pot>0){
-                distribute();
+                if (players_standing>=1) {
+                    distribute();
+                }
+
             }
         }
     }
@@ -357,7 +360,7 @@ void GameLocal::onCall() {
     PlayerInfo &currentPlayerInfo = tableInfo.playerInfo[tableInfo.current_player];
 
     //if doesn't have the money to match: all-in
-    if (currentPlayerInfo.stack_size + currentPlayerInfo.bet < tableInfo.current_biggest_bet){
+    if (currentPlayerInfo.stack_size + currentPlayerInfo.bet <= tableInfo.current_biggest_bet){
         allin(currentPlayerInfo);
     } else {
         //pay that money to the pot
@@ -376,10 +379,11 @@ void GameLocal::onFold() {
 void GameLocal::onRaise(int bet) {
     PlayerInfo &currentPlayerInfo = tableInfo.playerInfo[tableInfo.current_player];
     //if bets too little or doesn't have the money to bet: all in
-    if (currentPlayerInfo.stack_size < tableInfo.current_biggest_bet + bet) {
+    qDebug()<< "future"<<tableInfo.current_biggest_bet+bet;
+    if (currentPlayerInfo.stack_size <= tableInfo.current_biggest_bet + bet) {
         allin(currentPlayerInfo);
     } else {
-        pay(currentPlayerInfo, bet);
+        pay(currentPlayerInfo, bet); //wrong amount???
         tableInfo.current_biggest_bet = currentPlayerInfo.bet;
         tableInfo.lastRaiser = tableInfo.current_player;
 
