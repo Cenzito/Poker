@@ -350,7 +350,11 @@ void GameLocal::onAction() {
             nextBettingRound();
         } else {
             updatePlayersTable();
-            askBet(findPlayer(tableInfo.playerInfo[tableInfo.current_player].name));
+            if (tableInfo.playerInfo[tableInfo.current_player].isAllin){
+                onAction();
+            } else {
+                askBet(findPlayer(tableInfo.playerInfo[tableInfo.current_player].name));
+            }
         }
     }
 }
