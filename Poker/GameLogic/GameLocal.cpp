@@ -64,64 +64,183 @@ void GameLocal::pay(PlayerInfo& PlayerPay, int sum) {
 };
 
 void GameLocal::win(PlayerInfo& PlayerWin, int sum) {
-    //DEAL WITH THIS WINNERLIST SCHENANIGANS
-    if (winnerlist::size =1){
 
-        if (PlayerWin.isAllin) { //FIX THIS FIXXXXX
+    int index= tableInfo.playerIndex(PlayerWin.name);
+    tableInfo.playerInfo[index].stack_size += sum;
 
-            //transfers the money from the subpot to the players stack
-            int index=tableInfo.playerIndex(PlayerWin);
-            tableInfo.playerInfo[index].stack_size += tableInfo.subpots[index];
 
-            //decreases the value in the pot and subpots
-            tableInfo.pot -= tableInfo.subpots[index];
-            for (int i =0; i<=tableInfo.player_num; i++){
-                tableInfo.subpots[i] -= tableInfo.subpots[index];
+};
+
+void GameLocal::distribute() {
+    std::vector<PlayerInfo> winnerlist = winners();
+    if (winnerlist.size() ==1){
+        PlayerInfo PlayerWin = winnerlist.at(0);
+        if (PlayerWin.isAllin) {
+            //finds the index of the winning player in playerInfo
+            int index=tableInfo.playerIndex(PlayerWin.name);
+
+            if (tableInfo.subpots[index]>0) {
+
+                //transfers the money from the subpot to the players stack
+                win(PlayerWin,tableInfo.subpots[index]);
+
+                //decreases the value in the pot and subpots
+                tableInfo.pot -= tableInfo.subpots[index];
+                for (int i =0; i<=tableInfo.player_num; i++){
+                    tableInfo.subpots[i] -= tableInfo.subpots[index];
+                }
             }
+
 
             //set the player to inactive so we can calculate who the second winner is
             fold(PlayerWin);
+
             if (tableInfo.pot>0){ //if theres still money to give...
                 if (players_standing<=1) { //if theres at most one active player, let that active player win the rest
                     for (int i =0; i<=tableInfo.player_num; i++){
                         if (tableInfo.playerInfo[i].isFold==false) {
-                            win(tableInfo.playerInfo[i]);
+                            win(tableInfo.playerInfo[i],tableInfo.pot);
                         }
                     }
                 } else { //else distribute the rest with the other players
 
-
-                    //COMPLETE THIS
-
-                    //COMPLETE THIS
-
-                    //COMPLETE THIS
-
-                    //COMPLETE THIS
+                    //we continue distributing until there is no more pot
+                    distribute();
 
                 }
             }
-        } else {
-            int index=tableInfo.playerIndex(PlayerWin);
+        } else { //if the only player is not allin then he gets all the money and the round is over
+            int index=tableInfo.playerIndex(PlayerWin.name);
             tableInfo.playerInfo[index].stack_size += tableInfo.pot;
         }
     } else {
-        //COMPLETE THIS
+        //check if there's a player who went all in
+        int allin_counter=0;
+        for (PlayerInfo candidate : winnerlist) {
+            if (candidate.isAllin) {
+                allin_counter+=1;
+            }
+        }
 
-        //COMPLETE THIS
+        //if no players went all in, share the pot equally
+        if (allin_counter==0) {
+            int splitpot = (tableInfo.pot/winnerlist.size());
+            int extra =(tableInfo.pot%winnerlist.size());
+            win(winnerlist.at(0),extra);
+            for (PlayerInfo candidate : winnerlist) {
+                win(candidate,splitpot);
+            }
 
-        //COMPLETE THIS
+        } else { // if at least one player went all in, we split the smallest subpot with all the winners and check with the rest
+
+            //find the smallest subpot
+            int minindex =-1;
+            for (PlayerInfo candidate : winnerlist) {
+                if (candidate.isAllin) {
+                    int index=tableInfo.playerIndex(candidate.name);
+                    if (minindex==-1) {
+                        minindex= index;
+                    } else {
+                        if (tableInfo.subpots[minindex]>tableInfo.subpots[index]){
+                            minindex=index;
+                        }
+                    }
+
+                }
+            }
+
+            //split the subpot
+            int splitpot = (tableInfo.subpots[minindex]/winnerlist.size());
+            int extra =(tableInfo.subpots[minindex]%winnerlist.size());
+            win(winnerlist.at(0),extra);
+            for (PlayerInfo candidate : winnerlist) {
+                win(candidate,splitpot);
+            }
+
+            //reduce the available money
+            tableInfo.pot -= tableInfo.subpots[minindex];
+            for (int i =0; i<=tableInfo.player_num; i++){
+                tableInfo.subpots[i] -= tableInfo.subpots[minindex];
+            }
+
+            //get rid of any all inners who might have been equal to the minimum (at least one)
+            for (PlayerInfo candidate : winnerlist) {
+                if (candidate.isAllin) {
+                    int index=tableInfo.playerIndex(candidate.name);
+                    if (tableInfo.subpots[index]<=0) {
+                        fold(candidate);
+                    }
+
+                }
+            }
+
+            //keep distributing the money if there's any left
+            if (tableInfo.pot>0){
+                distribute();
+            }
+        }
     }
+}
 
-};
 
 //only consider one player winning rn
-void GameLocal::endHand(PlayerInfo& winner) {
-    win(winner, tableInfo.pot);
+void GameLocal::endHand() {
 
+    distribute();
     updatePlayersTable();
     nextHand();
 }
+
+std::vector<PlayerInfo> GameLocal::winners() {
+
+    //get all the people who haven't folded
+    std::vector<PlayerInfo> playersNotFold;
+    for (int i = 0; i < tableInfo.player_num; i++) {
+        if (!tableInfo.playerInfo[i].isFold) {
+            playersNotFold.push_back(tableInfo.playerInfo[i]);
+        }
+    }
+
+    //create the winners vector
+    std::vector<PlayerInfo> winners;
+
+    //bring the community cards in to build the hands
+    std::vector<Card> community = tableInfo.communityCards;
+
+    for (PlayerInfo first : playersNotFold) {
+
+        //get the first hand
+        std::vector<Card> firstvect = findPlayer(first.name)->getHand();
+        firstvect.insert(firstvect.end(), community.begin(), community.end());
+        PokerHand firstHand(firstvect);
+
+        //creates a counter just to make it easier to know when we're at the end of the vector
+        int counter=0;
+
+        for (PlayerInfo second : playersNotFold) {
+
+            //get the second hand
+            std::vector<Card> secondvect = findPlayer(second.name)->getHand();
+            secondvect.insert(secondvect.end(), community.begin(), community.end());
+            PokerHand secondHand(secondvect);
+
+            //if they lose to any hand, they can't win so we skip them
+            if (compare_hands(firstHand, secondHand) == 2) {
+                break;
+            } else {
+                //increments the counter since they didn't lose
+                counter+=1;
+            }
+
+            //if we're at the end of the vector and they still haven't lost then they're a winner
+            if (counter == players_standing) {
+                winners.push_back(first);
+            }
+        }
+    }
+    return winners;
+}
+
 
 void GameLocal::fold(PlayerInfo& foldPlayer) {
     foldPlayer.isFold = true;
@@ -146,7 +265,7 @@ void GameLocal::allin(PlayerInfo& allinPlayerInfo) {
     }
 
     //find the index of the allinPlayer so we can create a subpot for it
-    int index=tableInfo.playerIndex(allinPlayerInfo);
+    int index=tableInfo.playerIndex(allinPlayerInfo.name);
 
     //adds the subpot into the subpot vector
     tableInfo.subpots[index]=subpot;
@@ -214,7 +333,7 @@ void GameLocal::onAction() {
                 winner = tableInfo.playerInfo[i];
             }
         }
-        endHand(winner);
+        endHand();
     }
     else {
         //get next current_player
@@ -332,40 +451,7 @@ void GameLocal::nextBettingRound() {
 
         case 4:
             // show hands and declare winner
-
-            //get all the people who haven't folded
-            std::vector<PlayerInfo> playersNotFold;
-            for (int i = 0; i < tableInfo.player_num; i++) {
-                if (!tableInfo.playerInfo[i].isFold) {
-                playersNotFold.push_back(tableInfo.playerInfo[i]);
-                }
-            }
-
-            std::vector<Card> community = tableInfo.communityCards;
-
-            //showdown
-            PlayerInfo winner = playersNotFold[0];
-            std::vector<Card> winnerHandVect = findPlayer(winner.name)->getHand();
-
-            winnerHandVect.insert(winnerHandVect.end(), community.begin(), community.end());
-
-            PokerHand winnerHand(winnerHandVect);
-            //iterate over players and compute their hand score
-            //if their score is better than the current best, they become best
-            //haven't taken into account ties yet, in that case, first player considered wins
-            for (PlayerInfo current : playersNotFold) {
-                std::vector<Card> currentHandVect = findPlayer(current.name)->getHand();;
-                //getting hands throught the "getHand" function in the PokerPlayer class which is bad
-                //need to store the hands of the players in the Game in order to retrieve and compare them
-
-                currentHandVect.insert(currentHandVect.end(), community.begin(), community.end());
-                PokerHand currentHand(currentHandVect);
-                if (compare_hands(winnerHand, currentHand) == 2) {
-                    winner = current;
-                    winnerHand = currentHand;
-                }
-            }
-            endHand(winner);
+            endHand();
             break;
     }
 }

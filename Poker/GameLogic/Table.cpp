@@ -56,10 +56,10 @@ int Table::active_players() {
 }
 
 
-int Table::playerIndex(PlayerInfo& player_info){
-    int index;
+int Table::playerIndex(std::string& name){
+    int index=-1;
     for (int i = 0; i < player_num; i++) {
-        if (playerInfo[i].name == player_info.name) {
+        if (playerInfo[i].name == name) {
             index=i;
         }
     }
