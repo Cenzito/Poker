@@ -55,6 +55,7 @@ HEADERS += \
     GameLogic/Card.hpp \
     GameLogic/Deck.hpp \
     GameLogic/Table.hpp \
+    GameLogic/Monte_Carlo_Probability_Simulator.hpp \
     Visuals/Gamewindow/gamelocalwindow.hpp \
     Visuals/Gamewindow/gamewindow.hpp \
     Visuals/MainWindow/mainwindow.hpp \

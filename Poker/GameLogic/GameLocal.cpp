@@ -124,7 +124,6 @@ void GameLocal::askBet(PokerPlayer* p) {
     QObject::connect(this, &GameLocal::askAction, p, &PokerPlayer::Action, Qt::QueuedConnection);
     emit askAction();
     QObject::disconnect(this, &GameLocal::askAction, p, &PokerPlayer::Action);
-
 }
 
 void GameLocal::onAction() {
