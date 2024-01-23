@@ -72,6 +72,7 @@ void Table::updateTable(std::string command) {
         // "/bet PlayerName Amount"
         std::string PlayerName = wordsArray[1];
         int Amount = std::stoi(wordsArray[2]);
+        qDebug() << QString::fromStdString(PlayerName) << Amount;
         PlayerInfo* current = getPlayerInfo(PlayerName);
         current->stack_size -= Amount;
         current->bet += Amount;

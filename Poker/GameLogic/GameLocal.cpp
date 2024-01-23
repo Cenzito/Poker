@@ -48,7 +48,6 @@ void GameLocal::addBot(Bot* bot) {
 void GameLocal::pay(PlayerInfo& PlayerPay, int sum) {
     updatePlayersTable("/bet " + PlayerPay.name + " " + std::to_string(sum));
     qDebug() << "payed" << QString::fromStdString(PlayerPay.name) << " " << sum;
-
 };
 
 void GameLocal::win(PlayerInfo& PlayerWin, int sum) {
@@ -85,9 +84,11 @@ void GameLocal::setPlayerInfos(PokerPlayer* player) {
     for (int i = 0; i< tableInfo.player_num;i++) {
         //add info to command
         //if we also want to pass the bets we can add them
-        listPInf += tableInfo.playerInfo[i].name;
-        listPInf += tableInfo.playerInfo[i].stack_size;
+        listPInf += " " + tableInfo.playerInfo[i].name;
+        listPInf += " " + std::to_string(tableInfo.playerInfo[i].stack_size);
     }
+
+    qDebug() << QString::fromStdString(listPInf);
 
     //emit the change to the player
     QObject::connect(this, &GameLocal::setPInf, player, &PokerPlayer::updatePInf, Qt::QueuedConnection);
