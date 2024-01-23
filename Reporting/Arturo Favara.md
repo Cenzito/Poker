@@ -24,3 +24,22 @@
    - Completed the `PokerPlayer` and `Game` hpp/cpp files to complete the logic of a poker game
    - Added the logic of the rounds of betting: `round_of_betting` to have one round of betting after each step - preflop, flop, etc
    - To make this possible needed to implement `turn` to let player choose to call, raise, fold, `end_round` to determine winner, and resp. methods/attributes to `PokerPlayer` class
+
+## Week of Monday 11 Dec 2023
+1. **Optimization of `PokerHand` class**
+   - Worked on finding a more optimal way to find a player's hand as the current method loops over the cards for every possible hand
+   - Found a way to loop only twice over the cards available (2 cards of player + 5 cards in middle of table)
+   - After talking with Lazea, we decided to keep `PokerHand` as is for now as it is more readable and optimize later (in January)
+
+## Weeks of Monday 18 Dec 2023 and Christmas Holidays
+1. **Compatibility of Logic with Server**
+   - Worked on making the logic code fit with Servers
+  
+## Weeks of Monday 8 Jan 2024 and Monday 15 Jan 2024
+1. **Optimization and Expansion of `GameLocal` class**
+   - Implementation of Internal Hand Storage instead of calling player's hands
+   - Various optimizations like const-correctness
+   - Managed case where 2 or more players tie: splits pot and divides it between them
+
+
+

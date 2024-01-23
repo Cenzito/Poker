@@ -12,8 +12,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
     // Apply stylesheets
-    ui->pushButton->setStyleSheet("background-color: #3498db; color: white;");
-    ui->pushButton_2->setStyleSheet("background-color: #3498db; color: white;");
+    //ui->pushButton->setStyleSheet("background-color: #3498db; color: white;");
+    //ui->pushButton_2->setStyleSheet("background-color: #3498db; color: white;");
 
 
 
@@ -34,7 +34,7 @@ MainWindow::~MainWindow()
 void MainWindow::onPlayButtonClicked()
 {
     // Create and show the GameWindow when the PLAY button is clicked
-    GameWindow *gameWindow = new GameWindow(this);
+    GameWindow *gameWindow = new GameWindow(this, "John");
     gameWindow->show();
 }
 
@@ -46,5 +46,12 @@ void MainWindow::onRulesButtonClicked()
 
 void MainWindow::onLocalPlayButtonClicked() {
     GameLocalWindow *gamelocalwindow = new GameLocalWindow(this);
+
+    Bot bot1 = Bot("bot1", 0);
+    Bot bot2 = Bot("bot2", 0);
+
+    gamelocalwindow->game.addBot(&bot1);
+    gamelocalwindow->game.addBot(&bot2);
+
     gamelocalwindow -> show();
 }

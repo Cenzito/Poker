@@ -5,7 +5,7 @@
 #include "GameLogic/PokerHand.hpp"
 #include "GameLogic/Card.hpp"
 #include "GameLogic/Table.hpp"
-#include "GameLogic/Game.hpp"
+#include "GameLogic/Monte_Carlo_Probability_Simulator.cpp"
 
 class BotDarius : public Bot
 {
@@ -14,9 +14,11 @@ public:
         this -> level = level;
         this->name = name;
     };
-    signed int Action();
-    float optimalBet();
-    int expected_win(int bet); // this function computes the expected win given a bet and given a state of the game
+
+    void Action(); //returns the optimal action of the bot
+    int optimalBet();
+    
+
     private:
 
 
