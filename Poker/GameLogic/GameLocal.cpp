@@ -379,11 +379,15 @@ void GameLocal::onFold() {
 void GameLocal::onRaise(int bet) {
     PlayerInfo &currentPlayerInfo = tableInfo.playerInfo[tableInfo.current_player];
     //if bets too little or doesn't have the money to bet: all in
-    qDebug()<< "future"<<tableInfo.current_biggest_bet+bet;
-    if (currentPlayerInfo.stack_size <= tableInfo.current_biggest_bet + bet) {
+    if (currentPlayerInfo.stack_size <= tableInfo.current_biggest_bet + bet - currentPlayerInfo.bet) { //checks for lack of funds to raise by "bet" amount
+        if (currentPlayerInfo.stack_size + currentPlayerInfo.bet >= tableInfo.current_biggest_bet) {
+            tableInfo.current_biggest_bet=currentPlayerInfo.stack_size+ currentPlayerInfo.bet;
+            tableInfo.lastRaiser = tableInfo.current_player;
+        }
+
         allin(currentPlayerInfo);
-    } else {
-        pay(currentPlayerInfo, bet); //wrong amount???
+    } else { //if they have the funds
+        pay(currentPlayerInfo, tableInfo.current_biggest_bet +bet - currentPlayerInfo.bet);
         tableInfo.current_biggest_bet = currentPlayerInfo.bet;
         tableInfo.lastRaiser = tableInfo.current_player;
 
