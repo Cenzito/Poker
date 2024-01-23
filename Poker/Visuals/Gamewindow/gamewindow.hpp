@@ -51,8 +51,6 @@ private slots:
     void updateCallButtonLabel();
 
     void on_NextRound_clicked();
-    
-    void onStartStopButtonClicked();
 
     void onAddBotClicked();
 
