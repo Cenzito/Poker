@@ -151,8 +151,6 @@ void GameLocal::onAction() {
     }
 }
 void GameLocal::onCall() {
-    qDebug() << "called it";
-
     PlayerInfo &currentPlayerInfo = tableInfo.playerInfo[tableInfo.current_player];
 
     //if doesn't have the money to bet: fold
@@ -189,16 +187,7 @@ void GameLocal::onRaise(int bet) {
 
 
 void GameLocal::nextBettingRound() {
-    tableInfo.betting_round += 1;
-    for (int i = 0; i <= tableInfo.player_num; i++) {
-        tableInfo.playerInfo[i].bet = 0;
-    }
-    tableInfo.current_biggest_bet = 0;
-    tableInfo.current_player = tableInfo.ButtonPlayer;
-    setNextCurrentPlayer();
-    tableInfo.lastRaiser = tableInfo.current_player;
-
-
+    updatePlayersTable("/nexRound");
 
     qDebug() << "betting round " << tableInfo.betting_round;
     switch (tableInfo.betting_round) {
@@ -227,6 +216,12 @@ void GameLocal::nextBettingRound() {
             setNextCurrentPlayer();
             setNextCurrentPlayer();
             setNextCurrentPlayer();
+
+            //biggest bet is always first to act
+            //if all fold and come back to him -> go to next round
+            updatePlayersTable("/setBiggestBet " + std::to_string(tableInfo.current_player));
+
+
             askBet(findPlayer(tableInfo.playerInfo[tableInfo.current_player].name));
             break;
     }
@@ -244,6 +239,7 @@ void GameLocal::nextBettingRound() {
             //player after button is first to act
             updatePlayersTable("/setActivePlayer " + std::to_string(tableInfo.ButtonPlayer));
             setNextCurrentPlayer();
+            updatePlayersTable("/setBiggestBet " + std::to_string(tableInfo.current_player));
 
             askBet(findPlayer(tableInfo.playerInfo[tableInfo.current_player].name));
             break;
@@ -252,8 +248,10 @@ void GameLocal::nextBettingRound() {
             //third betting round
             Card card1 = deck.dealCard();
             updatePlayersTable("/addCardMid " + suitToString(card1.getSuit()) + " " + std::to_string(card1.getValue()));
+
             updatePlayersTable("/setActivePlayer " + std::to_string(tableInfo.ButtonPlayer));
             setNextCurrentPlayer();
+            updatePlayersTable("/setBiggestBet " + std::to_string(tableInfo.current_player));
 
             askBet(findPlayer(tableInfo.playerInfo[tableInfo.current_player].name));
             break;
@@ -262,8 +260,10 @@ void GameLocal::nextBettingRound() {
             //last betting round
             Card card1 = deck.dealCard();
             updatePlayersTable("/addCardMid " + suitToString(card1.getSuit()) + " " + std::to_string(card1.getValue()));
+
             updatePlayersTable("/setActivePlayer " + std::to_string(tableInfo.ButtonPlayer));
             setNextCurrentPlayer();
+            updatePlayersTable("/setBiggestBet " + std::to_string(tableInfo.current_player));
 
             askBet(findPlayer(tableInfo.playerInfo[tableInfo.current_player].name));
             break;

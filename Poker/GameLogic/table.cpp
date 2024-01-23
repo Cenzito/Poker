@@ -84,6 +84,7 @@ void Table::updateTable(std::string command) {
         // "/pay PlayerName Amount"
         std::string PlayerName = wordsArray[1];
         int Amount = std::stoi(wordsArray[2]);
+        qDebug() << QString::fromStdString(PlayerName) << Amount;
         getPlayerInfo(PlayerName)->stack_size += Amount;
 
     } else if (identifier == "/allin") {
@@ -112,6 +113,14 @@ void Table::updateTable(std::string command) {
         Card cardToAdd = Card(s, Num);
         communityCards.push_back(cardToAdd);
     } else if (identifier == "/nextRound") {
+        betting_round += 1;
+        for (int i = 0; i <= player_num; i++) {
+            playerInfo[i].bet = 0;
+        }
+        current_biggest_bet = 0;
+        current_player = ButtonPlayer;
+
+        lastRaiser = current_player;
 
     } else if (identifier == "/resetGame") {
         //reset bets
