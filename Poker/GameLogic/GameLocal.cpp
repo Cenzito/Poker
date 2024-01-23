@@ -284,16 +284,24 @@ void GameLocal::updatePlayersTable() {
 
 
 void GameLocal::nextHand(){
+    //resets the hands
     for (PokerPlayer* player : players) {
         player->removeCards();
     }
-    //reset bets
+
     for (int i = 0; i <= tableInfo.player_num; i++) {
+        //reset bets
         tableInfo.playerInfo[i].bet = 0;
+
+        //resetting subpots
+        tableInfo.subpots[i]= -1;
+
+        //resetting states
         tableInfo.playerInfo[i].isAllin = false;
         tableInfo.playerInfo[i].isFold = false;
     }
 
+    //resetting players, pot, placements and bet information
     tableInfo.pot=0;
     tableInfo.ButtonPlayer = (tableInfo.ButtonPlayer + 1)% tableInfo.player_num;
     tableInfo.communityCards=std::vector<Card>();
