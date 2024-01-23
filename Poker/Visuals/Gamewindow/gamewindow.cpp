@@ -101,7 +101,6 @@ void GameWindow::update_display(){
 void GameWindow::update_community_cards() {
     const std::vector<Card>& communityCards = game_player.tableInfo.communityCards;
 
-    qDebug() << "number center cards: " << communityCards.size();
 
     // Display the first three community cards initially
     int i = 0;
@@ -132,7 +131,6 @@ void GameWindow::update_middle_card_display(int cardIndex, const Card& card) {
 }
 
 void GameWindow::remove_middle_card_display(int cardIndex) {
-    qDebug() << "111";
     QLabel* middleCardLabel = findChild<QLabel*>(QString("label_middlecard%1").arg(cardIndex));
     if (middleCardLabel) {
         middleCardLabel->clear();
@@ -155,13 +153,11 @@ void GameWindow::display_player_hand(){ // to test
     Suit S2 = C2.getSuit() ;
     int v1 = C1.getValue() ;
     int v2 = C2.getValue() ;
-    qDebug() << v1;
 
     // we have the two cards of the player, the suit and value of both those cards
     // following are the path to both corresponding image cards
     QString p1 = Get_image_path(suitToString(S1),std::to_string(v1),false) ;
     QString p2 = Get_image_path(suitToString(S2),std::to_string(v2),false) ;
-    qDebug() << p1;
 
     //below the two images
     QPixmap first_card(p1) ;

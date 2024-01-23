@@ -24,10 +24,6 @@ int main(int argc, char *argv[]) {
     w.game.addBot(&bot2);
     w.show();
 
-    for (int i=0; i<3; i++) {
-        qDebug() << "friends" << QString::fromStdString(bot1.tableInfo.playerInfo[i].name);
-    }
-
 
     w.game.nextHand();
 

@@ -119,7 +119,6 @@ void GameLocal::nextHand(){
 
 void GameLocal::askBet(PokerPlayer* p) {
     //connect to  a player, tell him its his turn then disconnect
-    qDebug() << "Aske BET" << QString::fromStdString(p->name);
     QObject::connect(this, &GameLocal::askAction, p, &PokerPlayer::Action, Qt::QueuedConnection);
     emit askAction();
     QObject::disconnect(this, &GameLocal::askAction, p, &PokerPlayer::Action);
@@ -142,7 +141,6 @@ void GameLocal::onAction() {
         //get next current_player
         setNextCurrentPlayer();
 
-        qDebug() << tableInfo.current_player << " " << tableInfo.lastRaiser;
 
         // we end round of betting
         if (tableInfo.current_player == tableInfo.lastRaiser) {
@@ -207,17 +205,14 @@ void GameLocal::nextBettingRound() {
     case 0: {
 
             //preflop
-            qDebug() << "start hand \n\n";
             players_standing = tableInfo.player_num;
 
             updatePlayersTable("/setBiggestBet " + std::to_string(tableInfo.BBValue));
-            qDebug() << "reached";
             //setting small and big blind
             pay(tableInfo.playerInfo[(tableInfo.ButtonPlayer + 1) % tableInfo.player_num], tableInfo.SBValue);
 
             pay(tableInfo.playerInfo[(tableInfo.ButtonPlayer + 2) % tableInfo.player_num], tableInfo.BBValue);
 
-            qDebug() << " not reached";
 
             deck.shuffleDeck();
             //give cards to players

@@ -16,7 +16,6 @@ void PokerPlayer::receiveCards(const std::vector<Card> newHand) {
 
 void PokerPlayer::updateTable(std::string command) {
     tableInfo.updateTable(command);
-    qDebug() << "player" << QString::fromStdString(tableInfo.playerInfo[2].name);
     emit callUpdateDisplay();
 }
 
@@ -30,11 +29,6 @@ const std::string& PokerPlayer::getName() const {
 
 
 std::vector<Card> PokerPlayer::getHand() const {
-    std::cout << name << "'s hand: ";
-    for (const auto& card : hand) {
-        std::cout << card << " ";
-    }
-    std::cout << std::endl;
     return hand;
 }
 
