@@ -76,10 +76,13 @@ void Table::updateTable(std::string command) {
         PlayerInfo* current = getPlayerInfo(PlayerName);
         current->stack_size -= Amount;
         current->bet += Amount;
+        pot += Amount;
     } else if (identifier == "/setBiggestBet") {
         // "/setBiggest_bet amount"
-        int Amount = std::stoi(wordsArray[1]);
-        current_biggest_bet = Amount;
+        current_biggest_bet = std::stoi(wordsArray[1]);
+    } else if (identifier == "/setLastRaiser") {
+        // "/setLastRaiser number"
+        lastRaiser = std::stoi(wordsArray[1]);
     } else if (identifier == "/win") {
         // "/pay PlayerName Amount"
         std::string PlayerName = wordsArray[1];
