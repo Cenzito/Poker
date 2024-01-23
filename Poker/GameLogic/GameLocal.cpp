@@ -25,6 +25,7 @@ void GameLocal::JoinGame(PokerPlayer* player) {
         players.push_back(player);
 
 
+        setPlayerInfos(player);
 
         //connect slots to signals
         QObject::connect(player, &PokerPlayer::Call, this, &GameLocal::onCall);
@@ -75,6 +76,25 @@ void GameLocal::updatePlayersTable(std::string updatePlayersTable) {
     tableInfo.Print();
 }
 
+
+void GameLocal::setPlayerInfos(PokerPlayer* player) {
+    //used to set the players in the Table when you join the game
+    // can also be used to resync the players with what the game has.
+    std::string listPInf = "/setPInf";
+
+    for (int i = 0; i< tableInfo.player_num;i++) {
+        //add info to command
+        //if we also want to pass the bets we can add them
+        listPInf += tableInfo.playerInfo[i].name;
+        listPInf += tableInfo.playerInfo[i].stack_size;
+    }
+
+    //emit the change to the player
+    QObject::connect(this, &GameLocal::setPInf, player, &PokerPlayer::updatePInf, Qt::QueuedConnection);
+    emit setPInf(listPInf);
+    QObject::disconnect(this, &GameLocal::setPInf, player, &PokerPlayer::updatePInf);
+
+}
 
 
 void GameLocal::nextHand(){

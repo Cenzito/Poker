@@ -64,26 +64,7 @@ void Table::updateTable(std::string command) {
     }
 
     std::istringstream iss(command);
-
-    // Count the number of words
-    int wordCount = 0;
-    while (iss) {
-        std::string word;
-        iss >> word;
-        wordCount++;
-    }
-
-    // Allocate memory for the array
-    std::string *wordsArray = new std::string[wordCount];
-
-    // Reset the stringstream and fill the array
-    iss.clear();
-    iss.seekg(0, std::ios::beg);
-    int i = 0;
-    while (iss >> wordsArray[i]) {
-        i++;
-    }
-
+    std::vector<std::string> wordsArray(std::istream_iterator<std::string>{iss}, std::istream_iterator<std::string>());
 
     std::string identifier = wordsArray[0];
 
@@ -155,6 +136,13 @@ void Table::updateTable(std::string command) {
         PlayerInfo playerinfo(PlayerName, Chips, 0);
         playerInfo[player_num] = playerinfo;
         player_num += 1;
+    } else if (identifier == "/setPInf") {
+        // "/setPInf Player1 Stack1 Player2 Stack2 ..."
+        for (int i = 1; i < wordsArray.size(); i+=2) {
+            //set playerInfo
+            PlayerInfo playerinfo(wordsArray[i], std::stoi(wordsArray[i+1]), 0);
+            playerInfo[i/2] = playerinfo;
+        }
     }
 
 

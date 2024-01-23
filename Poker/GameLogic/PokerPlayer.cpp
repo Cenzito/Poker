@@ -20,6 +20,10 @@ void PokerPlayer::updateTable(std::string command) {
     emit callUpdateDisplay();
 }
 
+void PokerPlayer::updatePInf(std::string commandPInf) {
+    updateTable(commandPInf);
+}
+
 const std::string& PokerPlayer::getName() const {
     return name;
 }
