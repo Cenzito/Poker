@@ -20,7 +20,7 @@ void GameLocal::JoinGame(PokerPlayer* player) {
     if (tableInfo.player_num >= tableInfo.seats)  {
         return;
     } else {
-        qDebug() << QString::fromStdString(player->name);
+        //qDebug() << QString::fromStdString(player->name);
 
         players.push_back(player);
 
@@ -57,7 +57,7 @@ void GameLocal::win(PlayerInfo& PlayerWin, int sum) {
 
 //only consider one player winning rn
 void GameLocal::endHand(PlayerInfo& winner) {
-    qDebug() << "winner is " << QString::fromStdString(winner.name);
+    //qDebug() << "winner is " << QString::fromStdString(winner.name);
     win(winner, tableInfo.pot);
 
     nextHand();
@@ -188,7 +188,7 @@ void GameLocal::onRaise(int bet) {
 void GameLocal::nextBettingRound() {
     updatePlayersTable("/nextRound");
 
-    qDebug() << "betting round " << tableInfo.betting_round;
+    //qDebug() << "betting round " << tableInfo.betting_round;
     switch (tableInfo.betting_round) {
     case 0: {
 
@@ -270,7 +270,7 @@ void GameLocal::nextBettingRound() {
     }
     case 4:{
             // show hands and declare winner
-            qDebug() << "gettting winnnnnnnnnner";
+            //qDebug() << "gettting winnnnnnnnnner";
             //get all the people who haven't folded
             std::vector<PlayerInfo> playersNotFold;
             for (int i = 0; i < tableInfo.player_num; i++) {
@@ -282,15 +282,15 @@ void GameLocal::nextBettingRound() {
             std::vector<Card> community = tableInfo.communityCards;
 
             //showdown
-            qDebug() << playersNotFold.size();
+            //qDebug() << playersNotFold.size();
             PlayerInfo winner = playersNotFold[0];
             std::vector<Card> winnerHandVect = findPlayer(winner.name)->getHand();
 
             winnerHandVect.insert(winnerHandVect.end(), community.begin(), community.end());
 
-            qDebug() << winnerHandVect.size();
+            //qDebug() << winnerHandVect.size();
             PokerHand winnerHand(winnerHandVect);
-            qDebug() << "a";
+            //qDebug() << "a";
             //iterate over players and compute their hand score
             //if their score is better than the current best, they become best
             //haven't taken into account ties yet, in that case, first player considered wins

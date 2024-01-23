@@ -93,7 +93,7 @@ void GameWindow::update_display(){
     //}
     switch_players_display();
     update_community_cards();
-    qDebug() << "finished display";
+    //qDebug() << "finished display";
 }
 
 //many bugs, i will solve them

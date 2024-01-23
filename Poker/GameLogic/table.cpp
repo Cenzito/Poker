@@ -72,7 +72,6 @@ void Table::updateTable(std::string command) {
         // "/bet PlayerName Amount"
         std::string PlayerName = wordsArray[1];
         int Amount = std::stoi(wordsArray[2]);
-        qDebug() << QString::fromStdString(PlayerName) << Amount;
         PlayerInfo* current = getPlayerInfo(PlayerName);
         current->stack_size -= Amount;
         current->bet += Amount;
@@ -87,7 +86,6 @@ void Table::updateTable(std::string command) {
         // "/pay PlayerName Amount"
         std::string PlayerName = wordsArray[1];
         int Amount = std::stoi(wordsArray[2]);
-        qDebug() << QString::fromStdString(PlayerName) << Amount;
         getPlayerInfo(PlayerName)->stack_size += Amount;
 
     } else if (identifier == "/allin") {
