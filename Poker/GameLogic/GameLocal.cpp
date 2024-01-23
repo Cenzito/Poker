@@ -21,8 +21,7 @@ void GameLocal::JoinGame(PokerPlayer* player) {
         return;
     } else {
         qDebug() << QString::fromStdString(player->name);
-        //player joins game so we add him to the table with an initial amount of money
-        updatePlayersTable("/joinGame " + player->name + " " + std::to_string(1000));
+
         players.push_back(player);
 
 
@@ -32,6 +31,9 @@ void GameLocal::JoinGame(PokerPlayer* player) {
         QObject::connect(player, &PokerPlayer::Fold, this, &GameLocal::onFold);
         QObject::connect(player, &PokerPlayer::Raise, this,&GameLocal::onRaise);
         QObject::connect(this, &GameLocal::updatePTable, player, &PokerPlayer::updateTable);
+
+        //player joins game so we add him to the table with an initial amount of money
+        updatePlayersTable("/joinGame " + player->name + " " + std::to_string(1000));
 
     }
 

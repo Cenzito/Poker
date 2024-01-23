@@ -25,7 +25,7 @@ int main(int argc, char *argv[]) {
     w.show();
 
 
-    //w.game.nextHand();
+    w.game.nextHand();
 
     return a.exec();
 
