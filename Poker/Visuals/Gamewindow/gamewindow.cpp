@@ -1,9 +1,12 @@
+
 #include "gamewindow.hpp"
+
 #include "Visuals/RulesWindow/ruleswindow.h"
 #include <QPixmap>
 #include "GameLogic/Table.hpp"
 #include"GameLogic/PlayerInfo.hpp"
 #include "GameLogic/PokerPlayer.hpp"
+
 #include <QVBoxLayout>
 #include <QGraphicsDropShadowEffect>
 #include "ui_gamewindow.h"
@@ -110,6 +113,7 @@ void GameWindow::Add_Bot(int index) {
 }
 
 
+
 void GameWindow::onPlayButtonClicked()
 {
     RulesWindow *rulesWindow = new RulesWindow(this) ;
@@ -120,6 +124,7 @@ void GameWindow::onRaiseButtonClicked(){
     int add_bet = ui->raise_box->value();
     int current = (ui->cumulative_bet_line->text()).toInt();
     ui->cumulative_bet_line->setText(QString::number(add_bet+current));
+
     emit game_player.Raise(add_bet);
 }
 
@@ -176,6 +181,7 @@ void GameWindow::onStartStopButtonClicked()
         ui->StartStopButton->setText("Start");
         //gameLocal.stopGame();  // Add a method in GameLocal to stop the game
     }
+
 }
 
 
@@ -190,6 +196,7 @@ void GameWindow::update_community_cards() {
     }
 
     qDebug() << "number center cards: " << communityCards.size();
+
 
     // Display the first three community cards initially
     int i = 0;

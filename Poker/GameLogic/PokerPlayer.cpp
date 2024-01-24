@@ -18,7 +18,6 @@ void PokerPlayer::receiveCards(const std::vector<Card> newHand) {
 
 void PokerPlayer::updateTable(std::string command) {
     tableInfo.updateTable(command);
-    //tableInfo.Print();
     emit callUpdateDisplay();
 }
 
@@ -44,6 +43,7 @@ void PokerPlayer::Action() {
     //to be changed only to display betting buttons
     emit callUpdateDisplay();
 }
+
 
 int PokerPlayer::get_percentage(int card1, int card2, bool IsSuited){
     int values[13 * 13] = {
@@ -83,5 +83,6 @@ int PokerPlayer::get_percentage(int card1, int card2, bool IsSuited){
     }
     return percentage;
 }
+
 
 

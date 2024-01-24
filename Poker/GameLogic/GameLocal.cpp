@@ -164,7 +164,6 @@ void GameLocal::distribute() {
 
                 }
             }
-
             //keep distributing the money if there's any left
             if (tableInfo.pot>0){
                 if (players_standing>=1) {
@@ -245,6 +244,7 @@ void GameLocal::fold(PlayerInfo& foldPlayer) {
 void GameLocal::updatePlayersTable(std::string updatePlayersTable) {
     emit updatePTable(updatePlayersTable);
     tableInfo.updateTable(updatePlayersTable);
+
 
 }
 

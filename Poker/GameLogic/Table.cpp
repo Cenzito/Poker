@@ -70,6 +70,7 @@ void Table::updateTable(std::string command) {
 
     CommandType cmdType = parseCommand(wordsArray[0]);
 
+
     switch (cmdType) {
     case CommandType::Bet: {
         // "/bet PlayerName Amount"

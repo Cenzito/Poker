@@ -2,6 +2,7 @@
 #include "./Visuals/MainWindow/mainwindow.hpp"
 #include "./Visuals/Gamewindow/gamewindow.hpp"
 
+
 #include "./Visuals/Gamewindow/gamelocalwindow.hpp"
 #include "./GameLogic/Card.cpp"
 #include "./GameLogic/Deck.cpp"
@@ -31,14 +32,9 @@ int main(int argc, char *argv[]) {
 
     return a.exec();
 
-    //Game pokerGame(4);
-    //pokerGame.startGame();
-
-    //commented these 4 because of conflicts (delete and recreate pull request if this is unneccesary)
 
 
-    MainWindow b;
-    //GameWindow w;
+
 
     //w.show();
     //w.game_player.hand.push_back(Card(Suit::Spades, 4));
@@ -47,25 +43,6 @@ int main(int argc, char *argv[]) {
     //w.game_player.tableInfo.player_num = 1;
     // w.update_display();
 
-
-    b.show();
-    return a.exec();
-
-
-    std::cout << "Hello World!" << std::endl;
-    //Card card1(Suit::Spades, 1);
-    //Card card2(Suit::Spades, 2);
-    //Card card3(Suit::Hearts, 2);
-    //std::cout << card1 << std::endl;
-    //std::cout << card2 << std::endl;
-    //std::cout << (card1 < card2) << std::endl;
-    //std::cout << (card2 < card3) << std::endl;
-    //std::cout << (card1 < card3) << std::endl;
-
-/*
-    //Bot bot1 = Bot("bot1", 0);
-    //Bot bot2 = Bot("bot2", 0);
-    Bot bot3 = Bot("bot3", 0);
 
     if( hand.has_royal_flush() == true ) std::cout << "Royal flush";
     else std::cout << "Not royal flush";
