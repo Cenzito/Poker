@@ -103,8 +103,7 @@ void GameLocal::distribute() {
                 }
             }
         } else { //if the only player is not allin then he gets all the money and the round is over
-            int index=tableInfo.playerIndex(PlayerWin.name);
-            tableInfo.playerInfo[index].stack_size += tableInfo.pot;
+            win(PlayerWin, tableInfo.pot);
         }
     } else {
         //check if there's a player who went all in
@@ -399,7 +398,7 @@ void GameLocal::onRaise(int bet) {
 
 void GameLocal::nextBettingRound() {
     updatePlayersTable("/nextRound");
-    qDebug() << tableInfo.betting_round;
+    //qDebug() << tableInfo.betting_round;
 
     switch (tableInfo.betting_round) {
     case 0: {

@@ -61,7 +61,7 @@ void GameWindow::onRaiseButtonClicked(){
     int add_bet = ui->raise_box->value();
     int current = (ui->cumulative_bet_line->text()).toInt();
     ui->cumulative_bet_line->setText(QString::number(add_bet+current));
-    qDebug() << add_bet;
+    //qDebug() << add_bet;
     emit game_player.Raise(add_bet);
 }
 
@@ -282,7 +282,7 @@ void GameWindow::display_names_stacks_bets(){
 
     if (game_player.tableInfo.player_num>=1) {
         std::string playerName1 = game_player.tableInfo.playerInfo[0].name+" | "+std::to_string(game_player.tableInfo.playerInfo[0].stack_size);
-        qDebug() << QString::fromStdString(playerName1);
+        //qDebug() << QString::fromStdString(playerName1);
         ui ->line_player1->setText(QString::fromStdString(playerName1));
         std::string betplayer1 = std::to_string(game_player.tableInfo.playerInfo[0].bet);
         ui->line_bet1->setText(QString::fromStdString(betplayer1));
