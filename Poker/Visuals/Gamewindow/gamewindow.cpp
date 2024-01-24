@@ -12,6 +12,7 @@
 #include <QGraphicsScene>
 #include <QGraphicsPixmapItem>
 
+
 GameWindow::GameWindow(QWidget *parent, std::string name) : game_player(name),
     QMainWindow(parent),
     ui(new Ui::GameWindow)
@@ -102,7 +103,6 @@ void GameWindow::onAddBotClicked()
 }
 
 void GameWindow::Add_Bot(int index) {
-    qDebug() << index;
     if (game_player.tableInfo.player_num < 8){
         game_player.tableInfo.player_num += 1;
         update_display();
@@ -119,7 +119,6 @@ void GameWindow::onRaiseButtonClicked(){
     int add_bet = ui->raise_box->value();
     int current = (ui->cumulative_bet_line->text()).toInt();
     ui->cumulative_bet_line->setText(QString::number(add_bet+current));
-    qDebug() << add_bet;
     emit game_player.Raise(add_bet);
 }
 
@@ -135,9 +134,10 @@ void GameWindow::onFoldButtonClicked(){
 }
 
 void GameWindow::update_display(){
-  
+    qDebug() << "display";
     // Display players hand
     display_player_hand();
+    preflop_odds();
   
     // Display names and stacks and put yours in red
     display_name_red();
@@ -219,14 +219,32 @@ void GameWindow::update_middle_card_display(int cardIndex, const Card& card) {
 }
 
 void GameWindow::remove_middle_card_display(int cardIndex) {
-    qDebug() << "111";
     QLabel* middleCardLabel = findChild<QLabel*>(QString("label_middlecard%1").arg(cardIndex));
     if (middleCardLabel) {
         middleCardLabel->clear();
     }
 }
 
-// beginning of display poker hand 
+void GameWindow::preflop_odds(){
+    std::vector<Card> H = game_player.getHand() ; //get the player's hand, to access the cards that need to be displayed
+    if (H.size() != 2) {
+        return;
+    }
+    Card C1 = H[0] ;
+    Card C2 = H[1] ;
+    Suit S1 = C1.getSuit() ;
+    Suit S2 = C2.getSuit() ;
+    int v1 = C1.getValue() ;
+    int v2 = C2.getValue() ;
+    bool IsSuited = (S1 == S2);
+
+    int percentage = game_player.get_percentage(v1, v2, IsSuited);
+
+    ui->Preflop_odds->setText(QString::number(percentage));
+
+}
+// beginning of display poker hand
+
   
 void GameWindow::display_player_hand(){ // to test
     std::vector<Card> H = game_player.getHand() ; //get the player's hand, to access the cards that need to be displayed
@@ -234,19 +252,18 @@ void GameWindow::display_player_hand(){ // to test
         return;
     }
 
+
     Card C1 = H[0] ;
     Card C2 = H[1] ;
     Suit S1 = C1.getSuit() ;
     Suit S2 = C2.getSuit() ;
     int v1 = C1.getValue() ;
     int v2 = C2.getValue() ;
-    qDebug() << v1;
 
     // we have the two cards of the player, the suit and value of both those cards
     // following are the path to both corresponding image cards
     QString p1 = Get_image_path(suitToString(S1),std::to_string(v1),false) ;
     QString p2 = Get_image_path(suitToString(S2),std::to_string(v2),false) ;
-    qDebug() << p1;
 
     //below the two images
     QPixmap first_card(p1) ;
@@ -406,7 +423,6 @@ void GameWindow::display_names_stacks_bets(){
 
     if (game_player.tableInfo.player_num <= 1){
         std::string playerName1 = game_player.tableInfo.playerInfo[0].name+" | "+std::to_string(game_player.tableInfo.playerInfo[0].stack_size);
-        qDebug() <<QString::fromStdString(playerName1);
         ui ->line_player1 ->setText(QString::fromStdString(playerName1));
         std::string betplayer1 = std::to_string(game_player.tableInfo.playerInfo[0].bet);
         ui -> line_bet1 -> setText(QString::fromStdString(betplayer1));
@@ -414,7 +430,6 @@ void GameWindow::display_names_stacks_bets(){
 
     if (game_player.tableInfo.player_num <= 2){
         std::string playerName2 = game_player.tableInfo.playerInfo[0].name+" | "+std::to_string(game_player.tableInfo.playerInfo[1].stack_size);
-        qDebug() <<QString::fromStdString(playerName2);
         ui ->line_player2 ->setText(QString::fromStdString(playerName2));
         std::string betplayer2 = std::to_string(game_player.tableInfo.playerInfo[1].bet);
         ui -> line_bet2 -> setText(QString::fromStdString(betplayer2));
@@ -422,7 +437,6 @@ void GameWindow::display_names_stacks_bets(){
 
     if (game_player.tableInfo.player_num <= 3){
         std::string playerName3 = game_player.tableInfo.playerInfo[0].name+" | "+std::to_string(game_player.tableInfo.playerInfo[2].stack_size);
-        qDebug() <<QString::fromStdString(playerName3);
         ui ->line_player3 ->setText(QString::fromStdString(playerName3));
         std::string betplayer3 = std::to_string(game_player.tableInfo.playerInfo[2].bet);
         ui -> line_bet3 -> setText(QString::fromStdString(betplayer3));
@@ -430,7 +444,6 @@ void GameWindow::display_names_stacks_bets(){
 
     if (game_player.tableInfo.player_num <= 4){
         std::string playerName4 = game_player.tableInfo.playerInfo[0].name+" | "+std::to_string(game_player.tableInfo.playerInfo[3].stack_size);
-        qDebug() <<QString::fromStdString(playerName4);
         ui ->line_player4 ->setText(QString::fromStdString(playerName4));
         std::string betplayer4 = std::to_string(game_player.tableInfo.playerInfo[3].bet);
         ui -> line_bet4 -> setText(QString::fromStdString(betplayer4));
@@ -438,7 +451,6 @@ void GameWindow::display_names_stacks_bets(){
 
     if (game_player.tableInfo.player_num <= 5){
         std::string playerName5 = game_player.tableInfo.playerInfo[0].name+" | "+std::to_string(game_player.tableInfo.playerInfo[4].stack_size);
-        qDebug() <<QString::fromStdString(playerName5);
         ui ->line_player5 ->setText(QString::fromStdString(playerName5));
         std::string betplayer5 = std::to_string(game_player.tableInfo.playerInfo[4].bet);
         ui -> line_bet5 -> setText(QString::fromStdString(betplayer5));
@@ -446,7 +458,6 @@ void GameWindow::display_names_stacks_bets(){
 
     if (game_player.tableInfo.player_num <= 6){
         std::string playerName6 = game_player.tableInfo.playerInfo[0].name+" | "+std::to_string(game_player.tableInfo.playerInfo[5].stack_size);
-        qDebug() <<QString::fromStdString(playerName6);
         ui ->line_player6 ->setText(QString::fromStdString(playerName6));
         std::string betplayer6 = std::to_string(game_player.tableInfo.playerInfo[5].bet);
         ui -> line_bet6 -> setText(QString::fromStdString(betplayer6));
@@ -454,7 +465,6 @@ void GameWindow::display_names_stacks_bets(){
 
     if (game_player.tableInfo.player_num <= 7){
         std::string playerName7 = game_player.tableInfo.playerInfo[0].name+" | "+std::to_string(game_player.tableInfo.playerInfo[6].stack_size);
-        qDebug() <<QString::fromStdString(playerName7);
         ui ->line_player7 ->setText(QString::fromStdString(playerName7));
         std::string betplayer7 = std::to_string(game_player.tableInfo.playerInfo[6].bet);
         ui -> line_bet7 -> setText(QString::fromStdString(betplayer7));
@@ -462,7 +472,6 @@ void GameWindow::display_names_stacks_bets(){
 
     if (game_player.tableInfo.player_num <= 8){
         std::string playerName8 = game_player.tableInfo.playerInfo[0].name+" | "+std::to_string(game_player.tableInfo.playerInfo[7].stack_size);
-        qDebug() <<QString::fromStdString(playerName8);
         ui ->line_player8 ->setText(QString::fromStdString(playerName8));
         std::string betplayer8 = std::to_string(game_player.tableInfo.playerInfo[7].bet);
         ui -> line_bet8 -> setText(QString::fromStdString(betplayer8));
