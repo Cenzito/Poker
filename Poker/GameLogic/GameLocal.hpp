@@ -29,10 +29,12 @@ public:
     void pay(PlayerInfo& PlayerPay, int sum);
     void win(PlayerInfo& PlayerWin, int sum);
     void fold(PlayerInfo& foldPlayer);
+    void allin(PlayerInfo& allinPlayer);
 
-    void endHand(PlayerInfo& winner);
-
-
+    //end of game functions
+    void endHand();
+    void distribute();
+    std::vector<PlayerInfo> winners();
     void nextHand();
 
 

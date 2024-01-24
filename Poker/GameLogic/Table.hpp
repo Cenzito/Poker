@@ -28,12 +28,14 @@ public:
     int current_player;
     int ButtonPlayer; //0 set as the button initially, so 1 is small blind, 2 is big blind, 3 is under the gun etc and then alternates
     std::unordered_map <int, PlayerInfo> playerInfo; //hash map associating each position to the player there (playerInfo[0] is the first player that joined)
+    int playerIndex(std::string& name); //returns the index of the player in the playerInfo unordered map
 
     //Money information
     int SBValue;
     int BBValue;
 
     int pot;
+    std::unordered_map <int, int> subpots;
 
     //usefull variables for betting round
     int betting_round; //current betting round (0: preflop, 1: river...)
