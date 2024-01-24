@@ -38,8 +38,6 @@ public:
     void display_name_red();
     void preflop_odds();
 
-    void Add_Bot(int index);
-
     PokerPlayer game_player;
 
 private slots:
@@ -59,6 +57,8 @@ private slots:
     void onAddBotClicked();
 
     void onStartStopButtonClicked();
+
+    void Add_Bot(int index);
 
 private:
     Ui::GameWindow *ui;

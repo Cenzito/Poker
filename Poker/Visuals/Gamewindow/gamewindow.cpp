@@ -1,5 +1,4 @@
 #include "gamewindow.hpp"
-#include <iostream>
 #include "Visuals/RulesWindow/ruleswindow.h"
 #include <QPixmap>
 #include "GameLogic/Table.hpp"
@@ -13,17 +12,18 @@
 #include <QGraphicsPixmapItem>
 
 
+
 GameWindow::GameWindow(QWidget *parent, std::string name) : game_player(name),
     QMainWindow(parent),
     ui(new Ui::GameWindow)
 {
     ui->setupUi(this);
 
-
     // Create a vertical layout
     QVBoxLayout *verticalLayout = new QVBoxLayout(ui->centralwidget);
 
     QLabel *labelPot = new QLabel;
+
 
     connect(ui->pushButton, &QPushButton::clicked, this, &GameWindow::onPlayButtonClicked);
     connect(ui->AddBot_Button, &QPushButton::clicked, this, &GameWindow::onAddBotClicked);
@@ -108,6 +108,7 @@ void GameWindow::Add_Bot(int index) {
         update_display();
     }
 }
+
 
 void GameWindow::onPlayButtonClicked()
 {
@@ -423,7 +424,9 @@ void GameWindow::display_names_stacks_bets(){
 
     if (game_player.tableInfo.player_num <= 1){
         std::string playerName1 = game_player.tableInfo.playerInfo[0].name+" | "+std::to_string(game_player.tableInfo.playerInfo[0].stack_size);
-        ui ->line_player1 ->setText(QString::fromStdString(playerName1));
+        //qDebug() << QString::fromStdString(playerName1);
+        ui ->line_player1->setText(QString::fromStdString(playerName1));
+
         std::string betplayer1 = std::to_string(game_player.tableInfo.playerInfo[0].bet);
         ui -> line_bet1 -> setText(QString::fromStdString(betplayer1));
     }

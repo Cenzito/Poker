@@ -2,14 +2,19 @@
 #include "./Visuals/MainWindow/mainwindow.hpp"
 #include "./Visuals/Gamewindow/gamewindow.hpp"
 
+#include "./Visuals/Gamewindow/gamelocalwindow.hpp"
 #include "./GameLogic/Card.cpp"
 #include "./GameLogic/Deck.cpp"
 #include "./GameLogic/PokerHand.cpp"
+#include "./GameLogic/GameLocal.hpp"
+#include "./Bots/Hard/Cenzo/BotCenzo.hpp"
 
 #include <QApplication>
 
 
 int main(int argc, char *argv[]) {
+    qDebug() << "Hello";
+
 
 
     //Game pokerGame(4);
@@ -17,6 +22,7 @@ int main(int argc, char *argv[]) {
 
     //commented these 4 because of conflicts (delete and recreate pull request if this is unneccesary)
     QApplication a(argc, argv);
+
     MainWindow b;
     //GameWindow w;
 
@@ -48,6 +54,25 @@ int main(int argc, char *argv[]) {
     PokerHand hand ({Card(Suit::Clubs, 12), Card(Suit::Clubs,11), Card(Suit::Clubs, 8), Card(Suit::Clubs, 7), Card(Suit::Spades,4), Card(Suit::Clubs,4), Card(Suit::Diamonds, 4)});
     std::cout << hand.get_cards()[0];
 
+    GameLocalWindow w;
+    Bot bot1 = Bot("Alpha", 3);
+    Bot bot2 = Bot("bot2",0);
+
+    //Bot bot1 = Bot("bot1", 0);
+    //Bot bot2 = Bot("bot2", 0);
+    w.game.addBot(&bot1);
+    w.game.addBot(&bot2);
+    w.show();
+
+    w.game.nextHand();
+
+    return a.exec();
+
+/*
+    //Bot bot1 = Bot("bot1", 0);
+    //Bot bot2 = Bot("bot2", 0);
+    Bot bot3 = Bot("bot3", 0);
+
     if( hand.has_royal_flush() == true ) std::cout << "Royal flush";
     else std::cout << "Not royal flush";
     //if( hand.is_member(card1)==true) std::cout << "Card is in hand";
@@ -63,6 +88,7 @@ int main(int argc, char *argv[]) {
     }
     if(hand.has_straight_flush()==true) std::cout << " Straight flush"<<std::endl;
     else std::cout << "Not Straight flush"<<std::endl;
+
 
     if(hand.has_four_of_a_kind()==true) std::cout << " Four of a kind"<<std::endl;
     else std::cout << "Not Four of a kind"<<std::endl;
@@ -105,7 +131,7 @@ int main(int argc, char *argv[]) {
     std::cout << compare_hands(hand1, hand2) << std::endl;
     return 0;
 
-
+*/
 }
 
 //test

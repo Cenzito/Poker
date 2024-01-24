@@ -12,7 +12,7 @@ int MediumLeal::CalcCardValue() {
 
 bool MediumLeal::ShouldFold() {
 
-    if (0 < tableInfo.bet_on_table) {
+    if (0 < tableInfo.current_biggest_bet) {
        return true;
      }
 
