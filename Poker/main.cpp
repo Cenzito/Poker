@@ -15,13 +15,27 @@
 int main(int argc, char *argv[]) {
     qDebug() << "Hello";
 
+    QApplication a(argc, argv);
 
+    GameLocalWindow w;
+    Bot bot1 = Bot("Alpha", 3);
+    Bot bot2 = Bot("bot2",0);
+
+    //Bot bot1 = Bot("bot1", 0);
+    //Bot bot2 = Bot("bot2", 0);
+    w.game.addBot(&bot1);
+    w.game.addBot(&bot2);
+    w.show();
+
+    w.game.nextHand();
+
+    return a.exec();
 
     //Game pokerGame(4);
     //pokerGame.startGame();
 
     //commented these 4 because of conflicts (delete and recreate pull request if this is unneccesary)
-    QApplication a(argc, argv);
+
 
     MainWindow b;
     //GameWindow w;
@@ -47,26 +61,6 @@ int main(int argc, char *argv[]) {
     //std::cout << (card1 < card2) << std::endl;
     //std::cout << (card2 < card3) << std::endl;
     //std::cout << (card1 < card3) << std::endl;
-    Deck deck;
-    deck.shuffleDeck();
-    PokerHand hand1({deck.dealCard(), deck.dealCard(), deck.dealCard(), deck.dealCard(), deck.dealCard(), deck.dealCard(), deck.dealCard()}); //7 random cards
-    PokerHand hand2({deck.dealCard(), deck.dealCard(), deck.dealCard(), deck.dealCard(), deck.dealCard(), deck.dealCard(), deck.dealCard()}); //another 7 random cards
-    PokerHand hand ({Card(Suit::Clubs, 12), Card(Suit::Clubs,11), Card(Suit::Clubs, 8), Card(Suit::Clubs, 7), Card(Suit::Spades,4), Card(Suit::Clubs,4), Card(Suit::Diamonds, 4)});
-    std::cout << hand.get_cards()[0];
-
-    GameLocalWindow w;
-    Bot bot1 = Bot("Alpha", 3);
-    Bot bot2 = Bot("bot2",0);
-
-    //Bot bot1 = Bot("bot1", 0);
-    //Bot bot2 = Bot("bot2", 0);
-    w.game.addBot(&bot1);
-    w.game.addBot(&bot2);
-    w.show();
-
-    w.game.nextHand();
-
-    return a.exec();
 
 /*
     //Bot bot1 = Bot("bot1", 0);
