@@ -1,16 +1,16 @@
 # Define the sources and headers specific to the _Server library
-set(CLIENT_SOURCES
-    "client.cc")
-set(CLIENT_HEADERS
-    "client.h")
+set(GLOCAL_SOURCES
+    "game_local.cc")
+set(GLOCAL_HEADERS
+    "game_local.h")
 
 # Create the _Client library
-add_library(${CLIENT} STATIC
-    ${CLIENT_SOURCES}
-    ${CLIENT_HEADERS})
+add_library(${GLOCAL} STATIC
+    ${GLOCAL_SOURCES}
+    ${GLOCAL_HEADERS})
 
 # Specify the directories where the compiler should look for include files
-target_include_directories(${CLIENT} PUBLIC 
+target_include_directories(${GLOCAL} PUBLIC 
     "./"
     "${CMAKE_BINARY_DIR}/configured_files/include"
     # Add any other necessary include directories here
@@ -21,21 +21,19 @@ find_package(jsoncpp CONFIG REQUIRED)
 find_package(Poco REQUIRED COMPONENTS Foundation Net)
 
 # Link the libraries with the _Server library
-target_link_libraries(${CLIENT} PRIVATE 
+target_link_libraries(${GLOCAL} PRIVATE 
     JsonCpp::JsonCpp
     Poco::Foundation
     Poco::Net
-    ${PLAYER}
-    ${CARD}
-    ${CARD2}
     ${PHAND}
+    ${CARD2}
 )
 
 # Conditional compilation options (same as your other CMake file, adjust if necessary)
 if (${ENABLE_WARNINGS})
-    target_set_warnings(TARGET ${CLIENT} ENABLE ON AS_ERROR OFF)
+    target_set_warnings(TARGET ${GLOCAL} ENABLE ON AS_ERROR OFF)
 endif()
 
 if(${ENABLE_LTO})
-    target_enable_lto(${CLIENT} optimized)
+    target_enable_lto(${GLOCAL} optimized)
 endif()

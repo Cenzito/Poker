@@ -15,12 +15,13 @@ using Poco::Net::StreamSocket;
 
 /**
  * @brief Structure to store client information.
- * 
+ *
  * @param username The username of the client.
  * @param password The password of the client.
  * @param isLoggedIn Flag indicating if the client is logged in.
  */
-struct ClientInfo {
+struct ClientInfo
+{
     std::string username;
     std::string password;
     bool isLoggedIn;
@@ -30,22 +31,23 @@ struct ClientInfo {
 
 /**
  * @brief Represents a connection to a poker server.
- * 
- * This class manages the individual connection to a poker client, handling message 
+ *
+ * This class manages the individual connection to a poker client, handling message
  * reception and dispatch.
  */
-class PokerServerConnection : public TCPServerConnection {
+class PokerServerConnection : public TCPServerConnection
+{
 public:
     /**
      * @brief Construct a new Poker Server Connection object
-     * 
-     * @param s 
+     *
+     * @param s
      */
     PokerServerConnection(const StreamSocket& s);
 
     /**
      * @brief Creates a message string from a vector of Cards.
-     * 
+     *
      * @param cards The vector of Card objects.
      * @return A string representation of the cards.
      */
@@ -63,7 +65,7 @@ private:
 
     /**
      * @brief Processes received data from the client.
-     * 
+     *
      * @param ss The client's socket.
      * @param buffer The data buffer.
      * @param n The number of bytes received.
@@ -73,7 +75,7 @@ private:
 
     /**
      * @brief Processes login information from the client.
-     * 
+     *
      * @param ss The client's socket.
      * @param message The received login message.
      */
@@ -81,7 +83,7 @@ private:
 
     /**
      * @brief Processes commands from the client.
-     * 
+     *
      * @param ss The client's socket.
      * @param message The received command message.
      * @return True if a command was processed and actioned, otherwise false.
@@ -90,7 +92,7 @@ private:
 
     /**
      * @brief Cleans up the connection when it is closed.
-     * 
+     *
      * Removes the connection from the active connections list and performs necessary cleanup.
      */
     void cleanupConnection();
@@ -98,10 +100,11 @@ private:
 
 /**
  * @brief Poker server class.
- * 
+ *
  * This class encapsulates a poker server that manages connections and client interactions.
  */
-class PokerServer {
+class PokerServer
+{
 public:
     PokerServer(int port);
 

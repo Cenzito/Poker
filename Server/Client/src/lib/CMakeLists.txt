@@ -1,2 +1,5 @@
 add_subdirectory(PokerPlayer)
 add_subdirectory(Card)
+add_subdirectory(Card2)
+add_subdirectory(PokerHand)
+add_subdirectory(GameLocal)
