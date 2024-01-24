@@ -68,8 +68,9 @@ void Table::updateTable(std::string command) {
     std::istringstream iss(command);
     std::vector<std::string> wordsArray(std::istream_iterator<std::string>{iss}, std::istream_iterator<std::string>());
 
-
+    qDebug() <<QString::fromStdString(wordsArray[0]);
     CommandType cmdType = parseCommand(wordsArray[0]);
+
 
 
     switch (cmdType) {
@@ -87,26 +88,32 @@ void Table::updateTable(std::string command) {
         std::string PlayerName = wordsArray[1];
         int Amount = std::stoi(wordsArray[2]);
         getPlayerInfo(PlayerName)->stack_size += Amount;
+        break;
     } case CommandType::SetBiggestBet:  {
         // "/setBiggest_bet amount"
         current_biggest_bet = std::stoi(wordsArray[1]);
+        break;
     } case CommandType::SetLastRaiser:{
         // "/setLastRaiser number"
         lastRaiser = std::stoi(wordsArray[1]);
+        break;
     } case CommandType::AllIn: {
         // "/pay PlayerName"
         std::string PlayerName = wordsArray[1];
         getPlayerInfo(PlayerName)->bet += getPlayerInfo(PlayerName)->stack_size;
         getPlayerInfo(PlayerName)->stack_size = 0;
         getPlayerInfo(PlayerName)->isAllin = true;
+        break;
     } case CommandType::Fold: {
         // "/fold PlayerName"
         std::string PlayerName = wordsArray[1];
         getPlayerInfo(PlayerName)->isFold = true;
+        break;
     } case CommandType::SetActivePlayer: {
         // "/setActivePlayer PlayerNumber"
         int PlayerNum = std::stoi(wordsArray[1]);
         current_player = PlayerNum;
+        break;
     } case CommandType::AddCardMid: {
         // "/addCardMid Suit Num"
         std::string Suit = wordsArray[1];
@@ -117,6 +124,7 @@ void Table::updateTable(std::string command) {
 
         Card cardToAdd = Card(s, Num);
         communityCards.push_back(cardToAdd);
+        break;
     } case CommandType::NextRound: {
         betting_round += 1;
         for (int i = 0; i <= player_num; i++) {
@@ -126,6 +134,7 @@ void Table::updateTable(std::string command) {
         current_player = ButtonPlayer;
 
         lastRaiser = current_player;
+        break;
     } case CommandType::ResetGame: {
         //reset bets
         for (int i = 0; i <= player_num; i++) {
@@ -142,6 +151,7 @@ void Table::updateTable(std::string command) {
         current_player = ButtonPlayer;
 
         communityCards.clear();
+        break;
     } case CommandType::JoinGame: {
         // "/joinGame Name chips"
         std::string PlayerName = wordsArray[1];
@@ -150,6 +160,7 @@ void Table::updateTable(std::string command) {
         PlayerInfo playerinfo(PlayerName, Chips, 0);
         playerInfo[player_num] = playerinfo;
         player_num += 1;
+        break;
     } case CommandType::SetPlayerInfo: {
         // "/setPInf Player1 Stack1 Player2 Stack2 ..."
         for (int i = 1; i < wordsArray.size(); i+=2) {
@@ -158,13 +169,16 @@ void Table::updateTable(std::string command) {
             playerInfo[i/2] = playerinfo;
         }
         player_num = wordsArray.size() / 2;
+        break;
     } case CommandType::Invalid: {
         qDebug() << "not valid";
+        break;
     }
     }
 };
 
 CommandType Table::parseCommand(const std::string& command) {
+    qDebug() << QString::fromStdString(command);
     if (command == "/bet") return CommandType::Bet;
     else if (command == "/setBiggestBet") return CommandType::SetBiggestBet;
     else if (command == "/setLastRaiser") return CommandType::SetLastRaiser;
