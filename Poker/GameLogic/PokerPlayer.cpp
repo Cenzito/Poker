@@ -18,6 +18,7 @@ void PokerPlayer::receiveCards(const std::vector<Card> newHand) {
 
 void PokerPlayer::updateTable(std::string command) {
     tableInfo.updateTable(command);
+    //tableInfo.Print();
     emit callUpdateDisplay();
 }
 
