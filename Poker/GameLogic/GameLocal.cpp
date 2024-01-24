@@ -55,7 +55,6 @@ void GameLocal::pay(PlayerInfo& PlayerPay, int sum) {
         }
     }
     updatePlayersTable("/bet " + PlayerPay.name + " " + std::to_string(sum));
-    //qDebug() << "payed" << QString::fromStdString(PlayerPay.name) << " " << sum;
 };
 
 void GameLocal::win(PlayerInfo& PlayerWin, int sum) {
@@ -165,7 +164,6 @@ void GameLocal::distribute() {
 
                 }
             }
-
             //keep distributing the money if there's any left
             if (tableInfo.pot>0){
                 if (players_standing>=1) {
@@ -246,7 +244,8 @@ void GameLocal::fold(PlayerInfo& foldPlayer) {
 void GameLocal::updatePlayersTable(std::string updatePlayersTable) {
     emit updatePTable(updatePlayersTable);
     tableInfo.updateTable(updatePlayersTable);
-    //tableInfo.Print();
+
+
 }
 
 

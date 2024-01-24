@@ -68,9 +68,7 @@ void Table::updateTable(std::string command) {
     std::istringstream iss(command);
     std::vector<std::string> wordsArray(std::istream_iterator<std::string>{iss}, std::istream_iterator<std::string>());
 
-    qDebug() <<QString::fromStdString(wordsArray[0]);
     CommandType cmdType = parseCommand(wordsArray[0]);
-
 
 
     switch (cmdType) {
@@ -178,7 +176,6 @@ void Table::updateTable(std::string command) {
 };
 
 CommandType Table::parseCommand(const std::string& command) {
-    qDebug() << QString::fromStdString(command);
     if (command == "/bet") return CommandType::Bet;
     else if (command == "/setBiggestBet") return CommandType::SetBiggestBet;
     else if (command == "/setLastRaiser") return CommandType::SetLastRaiser;
