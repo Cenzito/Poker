@@ -8,6 +8,38 @@
 #include "PlayerInfo.hpp"
 #include "Card.hpp"
 
+
+enum class CommandType {
+    Bet,
+    SetBiggestBet,
+    SetLastRaiser,
+    Win,
+    AllIn,
+    Fold,
+    SetActivePlayer,
+    AddCardMid,
+    NextRound,
+    ResetGame,
+    JoinGame,
+    SetPlayerInfo,
+    Invalid
+};
+
+CommandType parseCommand(const std::string& command) {
+    if (command == "/bet") return CommandType::Bet;
+    else if (command == "/setBiggestBet") return CommandType::SetBiggestBet;
+    else if (command == "/setLastRaiser") return CommandType::SetLastRaiser;
+    else if (command == "/win") return CommandType::Win;
+    else if (command == "/allin") return CommandType::AllIn;
+    else if (command == "/fold") return CommandType::Fold;
+    else if (command == "/setActivePlayer") return CommandType::SetActivePlayer;
+    else if (command == "/addCardMid") return CommandType::AddCardMid;
+    else if (command == "/nextRound") return CommandType::NextRound;
+    else if (command == "/resetGame") return CommandType::ResetGame;
+    else if (command == "/joinGame") return CommandType::JoinGame;
+    else if (command == "/setPInf") return CommandType::SetPlayerInfo;
+    else return CommandType::Invalid;
+}
 //This is an object that will be passed to every player every time a change is made
 //It contains public information that every player should know
 class Table {
@@ -44,6 +76,7 @@ public:
 
 
     void updateTable(std::string command);
+    CommandType parseCommand(const std::string& command);
     PlayerInfo* getPlayerInfo(std::string name);
 
 };

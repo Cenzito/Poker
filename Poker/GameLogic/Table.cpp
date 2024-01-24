@@ -68,9 +68,12 @@ void Table::updateTable(std::string command) {
     std::istringstream iss(command);
     std::vector<std::string> wordsArray(std::istream_iterator<std::string>{iss}, std::istream_iterator<std::string>());
 
-    std::string identifier = wordsArray[0];
 
-    if (identifier == "/bet") {
+    CommandType cmdType = parseCommand(wordsArray[0]);
+
+
+    switch (cmdType) {
+    case CommandType::Bet: {
         // "/bet PlayerName Amount"
         std::string PlayerName = wordsArray[1];
         int Amount = std::stoi(wordsArray[2]);
@@ -78,34 +81,33 @@ void Table::updateTable(std::string command) {
         current->stack_size -= Amount;
         current->bet += Amount;
         pot += Amount;
-    } else if (identifier == "/setBiggestBet") {
-        // "/setBiggest_bet amount"
-        current_biggest_bet = std::stoi(wordsArray[1]);
-    } else if (identifier == "/setLastRaiser") {
-        // "/setLastRaiser number"
-        lastRaiser = std::stoi(wordsArray[1]);
-    } else if (identifier == "/win") {
+        break;
+    } case CommandType::Win: {
         // "/pay PlayerName Amount"
         std::string PlayerName = wordsArray[1];
         int Amount = std::stoi(wordsArray[2]);
         getPlayerInfo(PlayerName)->stack_size += Amount;
-
-    } else if (identifier == "/allin") {
+    } case CommandType::SetBiggestBet:  {
+        // "/setBiggest_bet amount"
+        current_biggest_bet = std::stoi(wordsArray[1]);
+    } case CommandType::SetLastRaiser:{
+        // "/setLastRaiser number"
+        lastRaiser = std::stoi(wordsArray[1]);
+    } case CommandType::AllIn: {
         // "/pay PlayerName"
         std::string PlayerName = wordsArray[1];
         getPlayerInfo(PlayerName)->bet += getPlayerInfo(PlayerName)->stack_size;
         getPlayerInfo(PlayerName)->stack_size = 0;
         getPlayerInfo(PlayerName)->isAllin = true;
-    } else if (identifier == "/fold") {
+    } case CommandType::Fold: {
+        // "/fold PlayerName"
         std::string PlayerName = wordsArray[1];
         getPlayerInfo(PlayerName)->isFold = true;
-    }
-
-    else if (identifier == "/setActivePlayer") {
+    } case CommandType::SetActivePlayer: {
         // "/setActivePlayer PlayerNumber"
         int PlayerNum = std::stoi(wordsArray[1]);
         current_player = PlayerNum;
-    } else if (identifier == "/addCardMid") {
+    } case CommandType::AddCardMid: {
         // "/addCardMid Suit Num"
         std::string Suit = wordsArray[1];
         int Num = std::stoi(wordsArray[2]);
@@ -115,7 +117,7 @@ void Table::updateTable(std::string command) {
 
         Card cardToAdd = Card(s, Num);
         communityCards.push_back(cardToAdd);
-    } else if (identifier == "/nextRound") {
+    } case CommandType::NextRound: {
         betting_round += 1;
         for (int i = 0; i <= player_num; i++) {
             playerInfo[i].bet = 0;
@@ -124,8 +126,7 @@ void Table::updateTable(std::string command) {
         current_player = ButtonPlayer;
 
         lastRaiser = current_player;
-
-    } else if (identifier == "/resetGame") {
+    } case CommandType::ResetGame: {
         //reset bets
         for (int i = 0; i <= player_num; i++) {
             playerInfo[i].bet = 0;
@@ -141,7 +142,7 @@ void Table::updateTable(std::string command) {
         current_player = ButtonPlayer;
 
         communityCards.clear();
-    } else if (identifier == "/joinGame") {
+    } case CommandType::JoinGame: {
         // "/joinGame Name chips"
         std::string PlayerName = wordsArray[1];
         int Chips = std::stoi(wordsArray[2]);
@@ -149,7 +150,7 @@ void Table::updateTable(std::string command) {
         PlayerInfo playerinfo(PlayerName, Chips, 0);
         playerInfo[player_num] = playerinfo;
         player_num += 1;
-    } else if (identifier == "/setPInf") {
+    } case CommandType::SetPlayerInfo: {
         // "/setPInf Player1 Stack1 Player2 Stack2 ..."
         for (int i = 1; i < wordsArray.size(); i+=2) {
             //set playerInfo
@@ -157,12 +158,27 @@ void Table::updateTable(std::string command) {
             playerInfo[i/2] = playerinfo;
         }
         player_num = wordsArray.size() / 2;
+    } case CommandType::Invalid: {
+        qDebug() << "not valid";
     }
-
-
+    }
 };
 
-
+CommandType Table::parseCommand(const std::string& command) {
+    if (command == "/bet") return CommandType::Bet;
+    else if (command == "/setBiggestBet") return CommandType::SetBiggestBet;
+    else if (command == "/setLastRaiser") return CommandType::SetLastRaiser;
+    else if (command == "/win") return CommandType::Win;
+    else if (command == "/allin") return CommandType::AllIn;
+    else if (command == "/fold") return CommandType::Fold;
+    else if (command == "/setActivePlayer") return CommandType::SetActivePlayer;
+    else if (command == "/addCardMid") return CommandType::AddCardMid;
+    else if (command == "/nextRound") return CommandType::NextRound;
+    else if (command == "/resetGame") return CommandType::ResetGame;
+    else if (command == "/joinGame") return CommandType::JoinGame;
+    else if (command == "/setPInf") return CommandType::SetPlayerInfo;
+    else return CommandType::Invalid;
+}
 
 PlayerInfo* Table::getPlayerInfo(std::string name) {
     for (int i = 0; i<player_num;i++) {
