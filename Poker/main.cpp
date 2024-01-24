@@ -43,7 +43,7 @@ int main(int argc, char *argv[]) {
     //w.game_player.tableInfo.player_num = 1;
     // w.update_display();
 
-
+/*
     if( hand.has_royal_flush() == true ) std::cout << "Royal flush";
     else std::cout << "Not royal flush";
     //if( hand.is_member(card1)==true) std::cout << "Card is in hand";
