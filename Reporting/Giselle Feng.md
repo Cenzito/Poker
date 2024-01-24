@@ -9,3 +9,5 @@ Week4: Tried displaying the game table image on the game window page with Lucas,
 
 Week 5: Worked on displaying the bets and each poker player's name on the game window page. Couldn't use loops as all player infos are saved in a table so had to use several IF statements. 
 
+Week 6: Worked on Maindow expansion so that when we expanded the page, all the buttons and displayed expanded accordingly. Additionally worked on the next round push button. 
+

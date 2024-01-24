@@ -2,9 +2,10 @@
 #define GAMELOCAL_HPP
 
 #include "PokerPlayer.hpp"
-#include "table.hpp"
+#include "Table.hpp"
 #include "Deck.hpp"
 #include "../Bots/Bot.hpp"
+#include "../Bots/Hard/Darius/BotDarius.hpp"
 #include "PokerHand.hpp"
 #include <QObject>
 #include <QTimer>
@@ -28,10 +29,12 @@ public:
     void pay(PlayerInfo& PlayerPay, int sum);
     void win(PlayerInfo& PlayerWin, int sum);
     void fold(PlayerInfo& foldPlayer);
+    void allin(PlayerInfo& allinPlayer);
 
-    void endHand(PlayerInfo& winner);
-
-
+    //end of game functions
+    void endHand();
+    void distribute();
+    std::vector<PlayerInfo> winners();
     void nextHand();
 
 

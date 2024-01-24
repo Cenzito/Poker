@@ -32,3 +32,7 @@ PokerHand Class Definition and Methods: A PokerHand class was defined, encapsula
 Hand History Parsing: We implemented a function (parseHandHistory)to read and parse poker hand history from a file, creating a vector of PokerHand objects. This function handles different game stages and player actions.
 
 Main Function Usage: In the main function, we used sample hand history data to show the functionality of the calculations, in order to display the player's aggression factor and VPIP percentage. We used this to testing and practical application of the class and methods defined.
+
+
+Last weeks :
+As we were done on the logic part, the thing that was left to do was solving small bugs such as dealing with ties for instance. I worked with arturo and other members to solve those.

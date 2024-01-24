@@ -11,6 +11,7 @@ Table::Table(){
     pot=0;
     current_player=0;
     player_num=0;
+    subpots={};
 }
 
 Table::Table(int seats){
@@ -21,6 +22,7 @@ Table::Table(int seats){
     pot=0;
     player_num=0;
     current_player=3;
+    subpots={};
 }
 
 
@@ -171,5 +173,13 @@ PlayerInfo* Table::getPlayerInfo(std::string name) {
 };
 
 
-
+int Table::playerIndex(std::string& name){
+    int index=-1;
+    for (int i = 0; i < player_num; i++) {
+        if (playerInfo[i].name == name) {
+            index=i;
+        }
+    }
+    return index;
+}
 
