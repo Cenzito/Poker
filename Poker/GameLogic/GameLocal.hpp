@@ -59,11 +59,15 @@ public slots:
     void onFold();
     void onCall();
 
-    void updatePlayersTable();
+    void updatePlayersTable(std::string);
+    void setPlayerInfos(PokerPlayer* player);
 
 signals:
-    void updatePTable(Table t);
+    void updatePTable(std::string command);
+    void setPInf(std::string command);
+
     void askAction();
+
 };
 
 #endif // GAMELOCAL_HPP

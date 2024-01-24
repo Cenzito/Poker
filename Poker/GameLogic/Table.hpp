@@ -8,6 +8,24 @@
 #include "PlayerInfo.hpp"
 #include "Card.hpp"
 
+
+enum class CommandType {
+    Bet,
+    SetBiggestBet,
+    SetLastRaiser,
+    Win,
+    AllIn,
+    Fold,
+    SetActivePlayer,
+    AddCardMid,
+    NextRound,
+    ResetGame,
+    JoinGame,
+    SetPlayerInfo,
+    Invalid
+};
+
+
 //This is an object that will be passed to every player every time a change is made
 //It contains public information that every player should know
 class Table {
@@ -41,6 +59,11 @@ public:
     int betting_round; //current betting round (0: preflop, 1: river...)
     int current_biggest_bet; //biggest bet of the betting round
     int lastRaiser; //last person to raise ( if get back to him, we end betting round )
+
+
+    void updateTable(std::string command);
+    CommandType parseCommand(const std::string& command);
+    PlayerInfo* getPlayerInfo(std::string name);
 
 };
 

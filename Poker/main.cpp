@@ -15,10 +15,12 @@
 
 
 int main(int argc, char *argv[]) {
+    qDebug() << "Hello";
+
 
     QApplication a(argc, argv);
     GameLocalWindow w;
-    BotDarius bot1 = BotDarius("Alpha");
+    Bot bot1 = Bot("Alpha", 3);
     Bot bot2 = Bot("bot2",0);
 
     //Bot bot1 = Bot("bot1", 0);
@@ -31,7 +33,7 @@ int main(int argc, char *argv[]) {
 
     return a.exec();
 
-
+/*
     //Bot bot1 = Bot("bot1", 0);
     //Bot bot2 = Bot("bot2", 0);
     Bot bot3 = Bot("bot3", 0);
@@ -55,7 +57,6 @@ int main(int argc, char *argv[]) {
     w.nextHand();
 
     return 1;
-
 */
 
 }
