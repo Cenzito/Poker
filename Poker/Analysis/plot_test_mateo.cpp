@@ -4,7 +4,7 @@
 
 using namespace std;
 
-int main() {
+int main2() {
     RGBABitmapImageReference* imageRef = CreateRGBABitmapImageReference();
 
     vector<double> x = {-2, -1, 0, 1, 2};
