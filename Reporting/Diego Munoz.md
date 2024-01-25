@@ -10,3 +10,6 @@ Created various files for the processing of the data and the calculation of the 
 
 WEEK of (10th January 2024):
 Had to start most of the file from scratch because we had a lot of issues between the files and the importations, rewrote the whole file and the data processing function and now it runs smoothly thanks to different prints throughout the function we can see that, now I only have to fix a few errors and we we'll be done with that. Once the processing data function is ready, we'll be able to calculate any important Poker measure we need from players so we can analyze their game.
+
+WEEK of 22th January 2024:
+
