@@ -29,7 +29,7 @@ Table::Table(int seats){
 
 
 void Table::Print() {
-    /*
+
     qDebug() << "\n\n\n\n\n\n";
     qDebug() << "seats " << seats;
     qDebug() << "number players " << player_num;
@@ -44,7 +44,7 @@ void Table::Print() {
         playerInfo[i].Print();
         qDebug() << "\n";
     }
-*/
+
 }
 
 
@@ -71,8 +71,8 @@ void Table::updateTable(std::string command) {
     std::vector<std::string> wordsArray(std::istream_iterator<std::string>{iss}, std::istream_iterator<std::string>());
 
     CommandType cmdType = parseCommand(wordsArray[0]);
+    //qDebug() << QString::fromStdString(command);
 
-    //qDebug()<<command;
     switch (cmdType) {
     case CommandType::Bet: {
         // "/bet PlayerName Amount"
@@ -143,6 +143,7 @@ void Table::updateTable(std::string command) {
             playerInfo[i].bet = 0;
             playerInfo[i].isAllin = false;
             playerInfo[i].isFold = false;
+            playerInfo[i].cards.clear();
         }
         pot=0;
         ButtonPlayer = (ButtonPlayer + 1)% player_num;
@@ -172,6 +173,27 @@ void Table::updateTable(std::string command) {
         }
         player_num = wordsArray.size() / 2;
         break;
+    } case CommandType::SetCards: {
+        // "/setCard PlayerName Suit1 Num1 Suit2 Num2"
+        std::string playerName = wordsArray[1];
+        std::string Suit1 = wordsArray[2];
+        int Num1 = std::stoi(wordsArray[3]);
+
+        std::string Suit2 = wordsArray[4];
+        int Num2 = std::stoi(wordsArray[5]);
+
+        enum Suit s1;
+        enum Suit s2;
+
+        s1 = stringToSuit(Suit1);
+        s2 = stringToSuit(Suit2);
+
+        Card cardToAdd1 = Card(s1, Num1);
+        Card cardToAdd2 = Card(s2, Num2);
+        PlayerInfo* p = getPlayerInfo(playerName);
+        p->cards.push_back(cardToAdd1);
+        p->cards.push_back(cardToAdd2);
+        break;
     } case CommandType::Invalid: {
         qDebug() << "not valid";
         break;
@@ -192,6 +214,7 @@ CommandType Table::parseCommand(const std::string& command) {
     else if (command == "/resetGame") return CommandType::ResetGame;
     else if (command == "/joinGame") return CommandType::JoinGame;
     else if (command == "/setPInf") return CommandType::SetPlayerInfo;
+    else if (command == "/setCard") return CommandType::SetCards;
     else return CommandType::Invalid;
 }
 

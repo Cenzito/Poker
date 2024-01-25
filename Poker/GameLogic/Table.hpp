@@ -22,6 +22,7 @@ enum class CommandType {
     ResetGame,
     JoinGame,
     SetPlayerInfo,
+    SetCards,
     Invalid
 };
 

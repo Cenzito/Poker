@@ -164,6 +164,7 @@ void GameWindow::update_display(){
     switch_players_display();
     update_community_cards();
     updateCallButtonLabel();
+    displayAllPCards();
 
 }
 
@@ -537,8 +538,69 @@ void GameWindow::on_NextRound_clicked()
 
 }
 
-// start of display a given player's cards
 
+void GameWindow::displayCardP(int player) {
+    Card card1 = game_player.tableInfo.playerInfo[player].cards[0];
+    Card card2 = game_player.tableInfo.playerInfo[player].cards[1];
+    Suit suit1 = card1.getSuit();
+    Suit suit2 = card2.getSuit();
+    int value1 = card1.getValue();
+    int value2 = card2.getValue();
+    QString path1 = Get_image_path(suitToString(suit1),std::to_string(value1),false);
+    QString path2 = Get_image_path(suitToString(suit2),std::to_string(value2),false);
+    QImage image1(path1);
+    QImage image2(path2);
+
+    QSize size1 = ui->label_player1_card1->size();
+    QSize size2 = ui->label_player1_card2->size();
+    switch (player) {
+        case 0: {
+            ui->label_player1_card1->setPixmap(QPixmap::fromImage(image1).scaled(size1, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            ui->label_player1_card2->setPixmap(QPixmap::fromImage(image2).scaled(size2, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            break;
+        } case 1: {
+            ui->label_player2_card1->setPixmap(QPixmap::fromImage(image1).scaled(size1, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            ui->label_player2_card2->setPixmap(QPixmap::fromImage(image2).scaled(size2, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            break;
+        }        case 2: {
+            ui->label_player3_card1->setPixmap(QPixmap::fromImage(image1).scaled(size1, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            ui->label_player3_card2->setPixmap(QPixmap::fromImage(image2).scaled(size2, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            break;
+        }        case 3: {
+            ui->label_player4_card1->setPixmap(QPixmap::fromImage(image1).scaled(size1, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            ui->label_player4_card2->setPixmap(QPixmap::fromImage(image2).scaled(size2, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            break;
+        }        case 4: {
+            ui->label_player5_card1->setPixmap(QPixmap::fromImage(image1).scaled(size1, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            ui->label_player5_card2->setPixmap(QPixmap::fromImage(image2).scaled(size2, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            break;
+        }        case 5: {
+            ui->label_player6_card1->setPixmap(QPixmap::fromImage(image1).scaled(size1, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            ui->label_player6_card2->setPixmap(QPixmap::fromImage(image2).scaled(size2, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            break;
+        }        case 6: {
+            ui->label_player7_card1->setPixmap(QPixmap::fromImage(image1).scaled(size1, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            ui->label_player7_card2->setPixmap(QPixmap::fromImage(image2).scaled(size2, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            break;
+        }        case 7: {
+            ui->label_player8_card1->setPixmap(QPixmap::fromImage(image1).scaled(size1, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            ui->label_player8_card2->setPixmap(QPixmap::fromImage(image2).scaled(size2, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            break;
+        }
+    }
+
+}
+// start of display a given player's cards
+void GameWindow::displayAllPCards() {
+    for (int i=0; i <game_player.tableInfo.player_num;i++) {
+        if (game_player.tableInfo.playerInfo[i].cards.size() == 2) {
+            displayCardP(i);
+        }
+    }
+}
+
+
+/*
 void GameWindow::display_given_cards(PokerPlayer* display_player){
 
     int num = display_player->tableInfo.current_player;
@@ -610,7 +672,7 @@ void GameWindow::display_given_cards(PokerPlayer* display_player){
         ui->label_player8_card2->setPixmap(QPixmap::fromImage(image2).scaled(size2, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     }
 }
-
+*/
 // end of display a given player's cards
 
 // start display name red
