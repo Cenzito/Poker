@@ -37,6 +37,7 @@ public:
     void display_given_cards(PokerPlayer* display_player);
     void display_name_red();
     void preflop_odds();
+    void displayAllPCards();
 
 
     PokerPlayer game_player;

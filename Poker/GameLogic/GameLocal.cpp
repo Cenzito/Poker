@@ -71,9 +71,6 @@ void GameLocal::win(PlayerInfo& PlayerWin, int sum) {
 
 
 void GameLocal::distribute() {
-    for (int i=0; i<=tableInfo.player_num; i++){
-        qDebug()<<tableInfo.playerInfo[i].name<<"has this as subpot" <<tableInfo.subpots[i];
-    }
 
     std::vector<PlayerInfo> winnerlist = winners();
 
@@ -201,6 +198,13 @@ void GameLocal::distribute() {
 //distributes the money to the winner and start anew
 void GameLocal::endHand() {
 
+    //show player hands
+    for (int i = 0; i< tableInfo.player_num;i++ ) {
+        PlayerInfo* current = &tableInfo.playerInfo[i];
+        if (current->cards.size() == 2) {
+            updatePlayersTable("/setCard " + current->name + " " + suitToString(current->cards[0].getSuit()) + " " + std::to_string(current->cards[0].getValue()) + " " + suitToString(current->cards[1].getSuit()) + " " + std::to_string(current->cards[1].getValue()));
+        }
+    }
     distribute();
 
     //nextHand();
@@ -249,7 +253,6 @@ std::vector<PlayerInfo> GameLocal::winners() {
 
             //if we're at the end of the vector and they still haven't lost then they're a winner
             if (counter == players_standing) {
-                qDebug()<<first.name<<"won";
                 winners.push_back(first);
             }
         }
@@ -268,7 +271,7 @@ void GameLocal::fold(PlayerInfo& foldPlayer) {
 void GameLocal::updatePlayersTable(std::string updatePlayersTable) {
     emit updatePTable(updatePlayersTable);
     tableInfo.updateTable(updatePlayersTable);
-
+    //tableInfo.Print();
 
 }
 
@@ -447,6 +450,7 @@ void GameLocal::nextBettingRound() {
                 cards.push_back(deck.dealCard());
                 cards.push_back(deck.dealCard());
                 player->receiveCards(cards);
+                tableInfo.getPlayerInfo(player->name)->cards = cards;
             }
             //three players after button is first to act
             setNextCurrentPlayer();

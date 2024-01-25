@@ -164,6 +164,7 @@ void GameWindow::update_display(){
     switch_players_display();
     update_community_cards();
     updateCallButtonLabel();
+    displayAllPCards();
 
 }
 
@@ -538,6 +539,160 @@ void GameWindow::on_NextRound_clicked()
 }
 
 // start of display a given player's cards
+void GameWindow::displayAllPCards() {
+    if (game_player.tableInfo.player_num >= 1 && game_player.tableInfo.playerInfo[0].cards.size() == 2){
+        Card card1 = game_player.tableInfo.playerInfo[0].cards[0];
+        Card card2 = game_player.tableInfo.playerInfo[0].cards[1];
+        Suit suit1 = card1.getSuit();
+        Suit suit2 = card2.getSuit();
+        int value1 = card1.getValue();
+        int value2 = card2.getValue();
+        QString path1 = Get_image_path(suitToString(suit1),std::to_string(value1),false);
+        QString path2 = Get_image_path(suitToString(suit2),std::to_string(value2),false);
+        QImage image1(path1);
+        QImage image2(path2);
+
+        QSize size1 = ui->label_player1_card1->size();
+        QSize size2 = ui->label_player1_card2->size();
+
+        ui->label_player1_card1->setPixmap(QPixmap::fromImage(image1).scaled(size1, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->label_player1_card2->setPixmap(QPixmap::fromImage(image2).scaled(size2, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    }
+
+    if (game_player.tableInfo.player_num >= 2&& game_player.tableInfo.playerInfo[1].cards.size() == 2){
+
+        Card card1 = game_player.tableInfo.playerInfo[1].cards[0];
+        Card card2 = game_player.tableInfo.playerInfo[1].cards[1];
+        Suit suit1 = card1.getSuit();
+        Suit suit2 = card2.getSuit();
+        int value1 = card1.getValue();
+        int value2 = card2.getValue();
+        QString path1 = Get_image_path(suitToString(suit1),std::to_string(value1),false);
+        QString path2 = Get_image_path(suitToString(suit2),std::to_string(value2),false);
+        QImage image1(path1);
+        QImage image2(path2);
+
+        QSize size1 = ui->label_player1_card1->size();
+        QSize size2 = ui->label_player1_card2->size();
+
+        ui->label_player2_card1->setPixmap(QPixmap::fromImage(image1).scaled(size1, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->label_player2_card2->setPixmap(QPixmap::fromImage(image2).scaled(size2, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    }
+
+    if (game_player.tableInfo.player_num >= 3&& game_player.tableInfo.playerInfo[2].cards.size() == 2){
+        Card card1 = game_player.tableInfo.playerInfo[2].cards[0];
+        Card card2 = game_player.tableInfo.playerInfo[2].cards[1];
+        Suit suit1 = card1.getSuit();
+        Suit suit2 = card2.getSuit();
+        int value1 = card1.getValue();
+        int value2 = card2.getValue();
+        QString path1 = Get_image_path(suitToString(suit1),std::to_string(value1),false);
+        QString path2 = Get_image_path(suitToString(suit2),std::to_string(value2),false);
+        QImage image1(path1);
+        QImage image2(path2);
+
+        QSize size1 = ui->label_player1_card1->size();
+        QSize size2 = ui->label_player1_card2->size();
+
+        ui->label_player3_card1->setPixmap(QPixmap::fromImage(image1).scaled(size1, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->label_player3_card2->setPixmap(QPixmap::fromImage(image2).scaled(size2, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    }
+
+    if (game_player.tableInfo.player_num >= 4&& game_player.tableInfo.playerInfo[3].cards.size() == 2){
+        Card card1 = game_player.tableInfo.playerInfo[3].cards[0];
+        Card card2 = game_player.tableInfo.playerInfo[3].cards[1];
+        Suit suit1 = card1.getSuit();
+        Suit suit2 = card2.getSuit();
+        int value1 = card1.getValue();
+        int value2 = card2.getValue();
+        QString path1 = Get_image_path(suitToString(suit1),std::to_string(value1),false);
+        QString path2 = Get_image_path(suitToString(suit2),std::to_string(value2),false);
+        QImage image1(path1);
+        QImage image2(path2);
+
+        QSize size1 = ui->label_player1_card1->size();
+        QSize size2 = ui->label_player1_card2->size();
+
+        ui->label_player4_card1->setPixmap(QPixmap::fromImage(image1).scaled(size1, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->label_player4_card2->setPixmap(QPixmap::fromImage(image2).scaled(size2, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    }
+
+    if (game_player.tableInfo.player_num >= 5&& game_player.tableInfo.playerInfo[4].cards.size() == 2){
+        Card card1 = game_player.tableInfo.playerInfo[4].cards[0];
+        Card card2 = game_player.tableInfo.playerInfo[4].cards[1];
+        Suit suit1 = card1.getSuit();
+        Suit suit2 = card2.getSuit();
+        int value1 = card1.getValue();
+        int value2 = card2.getValue();
+        QString path1 = Get_image_path(suitToString(suit1),std::to_string(value1),false);
+        QString path2 = Get_image_path(suitToString(suit2),std::to_string(value2),false);
+        QImage image1(path1);
+        QImage image2(path2);
+
+        QSize size1 = ui->label_player1_card1->size();
+        QSize size2 = ui->label_player1_card2->size();
+
+        ui->label_player5_card1->setPixmap(QPixmap::fromImage(image1).scaled(size1, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->label_player5_card2->setPixmap(QPixmap::fromImage(image2).scaled(size2, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    }
+
+    if (game_player.tableInfo.player_num >= 6&& game_player.tableInfo.playerInfo[5].cards.size() == 2){
+        Card card1 = game_player.tableInfo.playerInfo[5].cards[0];
+        Card card2 = game_player.tableInfo.playerInfo[5].cards[1];
+        Suit suit1 = card1.getSuit();
+        Suit suit2 = card2.getSuit();
+        int value1 = card1.getValue();
+        int value2 = card2.getValue();
+        QString path1 = Get_image_path(suitToString(suit1),std::to_string(value1),false);
+        QString path2 = Get_image_path(suitToString(suit2),std::to_string(value2),false);
+        QImage image1(path1);
+        QImage image2(path2);
+
+        QSize size1 = ui->label_player1_card1->size();
+        QSize size2 = ui->label_player1_card2->size();
+
+        ui->label_player6_card1->setPixmap(QPixmap::fromImage(image1).scaled(size1, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->label_player6_card2->setPixmap(QPixmap::fromImage(image2).scaled(size2, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    }
+
+    if (game_player.tableInfo.player_num >= 7&& game_player.tableInfo.playerInfo[6].cards.size() == 2){
+        Card card1 = game_player.tableInfo.playerInfo[6].cards[0];
+        Card card2 = game_player.tableInfo.playerInfo[6].cards[1];
+        Suit suit1 = card1.getSuit();
+        Suit suit2 = card2.getSuit();
+        int value1 = card1.getValue();
+        int value2 = card2.getValue();
+        QString path1 = Get_image_path(suitToString(suit1),std::to_string(value1),false);
+        QString path2 = Get_image_path(suitToString(suit2),std::to_string(value2),false);
+        QImage image1(path1);
+        QImage image2(path2);
+
+        QSize size1 = ui->label_player1_card1->size();
+        QSize size2 = ui->label_player1_card2->size();
+
+        ui->label_player7_card1->setPixmap(QPixmap::fromImage(image1).scaled(size1, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->label_player7_card2->setPixmap(QPixmap::fromImage(image2).scaled(size2, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    }
+
+    if (game_player.tableInfo.player_num >= 8&& game_player.tableInfo.playerInfo[7].cards.size() == 2){
+        Card card1 = game_player.tableInfo.playerInfo[7].cards[0];
+        Card card2 = game_player.tableInfo.playerInfo[7].cards[1];
+        Suit suit1 = card1.getSuit();
+        Suit suit2 = card2.getSuit();
+        int value1 = card1.getValue();
+        int value2 = card2.getValue();
+        QString path1 = Get_image_path(suitToString(suit1),std::to_string(value1),false);
+        QString path2 = Get_image_path(suitToString(suit2),std::to_string(value2),false);
+        QImage image1(path1);
+        QImage image2(path2);
+
+        QSize size1 = ui->label_player1_card1->size();
+        QSize size2 = ui->label_player1_card2->size();
+
+        ui->label_player8_card1->setPixmap(QPixmap::fromImage(image1).scaled(size1, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->label_player8_card2->setPixmap(QPixmap::fromImage(image2).scaled(size2, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    }
+}
 
 void GameWindow::display_given_cards(PokerPlayer* display_player){
 
