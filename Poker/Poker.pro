@@ -13,6 +13,7 @@ SOURCES += \
     GameLogic/GameLocal.cpp \
     GameLogic/PlayerInfo.cpp \
     Visuals/Gamewindow/gamelocalwindow.cpp \
+    Visuals/Gamewindow/visualpinfo.cpp \
     Visuals/RulesWindow/ruleswindow.cpp \
     main.cpp \
     Bots/Bot.cpp \
@@ -58,6 +59,7 @@ HEADERS += \
     GameLogic/Monte_Carlo_Probability_Simulator.hpp \
     Visuals/Gamewindow/gamelocalwindow.hpp \
     Visuals/Gamewindow/gamewindow.hpp \
+    Visuals/Gamewindow/visualpinfo.hpp \
     Visuals/MainWindow/mainwindow.hpp \
     Visuals/RulesWindow/ruleswindow.cpp.autosave \
     Visuals/RulesWindow/ruleswindow.h \

@@ -26,10 +26,10 @@ void GameLocal::JoinGame(PokerPlayer* player) {
         setPlayerInfos(player);
 
         //connect slots to signals
-        QObject::connect(player, &PokerPlayer::Call, this, &GameLocal::onCall);
-        QObject::connect(player, &PokerPlayer::Fold, this, &GameLocal::onFold);
-        QObject::connect(player, &PokerPlayer::Raise, this,&GameLocal::onRaise);
-        QObject::connect(this, &GameLocal::updatePTable, player, &PokerPlayer::updateTable);
+        QObject::connect(player, &PokerPlayer::Call, this, &GameLocal::onCall, Qt::QueuedConnection);
+        QObject::connect(player, &PokerPlayer::Fold, this, &GameLocal::onFold, Qt::QueuedConnection);
+        QObject::connect(player, &PokerPlayer::Raise, this,&GameLocal::onRaise, Qt::QueuedConnection);
+        QObject::connect(this, &GameLocal::updatePTable, player, &PokerPlayer::updateTable, Qt::QueuedConnection);
 
         //player joins game so we add him to the table with an initial amount of money
         updatePlayersTable("/joinGame " + player->name + " " + std::to_string(1000));

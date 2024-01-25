@@ -7,6 +7,7 @@
 #include <QGraphicsPixmapItem>
 #include "GameLogic/PokerPlayer.hpp"
 #include "GameLogic/PlayerInfo.hpp"
+#include "Visuals/Gamewindow/visualpinfo.hpp"
 
 namespace Ui {
 class GameWindow;
@@ -17,7 +18,6 @@ class GameWindow: public QMainWindow
     Q_OBJECT
 
 public:
-
     explicit GameWindow(QWidget *parent = nullptr, std::string name = "John");
     ~GameWindow();
     const QString Get_image_path(const std::string &suit, const std::string &value, bool back = false); // to display the back call with args ("back", "back", true)
@@ -42,6 +42,8 @@ public:
 
 
     PokerPlayer game_player;
+
+    std::unordered_map<std::string, VisualPInfo> VisPinf;
 
 private slots:
 

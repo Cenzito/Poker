@@ -73,7 +73,7 @@ GameWindow::GameWindow(QWidget *parent, std::string name) : game_player(name),
         }
     }
 
-    switch_bet_button_off();
+    //switch_bet_button_off();
 
     // Add labels to the layout
     verticalLayout->addWidget(labelPot);
@@ -121,6 +121,8 @@ void GameWindow::onPlayButtonClicked()
 }
 
 void GameWindow::onRaiseButtonClicked(){
+    //hide buttons
+    switch_bet_button_off();
     int add_bet = ui->raise_box->value();
     int current = (ui->cumulative_bet_line->text()).toInt();
     ui->cumulative_bet_line->setText(QString::number(add_bet+current));
@@ -129,6 +131,7 @@ void GameWindow::onRaiseButtonClicked(){
 }
 
 void GameWindow::onCallButtonClicked(){ //Reminder: this is check/call button, need to work on changing the name in accordance with the situation, but functionallity should work fine for now
+    switch_bet_button_off();
     emit game_player.Call();
 
 }
@@ -136,6 +139,7 @@ void GameWindow::onCallButtonClicked(){ //Reminder: this is check/call button, n
 
 
 void GameWindow::onFoldButtonClicked(){
+    switch_bet_button_off();
     emit game_player.Fold();
 }
 
@@ -150,14 +154,6 @@ void GameWindow::update_display(){
     display_names_stacks_bets();
 
 
-    //if you are the current player
-    if (game_player.tableInfo.playerInfo[game_player.tableInfo.current_player].name == game_player.getName()) {
-        switch_bet_button_on();
-    }
-    else {
-        switch_bet_button_off();
-    }
-
     //display middle pot
     display_middle_pot();
 
@@ -168,6 +164,10 @@ void GameWindow::update_display(){
     update_community_cards();
     updateCallButtonLabel();
     displayAllPCards();
+    //if you are the current player
+    if (game_player.tableInfo.playerInfo[game_player.tableInfo.current_player].name == game_player.getName()) {
+        switch_bet_button_on();
+    }
 
 }
 
@@ -291,18 +291,22 @@ void GameWindow::display_player_hand(){ // to test
     ui->label_card1->setPixmap(resized_card1) ;
     ui ->label_card2->setPixmap(resized_card2) ;
 }
-  
+
 
 
 void GameWindow::switch_bet_button_on(){
     ui->RaiseButton->show();
-    ui->FoldButton->show() ;
+    ui->FoldButton->show();
     ui->CallButton->show();
+
 }
 void GameWindow::switch_bet_button_off(){
     ui->RaiseButton->hide();
     ui->FoldButton->hide() ;
     ui->CallButton->hide();
+
+    // Process pending events to update GUI immediately
+    QApplication::processEvents();
 }
 
 
@@ -527,16 +531,25 @@ void GameWindow::on_NextRound_clicked()
 
 
 void GameWindow::displayCardP(int player) {
-    Card card1 = game_player.tableInfo.playerInfo[player].cards[0];
-    Card card2 = game_player.tableInfo.playerInfo[player].cards[1];
-    Suit suit1 = card1.getSuit();
-    Suit suit2 = card2.getSuit();
-    int value1 = card1.getValue();
-    int value2 = card2.getValue();
-    QString path1 = Get_image_path(suitToString(suit1),std::to_string(value1),false);
-    QString path2 = Get_image_path(suitToString(suit2),std::to_string(value2),false);
+    QString path1;
+    QString path2;
+    if (game_player.tableInfo.playerInfo[player].cards.size() == 2) {
+        Card card1 = game_player.tableInfo.playerInfo[player].cards[0];
+        Card card2 = game_player.tableInfo.playerInfo[player].cards[1];
+        Suit suit1 = card1.getSuit();
+        Suit suit2 = card2.getSuit();
+        int value1 = card1.getValue();
+        int value2 = card2.getValue();
+
+        QString path1 = Get_image_path(suitToString(suit1),std::to_string(value1),false);
+        QString path2 = Get_image_path(suitToString(suit2),std::to_string(value2),false);
+    } else {
+        path1 = ":/images/cards/back_card.png";
+        path2 = ":/images/cards/back_card.png";
+    }
     QImage image1(path1);
     QImage image2(path2);
+
 
     QSize size1 = ui->label_player1_card1->size();
     QSize size2 = ui->label_player1_card2->size();
@@ -580,9 +593,9 @@ void GameWindow::displayCardP(int player) {
 // start of display a given player's cards
 void GameWindow::displayAllPCards() {
     for (int i=0; i <game_player.tableInfo.player_num;i++) {
-        if (game_player.tableInfo.playerInfo[i].cards.size() == 2) {
+
             displayCardP(i);
-        }
+
     }
 }
 
