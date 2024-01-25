@@ -50,6 +50,7 @@ void BotCenzo::Action(){
 
     if (randnumb_generator() < foldfunction[row][col] ) {
         fold_bet();
+
     }
 
     //else refer to matrix for probability of raise
