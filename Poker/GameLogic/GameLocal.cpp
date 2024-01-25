@@ -284,8 +284,8 @@ void GameLocal::allin(PlayerInfo& allinPlayerInfo) {
     int subpot= tableInfo.pot;
     for (int i = 0; i < tableInfo.player_num; i++) {
         if (!tableInfo.playerInfo[i].isFold) {
-            if (tableInfo.playerInfo[i].bet>allinPlayerInfo.stack_size){
-                subpot-= (tableInfo.playerInfo[i].bet-allinPlayerInfo.stack_size); //removes the surplus that players might have put in
+            if (tableInfo.playerInfo[i].bet>allinPlayerInfo.stack_size+allinPlayerInfo.bet){
+                subpot-= (tableInfo.playerInfo[i].bet-allinPlayerInfo.stack_size-allinPlayerInfo.bet); //removes the surplus that players might have put in
             }
         }
     }
