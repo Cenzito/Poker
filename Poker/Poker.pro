@@ -9,8 +9,6 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    Analysis/plot_test_mateo.cpp \
-    Analysis/vpip.cpp \
     Bots/Medium/MediumLeal.cpp \
     GameLogic/GameLocal.cpp \
     GameLogic/PlayerInfo.cpp \
@@ -38,12 +36,12 @@ SOURCES += \
     Visuals/Gamewindow/gamewindow.cpp \
     Visuals/MainWindow/mainwindow.cpp \
     Analysis/analysis.cpp \
-    Analysis/AnalysisDiego.cpp \
-    Analysis/ProcessHandHistory.cpp \
+    Analysis/pbPlots.cpp \
+    Analysis/plot_test_mateo.cpp \
+    Analysis/supportLib.cpp \
+
 
 HEADERS += \
-    Analysis/plot_test_mateo.h \
-    Analysis/vpip.h \
     Bots/Bot.hpp \
     Bots/Easy/BotDrunk.hpp \
     Bots/Easy/BotEasy.hpp \
@@ -69,8 +67,9 @@ HEADERS += \
     Visuals/MainWindow/mainwindow.hpp \
     Visuals/RulesWindow/ruleswindow.h \
     Analysis/analysis.hpp \
-    Analysis/AnalysisDiego.hpp \
-
+    Analysis/pbPlots.hpp \
+    Analysis/plot_test_mateo.h \
+    Analysis/supportLib.hpp \
 
 
 FORMS += \

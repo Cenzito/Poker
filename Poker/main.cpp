@@ -7,7 +7,6 @@
 #include "Visuals/MainWindow/mainwindow.hpp"
 #include <QApplication>
 
-#include "Analysis/ProcessHandHistory.cpp"
 
 
 int main(int argc, char *argv[]) {
