@@ -13,3 +13,5 @@ Had to start most of the file from scratch because we had a lot of issues betwee
 
 WEEK of 22th January 2024:
 
+Alongside Alvaro we finished the functions for Agression Factor and VPIP for each player, using his function ReadMargins and ReadHands, and the worked perfectly, now we have to adapt all of our work for QT and then develop a UI so it can be translated into a visual aspect, we'll ask for help to the Visuals group.
+
