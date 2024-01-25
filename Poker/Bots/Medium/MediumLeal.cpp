@@ -1,62 +1,37 @@
 #include "MediumLeal.hpp"
 #include <cmath>
 #include <algorithm>
+#include <random>
 
+
+float gen_rand_num() {
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<> dis(0.0, 1.0);
+
+    return dis(gen);
+}
 
 int MediumLeal::CalcCardValue() {
-
     PokerHand educatedHand(hand);
     CardValue = educatedHand.get_combination();
     NumericalCardValue = static_cast<int>(CardValue);
 }
 
-bool MediumLeal::ShouldFold() {
 
-    if (0 < tableInfo.current_biggest_bet) {
-       return true;
-     }
+void MediumLeal::Action() { //syntax changes as soon as we can make it an inhereted class
+    float probability = 1 - lambda * exp(-lambda * (NumericalCardValue / 10));
+    float rand_num = gen_rand_num();
 
-    float Probability = exp(-lambda * NumericalCardValue);
-    double threshold = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
-    if (threshold <= Probability) {
-        return true;
+    if (probability >= rand_num) {
+        fold_bet();
     }
+
+    else if (NumericalCardValue <= threshold) {
+        call_bet();
+    }
+
     else {
-        return false;
+        raise_bet(1);
     }
 }
-
-
-bool MediumLeal::ShouldRaise(int threshold) {
-    if (NumericalCardValue < threshold) {
-        return false;
-     }
-       else {
-        return true;
-    }
-
-}
-
-/*
-signed int MediumLeal::Action() { //syntax changes as soon as we can make it an inhereted class
-
-    if (ShouldFold() == false && ShouldRaise(threshold) == false) {
-        return tableInfo.bet_on_table;
-    }
-
-    if (ShouldFold() == false && ShouldRaise(threshold) == true) {
-        //raise by 2 x small blind
-
-        if (chips > 2*tableInfo.bet_on_table) {
-            return 2*tableInfo.bet_on_table;
-        }
-        else {
-            return tableInfo.bet_on_table;
-        }
-
-    }
-
-    if (ShouldFold() == true) {
-        return -1;
-    }
-}*/
