@@ -207,7 +207,8 @@ void GameLocal::endHand() {
     }
     distribute();
 
-    //nextHand();
+
+    nextHand();
 }
 
 std::vector<PlayerInfo> GameLocal::winners() {
@@ -367,8 +368,6 @@ void GameLocal::onAction() {
         //get next current_player
         qDebug()<<"is this the problem?";
         setNextCurrentPlayer();
-
-
         // we end round of betting
         if (tableInfo.current_player == tableInfo.lastRaiser) {
             qDebug()<<"is this the problem?";
@@ -376,6 +375,7 @@ void GameLocal::onAction() {
         } else {
             askBet(findPlayer(tableInfo.playerInfo[tableInfo.current_player].name));
         }
+
     }
 }
 
