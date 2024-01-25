@@ -12,8 +12,6 @@ public:
     void Action();
 
 private:
-    int CalcCardValue();;
-    PokerCombinations CardValue;
     int NumericalCardValue;
     float lambda = 4.8; //arbitrary
     int threshold = 5; //basically arbitrary

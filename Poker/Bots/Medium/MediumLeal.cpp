@@ -12,14 +12,10 @@ float gen_rand_num() {
     return dis(gen);
 }
 
-int MediumLeal::CalcCardValue() {
-    PokerHand educatedHand(hand);
-    CardValue = educatedHand.get_combination();
-    NumericalCardValue = static_cast<int>(CardValue);
-}
-
-
 void MediumLeal::Action() { //syntax changes as soon as we can make it an inhereted class
+    PokerHand educatedHand(hand); //where can we find cards?? --> make this make sense
+    NumericalCardValue = static_cast<int>(educatedHand.get_combination());
+
     float probability = 1 - lambda * exp(-lambda * (NumericalCardValue / 10));
     float rand_num = gen_rand_num();
 
