@@ -276,6 +276,7 @@ void GameLocal::updatePlayersTable(std::string updatePlayersTable) {
 void GameLocal::allin(PlayerInfo& allinPlayerInfo) {
     //set the player to all in
     allinPlayerInfo.isAllin=true;
+    qDebug()<<allinPlayerInfo.name<<"went all in";
 
     //get players who havent folded since they are the ones who might of bet more than our stack
     //(keep in mind that if a player has folded then he certainly put in less than our stack or else this would
@@ -347,27 +348,31 @@ void GameLocal::nextHand(){
 
 void GameLocal::askBet(PokerPlayer* p) {
     //connect to  a player, tell him its his turn then disconnect
+    qDebug()<<p->name<<"is asked to make a choice";
     QObject::connect(this, &GameLocal::askAction, p, &PokerPlayer::Action, Qt::QueuedConnection);
     emit askAction();
     QObject::disconnect(this, &GameLocal::askAction, p, &PokerPlayer::Action);
 }
 
 void GameLocal::onAction() {
-
+    qDebug()<<"action entered";
     //check if end hand
     if (players_standing == 1) {
         endHand();
     }
     else {
         //get next current_player
+        qDebug()<<"is this the problem?";
         setNextCurrentPlayer();
 
 
         // we end round of betting
         if (tableInfo.current_player == tableInfo.lastRaiser) {
+            qDebug()<<"is this the problem?";
             nextBettingRound();
         } else {
             if (tableInfo.playerInfo[tableInfo.current_player].isAllin){
+                qDebug()<<"is this the problem?";
                 onAction();
             } else {
                 askBet(findPlayer(tableInfo.playerInfo[tableInfo.current_player].name));
@@ -378,7 +383,7 @@ void GameLocal::onAction() {
 
 void GameLocal::onCall() {
     PlayerInfo &currentPlayerInfo = tableInfo.playerInfo[tableInfo.current_player];
-
+    qDebug()<<"current highest bet is:"<< tableInfo.current_biggest_bet;
     //if doesn't have the money to match: all-in
     if (currentPlayerInfo.stack_size + currentPlayerInfo.bet <= tableInfo.current_biggest_bet){
         allin(currentPlayerInfo);
@@ -400,7 +405,10 @@ void GameLocal::onFold() {
 
 
 void GameLocal::onRaise(int bet) {
+    qDebug()<<"IN RAISE";
     PlayerInfo &currentPlayerInfo = tableInfo.playerInfo[tableInfo.current_player];
+    qDebug()<<currentPlayerInfo.name<<"is trying to raise"<<bet;
+
     //if bets too little or doesn't have the money to bet: all in
     if (currentPlayerInfo.stack_size <= tableInfo.current_biggest_bet + bet - currentPlayerInfo.bet) { //checks for lack of funds to raise by "bet" amount
         if (currentPlayerInfo.stack_size + currentPlayerInfo.bet >= tableInfo.current_biggest_bet) {
@@ -410,8 +418,11 @@ void GameLocal::onRaise(int bet) {
 
         allin(currentPlayerInfo);
     } else { //if they have the funds
+        qDebug()<<"bet went from:"<<currentPlayerInfo.bet;
         pay(currentPlayerInfo, tableInfo.current_biggest_bet +bet - currentPlayerInfo.bet);
+        qDebug()<<"to:"<<currentPlayerInfo.bet;
         updatePlayersTable("/setBiggestBet " + std::to_string(currentPlayerInfo.bet));
+        qDebug()<<"setting biggest bet to:"<<currentPlayerInfo.bet;
         updatePlayersTable("/setLastRaiser " + std::to_string(tableInfo.current_player));
 
     }
@@ -454,7 +465,6 @@ void GameLocal::nextBettingRound() {
             //biggest bet is always first to act
             //if all fold and come back to him -> go to next round
             updatePlayersTable("/setLastRaiser " + std::to_string(tableInfo.current_player));
-
 
             askBet(findPlayer(tableInfo.playerInfo[tableInfo.current_player].name));
             break;
@@ -519,7 +529,7 @@ PokerPlayer* GameLocal::findPlayer(std::string name) {
 void GameLocal::setNextCurrentPlayer() {
     //get next current_player
     for (int elt = 1; elt <= tableInfo.player_num; elt++) {
-        int next = (tableInfo.current_player + 1) % tableInfo.player_num;
+        int next = (tableInfo.current_player + elt) % tableInfo.player_num;
         if ( !tableInfo.playerInfo[next].isFold ) {
             updatePlayersTable("/setActivePlayer " + std::to_string(next));
             break;

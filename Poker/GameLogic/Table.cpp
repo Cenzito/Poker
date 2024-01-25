@@ -130,6 +130,7 @@ void Table::updateTable(std::string command) {
         for (int i = 0; i <= player_num; i++) {
             playerInfo[i].bet = 0;
         }
+        qDebug()<<"IT WAS RESET";
         current_biggest_bet = 0;
         current_player = ButtonPlayer;
 
@@ -137,6 +138,7 @@ void Table::updateTable(std::string command) {
         break;
     } case CommandType::ResetGame: {
         //reset bets
+        qDebug()<<"IT WAS RESET";
         for (int i = 0; i <= player_num; i++) {
             playerInfo[i].bet = 0;
             playerInfo[i].isAllin = false;

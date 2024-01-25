@@ -23,6 +23,7 @@ void Bot::Action() {
 
 
 void Bot::call_bet(){
+    qDebug()<<name<<"is calling";
     emit Call();
 };
 void Bot::fold_bet() {
