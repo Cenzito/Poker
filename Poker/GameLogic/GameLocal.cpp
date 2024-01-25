@@ -371,12 +371,7 @@ void GameLocal::onAction() {
             qDebug()<<"is this the problem?";
             nextBettingRound();
         } else {
-            if (tableInfo.playerInfo[tableInfo.current_player].isAllin){
-                qDebug()<<"is this the problem?";
-                onAction();
-            } else {
-                askBet(findPlayer(tableInfo.playerInfo[tableInfo.current_player].name));
-            }
+            askBet(findPlayer(tableInfo.playerInfo[tableInfo.current_player].name));
         }
     }
 }
@@ -411,7 +406,7 @@ void GameLocal::onRaise(int bet) {
 
     //if bets too little or doesn't have the money to bet: all in
     if (currentPlayerInfo.stack_size <= tableInfo.current_biggest_bet + bet - currentPlayerInfo.bet) { //checks for lack of funds to raise by "bet" amount
-        if (currentPlayerInfo.stack_size + currentPlayerInfo.bet >= tableInfo.current_biggest_bet) {
+        if (currentPlayerInfo.stack_size + currentPlayerInfo.bet > tableInfo.current_biggest_bet) {
             updatePlayersTable("/setBiggestBet " + std::to_string(currentPlayerInfo.stack_size + currentPlayerInfo.bet));
             updatePlayersTable("/setLastRaiser " + std::to_string(tableInfo.current_player));
         }
