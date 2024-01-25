@@ -19,7 +19,8 @@ int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
 
     GameLocalWindow w;
-    Bot bot1 = Bot("Alpha", 3);
+    //Bot bot1 = Bot("Alpha", 3);
+    Bot bot1 = Bot("bot1",0);
     Bot bot2 = Bot("bot2",0);
 
     //Bot bot1 = Bot("bot1", 0);

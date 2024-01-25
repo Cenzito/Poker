@@ -140,7 +140,7 @@ void GameWindow::onFoldButtonClicked(){
 }
 
 void GameWindow::update_display(){
-    qDebug() << "display";
+    //qDebug() << "display";
     // Display players hand
     display_player_hand();
     preflop_odds();
@@ -195,7 +195,7 @@ void GameWindow::update_community_cards() {
         ui->AddBot->setEnabled(false);
     }
 
-    qDebug() << "number center cards: " << communityCards.size();
+    //qDebug() << "number center cards: " << communityCards.size();
 
 
     // Display the first three community cards initially
@@ -435,7 +435,7 @@ void GameWindow::display_names_stacks_bets(){
         ui ->line_player1->setText(QString::fromStdString(playerName1));
 
         std::string betplayer1 = std::to_string(game_player.tableInfo.playerInfo[0].bet);
-        qDebug() << "bet 1" << QString::fromStdString(betplayer1);
+        //qDebug() << "bet 1" << QString::fromStdString(betplayer1);
         ui -> line_bet1 -> setText(QString::fromStdString(betplayer1));
     }
 
@@ -443,7 +443,7 @@ void GameWindow::display_names_stacks_bets(){
         std::string playerName2 = game_player.tableInfo.playerInfo[1].name+" | "+std::to_string(game_player.tableInfo.playerInfo[1].stack_size);
         ui ->line_player2 ->setText(QString::fromStdString(playerName2));
         std::string betplayer2 = std::to_string(game_player.tableInfo.playerInfo[1].bet);
-        qDebug() << "player 2 bet " << game_player.tableInfo.playerInfo[1].bet;
+        //qDebug() << "player 2 bet " << game_player.tableInfo.playerInfo[1].bet;
         ui -> line_bet2 -> setText(QString::fromStdString(betplayer2));
     }
 
@@ -451,7 +451,7 @@ void GameWindow::display_names_stacks_bets(){
         std::string playerName3 = game_player.tableInfo.playerInfo[2].name+" | "+std::to_string(game_player.tableInfo.playerInfo[2].stack_size);
         ui ->line_player3 ->setText(QString::fromStdString(playerName3));
         std::string betplayer3 = std::to_string(game_player.tableInfo.playerInfo[2].bet);
-        qDebug() << "bet 3" << QString::fromStdString(betplayer3);
+        //qDebug() << "bet 3" << QString::fromStdString(betplayer3);
         ui -> line_bet3 -> setText(QString::fromStdString(betplayer3));
     }
 

@@ -71,13 +71,18 @@ void GameLocal::win(PlayerInfo& PlayerWin, int sum) {
 
 
 void GameLocal::distribute() {
+    for (int i=0; i<=tableInfo.player_num; i++){
+        qDebug()<<tableInfo.playerInfo[i].name<<"has this as subpot" <<tableInfo.subpots[i];
+    }
+
     std::vector<PlayerInfo> winnerlist = winners();
+
     if (winnerlist.size() ==1){
         PlayerInfo PlayerWin = winnerlist.at(0);
         if (PlayerWin.isAllin) {
             //finds the index of the winning player in playerInfo
             int index=tableInfo.playerIndex(PlayerWin.name);
-
+            qDebug()<<"SINGLE ALLIN WINNER";
             if (tableInfo.subpots[index]>0) {
 
                 //transfers the money from the subpot to the players stack
@@ -85,15 +90,24 @@ void GameLocal::distribute() {
 
                 //decreases the value in the pot and subpots
                 tableInfo.pot -= tableInfo.subpots[index];
-                for (int i =0; i<=tableInfo.player_num; i++){
+                for (int i =0; i<tableInfo.player_num; i++){
                     tableInfo.subpots[i] -= tableInfo.subpots[index];
                 }
             }
 
 
-            //set the player to inactive so we can calculate who the second winner is
-            fold(PlayerWin);
+            //get rid of any all inners who might have been equal to the minimum (at least one)
+            for (PlayerInfo candidate : winnerlist) {
+                if (candidate.isAllin) {
+                    int index=tableInfo.playerIndex(candidate.name);
+                    if (tableInfo.subpots[index]<=0) {
+                        fold(candidate);
+                    }
 
+                }
+            }
+
+            qDebug()<<"There are this many players"<<players_standing;
             if (tableInfo.pot>0){ //if theres still money to give...
                 if (players_standing<=1) { //if theres at most one active player, let that active player win the rest
                     for (int i =0; i<=tableInfo.player_num; i++){
@@ -109,6 +123,7 @@ void GameLocal::distribute() {
                 }
             }
         } else { //if the only player is not allin then he gets all the money and the round is over
+            qDebug()<<"One player got the money";
             win(PlayerWin, tableInfo.pot);
         }
     } else {
@@ -234,10 +249,12 @@ std::vector<PlayerInfo> GameLocal::winners() {
 
             //if we're at the end of the vector and they still haven't lost then they're a winner
             if (counter == players_standing) {
+                qDebug()<<first.name<<"won";
                 winners.push_back(first);
             }
         }
     }
+    qDebug()<<winners.size();
     return winners;
 }
 
@@ -387,7 +404,7 @@ void GameLocal::onRaise(int bet) {
     //if bets too little or doesn't have the money to bet: all in
     if (currentPlayerInfo.stack_size <= tableInfo.current_biggest_bet + bet - currentPlayerInfo.bet) { //checks for lack of funds to raise by "bet" amount
         if (currentPlayerInfo.stack_size + currentPlayerInfo.bet >= tableInfo.current_biggest_bet) {
-            updatePlayersTable("/setBiggestBet " + std::to_string(currentPlayerInfo.stack_size + currentPlayerInfo.bet) + " " + std::to_string(currentPlayerInfo.bet));
+            updatePlayersTable("/setBiggestBet " + std::to_string(currentPlayerInfo.stack_size + currentPlayerInfo.bet));
             updatePlayersTable("/setLastRaiser " + std::to_string(tableInfo.current_player));
         }
 
