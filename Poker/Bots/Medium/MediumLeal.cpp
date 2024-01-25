@@ -1,62 +1,40 @@
 #include "MediumLeal.hpp"
 #include <cmath>
 #include <algorithm>
+#include <random>
 
 
-int MediumLeal::CalcCardValue() {
+double randnum_generator() {
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<> dis(0.0, 1.0);
+    return dis(gen);
+}
+
+int MediumLeal::CalcCardValue() { //make sure this happens every time the bot is given a new hand
 
     PokerHand educatedHand(hand);
     CardValue = educatedHand.get_combination();
     NumericalCardValue = static_cast<int>(CardValue);
 }
 
-bool MediumLeal::ShouldFold() {
 
-    if (0 < tableInfo.bet_on_table) {
-       return true;
-     }
+/*void MediumLeal::Action() { //syntax changes as soon as we can make it an inhereted class
+    float Probability = lambda * exp(-lambda * NumericalCardValue);
+    float threshold = randnum_generator();
 
-    float Probability = exp(-lambda * NumericalCardValue);
-    double threshold = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
-    if (threshold <= Probability) {
-        return true;
+    //check i the generated threshold is greater than or equal to the calculated probability
+    if (Probability >= threshold) {
+        fold_bet();
     }
     else {
-        return false;
-    }
-}
-
-
-bool MediumLeal::ShouldRaise(int threshold) {
-    if (NumericalCardValue < threshold) {
-        return false;
-     }
-       else {
-        return true;
-    }
-
-}
-
-/*
-signed int MediumLeal::Action() { //syntax changes as soon as we can make it an inhereted class
-
-    if (ShouldFold() == false && ShouldRaise(threshold) == false) {
-        return tableInfo.bet_on_table;
-    }
-
-    if (ShouldFold() == false && ShouldRaise(threshold) == true) {
-        //raise by 2 x small blind
-
-        if (chips > 2*tableInfo.bet_on_table) {
-            return 2*tableInfo.bet_on_table;
+        //now we decide if to raise or call
+        if (cardValue < card_threshold) {
+            call_bet();
         }
         else {
-            return tableInfo.bet_on_table;
+            raise_bet(1);
         }
-
     }
 
-    if (ShouldFold() == true) {
-        return -1;
-    }
 }*/

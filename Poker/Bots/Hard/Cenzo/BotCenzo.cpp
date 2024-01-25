@@ -4,6 +4,7 @@
 #include "../../../GameLogic/PokerPlayer.hpp"
 #include <cmath>
 #include <random>
+#include <QDebug>
 
 double randnumb_generator() {
     std::random_device rd;
@@ -27,6 +28,8 @@ void BotCenzo::Action(){
     int last_bet = tableInfo.current_biggest_bet;
     float x = 0; //the % of winning
     float y = last_bet / tableInfo.pot;
+    qDebug() << "last bet:" << tableInfo.current_biggest_bet;
+    qDebug() << "x:" <<x <<" y:" << 50/75;
 
     float col;
     float row;
@@ -38,8 +41,9 @@ void BotCenzo::Action(){
     }
     else {
         col = (int)x / 0.05;
-        row = (int)(0.1 + (y - 2)) / ((max - 2) / 0.1);
+        row = (int)(10 + ((y - 2)) / ((max - 2) * 0.1));
     }
+    qDebug() << "col:" <<col <<" row:" << row;
 
     //refer to matrix for probability of fold
 
@@ -50,7 +54,7 @@ void BotCenzo::Action(){
 
     //else refer to matrix for probability of raise
 
-    else if (static_cast<float>(rand()) / RAND_MAX < raisefunction[row][col]) {
+    else if (randnumb_generator() < raisefunction[row][col]) {
         raise_bet(tableInfo.current_biggest_bet); //think about how much to raise
     }
 
