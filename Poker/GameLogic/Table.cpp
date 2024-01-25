@@ -129,14 +129,18 @@ void Table::updateTable(std::string command) {
         betting_round += 1;
         for (int i = 0; i <= player_num; i++) {
             playerInfo[i].bet = 0;
+            playerInfo[i].cards.clear();
         }
+        qDebug()<<"IT WAS RESET";
         current_biggest_bet = 0;
         current_player = ButtonPlayer;
+
 
         lastRaiser = current_player;
         break;
     } case CommandType::ResetGame: {
         //reset bets
+        qDebug()<<"IT WAS RESET";
         for (int i = 0; i <= player_num; i++) {
             playerInfo[i].bet = 0;
             playerInfo[i].isAllin = false;
