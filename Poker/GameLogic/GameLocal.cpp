@@ -72,7 +72,7 @@ void GameLocal::win(PlayerInfo& PlayerWin, int sum) {
 
 void GameLocal::distribute() {
     for (int i=0; i<=tableInfo.player_num; i++){
-        qDebug()<<tableInfo.playerInfo[i].name<<"has this as subpot" <<tableInfo.subpots[i];
+        //qDebug()<<tableInfo.playerInfo[i].name<<"has this as subpot" <<tableInfo.subpots[i];
     }
 
     std::vector<PlayerInfo> winnerlist = winners();
@@ -249,7 +249,7 @@ std::vector<PlayerInfo> GameLocal::winners() {
 
             //if we're at the end of the vector and they still haven't lost then they're a winner
             if (counter == players_standing) {
-                qDebug()<<first.name<<"won";
+                //qDebug()<<first.name<<"won";
                 winners.push_back(first);
             }
         }
@@ -276,7 +276,7 @@ void GameLocal::updatePlayersTable(std::string updatePlayersTable) {
 void GameLocal::allin(PlayerInfo& allinPlayerInfo) {
     //set the player to all in
     allinPlayerInfo.isAllin=true;
-    qDebug()<<allinPlayerInfo.name<<"went all in";
+    //qDebug()<<allinPlayerInfo.name<<"went all in";
 
     //get players who havent folded since they are the ones who might of bet more than our stack
     //(keep in mind that if a player has folded then he certainly put in less than our stack or else this would
@@ -348,7 +348,7 @@ void GameLocal::nextHand(){
 
 void GameLocal::askBet(PokerPlayer* p) {
     //connect to  a player, tell him its his turn then disconnect
-    qDebug()<<p->name<<"is asked to make a choice";
+    //qDebug()<<p->name<<"is asked to make a choice";
     QObject::connect(this, &GameLocal::askAction, p, &PokerPlayer::Action, Qt::QueuedConnection);
     emit askAction();
     QObject::disconnect(this, &GameLocal::askAction, p, &PokerPlayer::Action);
@@ -402,7 +402,7 @@ void GameLocal::onFold() {
 void GameLocal::onRaise(int bet) {
     qDebug()<<"IN RAISE";
     PlayerInfo &currentPlayerInfo = tableInfo.playerInfo[tableInfo.current_player];
-    qDebug()<<currentPlayerInfo.name<<"is trying to raise"<<bet;
+    //qDebug()<<currentPlayerInfo.name<<"is trying to raise"<<bet;
 
     //if bets too little or doesn't have the money to bet: all in
     if (currentPlayerInfo.stack_size <= tableInfo.current_biggest_bet + bet - currentPlayerInfo.bet) { //checks for lack of funds to raise by "bet" amount
