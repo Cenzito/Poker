@@ -29,6 +29,7 @@ Table::Table(int seats){
 
 
 void Table::Print() {
+    /*
     qDebug() << "\n\n\n\n\n\n";
     qDebug() << "seats " << seats;
     qDebug() << "number players " << player_num;
@@ -43,6 +44,7 @@ void Table::Print() {
         playerInfo[i].Print();
         qDebug() << "\n";
     }
+*/
 }
 
 
@@ -70,7 +72,7 @@ void Table::updateTable(std::string command) {
 
     CommandType cmdType = parseCommand(wordsArray[0]);
 
-
+    qDebug()<<command;
     switch (cmdType) {
     case CommandType::Bet: {
         // "/bet PlayerName Amount"
