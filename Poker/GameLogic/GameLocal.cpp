@@ -46,7 +46,7 @@ void GameLocal::addBot(Bot* bot) {
 void GameLocal::pay(PlayerInfo& PlayerPay, int sum) {
     //adding to the subpots for allinners if they allinned this round
     for (int i = 0; i < tableInfo.player_num; i++) {
-        if (!tableInfo.playerInfo[i].isAllin) { //players who are all in are not folded (you cant have both)
+        if (tableInfo.playerInfo[i].isAllin) { //players who are all in are not folded (you cant have both)
             if (0<tableInfo.playerInfo[i].bet){ //checking if the all in was this round to check if subpot can still increase
                 if (PlayerPay.bet < tableInfo.playerInfo[i].bet) { //checks if has already been counted previously in allin
                     tableInfo.subpots[i]+= (tableInfo.playerInfo[i].bet-PlayerPay.bet ); //adds what hadn't been added
@@ -54,6 +54,13 @@ void GameLocal::pay(PlayerInfo& PlayerPay, int sum) {
             }
         }
     }
+    if (PlayerPay.isAllin){
+        if (sum>0){
+            int index2=tableInfo.playerIndex(PlayerPay.name);
+            tableInfo.subpots[index2]+=sum;
+        }
+    }
+
     updatePlayersTable("/bet " + PlayerPay.name + " " + std::to_string(sum));
 };
 
@@ -380,7 +387,7 @@ void GameLocal::onRaise(int bet) {
     //if bets too little or doesn't have the money to bet: all in
     if (currentPlayerInfo.stack_size <= tableInfo.current_biggest_bet + bet - currentPlayerInfo.bet) { //checks for lack of funds to raise by "bet" amount
         if (currentPlayerInfo.stack_size + currentPlayerInfo.bet >= tableInfo.current_biggest_bet) {
-            updatePlayersTable("/setBiggestBet " + std::to_string(currentPlayerInfo.stack_size+currentPlayerInfo.bet));
+            updatePlayersTable("/setBiggestBet " + std::to_string(currentPlayerInfo.stack_size + currentPlayerInfo.bet) + " " + std::to_string(currentPlayerInfo.bet));
             updatePlayersTable("/setLastRaiser " + std::to_string(tableInfo.current_player));
         }
 
