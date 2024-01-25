@@ -32,6 +32,6 @@ void MediumLeal::Action() { //syntax changes as soon as we can make it an inhere
     }
 
     else {
-        raise_bet(1);
+        raise_bet(tableInfo.current_biggest_bet); //raise by minimum raise amount
     }
 }

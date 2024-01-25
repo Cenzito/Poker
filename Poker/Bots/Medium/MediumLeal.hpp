@@ -7,11 +7,7 @@
 
 class MediumLeal : public Bot {
 public:
-
-    // Bot(const std::string& name, int level) : PokerPlayer(name) {
-
-    //constrcutor
-    MediumLeal(const std::string& name, int level) : Bot(name, 3) {};
+    MediumLeal(const std::string& name, int level) : Bot(name, 3) {}; //constrcutor
 
     void Action();
 
@@ -19,8 +15,8 @@ private:
     int CalcCardValue();;
     PokerCombinations CardValue;
     int NumericalCardValue;
-    float lambda = 4.8;
-    int threshold = 5;
+    float lambda = 4.8; //arbitrary
+    int threshold = 5; //basically arbitrary
 
 };
 
