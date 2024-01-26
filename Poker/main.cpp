@@ -12,7 +12,6 @@
 int main(int argc, char *argv[]) {
     QTextStream outStream(stdout);
     qDebug() << "Hey";
-    displayParsed();
 
     return 1;
 
