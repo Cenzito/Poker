@@ -3,6 +3,8 @@
 #include <sstream>
 #include <unordered_map>
 #include "analysis.hpp"
+#include "matplotlibcpp.h"
+namespace plt = matplotlibcpp;
 
 // Add the missing constructor for the Hand class
 Hand::Hand(std::string& player, std::string& street, std::string& action, double chips, double chips_start)
@@ -399,6 +401,28 @@ int main() {
     // Calculate the average margins and print them
     double average = average_margin(margins);
 
+    std::vector<double> af_values;
+    std::vector<double> hand_intervals;
+
+    for (size_t i = 10; i <= hand_history.size(); i += 10) {
+        std::vector<Hand> subset(hand_history.begin(), hand_history.begin() + i);
+        af_values.push_back(calculate_af(subset, name_player));
+        hand_intervals.push_back(static_cast<double>(i));
+    }
+
+    plt::plot(hand_intervals, af_values);
+    plt::title("Aggression Factor Over Time");
+    plt::xlabel("Hand Number");
+    plt::ylabel("Aggression Factor");
+    plt::show();
+
+
 
     return 0;
 }
+
+
+
+
+
+

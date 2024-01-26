@@ -19,7 +19,7 @@ public:
 private:
     Ui::MainWindow *ui;
 
-private slots:
+private: slots:
     void onPlayButtonClicked();
     void onRulesButtonClicked();
     void onLocalPlayButtonClicked();

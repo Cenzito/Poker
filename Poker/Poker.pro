@@ -3,14 +3,11 @@ QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++17
-
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    Analysis/plot_test_mateo.cpp \
-    Analysis/vpip.cpp \
     Bots/Medium/MediumLeal.cpp \
     GameLogic/GameLocal.cpp \
     GameLogic/PlayerInfo.cpp \
@@ -38,12 +35,9 @@ SOURCES += \
     Visuals/Gamewindow/gamewindow.cpp \
     Visuals/MainWindow/mainwindow.cpp \
     Analysis/analysis.cpp \
-    Analysis/AnalysisDiego.cpp \
-    Analysis/ProcessHandHistory.cpp \
 
 HEADERS += \
-    Analysis/plot_test_mateo.h \
-    Analysis/vpip.h \
+    Analysis/matplotlibcpp.h \
     Bots/Bot.hpp \
     Bots/Easy/BotDrunk.hpp \
     Bots/Easy/BotEasy.hpp \
@@ -69,7 +63,6 @@ HEADERS += \
     Visuals/MainWindow/mainwindow.hpp \
     Visuals/RulesWindow/ruleswindow.h \
     Analysis/analysis.hpp \
-    Analysis/AnalysisDiego.hpp \
 
 
 
@@ -88,3 +81,8 @@ RESOURCES += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+
+
+
+

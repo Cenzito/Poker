@@ -23,3 +23,4 @@ double average_margin(const std::vector<Hand>& hand_history, const std::string& 
 
 
 #endif // ANALYSIS_HPP
+
