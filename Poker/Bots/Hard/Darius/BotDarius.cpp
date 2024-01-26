@@ -28,10 +28,10 @@ int BotDarius::optimalBet()
     int betting_round=tableInfo.betting_round;
     float odds;
     if( betting_round==0){ //we are in the preflop
-        odds=pot/wealth+3; //we have higher odds in the preflop where a lot of people might join
+        odds=pot/wealth+3/4*active_players; //we have higher odds in the preflop where a lot of people might join
     }
     if(betting_round==1){ //we are in the flop
-        odds=pot/wealth+2; //we have lower odds in the flop where less people might join
+        odds=pot/wealth+1/2*active_players; //we have lower odds in the flop where less people might join, we can expect half of the players to remain in game
     }
     if(betting_round==2){ //we are in the turn
         odds=pot/wealth+1; //we have lower odds in the turn where less people might join

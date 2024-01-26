@@ -23,8 +23,8 @@ int main(int argc, char *argv[]) {
 
     GameLocalWindow w;
 
-    //Bot bot1 = Bot("Alpha", 3);
-    Bot bot1 = Bot("bot2",0);
+    BotDarius bot1 = BotDarius("Alpha");
+    //Bot bot1 = Bot("bot2",0);
     MonkeyBot bot2 = MonkeyBot("Beta");
 
     //Bot bot1 = Bot("bot1", 0);
