@@ -21,31 +21,37 @@ int BotDarius::optimalBet()
 
     float win_probability = win_probabilities[0]; //the probability of winning
     float lose_probability = win_probabilities[2]; //the probability of losing
+    std::cout<<"lose proba= "<<lose_probability<<std::endl;
     int pot;
     int wealth;
     wealth=find_stack_size();
     pot=tableInfo.pot;
-    int betting_round=tableInfo.betting_round;
+    int round=tableInfo.communityCards.size();
     float odds;
-    if( betting_round==0){ //we are in the preflop
+    if( round==0){ //we are in the preflop
         odds=pot/wealth+3/4*active_players; //we have higher odds in the preflop where a lot of people might join
+        std::cout<<"pot: "<<pot<<" wealth: "<<wealth<<" active players: "<<active_players<<" odds: "<<odds;
+
     }
-    if(betting_round==1){ //we are in the flop
+    if(round==3){ //we are in the flop
         odds=pot/wealth+1/2*active_players; //we have lower odds in the flop where less people might join, we can expect half of the players to remain in game
+        std::cout<<"round: "<<round<<" odds: "<<odds<<std::endl;
     }
-    if(betting_round==2){ //we are in the turn
+    if(round==4){ //we are in the turn
         odds=pot/wealth+1; //we have lower odds in the turn where less people might join
+        std::cout<<"round: "<<round<<" odds: "<<odds<<std::endl;
     }
-    if(betting_round==3){ //we are in the river
+    if(round==5){ //we are in the river
         odds=pot/wealth+0.5; //we have lower odds in the river where less people might join
+        std::cout<<"round: "<<round<<" odds: "<<odds<<std::endl;
     }
     //qDebug() << pot;
 
     
     float optimal_bet, optimal_percentage;
-    optimal_percentage=win_probability-lose_probability/odds; //we compute the optimal percentage of wealth to bet
+    optimal_percentage=win_probability-(lose_probability/odds); //we compute the optimal percentage of wealth to bet
     optimal_bet=optimal_percentage*wealth; //we compute the optimal bet
-    std::cout<< "WIn_proba= "<<win_probability << "Wealth=  " << wealth << "Optimal bet=  "<< optimal_bet;
+    std::cout<< "WIn_proba= "<<win_probability << "Wealth=  " << wealth << "Optimal bet=  "<< optimal_bet<<" lose proba:"<<lose_probability<<" optimal_percentage "<<optimal_percentage<<" odds "<<odds<<" round: "<<round;
     //qDebug() << optimal_bet;
     //tried to account for different dynamics in different stages of the game
    // qDebug() << int(optimal_bet);
