@@ -11,3 +11,7 @@ holidays : took care of merging all the ui branch and unfiy them into single mai
 first week back : started working on the expensible window and reworked the whole display with layouts. Recoded display related functions that weren't working, and added functionalities to these displays functions.
 
 second week back : continued the layout display, added cards for the players and a next round button.
+
+third week back : added a function to display the players nametag in red, reworked the layouts and especially the display of cards.
+
+fourth week back : took care of the merging and fixed issues associated with ancient versions of the files. reworked the display of cards and layouts since new functionalities had been added on the display.

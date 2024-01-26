@@ -23,6 +23,7 @@ void Bot::Action() {
 
 
 void Bot::call_bet(){
+    //qDebug()<<name<<"is calling";
     emit Call();
 };
 void Bot::fold_bet() {
@@ -41,5 +42,6 @@ int Bot::find_stack_size(){
         {
             return table.playerInfo[i].stack_size;
         }
+        i++;
     }
 }

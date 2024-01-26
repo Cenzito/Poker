@@ -1,9 +1,15 @@
 #include "ruleswindow.h"
+#include "qgraphicseffect.h"
+#include "qlabel.h"
 #include "ui_ruleswindow.h"
 
 #include <QResource>
 #include <QFile>
 #include <QTextStream>
+#include <QPixmap>
+#include <QPalette>
+#include <QLabel>
+#include <QGraphicsDropShadowEffect>
 
 RulesWindow::RulesWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -21,8 +27,8 @@ RulesWindow::RulesWindow(QWidget *parent) :
     tab1 = new QTextBrowser(this);
     tab2 = new QTextBrowser(this);
 
-    tabWidget->addTab(tab1, "Tab 1");
-    tabWidget->addTab(tab2, "Tab 2");
+    tabWidget->addTab(tab1, "Rules");
+    tabWidget->addTab(tab2, "Hands");
 
     layout->addWidget(tabWidget);
 
@@ -40,7 +46,7 @@ RulesWindow::RulesWindow(QWidget *parent) :
     tab1 -> setHtml(rules_of_poker);
 
     QString hands_in_poker = "<html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'><meta http-equiv='Content-Style-Type' content='text/css'><title></title><meta name='Generator' content='Cocoa HTML Writer'><meta name='CocoaVersion' content='2299.7'><style type='text/css'> p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: center; font: 11.0px 'Comic Sans MS'; color: #000000} p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: center; font: 11.0px 'Comic Sans MS'; color: #000000; min-height: 15.0px} p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 11.0px 'Comic Sans MS'; color: #000000} p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 11.0px 'Comic Sans MS'; color: #000000; min-height: 15.0px}p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Comic Sans MS'; -webkit-text-stroke: #000000; min-height: 16.0px} span.s1 {text-decoration: underline} span.s2 {font-kerning: none}</style></head>"
-                              "<body><p class='p1'><b>HANDS RANKED FROM LOWEST TO HIGHEST</b></p><p class='p4'><br><b>High Card (no pair)</b><br></p><p class='p3'> No two cards have the same rank, the five cards are not in sequence, and the five cards are not te same suit.<br>When comparing the same types of hands, the higher-ranking card defeats the lower ranking card <br> <u>Ex.</u>  K♥ J♣ 8♣ 7♦ 3♠  (“King High’)<br></p>"
+                              "<body><p class='p1'><b>HANDS RANKED FROM LOWEST TO HIGHEST</b></p><p class='p4'><br><b>High Card (no pair)</b><br></p><p class='p3'> No two cards have the same rank, the five cards are not in sequence, and the five cards are not te same suit.<br>When comparing the same types of hands, the higher-ranking card defeats the lower ranking card <br> <u>Ex.</u>  K♥ J♣ 8♣ 7♦ 3♠  (“King High’)<br><img src=:/images/cards/H/13.png width=50 />  <img src=:/images/cards/C/11.png width=50 />  <img src=:/images/cards/C/8.png width=50/>  <img src=:/images/cards/D/7.png width=50 />  <img src=:/images/cards/S/3.png width=50 /> </p>"
                               "<p class='p3'><b>One Pair</b><br><br>Two cards of the same rank, plus three other unmatched cards.<br>When comparing the sames types of hands, the higher-ranking pairs defeat the lower-ranking pairs.<br><u>Ex.</u> 4♥ 4♠ K♠ 10♥ 5♠ (Pair of Fours)<br></p>"
                               "<p class='p3'><b>Two Pairs</b><br><br>Two cards of the same rank, plus two cards of another rank (that match each other, but not the first pair), plus one ummatched card.<br>When comparing same types of hands, higher ranking pair of the two defeats lower ranking pair<br><u>Ex.</u> J♥ J♣ 4♣ 4♠ 9♥ (“Jacks over Fours’)<br></p>"
                               "<p class='p3'><b>Three of a Kind</b><br><br>Three cards of the same rank, plus two unmatched cards.<br>When comparing the same types of hands, the higher-value three of a kind defeats the lower-value three of a kind.<br><u>Ex.</u> 2♦ 2♠ 2♣ K♠ 6♥<br></p>"
@@ -53,10 +59,25 @@ RulesWindow::RulesWindow(QWidget *parent) :
                               "</body></html>";
 
     tab2 -> setHtml(hands_in_poker) ;
+    QString styleSheet = "background-color: rgb(60, 122, 28);"
+                         "background-image: url(:/images/Poker_background.png);"
+                         "background-repeat: repeat-y;";
+    QString styleSheet2 = "background-color: rgb(60, 122, 28);"
+                         "background-image: url(:/images/Poker_background.png);"
+                         "background-repeat: repeat-y;";
 
-    setStyleSheet("background-color:rgb(197, 220, 199);");
-    setAutoFillBackground( true );
+    tab1->setStyleSheet(styleSheet);
+    tab2->setStyleSheet(styleSheet2);
 
+    QGraphicsDropShadowEffect* shadowEffect = new QGraphicsDropShadowEffect();
+    shadowEffect->setBlurRadius(30);
+    shadowEffect->setOffset(0);
+    shadowEffect->setColor(QColor(0, 0, 0, 150));
+    tab1->setGraphicsEffect(shadowEffect);
+    tab2->setGraphicsEffect(shadowEffect);
+
+    setStyleSheet("background-color:rgb(60, 122, 28);");
+    setAutoFillBackground(true);
 }
 
 RulesWindow::~RulesWindow()

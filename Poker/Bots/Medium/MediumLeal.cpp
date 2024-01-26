@@ -19,9 +19,11 @@ int MediumLeal::CalcCardValue() { //make sure this happens every time the bot is
 }
 
 
+
 /*void MediumLeal::Action() { //syntax changes as soon as we can make it an inhereted class
     float Probability = lambda * exp(-lambda * NumericalCardValue);
     float threshold = randnum_generator();
+
 
     //check i the generated threshold is greater than or equal to the calculated probability
     if (Probability >= threshold) {

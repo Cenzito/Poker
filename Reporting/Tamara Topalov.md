@@ -1,13 +1,15 @@
-week 1 (20.11. - 26.11.) - worked on making a new window (later named game window) that would open on the click of a button, but it was overwritten
+Week 1 (20.11. - 26.11.) - Worked on making a new window, later named the Game Window, opened on a button click. However, we encountered challenges, and my initial implementation was overwritten.
 
-week 2 (27.11. - 3.12.) - made login and sign-in form on the main window
+Week 2 (27.11. - 3.12.) - Implemented a login and sign-in form directly on the main window to enhance user interaction and accessibility. I also changed the layout of the Main Window.
 
-week 3 (4.12. - 10.12) - added hands part of rules window and changed the look and layout of the main window including adding a picture
+Week 3 (4.12. - 10.12.) - Extended the Rules Window functionality by incorporating the hands section, explaining hands possibilities in poker. I have enhanced the aesthetics and layout of the Main Window and also introduced an image to elevate the visual appeal.
 
-week 4 (11.12. - 17.12.) - worked on adding labels on gamewindow for middle cards in the game
+Week 4 (11.12. - 17.12.) - Worked on the Game Window by introducing labels to represent middle cards in the game, an additional visual component.
 
-week 5 (18.12. - 24.12.) - worked on functions for middle cards appearing as needed, functions update_community_cards and update_middle_card_display
+Week 5 (18.12. - 24.12.) - Developed functions to dynamically handle the appearance of middle cards based on game progress. Implemented functions, including update_community_cards and update_middle_card_display.
 
-week 6 (8.1. - 14.1.) - changed and updated functions for showing and removing middle cards
+Week 6 (8.1. - 14.1.) - Changed and updated functions responsible for displaying and removing middle cards, ensuring a responsive user experience.
 
-week 7 (15.1. - 21.1.) - added highlight for the player currently playing, function highlightActivePlayer; added and changed layouts and labels for better resizing of buttons and labels as the window resizes
+Week 7 (15.1. - 21.1.) - Implemented a player highlight feature to visually signify the active player during the game. Introduced layout and label adjustments to optimize the resizing of buttons and labels for an improved user interface as the window is resized.
+
+Week 8 (22.1 - 29.1.) - Helped with resolving various merging issues. Also, worked on some adjustments in order for the image on Game Window to resize as the window resizes as well.
