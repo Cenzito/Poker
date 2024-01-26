@@ -18,8 +18,14 @@ void GameLocal::JoinGame(PokerPlayer* player) {
 
     //would need to do a try in case of error if room is full
     if (tableInfo.player_num >= tableInfo.seats)  {
+        qDebug() << "too many players";
         return;
     } else {
+
+        //player joins game so we add him to the table with an initial amount of money
+        PlayerInfo playerinfo(player->getName(), 1000, 0);
+        tableInfo.playerInfo[tableInfo.player_num] = playerinfo;
+
         players.push_back(player);
 
 
@@ -335,6 +341,20 @@ void GameLocal::nextHand(){
     for (PokerPlayer* player : players) {
         player->removeCards();
     }
+
+    //reset bets
+    for (int i = 0; i <= tableInfo.player_num; i++) {
+        tableInfo.playerInfo[i].bet = 0;
+        tableInfo.playerInfo[i].isAllin = false;
+        tableInfo.playerInfo[i].isFold = false;
+    }
+    //reset bets
+    /*for (int i = 0; i <= tableInfo.player_num; i++) {
+        tableInfo.playerInfo[i].bet = 0;
+        tableInfo.playerInfo[i].isAllin = false;
+        tableInfo.playerInfo[i].isFold = false;
+    }*/
+
 
     players_standing = tableInfo.player_num;
     //qDebug() << tableInfo.communityCards.size();

@@ -1,9 +1,17 @@
 #include "BotCenzo.hpp"
-#include "../../../GameLogic/table.hpp"
+#include "../../../GameLogic/Table.hpp"
+#include "../../../GameLogic/GameLocal.hpp"
+#include "../../../GameLogic/PokerPlayer.hpp"
 #include <cmath>
 #include <random>
+#include <QDebug>
 
-
+double randnumb_generator() {
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<> dis(0.0, 1.0);
+    return dis(gen);
+}
 
 
 void BotCenzo::Action(){
@@ -17,9 +25,11 @@ void BotCenzo::Action(){
     //calculate hand proba of win using  Monte Carlo Proba Simulator
     float win;
     //check previous call
-    int last_bet = tableInfo.playerInfo[tableInfo.current_player - 1].bet;
+    int last_bet = tableInfo.current_biggest_bet;
     float x = 0; //the % of winning
     float y = last_bet / tableInfo.pot;
+    qDebug() << "last bet:" << tableInfo.current_biggest_bet;
+    qDebug() << "x:" <<x <<" y:" << 50/75;
 
     float col;
     float row;
@@ -31,26 +41,22 @@ void BotCenzo::Action(){
     }
     else {
         col = (int)x / 0.05;
-        row = (int)(0.1 + (y - 2)) / ((max - 2) / 0.1);
+        row = (int)(10 + ((y - 2)) / ((max - 2) * 0.1));
     }
+    qDebug() << "col:" <<col <<" row:" << row;
 
     //refer to matrix for probability of fold
 
-    if (foldfunction[row][col] == 1) {
-        fold_bet();
-    }
 
-    else {
-        if (static_cast<float>(rand()) / RAND_MAX < foldfunction[row][col] ) {
-            fold_bet();
-        }
+    if (randnumb_generator() < foldfunction[row][col] ) {
+        fold_bet();
+
     }
 
     //else refer to matrix for probability of raise
 
-
-    if (static_cast<float>(rand()) / RAND_MAX < raisefunction[row][col]) {
-        raise_bet(10); //think about how much to raise
+    else if (randnumb_generator() < raisefunction[row][col]) {
+        raise_bet(tableInfo.current_biggest_bet); //think about how much to raise
     }
 
     else {
