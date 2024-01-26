@@ -20,21 +20,34 @@ int BotDarius::optimalBet()
     //qDebug() << "wind proba ended";
 
     float win_probability = win_probabilities[0]; //the probability of winning
+    float lose_probability = win_probabilities[2]; //the probability of losing
     int pot;
-
-    pot=tableInfo.pot;
-    //qDebug() << pot;
-
     int wealth;
     wealth=find_stack_size();
-    float optimal_bet;
+    pot=tableInfo.pot;
+    int betting_round=tableInfo.betting_round;
+    float odds;
+    if( betting_round==0){ //we are in the preflop
+        odds=pot/wealth+3; //we have higher odds in the preflop where a lot of people might join
+    }
+    if(betting_round==1){ //we are in the flop
+        odds=pot/wealth+2; //we have lower odds in the flop where less people might join
+    }
+    if(betting_round==2){ //we are in the turn
+        odds=pot/wealth+1; //we have lower odds in the turn where less people might join
+    }
+    if(betting_round==3){ //we are in the river
+        odds=pot/wealth+0.5; //we have lower odds in the river where less people might join
+    }
+    //qDebug() << pot;
 
-    optimal_bet=win_probability*wealth/(1+(1-win_probability)/(2*pot)*wealth);
+    
+    float optimal_bet, optimal_percentage;
+    optimal_percentage=win_probability-lose_probability/odds; //we compute the optimal percentage of wealth to bet
+    optimal_bet=optimal_percentage*wealth; //we compute the optimal bet
     std::cout<< "WIn_proba= "<<win_probability << "Wealth=  " << wealth << "Optimal bet=  "<< optimal_bet;
     //qDebug() << optimal_bet;
-    //this is a very conservative strategy, we assume that making a certain bet we win just the preexisting pot, and we don't take into account the fact that we can win more money from the other players
-    //also, this is prone to lots of errors, judging a big pot as "fruitfull variant", when it may be the fact that players hands are very good
-    //so, it needs further improvement
+    //tried to account for different dynamics in different stages of the game
    // qDebug() << int(optimal_bet);
     return int(optimal_bet);
 }
