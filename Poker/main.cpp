@@ -32,7 +32,6 @@ int main(int argc, char *argv[]) {
 
     w.game.addBot(&bot1);
     w.game.addBot(&bot2);
-    w.game.addBot(&bot3);
     w.show();
 
     w.game.nextHand();
