@@ -10,6 +10,7 @@
 #include "./GameLogic/GameLocal.hpp"
 #include "./Bots/Hard/Cenzo/BotCenzo.hpp"
 #include "./Bots/Easy/MonkeyBot.hpp"
+#include "./Bots/Medium/MediumLeal.hpp"
 
 #include <QApplication>
 
@@ -24,8 +25,8 @@ int main(int argc, char *argv[]) {
     GameLocalWindow w;
 
     //Bot bot1 = Bot("Alpha", 3);
-    Bot bot1 = Bot("bot2",0);
-    MonkeyBot bot2 = MonkeyBot("Beta");
+    MediumLeal bot1 = MediumLeal("bot1",3);
+    MediumLeal bot2 = MediumLeal("bot2", 3);
 
     //Bot bot1 = Bot("bot1", 0);
     //Bot bot2 = Bot("bot2", 0);
