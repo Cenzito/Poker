@@ -2,7 +2,7 @@
 #include <cmath>
 #include <algorithm>
 #include <random>
-
+#include <qdebug.h>
 
 float gen_rand_num() {
     std::random_device rd;
@@ -13,11 +13,12 @@ float gen_rand_num() {
 }
 
 void MediumLeal::Action() { //syntax changes as soon as we can make it an inhereted class
-    PokerHand educatedHand(hand); //where can we find cards?? --> make this make sense
+    PokerHand educatedHand(hand); //add community cards
     NumericalCardValue = static_cast<int>(educatedHand.get_combination());
 
     float probability = 1 - lambda * exp(-lambda * (NumericalCardValue / 10));
     float rand_num = gen_rand_num();
+    qDebug()<< "threshold is";
 
     if (probability >= rand_num) {
         fold_bet();
