@@ -5,7 +5,14 @@ BotDarius::BotDarius(const std::string& name) : Bot(name, 10) {
 
 }
 
-
+float::Kelly_Criterion(int &wealth, int &pot, float &win_proba, float &lose_proba, float &multiplier){
+    
+    float kelly_criterion;
+    float delta;
+    delta=(pot/wealth-win_proba*multiplier+lose_proba)^2+4*multiplier*win_proba*pot/wealth;
+    kelly_criterion=(-(pot/wealth-win_proba*multiplier+lose_proba)+sqrt(delta))/(2*multiplier/wealth);
+    return kelly_criterion;
+}
 int BotDarius::optimalBet()
 {
     std::vector<Card> our_hand_cardsvector, table_cards_cardsvector;
@@ -27,22 +34,22 @@ int BotDarius::optimalBet()
     wealth=find_stack_size();
     pot=tableInfo.pot;
     int round=tableInfo.communityCards.size();
-    float odds;
+    
     if( round==0){ //we are in the preflop
-        odds=pot/wealth+3/4*active_players; //we have higher odds in the preflop where a lot of people might join
+        optimal_bet=Kelly_Criterion(wealth,pot, win_probability,lose_probability,3/4*active_players); //we have higher odds in the preflop where a lot of people might join
         std::cout<<"pot: "<<pot<<" wealth: "<<wealth<<" active players: "<<active_players<<" odds: "<<odds;
 
     }
     if(round==3){ //we are in the flop
-        odds=pot/wealth+1/2*active_players; //we have lower odds in the flop where less people might join, we can expect half of the players to remain in game
+        optimal_bet=Kelly_Criterion(wealth,pot, win_probability,lose_probability,1/2*active_players); //we have lower odds in the flop where less people might join, we can expect half of the players to remain in game
         std::cout<<"round: "<<round<<" odds: "<<odds<<std::endl;
     }
     if(round==4){ //we are in the turn
-        odds=pot/wealth+1; //we have lower odds in the turn where less people might join
+        optimal_bet=Kelly_Criterion(wealth,pot, win_probability,lose_probability,1);; //we have lower odds in the turn where less people might join
         std::cout<<"round: "<<round<<" odds: "<<odds<<std::endl;
     }
     if(round==5){ //we are in the river
-        odds=pot/wealth+0.5; //we have lower odds in the river where less people might join
+        optimal_bet=Kelly_Criterion(wealth,pot, win_probability,lose_probability,3/4);; //we have lower odds in the river where less people might join
         std::cout<<"round: "<<round<<" odds: "<<odds<<std::endl;
     }
     //qDebug() << pot;
