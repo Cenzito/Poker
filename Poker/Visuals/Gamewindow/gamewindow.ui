@@ -769,8 +769,15 @@ color: rgb(15, 96, 0);</string>
           <height>80</height>
          </size>
         </property>
+        <property name="maximumSize">
+         <size>
+          <width>120</width>
+          <height>16777215</height>
+         </size>
+        </property>
         <property name="styleSheet">
-         <string notr="true">background: None;</string>
+         <string notr="true">background: None;
+background-color: rgb(255, 13, 44);</string>
         </property>
         <property name="text">
          <string/>
