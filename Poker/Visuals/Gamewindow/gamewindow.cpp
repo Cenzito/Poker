@@ -28,7 +28,7 @@ GameWindow::GameWindow(QWidget *parent, std::string name) : game_player(name),
     QLabel *labelPot = new QLabel;
 
 
-    connect(ui->pushButton, &QPushButton::clicked, this, &GameWindow::onPlayButtonClicked);
+    connect(ui->pushButton, &QPushButton::clicked, this, &GameWindow::onRulesButtonClicked);
     connect(ui->AddBot_Button, &QPushButton::clicked, this, &GameWindow::onAddBotClicked);
     //connect(ui->FoldButton, &QPushButton::clicked, this, &GameWindow::onFoldButtonClicked(PokerPlayer* game_player));
     connect(ui->FoldButton, &QPushButton::clicked, [=]() {
@@ -99,27 +99,35 @@ const QString GameWindow::Get_image_path(const std::string &suit, const std::str
 
 }
 
+
+
+/*
+    Those are the functions to handle the button presses
+*/
+
+/*
+ *  onAddBotClicked(): add a bot to the game
+*/
 void GameWindow::onAddBotClicked()
 {
     int index = ui->AddBot->currentIndex();
-    Add_Bot(index);
-}
-
-void GameWindow::Add_Bot(int index) {
-    if (game_player.tableInfo.player_num < 8){
-        game_player.tableInfo.player_num += 1;
-        update_display();
-    }
 }
 
 
-
-void GameWindow::onPlayButtonClicked()
+/*
+ *  onRulesButtonClicked(): Open the rules window
+ *  It is kinda ugly but it is what it is
+*/
+void GameWindow::onRulesButtonClicked()
 {
     RulesWindow *rulesWindow = new RulesWindow(this) ;
     rulesWindow->show();
 }
 
+
+/*
+ * onRaiseButtonClicked(): Raise by the amount typed
+*/
 void GameWindow::onRaiseButtonClicked(){
     int add_bet = ui->raise_box->value();
     int current = (ui->cumulative_bet_line->text()).toInt();
@@ -128,17 +136,42 @@ void GameWindow::onRaiseButtonClicked(){
     emit game_player.Raise(add_bet);
 }
 
+/*
+ * onCallButtonClicked(): CALL
+*/
 void GameWindow::onCallButtonClicked(){ //Reminder: this is check/call button, need to work on changing the name in accordance with the situation, but functionallity should work fine for now
     emit game_player.Call();
 
 }
 
-
-
+/*
+ * onFoldButtonClicked(): FOLD
+*/
 void GameWindow::onFoldButtonClicked(){
     emit game_player.Fold();
 }
 
+/*
+ * onNextRoundButtonClicked(): Got to next round
+ * This button gives the player time to see everyone's cards and decide when to continue playing
+ * otherwise it would be immediate
+*/
+void GameWindow::onNextRoundButtonClicked()
+{
+    emit game_player.nextGame();
+}
+
+
+/*
+ * Those are functions to handle changes in the display.
+ * When a change to the Player's table happens, update_display is called.
+ * It then updates the entire screen
+ * For efficiency, it would be good to update only the modified elements
+*/
+
+/*
+ * update_display: Main function to update the display, calls all the other functions
+*/
 void GameWindow::update_display(){
     //qDebug() << "display";
     // Display players hand
@@ -170,6 +203,10 @@ void GameWindow::update_display(){
 }
 
 
+
+/*
+ * Updates the cards in the middle
+*/
 void GameWindow::update_community_cards() {
     const std::vector<Card>& communityCards = game_player.tableInfo.communityCards;
 
@@ -194,6 +231,10 @@ void GameWindow::update_community_cards() {
     }
 }
 
+/*
+ * update_middle_card_display(int, const Card&): updates individual card in the middle bases on the parameters if is called with
+ * Is called by update_community_cards()
+*/
 void GameWindow::update_middle_card_display(int cardIndex, const Card& card) {
     QLabel* middleCardLabel = findChild<QLabel*>(QString("label_middlecard%1").arg(cardIndex));
     if (middleCardLabel) {
@@ -211,6 +252,10 @@ void GameWindow::update_middle_card_display(int cardIndex, const Card& card) {
     }
 }
 
+/*
+ * remove_middle_card_display(int): Remove display of a card in the middle (if there is no card)
+ * Is called by update_community_cards()
+*/
 void GameWindow::remove_middle_card_display(int cardIndex) {
     QLabel* middleCardLabel = findChild<QLabel*>(QString("label_middlecard%1").arg(cardIndex));
     if (middleCardLabel) {
@@ -218,6 +263,12 @@ void GameWindow::remove_middle_card_display(int cardIndex) {
     }
 }
 
+
+/*
+ * preflop_odds() : computes the "odds" you have of winning based only on your two initial cards and no more information
+ * This computation is based on a prewritted table taking into account interactions between two players only
+ * It is only shown as an indication to the player
+*/
 void GameWindow::preflop_odds(){
     std::vector<Card> H = game_player.getHand() ; //get the player's hand, to access the cards that need to be displayed
     if (H.size() != 2) {
@@ -236,9 +287,12 @@ void GameWindow::preflop_odds(){
     ui->Preflop_odds->setText(QString::number(percentage));
 
 }
-// beginning of display poker hand
 
-  
+
+/*
+ * display_player_hand() : display the cards the player currently has
+ *
+*/
 void GameWindow::display_player_hand(){ // to test
     std::vector<Card> H = game_player.getHand() ; //get the player's hand, to access the cards that need to be displayed
     if (H.size() != 2) {
@@ -273,7 +327,10 @@ void GameWindow::display_player_hand(){ // to test
     ui ->label_card2->setPixmap(resized_card2) ;
 }
   
-  
+/*
+ * switch_bet_button_on() : display the bet button when it is our turn to bet
+ *
+*/
 void GameWindow::switch_bet_button_on(){
     int current_player = game_player.tableInfo.current_player ;
     //auto current_player_info = player->tableInfo.playerInfo[current_player] ;
@@ -292,7 +349,10 @@ void GameWindow::switch_bet_button_on(){
     }
 }
 
-
+/*
+ * switch_bet_button_off() : remove display of the bet button when it is clicked
+ *
+*/
 void GameWindow::switch_bet_button_off(){
     int current_player = game_player.tableInfo.current_player ;
     std::string player_name = game_player.name ;
@@ -304,6 +364,10 @@ void GameWindow::switch_bet_button_off(){
     }
 }
 
+/*
+ * updateCallButtonLabel() : call or check on the button
+ *
+*/
 void GameWindow::updateCallButtonLabel(){
     //bool condition = /* your condition here */; //SHOULD BE WHETHER TRUE IF SOMEONE PLACES A BET, FALSE IF NO BETS SO FAR IN THE TURN
     bool condition = false;
@@ -314,10 +378,11 @@ void GameWindow::updateCallButtonLabel(){
     ui->CallButton->setText(newLabel);
 }
 
-// end of switch for buttons
-
-// beginning of switch display players
-
+/*
+ * switch_players_display(): Display the information of a player if this player is in the game
+ * It is based on the number of player and doesn't show an empty nametag if there is no player
+ *
+*/
 void GameWindow::switch_players_display(){
 
     int number_player = game_player.tableInfo.player_num;
@@ -403,10 +468,11 @@ void GameWindow::switch_players_display(){
     }
 }
 
-// end of switch display players
 
-// beginning of display of names, stacks and bets
-
+/*
+ * display_names_stacks_bets(): as the name suggests, displays the name, stack and bet of the players
+ *
+*/
 void GameWindow::display_names_stacks_bets(){
 
     //for each additional player, add 1 from the previous sum
@@ -477,8 +543,11 @@ void GameWindow::display_names_stacks_bets(){
 
 }
 
-// beginning of highlight current player
 
+/*
+ * highlightActivePlayer(): put a border on the box of the player that is currently playing
+ *
+*/
 void GameWindow::highlightActivePlayer() {
 
     //current player
@@ -497,10 +566,10 @@ void GameWindow::highlightActivePlayer() {
         }
     }
 }
-// end of highlight current player
 
-// start of display and update middle pot
-
+/*
+ * display_middle_pot(): display sum in the pot
+*/
 void GameWindow::display_middle_pot(){
     int middle_pot = game_player.tableInfo.pot ;
     QFont font = ui->label_pot->font();
@@ -511,12 +580,12 @@ void GameWindow::display_middle_pot(){
 
 // end of display and update middle pot
 
-void GameWindow::onNextRoundButtonClicked()
-{
-    emit game_player.nextGame();
-}
 
-
+/*
+ * displayCardP(): Display the cards of a specific player
+ * is called by displayAllPCards();
+ *
+*/
 void GameWindow::displayCardP(int player) {
     Card card1 = game_player.tableInfo.playerInfo[player].cards[0];
     Card card2 = game_player.tableInfo.playerInfo[player].cards[1];
@@ -571,6 +640,12 @@ void GameWindow::displayCardP(int player) {
 
 }
 // start of display a given player's cards
+
+/*
+ * displayAllPCards(): Display the cards of all the players
+ * This is used at the end of a round to see who wins
+ *
+*/
 void GameWindow::displayAllPCards() {
     for (int i=0; i <game_player.tableInfo.player_num;i++) {
         if (game_player.tableInfo.playerInfo[i].cards.size() == 2) {
@@ -581,82 +656,11 @@ void GameWindow::displayAllPCards() {
 
 
 /*
-void GameWindow::display_given_cards(PokerPlayer* display_player){
-
-    int num = display_player->tableInfo.current_player;
-    Card card1 = display_player->hand[0];
-    Card card2 = display_player->hand[1];
-    Suit suit1 = card1.getSuit();
-    Suit suit2 = card2.getSuit();
-    int value1 = card1.getValue();
-    int value2 = card2.getValue();
-    QString path1 = Get_image_path(suitToString(suit1),std::to_string(value1),false);
-    QString path2 = Get_image_path(suitToString(suit2),std::to_string(value2),false);
-    QImage image1(path1);
-    QImage image2(path2);
-
-    if(num == 1){
-        QSize size1 = ui->label_player1_card1->size();
-        QSize size2 = ui->label_player1_card2->size();
-
-        ui->label_player1_card1->setPixmap(QPixmap::fromImage(image1).scaled(size1, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-        ui->label_player1_card2->setPixmap(QPixmap::fromImage(image2).scaled(size2, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    }
-    if(num == 2){
-        QSize size1 = ui->label_player2_card1->size();
-        QSize size2 = ui->label_player2_card2->size();
-
-        ui->label_player2_card1->setPixmap(QPixmap::fromImage(image1).scaled(size1, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-        ui->label_player2_card2->setPixmap(QPixmap::fromImage(image2).scaled(size2, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    }
-    if(num == 3){
-        QSize size1 = ui->label_player3_card1->size();
-        QSize size2 = ui->label_player3_card2->size();
-
-        ui->label_player3_card1->setPixmap(QPixmap::fromImage(image1).scaled(size1, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-        ui->label_player3_card2->setPixmap(QPixmap::fromImage(image2).scaled(size2, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    }
-    if(num == 4){
-        QSize size1 = ui->label_player4_card1->size();
-        QSize size2 = ui->label_player4_card2->size();
-
-        ui->label_player4_card1->setPixmap(QPixmap::fromImage(image1).scaled(size1, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-        ui->label_player4_card2->setPixmap(QPixmap::fromImage(image2).scaled(size2, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    }
-    if(num == 5){
-        QSize size1 = ui->label_player5_card1->size();
-        QSize size2 = ui->label_player5_card2->size();
-
-        ui->label_player5_card1->setPixmap(QPixmap::fromImage(image1).scaled(size1, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-        ui->label_player5_card2->setPixmap(QPixmap::fromImage(image2).scaled(size2, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    }
-    if(num == 6){
-        QSize size1 = ui->label_player6_card1->size();
-        QSize size2 = ui->label_player6_card2->size();
-
-        ui->label_player6_card1->setPixmap(QPixmap::fromImage(image1).scaled(size1, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-        ui->label_player6_card2->setPixmap(QPixmap::fromImage(image2).scaled(size2, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    }
-    if(num == 7){
-        QSize size1 = ui->label_player7_card1->size();
-        QSize size2 = ui->label_player7_card2->size();
-
-        ui->label_player7_card1->setPixmap(QPixmap::fromImage(image1).scaled(size1, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-        ui->label_player7_card2->setPixmap(QPixmap::fromImage(image2).scaled(size2, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    }
-    if(num == 8){
-        QSize size1 = ui->label_player8_card1->size();
-        QSize size2 = ui->label_player8_card2->size();
-
-        ui->label_player8_card1->setPixmap(QPixmap::fromImage(image1).scaled(size1, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-        ui->label_player8_card2->setPixmap(QPixmap::fromImage(image2).scaled(size2, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    }
-}
+ *  display_name_red(): as the name suggests, displays the names in red
+ *  not really sure why?
+ *
+ *
 */
-// end of display a given player's cards
-
-// start display name red
-
 void GameWindow::display_name_red(){
 
     int num = game_player.tableInfo.current_player;
