@@ -207,14 +207,12 @@ void GameLocal::endHand() {
     //show player hands
     for (int i = 0; i< tableInfo.player_num;i++ ) {
         PlayerInfo* current = &tableInfo.playerInfo[i];
-        if (current->cards.size() == 2) {
-            updatePlayersTable("/setCard " + current->name + " " + suitToString(current->cards[0].getSuit()) + " " + std::to_string(current->cards[0].getValue()) + " " + suitToString(current->cards[1].getSuit()) + " " + std::to_string(current->cards[1].getValue()));
-        }
+        updatePlayersTable("/setCard " + current->name + " " + suitToString(current->cards[0].getSuit()) + " " + std::to_string(current->cards[0].getValue()) + " " + suitToString(current->cards[1].getSuit()) + " " + std::to_string(current->cards[1].getValue()));
     }
     distribute();
 
 
-    nextHand();
+    //nextHand();
 }
 
 std::vector<PlayerInfo> GameLocal::winners() {
@@ -306,6 +304,7 @@ void GameLocal::allin(PlayerInfo& allinPlayerInfo) {
 
     //adds the subpot into the subpot vector
     tableInfo.subpots[index]=subpot;
+    players_all_in += 1;
 
 
     //pay all the money the player has to the pot
@@ -357,6 +356,7 @@ void GameLocal::nextHand(){
 
 
     players_standing = tableInfo.player_num;
+    players_all_in = 0;
     //qDebug() << tableInfo.communityCards.size();
 
     hand_finished = false;
@@ -382,7 +382,9 @@ void GameLocal::onAction() {
     qDebug()<<"action entered";
     //check if end hand
     if (players_standing == 1) {
-        endHand();
+        nextBettingRound();
+    } else if (players_standing - players_all_in == 0) {
+        nextBettingRound();
     }
     else {
         //get next current_player
@@ -392,7 +394,7 @@ void GameLocal::onAction() {
 
         //if the last raiser just folded
         //this happens if the first person to acts folds
-        if (tableInfo.playerInfo[tableInfo.lastRaiser].isFold) {
+        if (tableInfo.playerInfo[tableInfo.lastRaiser].isFold || tableInfo.playerInfo[tableInfo.lastRaiser].isAllin) {
             updatePlayersTable("/setLastRaiser " + std::to_string(tableInfo.current_player));
             askBet(findPlayer(tableInfo.playerInfo[tableInfo.current_player].name));
         }
@@ -507,11 +509,15 @@ void GameLocal::nextBettingRound() {
             updatePlayersTable("/addCardMid " + suitToString(card3.getSuit()) + " " + std::to_string(card3.getValue()));
 
 
-            //player after button is first to act
-            updatePlayersTable("/setActivePlayer " + std::to_string(tableInfo.ButtonPlayer));
-            setNextCurrentPlayer();
-            updatePlayersTable("/setLastRaiser " + std::to_string(tableInfo.current_player));
-            askBet(findPlayer(tableInfo.playerInfo[tableInfo.current_player].name));
+            // if there is only one player left or everyone is all in we directly go to the next round
+            if (players_standing - players_all_in == 0 || players_standing == 1) {
+                nextBettingRound();
+            }else if (players_standing >1) {
+                updatePlayersTable("/setActivePlayer " + std::to_string(tableInfo.ButtonPlayer));
+                setNextCurrentPlayer();
+                updatePlayersTable("/setLastRaiser " + std::to_string(tableInfo.current_player));
+                askBet(findPlayer(tableInfo.playerInfo[tableInfo.current_player].name));
+            }
             break;
     }
     case 2: {
@@ -519,11 +525,15 @@ void GameLocal::nextBettingRound() {
             Card card1 = deck.dealCard();
             updatePlayersTable("/addCardMid " + suitToString(card1.getSuit()) + " " + std::to_string(card1.getValue()));
 
-            updatePlayersTable("/setActivePlayer " + std::to_string(tableInfo.ButtonPlayer));
-            setNextCurrentPlayer();
-            updatePlayersTable("/setLastRaiser " + std::to_string(tableInfo.current_player));
+            if (players_standing - players_all_in == 0 || players_standing == 1) {
+                nextBettingRound();
+            }else if (players_standing >1) {
+                updatePlayersTable("/setActivePlayer " + std::to_string(tableInfo.ButtonPlayer));
+                setNextCurrentPlayer();
+                updatePlayersTable("/setLastRaiser " + std::to_string(tableInfo.current_player));
 
-            askBet(findPlayer(tableInfo.playerInfo[tableInfo.current_player].name));
+                askBet(findPlayer(tableInfo.playerInfo[tableInfo.current_player].name));
+            }
             break;
     }
     case 3: {
@@ -531,11 +541,16 @@ void GameLocal::nextBettingRound() {
             Card card1 = deck.dealCard();
             updatePlayersTable("/addCardMid " + suitToString(card1.getSuit()) + " " + std::to_string(card1.getValue()));
 
-            updatePlayersTable("/setActivePlayer " + std::to_string(tableInfo.ButtonPlayer));
-            setNextCurrentPlayer();
-            updatePlayersTable("/setLastRaiser " + std::to_string(tableInfo.current_player));
 
-            askBet(findPlayer(tableInfo.playerInfo[tableInfo.current_player].name));
+            if (players_standing - players_all_in == 0 || players_standing == 1) {
+                nextBettingRound();
+            }else if (players_standing >1) {
+                updatePlayersTable("/setActivePlayer " + std::to_string(tableInfo.ButtonPlayer));
+                setNextCurrentPlayer();
+                updatePlayersTable("/setLastRaiser " + std::to_string(tableInfo.current_player));
+
+                askBet(findPlayer(tableInfo.playerInfo[tableInfo.current_player].name));
+            }
             break;
     }
     case 4:{
