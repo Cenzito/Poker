@@ -1,12 +1,12 @@
 
 #include "gamewindow.hpp"
-
+#include <vector>
 #include "Visuals/RulesWindow/ruleswindow.h"
 #include <QPixmap>
 #include "GameLogic/Table.hpp"
 #include"GameLogic/PlayerInfo.hpp"
 #include "GameLogic/PokerPlayer.hpp"
-
+#include "GameLogic/PokerHand.hpp"
 #include <QVBoxLayout>
 #include <QGraphicsDropShadowEffect>
 #include "ui_gamewindow.h"
@@ -161,7 +161,56 @@ void GameWindow::onNextRoundButtonClicked()
     emit game_player.nextGame();
 }
 
+void GameWindow::player_hand_description() {
+    std::vector<Card> commCards = game_player.tableInfo.communityCards;
+    const std::vector<Card>& playerCards = game_player.getHand();
 
+    // Make a copy of playerCards
+    std::vector<Card> playerCardsCopy = playerCards;
+
+    // Concatenate the copied playerCards to commCards
+    commCards.insert(commCards.end(), playerCardsCopy.begin(), playerCardsCopy.end());
+    /*
+    for (Card i : communityCards) {
+        qDebug() <<QString::i;
+    }
+    */
+    PokerHand hand = commCards;
+    PokerCombinations combination = hand.get_combination();
+    QString hand_name; // Declare the variable outside of the if-else blocks
+    if (combination == PokerCombinations::RoyalFlush) {
+        hand_name = "Royal Flush";
+    }
+    else if (combination == PokerCombinations::StraightFlush) {
+        hand_name = "Straight Flush";
+    }
+    else if (combination == PokerCombinations::FourOfAKind) {
+        hand_name = "Four of a kind";
+    }
+    else if (combination == PokerCombinations::FullHouse) {
+        hand_name = "Full House";
+    }
+    else if (combination == PokerCombinations::Flush) {
+        hand_name = "Flush";
+    }
+    else if (combination == PokerCombinations::Straight) {
+        hand_name = "Straight";
+    }
+    else if (combination == PokerCombinations::ThreeOfAKind) {
+        hand_name = "Three of a kind";
+    }
+    else if (combination == PokerCombinations::TwoPairs) {
+        hand_name = "Two Pairs";
+    }
+    else if (combination == PokerCombinations::Pair) {
+        hand_name = "Pair";
+    }
+    else {
+        hand_name = "High Card";
+    }
+    ui->hand_display->setText(hand_name);
+    qDebug() <<hand_name;
+}
 /*
  * Those are functions to handle changes in the display.
  * When a change to the Player's table happens, update_display is called.
@@ -177,6 +226,7 @@ void GameWindow::update_display(){
     // Display players hand
     display_player_hand();
     preflop_odds();
+    player_hand_description();
   
     // Display names and stacks and put yours in red
     display_name_red();
