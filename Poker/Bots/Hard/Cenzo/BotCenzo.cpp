@@ -5,6 +5,10 @@
 #include <cmath>
 #include <random>
 #include <QDebug>
+#include <QFile>
+#include <QTextStream>
+
+
 
 double randnumb_generator() {
     std::random_device rd;
@@ -12,6 +16,7 @@ double randnumb_generator() {
     std::uniform_real_distribution<> dis(0.0, 1.0);
     return dis(gen);
 }
+
 
 
 void BotCenzo::Action(){
@@ -26,22 +31,21 @@ void BotCenzo::Action(){
     float win;
     //check previous call
     int last_bet = tableInfo.current_biggest_bet;
-    float x = 0; //the % of winning
-    float y = last_bet / tableInfo.pot;
-    qDebug() << "last bet:" << tableInfo.current_biggest_bet;
-    qDebug() << "x:" <<x <<" y:" << 50/75;
+    float x = 1 - Winning_Probability(tableInfo, hand, tableInfo.player_num, 1000)[2];
+    float y = static_cast<float>(last_bet) / tableInfo.pot;
+    qDebug() << "y" << y;
 
     float col;
     float row;
 
     //check what square we are in
     if (y <= 2) {
-        col = (int)x / 0.05;
-        row = (int)y / 0.1;
+        col = std::floor(x / 0.05);
+        row = std::floor(y / 0.1); //division by right number??
     }
     else {
-        col = (int)x / 0.05;
-        row = (int)(10 + ((y - 2)) / ((max - 2) * 0.1));
+        col = std::floor(x / 0.05);
+        row = std::floor((10 + ((y - 2)) / ((max - 2) * 0.1)));
     }
     qDebug() << "col:" <<col <<" row:" << row;
 

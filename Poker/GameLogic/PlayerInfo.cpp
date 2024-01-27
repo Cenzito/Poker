@@ -24,3 +24,8 @@ void PlayerInfo::Print() {
     }
 };
 
+std::string PlayerInfo::player_name() {
+    return name;
+}
+
+

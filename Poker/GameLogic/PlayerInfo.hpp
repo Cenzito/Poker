@@ -23,6 +23,7 @@ class PlayerInfo
 
         bool isAllin, isFold;
         void Print();
+        std::string player_name();
 
 };
 

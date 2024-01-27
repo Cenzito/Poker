@@ -12,14 +12,21 @@ float gen_rand_num() {
 }
 
 void MediumLeal::Action() { //syntax changes as soon as we can make it an inhereted class
-    PokerHand educatedHand(hand); //add community cards
+    //put hand and community cards togrther
+    std::vector<Card> bot_hand = hand;
+    for (int i = 0; i < tableInfo.communityCards.size(); i++) {
+        bot_hand.emplace_back(tableInfo.communityCards[i]);
+    }
+
+    PokerHand educatedHand(bot_hand); //add community cards
+
     NumericalCardValue = static_cast<int>(educatedHand.get_combination());
 
     float probability = 1 - lambda * exp(-lambda * (NumericalCardValue / 10));
     float rand_num = gen_rand_num();
     qDebug()<< "Numerical cardvalue is" << NumericalCardValue;
 
-    if (probability >= rand_num) {
+    if (probability <= rand_num) {
         fold_bet();
     }
 

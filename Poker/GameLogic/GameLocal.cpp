@@ -214,7 +214,7 @@ void GameLocal::endHand() {
     distribute();
 
 
-    nextHand();
+    //nextHand();, so that the game ends after one round
 }
 
 std::vector<PlayerInfo> GameLocal::winners() {
@@ -296,7 +296,7 @@ void GameLocal::allin(PlayerInfo& allinPlayerInfo) {
     for (int i = 0; i < tableInfo.player_num; i++) {
         if (!tableInfo.playerInfo[i].isFold) {
             if (tableInfo.playerInfo[i].bet>allinPlayerInfo.stack_size+allinPlayerInfo.bet){
-                subpot-= (tableInfo.playerInfo[i].bet-allinPlayerInfo.stack_size-allinPlayerInfo.bet); //removes the surplus that players might have put in
+                subpot -= (tableInfo.playerInfo[i].bet-allinPlayerInfo.stack_size-allinPlayerInfo.bet); //removes the surplus that players might have put in
             }
         }
     }
@@ -379,18 +379,18 @@ void GameLocal::askBet(PokerPlayer* p) {
 }
 
 void GameLocal::onAction() {
-    qDebug()<<"action entered";
+    //qDebug()<<"action entered";
     //check if end hand
     if (players_standing == 1) {
         endHand();
     }
     else {
         //get next current_player
-        qDebug()<<"is this the problem?";
+        //qDebug()<<"is this the problem?";
         setNextCurrentPlayer();
         // we end round of betting
         if (tableInfo.current_player == tableInfo.lastRaiser) {
-            qDebug()<<"is this the problem?";
+            //qDebug()<<"is this the problem?";
             nextBettingRound();
         } else {
             askBet(findPlayer(tableInfo.playerInfo[tableInfo.current_player].name));
@@ -438,7 +438,9 @@ void GameLocal::onRaise(int bet) {
     } else { //if they have the funds
         qDebug()<<"bet went from:"<<currentPlayerInfo.bet;
         pay(currentPlayerInfo, tableInfo.current_biggest_bet +bet - currentPlayerInfo.bet);
-        qDebug()<<"to:"<<currentPlayerInfo.bet;
+        qDebug()<<"to:"<<currentPlayerInfo.bet << "player that bet" << tableInfo.playerInfo[tableInfo.current_player].player_name();
+
+        //paste betting amount here
         updatePlayersTable("/setBiggestBet " + std::to_string(currentPlayerInfo.bet));
         qDebug()<<"setting biggest bet to:"<<currentPlayerInfo.bet;
         updatePlayersTable("/setLastRaiser " + std::to_string(tableInfo.current_player));

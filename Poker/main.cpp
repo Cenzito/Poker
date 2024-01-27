@@ -11,22 +11,41 @@
 #include "./Bots/Hard/Cenzo/BotCenzo.hpp"
 #include "./Bots/Easy/MonkeyBot.hpp"
 #include "./Bots/Medium/MediumLeal.hpp"
-
+#include <QFile>
+#include <QTextStream>
 #include <QApplication>
+#include <QCoreApplication>
 
+void data_collection() {
+    QFile file("data.txt");
+
+    if(!file.exists()) {
+     qCritical() << "Not real...";
+    }
+
+    qDebug() << "IAM";
+
+    if(!file.open(QIODevice::ReadWrite)) {
+        qCritical() << "Could not open";
+    }
+    file.write(QByteArray("Hello World"));
+    file.flush();
+
+    file.close();
+
+}
 
 int main(int argc, char *argv[]) {
 
-    qDebug() << "Hello";
-
+    data_collection();
 
     QApplication a(argc, argv);
 
     GameLocalWindow w;
 
     //Bot bot1 = Bot("Alpha", 3);
-    MediumLeal bot1 = MediumLeal("bot1",3);
-    MediumLeal bot2 = MediumLeal("bot2", 3);
+    BotCenzo bot1 = BotCenzo("bot1");
+    BotCenzo bot2 = BotCenzo("bot2");
 
     //Bot bot1 = Bot("bot1", 0);
     //Bot bot2 = Bot("bot2", 0);
