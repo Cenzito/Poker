@@ -48,17 +48,6 @@ void Table::Print() {
 }
 
 
-int Table::active_players() {
-    int counter=0;
-    for (int i=0; i < player_num; i++) {
-        if (playerInfo[i].isFold==false) {
-            counter+=1;
-        }
-    }
-    return counter;
-}
-
-
 
 void Table::updateTable(std::string command) {
     // Use std::istringstream to split the string
@@ -204,6 +193,17 @@ void Table::updateTable(std::string command) {
     }
 };
 
+
+/*
+   These next functions are helper functions
+*/
+
+/*
+ * parseCommand(const std::string&) : Takes a String as an argument and converts it into an element of the enum CommandType
+ * This is used for parsing the commands received from the Game
+ * This function is called by updateTable
+ *
+*/
 CommandType Table::parseCommand(const std::string& command) {
     if (command == "/bet") return CommandType::Bet;
     else if (command == "/setBiggestBet") return CommandType::SetBiggestBet;
@@ -221,14 +221,32 @@ CommandType Table::parseCommand(const std::string& command) {
     else return CommandType::Invalid;
 }
 
+
+/*
+ * getPlayerInfo(std::string) : Takes the name of a player as input and returns a pointer to their PlayerInfo in the Table
+ * Used to search for a player and get information about him by name
+ * This function is called by updateTable as the commands only give a name
+ *
+*/
 PlayerInfo* Table::getPlayerInfo(std::string name) {
     for (int i = 0; i<player_num;i++) {
         if (playerInfo[i].name == name) {
             return &playerInfo[i];
         }
     }
+    return NULL;
 };
 
+
+int Table::active_players() {
+    int counter=0;
+    for (int i=0; i < player_num; i++) {
+        if (playerInfo[i].isFold==false) {
+            counter+=1;
+        }
+    }
+    return counter;
+}
 
 int Table::playerIndex(std::string& name){
     int index=-1;
