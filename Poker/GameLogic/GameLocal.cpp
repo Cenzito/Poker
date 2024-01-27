@@ -1,8 +1,17 @@
 #include "GameLocal.hpp"
 #include <QApplication>
 
+/*
+    GameLocal(int seats): initializes a game with that many seats
+*/
+
 GameLocal::GameLocal(int seats): tableInfo(seats){
 }
+
+/*
+    getFreeSeat(): checks if there's a free seat at the table, if there is,
+    returns i, the index of the seat. otherwise it returns -1
+*/
 
 int GameLocal::getFreeSeat() {
     Table &t = tableInfo;
@@ -14,9 +23,14 @@ int GameLocal::getFreeSeat() {
     return -1;
 }
 
+
+/*
+    JoinGame(PokerPlayer* player): adds the player to the game if there's space and connects
+    him to all the signals, with an inital amount of money and initializes his playerInfo
+*/
 void GameLocal::JoinGame(PokerPlayer* player) {
 
-    //would need to do a try in case of error if room is full
+    //error if room is full
     if (tableInfo.player_num >= tableInfo.seats)  {
         qDebug() << "too many players";
         return;
@@ -47,6 +61,10 @@ void GameLocal::JoinGame(PokerPlayer* player) {
     }
 
 }
+
+/*
+    addBot(Bot* bot): calls JoinGame(bot). its use is to simplify the calls.
+*/
 
 void GameLocal::addBot(Bot* bot) {
     GameLocal::JoinGame(bot);
