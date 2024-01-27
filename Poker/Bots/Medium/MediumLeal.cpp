@@ -48,6 +48,7 @@ bool MediumLeal::SameSuit(std::vector<Card> hand) {
 }
 
 void MediumLeal::Action() {
+
     //now we will have to create cases for the betting rounds
 
     if (tableInfo.communityCards.size() == 0) {

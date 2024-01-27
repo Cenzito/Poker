@@ -127,6 +127,7 @@ void GameLocal::distribute() {
             }
         } else { //if the only player is not allin then he gets all the money and the round is over
             qDebug()<<"One player got the money";
+            qDebug()<< PlayerWin.name;
             win(PlayerWin, tableInfo.pot);
         }
     } else {
