@@ -25,8 +25,6 @@ void GameLocal::JoinGame(PokerPlayer* player) {
     } else {
 
         //player joins game so we add him to the table with an initial amount of money
-        PlayerInfo playerinfo(player->getName(), 1000, 0);
-        tableInfo.playerInfo[tableInfo.player_num] = playerinfo;
 
         players.push_back(player);
 
@@ -45,6 +43,7 @@ void GameLocal::JoinGame(PokerPlayer* player) {
 
         //player joins game so we add him to the table with an initial amount of money
         updatePlayersTable("/joinGame " + player->name + " " + std::to_string(1000));
+        tableInfo.playerInfo[tableInfo.player_num-1].isFold = true;
 
     }
 
@@ -52,7 +51,7 @@ void GameLocal::JoinGame(PokerPlayer* player) {
 
 void GameLocal::addBot(int botNumber) {
 
-    std::string name = std::to_string(botNumber);
+    std::string name = nameBot();
     switch (botNumber) {
     case 0: {
         // Basic bot, he always calls
@@ -611,7 +610,7 @@ void GameLocal::setNextCurrentPlayer() {
     }
 }
 
-void GameLocal::nameBot(Bot& robot) {
+std::string GameLocal::nameBot() {
     //get the vector of existing names
     std::vector<std::string> names;
     for (int i = 0; i < tableInfo.player_num; i++) {
@@ -644,8 +643,9 @@ void GameLocal::nameBot(Bot& robot) {
         randomName=botNames.at(dis(gen));
     }
 
-    robot.name=randomName;
     qDebug()<<"here?"<<QString::fromStdString(randomName);
+    return randomName;
+
 }
 
 

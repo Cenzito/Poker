@@ -23,7 +23,7 @@ public:
 
     void JoinGame(PokerPlayer*);
 
-    void nameBot(Bot& robot);
+    std::string nameBot();
 
     int getFreeSeat();
 
