@@ -34,7 +34,7 @@ SOURCES += \
     GameLogic/Monte_Carlo_Probability_Simulator.cpp \
     Visuals/Gamewindow/gamewindow.cpp \
     Visuals/MainWindow/mainwindow.cpp \
-    Client/Client/client.cc
+    Client/Client/client.cc \
 
 HEADERS += \
     Bots/Bot.hpp \
