@@ -48,7 +48,12 @@ void Table::Print() {
 }
 
 
-
+/*
+ * updateTable(std::string) : This is the most important function of Table
+ * It takes a string as argument which is a command passed by
+ *
+ *
+ */
 void Table::updateTable(std::string command) {
     // Use std::istringstream to split the string
     if (command[0] != '/') {
@@ -237,7 +242,11 @@ PlayerInfo* Table::getPlayerInfo(std::string name) {
     return NULL;
 };
 
-
+/*
+ * active_players() : This returns the number of active players
+ * This function is used by the bots
+ *
+*/
 int Table::active_players() {
     int counter=0;
     for (int i=0; i < player_num; i++) {
@@ -248,6 +257,12 @@ int Table::active_players() {
     return counter;
 }
 
+/*
+ *  playerIndex(std::string&) This function takes the name of a player as input and returns the index of the player in the table
+ *  The index is the same as their position on the table
+ *  This function is used by updateTable
+ *
+*/
 int Table::playerIndex(std::string& name){
     int index=-1;
     for (int i = 0; i < player_num; i++) {
