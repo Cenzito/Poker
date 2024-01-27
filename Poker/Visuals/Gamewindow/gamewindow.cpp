@@ -333,13 +333,6 @@ void GameWindow::display_player_hand(){ // to test
 /*
  * switch_bet_button_on() : display the bet button when it is our turn to bet
  *
-
-void GameWindow::switch_bet_button_on(){
-    int current_player = game_player.tableInfo.current_player ;
-    //auto current_player_info = player->tableInfo.playerInfo[current_player] ;
-    //auto current_player_info = player->tableInfo.playerInfo[current_player] ;
-    //std::string current_player_info_name = current_player_info.name ;
-}
 */
 void GameWindow::switch_bet_button_on(){
     ui->RaiseButton->show();
