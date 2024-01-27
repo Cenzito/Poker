@@ -52,6 +52,7 @@ signals:
     void Raise(int amount);
     void Fold();
     void Call();
+    void nextGame();
 
     void callUpdateDisplay();
 };

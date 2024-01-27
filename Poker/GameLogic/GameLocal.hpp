@@ -59,6 +59,7 @@ public slots:
     void onFold();
     void onCall();
 
+
     void updatePlayersTable(std::string);
     void setPlayerInfos(PokerPlayer* player);
 
