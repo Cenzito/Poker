@@ -39,17 +39,20 @@ public:
     //isActive tells if it's the players turn to bet
     bool isBot, isActive;
 
-    //Action function, will be called when table changes
     int get_percentage(int card1, int card2, bool IsSuited);
+
+
 public slots:
     virtual void Action();
 
-    void updateTable(Table table);
+    void updateTable(std::string command);
+    void updatePInf(std::string commandPInf);
 
 signals:
     void Raise(int amount);
     void Fold();
     void Call();
+    void nextGame();
 
     void callUpdateDisplay();
 };

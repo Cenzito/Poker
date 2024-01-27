@@ -7,16 +7,22 @@
 #include <qdebug.h>
 
 
-PokerPlayer::PokerPlayer(const std::string& name) : name(name) {}
+PokerPlayer::PokerPlayer(const std::string& name) : name(name) {
+    this->isBot=false;
+}
 
 
 void PokerPlayer::receiveCards(const std::vector<Card> newHand) {
     hand = newHand;
 }
 
-void PokerPlayer::updateTable(const Table table) {
-    tableInfo = table;
+void PokerPlayer::updateTable(std::string command) {
+    tableInfo.updateTable(command);
     emit callUpdateDisplay();
+}
+
+void PokerPlayer::updatePInf(std::string commandPInf) {
+    updateTable(commandPInf);
 }
 
 const std::string& PokerPlayer::getName() const {
@@ -25,11 +31,6 @@ const std::string& PokerPlayer::getName() const {
 
 
 std::vector<Card> PokerPlayer::getHand() const {
-    std::cout << name << "'s hand: ";
-    for (const auto& card : hand) {
-        std::cout << card << " ";
-    }
-    std::cout << std::endl;
     return hand;
 }
 
@@ -82,3 +83,6 @@ int PokerPlayer::get_percentage(int card1, int card2, bool IsSuited){
     }
     return percentage;
 }
+
+
+

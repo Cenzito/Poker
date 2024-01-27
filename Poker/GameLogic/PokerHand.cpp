@@ -113,7 +113,7 @@ bool::PokerHand:: has_straight(){
     }
     return false;
 }
-int PokerHand:: max_straight(){
+int PokerHand:: max_straight(){// for any hand, it returns 0 if there is no straight or returns the value of the highest card in the straight if there is one
     int ranks[15]; //for each rank, we will store if it is in the hand or not
     for (int i=1; i<15; i++) ranks[i]=0; //we initialize the number of cards with rank i with 0
     
@@ -407,7 +407,7 @@ std::vector<int> PokerHand::get_score(){// for each hand, we create a score, whi
     else score[0]=0; 
     return score;
 }
-int compare_hands(PokerHand hand1, PokerHand hand2){
+int compare_hands(PokerHand &hand1, PokerHand &hand2){
     std::vector<int> score1=hand1.get_score();
     std::vector<int> score2=hand2.get_score();
     for(int i=0; i<score1.size(); i++){ // we iteratively check the kickers, from the most important to the least important

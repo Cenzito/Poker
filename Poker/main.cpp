@@ -2,23 +2,67 @@
 #include "./Visuals/MainWindow/mainwindow.hpp"
 #include "./Visuals/Gamewindow/gamewindow.hpp"
 
+
+#include "./Visuals/Gamewindow/gamelocalwindow.hpp"
 #include "./GameLogic/Card.cpp"
 #include "./GameLogic/Deck.cpp"
 #include "./GameLogic/PokerHand.cpp"
+#include "./GameLogic/GameLocal.hpp"
+#include "./Bots/Hard/Cenzo/BotCenzo.hpp"
+#include "./Bots/Easy/MonkeyBot.hpp"
 
 #include <QApplication>
 
 
 int main(int argc, char *argv[]) {
 
+    qDebug() << "Hello";
 
-    //Game pokerGame(4);
-    //pokerGame.startGame();
 
-    //commented these 4 because of conflicts (delete and recreate pull request if this is unneccesary)
     QApplication a(argc, argv);
-    MainWindow b;
-    //GameWindow w;
+
+    GameLocalWindow w;
+
+    BotDarius bot1 = BotDarius("Alpha");
+    Bot bot2 = Bot("Beta", 4);
+    Bot bot3 = Bot("ceta", 4);
+
+    //Bot bot1 = Bot("bot1", 0);
+    //Bot bot2 = Bot("bot2", 0);
+
+    w.game.addBot(&bot1);
+    w.game.addBot(&bot2);
+    w.game.addBot(&bot3);
+    w.show();
+
+    w.game.nextHand();
+
+    return a.exec();
+
+
+
+
+/*
+    //QApplication a(argc, argv);
+    GameLocal w(2);
+    BotCenzo bot1 = BotCenzo("bot1", 7);
+    BotCenzo bot2 = BotCenzo("bot2", 7);
+    //BotCenzo bot3 = BotCenzo("bot1", 7);
+    //BotCenzo bot4 = BotCenzo("bot2", 7);
+    //BotCenzo bot5 = BotCenzo("bot1", 7);
+    w.addBot(&bot1);
+    w.addBot(&bot2);
+    //w.addBot(&bot3);
+    //w.addBot(&bot4);
+    //w.addBot(&bot5);
+    //w.show();
+    w.nextHand();
+
+    return 1;
+
+*/
+
+
 
     //w.show();
     //w.game_player.hand.push_back(Card(Suit::Spades, 4));
@@ -65,6 +109,7 @@ int main(int argc, char *argv[]) {
     if(hand.has_straight_flush()==true) std::cout << " Straight flush"<<std::endl;
     else std::cout << "Not Straight flush"<<std::endl;
 
+
     if(hand.has_four_of_a_kind()==true) std::cout << " Four of a kind"<<std::endl;
     else std::cout << "Not Four of a kind"<<std::endl;
     if(hand.has_full_house()==true) std::cout << " Full house"<<std::endl;
@@ -106,6 +151,7 @@ int main(int argc, char *argv[]) {
     std::cout << compare_hands(hand1, hand2) << std::endl;
     return 0;
 
+*/
 
 }
 

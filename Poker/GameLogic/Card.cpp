@@ -13,6 +13,20 @@ std::string suitToString(Suit suit) {
         return "Unknown Suit";
     }
 }
+
+Suit stringToSuit(std::string suit) {
+    if (suit == "Spades") {
+        return Suit::Spades;
+    } else if (suit == "Hearts") {
+        return Suit::Hearts;
+    } else if (suit == "Diamonds") {
+        return Suit::Diamonds;
+    } else if (suit == "Clubs") {
+        return Suit::Clubs;
+    }
+}
+
+
 std::string combinationToString(PokerCombinations combination){
     if(combination==PokerCombinations::HighCard) return "High Card";
     else if(combination==PokerCombinations::Pair) return "Pair";
