@@ -1,5 +1,7 @@
 #include "GameLocal.hpp"
 #include <QApplication>
+#include <random>
+
 
 GameLocal::GameLocal(int seats): tableInfo(seats){
 }
@@ -23,8 +25,6 @@ void GameLocal::JoinGame(PokerPlayer* player) {
     } else {
 
         //player joins game so we add him to the table with an initial amount of money
-        PlayerInfo playerinfo(player->getName(), 1000, 0);
-        tableInfo.playerInfo[tableInfo.player_num] = playerinfo;
 
         players.push_back(player);
 
@@ -43,13 +43,40 @@ void GameLocal::JoinGame(PokerPlayer* player) {
 
         //player joins game so we add him to the table with an initial amount of money
         updatePlayersTable("/joinGame " + player->name + " " + std::to_string(1000));
+        tableInfo.playerInfo[tableInfo.player_num-1].isFold = true;
 
     }
 
 }
 
-void GameLocal::addBot(Bot* bot) {
-    GameLocal::JoinGame(bot);
+void GameLocal::addBot(int botNumber) {
+
+    std::string name = nameBot();
+    switch (botNumber) {
+    case 0: {
+        // Basic bot, he always calls
+        // Don't bluff against him cause he'll know it
+        Bot* bot = new Bot(name, 2);
+        JoinGame(bot);
+        break;
+    }
+    case 1: {
+        // A random bot
+        // It's a monkey, did you really expect him to know how to play?
+        MonkeyBot* bot = new MonkeyBot(name);
+        JoinGame(bot);
+        break;
+    }
+    case 2: {
+        // Darius's bot
+        //Insert comment
+        BotDarius* bot = new BotDarius(name);
+        JoinGame(bot);
+        break;
+    }
+    }
+
+
 }
 
 
@@ -583,6 +610,42 @@ void GameLocal::setNextCurrentPlayer() {
     }
 }
 
+std::string GameLocal::nameBot() {
+    //get the vector of existing names
+    std::vector<std::string> names;
+    for (int i = 0; i < tableInfo.player_num; i++) {
+        names.push_back(tableInfo.playerInfo[i].name);
+    }
 
+    //bot names
+    std::vector<std::string> botNames = {
+        "Botly", "Gizmox", "Zipto", "Sparkie", "Tinktron", "Quirkle", "Fluxo", "Cybrix", "Nixi", "Orbito",
+        "Jinxo", "Widget", "Glitchy", "Cogsworth", "Pixela", "Byte", "Gizbot", "Zapster", "Whirlo", "Techton",
+        "Droidle", "Bloop", "MechaMuffin", "Sprocket", "Blipper", "Automato", "Circuita", "Gearlo", "BeepBoop",
+        "RoboRoo", "Gadget", "Blinko", "Wirey", "Flexo", "Nano", "ZipZap", "Mechano", "Bitzy", "Electra",
+        "Pulsar", "Clank", "Chipper", "Bolt", "Tinker", "Click", "Ratchet", "Fizz", "Alloy", "Ion", "Lazer",
+        "Rivet", "Dynamo", "Echo", "Astro", "Logic", "Mobi", "Nova", "Orbit", "Pixel", "Quantum", "Radar",
+        "Sonic", "Turbo", "Vector", "Zappy", "Buzz", "Dash", "Flex", "Glimmer", "Jolt", "Kinetic", "Lumen",
+        "Max", "Nexus", "Optix", "Prism", "Quark", "Reactor", "Spark", "Tronix", "Vortex", "Watt", "Xenon",
+        "Yotta", "Zetta", "Aero", "Blaze", "Cosmo", "Drift", "Eon", "Faze", "Glide", "Holo", "Inertia", "Jet",
+        "Kinetic", "Link", "Motion", "Neon", "Ozone"
+    };
+
+    // Create a random number generator engine
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    // Define the distribution (0 to 99 inclusive)
+    std::uniform_int_distribution<> dis(0, 99);
+    qDebug()<<"returning an integer"<<dis(gen);
+    std::string randomName= botNames.at(dis(gen));
+
+    while (std::find(names.begin(), names.end(), randomName) != names.end()) {
+        randomName=botNames.at(dis(gen));
+    }
+
+    qDebug()<<"here?"<<QString::fromStdString(randomName);
+    return randomName;
+
+}
 
 

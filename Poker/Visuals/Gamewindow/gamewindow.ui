@@ -1536,17 +1536,17 @@ color: rgb(15, 96, 0);</string>
          <widget class="QComboBox" name="AddBot">
           <item>
            <property name="text">
-            <string>Easy</string>
+            <string>Bot</string>
            </property>
           </item>
           <item>
            <property name="text">
-            <string>Medium</string>
+            <string>MonkeyBot</string>
            </property>
           </item>
           <item>
            <property name="text">
-            <string>Hard</string>
+            <string>DariusBot</string>
            </property>
           </item>
           <item>

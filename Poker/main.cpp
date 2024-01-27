@@ -9,7 +9,6 @@
 #include "./GameLogic/PokerHand.cpp"
 #include "./GameLogic/GameLocal.hpp"
 #include "./Bots/Hard/Cenzo/BotCenzo.hpp"
-#include "./Bots/Easy/MonkeyBot.hpp"
 
 #include <QApplication>
 
@@ -23,16 +22,9 @@ int main(int argc, char *argv[]) {
 
     GameLocalWindow w;
 
-    BotDarius bot1 = BotDarius("Alpha");
-    Bot bot2 = Bot("Beta", 4);
-    Bot bot3 = Bot("ceta", 4);
-
-    //Bot bot1 = Bot("bot1", 0);
-    //Bot bot2 = Bot("bot2", 0);
-
-    w.game.addBot(&bot1);
-    w.game.addBot(&bot2);
-    w.game.addBot(&bot3);
+    w.game.addBot(1);
+    w.game.addBot(2);
+    w.game.addBot(3);
     w.show();
 
     w.game.nextHand();

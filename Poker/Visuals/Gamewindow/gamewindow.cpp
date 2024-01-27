@@ -110,7 +110,7 @@ const QString GameWindow::Get_image_path(const std::string &suit, const std::str
 */
 void GameWindow::onAddBotClicked()
 {
-    int index = ui->AddBot->currentIndex();
+    return;
 }
 
 
