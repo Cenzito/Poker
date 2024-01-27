@@ -8,5 +8,10 @@ Week 9: I assigned everyone to a role/section now that the logics section has ad
       - Pot
   - General game appearance, differentiating active and inactive players, displaying player names, etc...
   I personally tried to set a background for the gamewindow but had problems displaying a png image (only worked for jpg), but resolved now. I have started searching for ways to 
-  implement a chip stack, but seems very difficult. For now, I have found images of different chip stack sizes, which should cover for most cases.
-Week 10:
+  implement a variable visual for chip stacks, but seems very difficult. For now, I have found images of different chip stack sizes, which should cover for most cases.
+
+Week 10: I have been looking for ways to implement the chip stack, but for now I have not found any useful resources online, and I cannot find a way to overlap the images as I want, since qtdesign uses a 'grid' system for the elements on the page, so it cannot deal with the minute differences in position a chip stack would require. I will keep trying to find a solution during the week, and if I cannot find anything reasonable, we will have to settle with a select number of png images representing chip stacks. The team has advanced well, we have three working windows, and some basic content on each. 
+
+Week 11: Unfortunately, I couldn't find any way of implementing the variable visual for chip stacks, so I'll move on to working on other functionalities. During the td session, I added a dropdown box and AddBot button, to allow the bots team to add bots on the table. Also, I added the opponent's cards to the visual, however only the back of the cards can be displayed for now, as I had trouble accessing the information on the opponent's cards. I also added a poker-style background to the scroll-able part of the Rules Window, as well as to the area designated on Game Window for Player actions (where the buttons and commands are), to differentiate it from the rest of the page.
+
+Week 12: We have decided to try to make the page re-sizable, so that the player can go on full-screen for example, but this means a lot of the work done previously had to be removed or revised. So, this week I merged the changes I had made last week to the main_ui branch, while making my implementations compatible with the "layouts" system. I did not manage to make the background for the player command area work with layouts, so that was erased. 

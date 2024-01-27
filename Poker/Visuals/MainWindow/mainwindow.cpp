@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->pushButton, &QPushButton::clicked, this, &MainWindow::onPlayButtonClicked);
     connect(ui->pushButton_2, &QPushButton::clicked, this, &MainWindow::onRulesButtonClicked);
-    connect(ui->playlocal, &QPushButton::clicked, this, &MainWindow::on_playlocal_clicked);
+    connect(ui->playlocal, &QPushButton::clicked, this, &MainWindow::onLocalPlayButtonClicked);
     // Loading and setting the image to the QLabel
     //QPixmap image1("../Poker/Visuals/MainWindow/pokerpic.jpg");
     //ui->label->setPixmap(image1);
@@ -66,9 +66,11 @@ void MainWindow::onRulesButtonClicked()
 }
 
 
-void MainWindow::on_playlocal_clicked()
+void MainWindow::onLocalPlayButtonClicked()
 {
     GameLocalWindow *gamelocalwindow = new GameLocalWindow(this);
+
     gamelocalwindow -> show();
 }
+
 

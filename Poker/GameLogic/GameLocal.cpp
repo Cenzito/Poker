@@ -1,8 +1,10 @@
 #include "GameLocal.hpp"
 #include <QApplication>
+#include <random>
 
-GameLocal::GameLocal(int seats){;}
 
+GameLocal::GameLocal(int seats): tableInfo(seats){
+}
 
 int GameLocal::getFreeSeat() {
     Table &t = tableInfo;
@@ -14,260 +16,639 @@ int GameLocal::getFreeSeat() {
     return -1;
 }
 
-void GameLocal::JoinGame(PokerPlayer player) {
+void GameLocal::JoinGame(PokerPlayer* player) {
 
     //would need to do a try in case of error if room is full
     if (tableInfo.player_num >= tableInfo.seats)  {
+        qDebug() << "too many players";
         return;
     } else {
+
         //player joins game so we add him to the table with an initial amount of money
-        PlayerInfo playerinfo(player.getName(), 1000, 0);
-        tableInfo.playerInfo.insert({getFreeSeat(), playerinfo});
+
         players.push_back(player);
-        tableInfo.player_num += 1;
+
+
+        setPlayerInfos(player);
+
+        //connect slots to signals
+        QObject::connect(player, &PokerPlayer::Call, this, &GameLocal::onCall);
+        QObject::connect(player, &PokerPlayer::Fold, this, &GameLocal::onFold);
+        QObject::connect(player, &PokerPlayer::Raise, this,&GameLocal::onRaise);
+        QObject::connect(this, &GameLocal::updatePTable, player, &PokerPlayer::updateTable);
+
+        if (!player->isBot) {
+            QObject::connect(player, &PokerPlayer::nextGame, this, &GameLocal::nextHand);
+        }
+
+        //player joins game so we add him to the table with an initial amount of money
+        updatePlayersTable("/joinGame " + player->name + " " + std::to_string(1000));
+        tableInfo.playerInfo[tableInfo.player_num-1].isFold = true;
+
     }
-    updatePlayersTable();
+
 }
 
-void GameLocal::addBot(Bot bot) {
-    GameLocal::JoinGame(bot);
+void GameLocal::addBot(int botNumber) {
+
+    std::string name = nameBot();
+    switch (botNumber) {
+    case 0: {
+        // Basic bot, he always calls
+        // Don't bluff against him cause he'll know it
+        Bot* bot = new Bot(name, 2);
+        JoinGame(bot);
+        break;
+    }
+    case 1: {
+        // A random bot
+        // It's a monkey, did you really expect him to know how to play?
+        MonkeyBot* bot = new MonkeyBot(name);
+        JoinGame(bot);
+        break;
+    }
+    case 2: {
+        // Darius's bot
+        //Insert comment
+        BotDarius* bot = new BotDarius(name);
+        JoinGame(bot);
+        break;
+    }
+    }
+
+
 }
 
-void GameLocal::startGame() {
-    //need to be more than 3 to play
-    while (tableInfo.player_num >= 3) {
-        newHand();
-    }
-    //std::cout << "not enough players";
-}
 
 void GameLocal::pay(PlayerInfo& PlayerPay, int sum) {
-    PlayerPay.stack_size -= sum;
-    PlayerPay.bet += sum;
-    tableInfo.pot += sum;
+    //adding to the subpots for allinners if they allinned this round
+    for (int i = 0; i < tableInfo.player_num; i++) {
+        if (tableInfo.playerInfo[i].isAllin) { //players who are all in are not folded (you cant have both)
+            if (0<tableInfo.playerInfo[i].bet){ //checking if the all in was this round to check if subpot can still increase
+                if (PlayerPay.bet < tableInfo.playerInfo[i].bet) { //checks if has already been counted previously in allin
+                    tableInfo.subpots[i]+= (tableInfo.playerInfo[i].bet-PlayerPay.bet ); //adds what hadn't been added
+                }
+            }
+        }
+    }
+    if (PlayerPay.isAllin){
+        if (sum>0){
+            int index2=tableInfo.playerIndex(PlayerPay.name);
+            tableInfo.subpots[index2]+=sum;
+        }
+    }
+
+    updatePlayersTable("/bet " + PlayerPay.name + " " + std::to_string(sum));
 };
 
 void GameLocal::win(PlayerInfo& PlayerWin, int sum) {
-    qDebug() << sum;
-    for (int i = 0; i <= tableInfo.player_num; i++) {
-        if (tableInfo.playerInfo[i].name == PlayerWin.name) {
-            tableInfo.playerInfo[i].stack_size += sum;
-        }
-    }
+    //qDebug() << sum;
+    updatePlayersTable("/win " + PlayerWin.name + " " + std::to_string(sum));
 };
 
-//only consider one player winning rn
-void GameLocal::endHand(PlayerInfo& winner) {
-    qDebug() << "winner is " << QString::fromStdString(winner.name);
-    win(winner, tableInfo.pot);
-    resetHand();
 
-    tableInfo.Print();
+void GameLocal::distribute() {
+
+    std::vector<PlayerInfo> winnerlist = winners();
+
+    if (winnerlist.size() ==1){
+        PlayerInfo PlayerWin = winnerlist.at(0);
+        if (PlayerWin.isAllin) {
+            //finds the index of the winning player in playerInfo
+            int index=tableInfo.playerIndex(PlayerWin.name);
+            qDebug()<<"SINGLE ALLIN WINNER";
+            if (tableInfo.subpots[index]>0) {
+
+                //transfers the money from the subpot to the players stack
+                win(PlayerWin,tableInfo.subpots[index]);
+
+                //decreases the value in the pot and subpots
+                tableInfo.pot -= tableInfo.subpots[index];
+                for (int i =0; i<tableInfo.player_num; i++){
+                    tableInfo.subpots[i] -= tableInfo.subpots[index];
+                }
+            }
+
+
+            //get rid of any all inners who might have been equal to the minimum (at least one)
+            for (PlayerInfo candidate : winnerlist) {
+                if (candidate.isAllin) {
+                    int index=tableInfo.playerIndex(candidate.name);
+                    if (tableInfo.subpots[index]<=0) {
+                        fold(candidate);
+                    }
+
+                }
+            }
+
+            qDebug()<<"There are this many players"<<players_standing;
+            if (tableInfo.pot>0){ //if theres still money to give...
+                if (players_standing<=1) { //if theres at most one active player, let that active player win the rest
+                    for (int i =0; i<=tableInfo.player_num; i++){
+                        if (tableInfo.playerInfo[i].isFold==false) {
+                            win(tableInfo.playerInfo[i],tableInfo.pot);
+                        }
+                    }
+                } else { //else distribute the rest with the other players
+
+                    //we continue distributing until there is no more pot
+                    distribute();
+
+                }
+            }
+        } else { //if the only player is not allin then he gets all the money and the round is over
+            qDebug()<<"One player got the money";
+            win(PlayerWin, tableInfo.pot);
+        }
+    } else {
+        //check if there's a player who went all in
+        int allin_counter=0;
+        for (PlayerInfo candidate : winnerlist) {
+            if (candidate.isAllin) {
+                allin_counter+=1;
+            }
+        }
+
+        //if no players went all in, share the pot equally
+        if (allin_counter==0) {
+            int splitpot = (tableInfo.pot/winnerlist.size());
+            int extra =(tableInfo.pot%winnerlist.size());
+            win(winnerlist.at(0),extra);
+            for (PlayerInfo candidate : winnerlist) {
+                win(candidate,splitpot);
+            }
+
+        } else { // if at least one player went all in, we split the smallest subpot with all the winners and check with the rest
+
+            //find the smallest subpot
+            int minindex =-1;
+            for (PlayerInfo candidate : winnerlist) {
+                if (candidate.isAllin) {
+                    int index=tableInfo.playerIndex(candidate.name);
+                    if (minindex==-1) {
+                        minindex= index;
+                    } else {
+                        if (tableInfo.subpots[minindex]>tableInfo.subpots[index]){
+                            minindex=index;
+                        }
+                    }
+
+                }
+            }
+
+            //split the subpot
+            int splitpot = (tableInfo.subpots[minindex]/winnerlist.size());
+            int extra =(tableInfo.subpots[minindex]%winnerlist.size());
+            win(winnerlist.at(0),extra);
+            for (PlayerInfo candidate : winnerlist) {
+                win(candidate,splitpot);
+            }
+
+            //reduce the available money
+            tableInfo.pot -= tableInfo.subpots[minindex];
+            for (int i =0; i<=tableInfo.player_num; i++){
+                tableInfo.subpots[i] -= tableInfo.subpots[minindex];
+            }
+
+            //get rid of any all inners who might have been equal to the minimum (at least one)
+            for (PlayerInfo candidate : winnerlist) {
+                if (candidate.isAllin) {
+                    int index=tableInfo.playerIndex(candidate.name);
+                    if (tableInfo.subpots[index]<=0) {
+                        fold(candidate);
+                    }
+
+                }
+            }
+            //keep distributing the money if there's any left
+            if (tableInfo.pot>0){
+                if (players_standing>=1) {
+                    distribute();
+                }
+
+            }
+        }
+    }
 }
+
+
+
+void GameLocal::endHand() {
+    qDebug() << "hend end";
+    //show player hands
+    for (int i = 0; i< tableInfo.player_num;i++ ) {
+        PlayerInfo* current = &tableInfo.playerInfo[i];
+        if (!current->isFold) {
+            updatePlayersTable("/setCard " + current->name + " " + suitToString(current->cards[0].getSuit()) + " " + std::to_string(current->cards[0].getValue()) + " " + suitToString(current->cards[1].getSuit()) + " " + std::to_string(current->cards[1].getValue()));
+        }
+    }
+    qDebug() << "hend end";
+    distribute();
+
+
+    //nextHand();
+}
+
+std::vector<PlayerInfo> GameLocal::winners() {
+
+    //get all the people who haven't folded
+    std::vector<PlayerInfo> playersNotFold;
+    for (int i = 0; i < tableInfo.player_num; i++) {
+        if (!tableInfo.playerInfo[i].isFold) {
+            playersNotFold.push_back(tableInfo.playerInfo[i]);
+        }
+    }
+
+    //create the winners vector
+    std::vector<PlayerInfo> winners;
+
+    //bring the community cards in to build the hands
+    std::vector<Card> community = tableInfo.communityCards;
+
+    for (PlayerInfo first : playersNotFold) {
+
+        //get the first hand
+        std::vector<Card> firstvect = findPlayer(first.name)->getHand();
+        firstvect.insert(firstvect.end(), community.begin(), community.end());
+        PokerHand firstHand(firstvect);
+
+        //creates a counter just to make it easier to know when we're at the end of the vector
+        int counter=0;
+
+        for (PlayerInfo second : playersNotFold) {
+
+            //get the second hand
+            std::vector<Card> secondvect = findPlayer(second.name)->getHand();
+            secondvect.insert(secondvect.end(), community.begin(), community.end());
+            PokerHand secondHand(secondvect);
+
+            //if they lose to any hand, they can't win so we skip them
+            if (compare_hands(firstHand, secondHand) == 2) {
+                break;
+            } else {
+                //increments the counter since they didn't lose
+                counter+=1;
+            }
+
+            //if we're at the end of the vector and they still haven't lost then they're a winner
+            if (counter == players_standing) {
+                winners.push_back(first);
+            }
+        }
+    }
+    qDebug()<<winners.size();
+    return winners;
+}
+
 
 void GameLocal::fold(PlayerInfo& foldPlayer) {
     foldPlayer.isFold = true;
     players_standing -= 1;
 }
 
-void GameLocal::updatePlayersTable() {
-    for (PokerPlayer& player : players) {
-        player.updateTable(tableInfo);
-    }
-    tableInfo.Print();
+
+void GameLocal::updatePlayersTable(std::string updatePlayersTable) {
+    emit updatePTable(updatePlayersTable);
+    tableInfo.updateTable(updatePlayersTable);
+    //tableInfo.Print();
+
 }
 
 
-void GameLocal::resetHand(){
-    //reset cards
-    for (PokerPlayer& player : players) {
-        player.removeCards();
+void GameLocal::allin(PlayerInfo& allinPlayerInfo) {
+    //set the player to all in
+    allinPlayerInfo.isAllin=true;
+    //qDebug()<<allinPlayerInfo.name<<"went all in";
+
+    //get players who havent folded since they are the ones who might of bet more than our stack
+    //(keep in mind that if a player has folded then he certainly put in less than our stack or else this would
+    //have already been triggered earlier, and they couldn't have both called/raised and folded in that one move)
+    //creates the subpot for the allinPlayer
+    int subpot= tableInfo.pot;
+    for (int i = 0; i < tableInfo.player_num; i++) {
+        if (!tableInfo.playerInfo[i].isFold) {
+            if (tableInfo.playerInfo[i].bet>allinPlayerInfo.stack_size+allinPlayerInfo.bet){
+                subpot-= (tableInfo.playerInfo[i].bet-allinPlayerInfo.stack_size-allinPlayerInfo.bet); //removes the surplus that players might have put in
+            }
+        }
     }
+
+    //find the index of the allinPlayer so we can create a subpot for it
+    int index=tableInfo.playerIndex(allinPlayerInfo.name);
+
+    //adds the subpot into the subpot vector
+    tableInfo.subpots[index]=subpot;
+    players_all_in += 1;
+
+
+    //pay all the money the player has to the pot
+    pay(  allinPlayerInfo, allinPlayerInfo.stack_size  );
+}
+
+
+
+void GameLocal::setPlayerInfos(PokerPlayer* player) {
+    //used to set the players in the Table when you join the game
+    // can also be used to resync the players with what the game has.
+    std::string listPInf = "/setPInf";
+
+    for (int i = 0; i< tableInfo.player_num;i++) {
+        //add info to command
+        //if we also want to pass the bets we can add them
+        listPInf += " " + tableInfo.playerInfo[i].name;
+        listPInf += " " + std::to_string(tableInfo.playerInfo[i].stack_size);
+    }
+
+    //qDebug() << QString::fromStdString(listPInf);
+
+    //emit the change to the player
+    QObject::connect(this, &GameLocal::setPInf, player, &PokerPlayer::updatePInf);
+    emit setPInf(listPInf);
+    QObject::disconnect(this, &GameLocal::setPInf, player, &PokerPlayer::updatePInf);
+
+}
+
+
+void GameLocal::nextHand(){
+    //resets the hands
+    for (PokerPlayer* player : players) {
+        player->removeCards();
+    }
+
     //reset bets
     for (int i = 0; i <= tableInfo.player_num; i++) {
         tableInfo.playerInfo[i].bet = 0;
         tableInfo.playerInfo[i].isAllin = false;
         tableInfo.playerInfo[i].isFold = false;
     }
+    //reset bets
+    /*for (int i = 0; i <= tableInfo.player_num; i++) {
+        tableInfo.playerInfo[i].bet = 0;
+        tableInfo.playerInfo[i].isAllin = false;
+        tableInfo.playerInfo[i].isFold = false;
+    }*/
 
-    tableInfo.pot=0;
-    tableInfo.ButtonPlayer += 1;
-    tableInfo.communityCards=std::vector<Card>();
+
+    players_standing = tableInfo.player_num;
+    players_all_in = 0;
+    //qDebug() << tableInfo.communityCards.size();
+
     hand_finished = false;
-    updatePlayersTable();
-}
 
-signed int GameLocal::askAction(PokerPlayer player) {
-    return player.Action();
-}
+    updatePlayersTable("/resetGame");
 
-void GameLocal::bettingRound(int first_player, bool isfirst_round) {
-    int first_actor = first_player;
-    tableInfo.current_player = first_player;
-    int current_biggest_bet = 0;
-    if (isfirst_round) {
-        current_biggest_bet = tableInfo.BBValue;
+
+    //only start a new round if there are at least 3 players
+    if (tableInfo.player_num >= 3){
+        nextBettingRound();
     }
-    do {
-        //go over players asking for a bet
-        if (tableInfo.playerInfo.find(tableInfo.current_player) != tableInfo.playerInfo.end()) {
-            PlayerInfo &currentPlayerInfo = tableInfo.playerInfo[tableInfo.current_player];
-
-            signed int bet = askAction(findPlayer(currentPlayerInfo.name));
-            if (bet == -1) {
-                fold(currentPlayerInfo);
-            } else if (bet == 0) {
-                //if doesn't have the money to bet: fold
-                if (currentPlayerInfo.stack_size + currentPlayerInfo.bet < current_biggest_bet){
-                    fold(currentPlayerInfo);
-                } else {
-                    currentPlayerInfo.bet = current_biggest_bet;
-                }
-            }
-            else{
-                //if bets too little or doesn't have the money to bet: fold
-                if (currentPlayerInfo.stack_size < bet || bet + currentPlayerInfo.bet < current_biggest_bet) {
-                    fold(currentPlayerInfo);
-                } else {
-                    currentPlayerInfo.bet += bet;
-                    current_biggest_bet = currentPlayerInfo.bet;
-                    first_actor = tableInfo.current_player;
-                }
-            }
-        }
-        tableInfo.current_player = (tableInfo.current_player + 1) % tableInfo.seats;
-        qDebug() << "p standing" << players_standing;
-    } while (first_actor != tableInfo.current_player && players_standing > 1); // continue until same person that put the highest bet needs to bet again or only one person left
 }
 
-PokerPlayer GameLocal::findPlayer(std::string name) {
-    for (PokerPlayer& player : players) {
-        if (player.name == name) {
+void GameLocal::askBet(PokerPlayer* p) {
+    //connect to  a player, tell him its his turn then disconnect
+    //qDebug()<<p->name<<"is asked to make a choice";
+    QObject::connect(this, &GameLocal::askAction, p, &PokerPlayer::Action, Qt::QueuedConnection);
+    emit askAction();
+    QObject::disconnect(this, &GameLocal::askAction, p, &PokerPlayer::Action);
+}
+
+void GameLocal::onAction() {
+    qDebug()<<"action entered";
+    //check if end hand
+    if (players_standing == 1) {
+        nextBettingRound();
+    } else if (players_standing - players_all_in == 0) {
+        nextBettingRound();
+    }
+    else {
+        //get next current_player
+
+        qDebug()<<"is this the problem?";
+        setNextCurrentPlayer();
+
+        //if the last raiser just folded
+        //this happens if the first person to acts folds
+        if (tableInfo.playerInfo[tableInfo.lastRaiser].isFold || tableInfo.playerInfo[tableInfo.lastRaiser].isAllin) {
+            updatePlayersTable("/setLastRaiser " + std::to_string(tableInfo.current_player));
+            askBet(findPlayer(tableInfo.playerInfo[tableInfo.current_player].name));
+        }
+        // if we got back to the biggest better
+        else if (tableInfo.current_player == tableInfo.lastRaiser) {
+            qDebug()<<"is this the problem?";
+            nextBettingRound();
+        } else {
+            askBet(findPlayer(tableInfo.playerInfo[tableInfo.current_player].name));
+        }
+
+    }
+}
+
+void GameLocal::onCall() {
+    PlayerInfo &currentPlayerInfo = tableInfo.playerInfo[tableInfo.current_player];
+    qDebug()<<"current highest bet is:"<< tableInfo.current_biggest_bet;
+    //if doesn't have the money to match: all-in
+    if (currentPlayerInfo.stack_size + currentPlayerInfo.bet <= tableInfo.current_biggest_bet){
+        allin(currentPlayerInfo);
+    } else {
+        //pay that money to the pot
+        pay(currentPlayerInfo, tableInfo.current_biggest_bet - currentPlayerInfo.bet); //accounts for previous bet
+    }
+    onAction();
+}
+
+
+void GameLocal::onFold() {
+    PlayerInfo &currentPlayerInfo = tableInfo.playerInfo[tableInfo.current_player];
+
+    fold(currentPlayerInfo);
+
+    onAction();
+}
+
+
+void GameLocal::onRaise(int bet) {
+    qDebug()<<"IN RAISE";
+    PlayerInfo &currentPlayerInfo = tableInfo.playerInfo[tableInfo.current_player];
+    //qDebug()<<currentPlayerInfo.name<<"is trying to raise"<<bet;
+
+    //if bets too little or doesn't have the money to bet: all in
+    if (currentPlayerInfo.stack_size <= tableInfo.current_biggest_bet + bet - currentPlayerInfo.bet) { //checks for lack of funds to raise by "bet" amount
+        if (currentPlayerInfo.stack_size + currentPlayerInfo.bet > tableInfo.current_biggest_bet) {
+            updatePlayersTable("/setBiggestBet " + std::to_string(currentPlayerInfo.stack_size + currentPlayerInfo.bet));
+            updatePlayersTable("/setLastRaiser " + std::to_string(tableInfo.current_player));
+        }
+
+        allin(currentPlayerInfo);
+    } else { //if they have the funds
+        qDebug()<<"bet went from:"<<currentPlayerInfo.bet;
+        pay(currentPlayerInfo, tableInfo.current_biggest_bet +bet - currentPlayerInfo.bet);
+        qDebug()<<"to:"<<currentPlayerInfo.bet;
+        updatePlayersTable("/setBiggestBet " + std::to_string(currentPlayerInfo.bet));
+        qDebug()<<"setting biggest bet to:"<<currentPlayerInfo.bet;
+        updatePlayersTable("/setLastRaiser " + std::to_string(tableInfo.current_player));
+
+    }
+    onAction();
+}
+
+
+void GameLocal::nextBettingRound() {
+    updatePlayersTable("/nextRound");
+    //qDebug() << tableInfo.betting_round;
+
+    switch (tableInfo.betting_round) {
+    case 0: {
+
+            //preflop
+            players_standing = tableInfo.player_num;
+
+            updatePlayersTable("/setActivePlayer " + std::to_string(tableInfo.ButtonPlayer));
+
+            updatePlayersTable("/setBiggestBet " + std::to_string(tableInfo.BBValue));
+            //setting small and big blind
+            setNextCurrentPlayer();
+            pay(tableInfo.playerInfo[tableInfo.current_player], tableInfo.SBValue);
+
+            setNextCurrentPlayer();
+            pay(tableInfo.playerInfo[tableInfo.current_player], tableInfo.BBValue);
+
+
+            deck.shuffleDeck();
+            //give cards to players
+            for (PokerPlayer* player : players) {
+                std::vector<Card> cards;
+                cards.push_back(deck.dealCard());
+                cards.push_back(deck.dealCard());
+                player->receiveCards(cards);
+                tableInfo.getPlayerInfo(player->name)->cards = cards;
+            }
+            //three players after button is first to act
+            setNextCurrentPlayer();
+
+            //biggest bet is always first to act
+            //if all fold and come back to him -> go to next round
+            updatePlayersTable("/setLastRaiser " + std::to_string(tableInfo.current_player));
+
+            askBet(findPlayer(tableInfo.playerInfo[tableInfo.current_player].name));
+            break;
+    }
+    case 1: {
+            // second betting round
+            Card card1 = deck.dealCard();
+            Card card2 = deck.dealCard();
+            Card card3 = deck.dealCard();
+
+            updatePlayersTable("/addCardMid " + suitToString(card1.getSuit()) + " " + std::to_string(card1.getValue()));
+            updatePlayersTable("/addCardMid " + suitToString(card2.getSuit()) + " " + std::to_string(card2.getValue()));
+            updatePlayersTable("/addCardMid " + suitToString(card3.getSuit()) + " " + std::to_string(card3.getValue()));
+
+
+            // if there is only one player left or everyone is all in we directly go to the next round
+            if (players_standing - players_all_in == 0 || players_standing == 1) {
+                nextBettingRound();
+            }else if (players_standing >1) {
+                updatePlayersTable("/setActivePlayer " + std::to_string(tableInfo.ButtonPlayer));
+                setNextCurrentPlayer();
+                updatePlayersTable("/setLastRaiser " + std::to_string(tableInfo.current_player));
+                askBet(findPlayer(tableInfo.playerInfo[tableInfo.current_player].name));
+            }
+            break;
+    }
+    case 2: {
+            //third betting round
+            Card card1 = deck.dealCard();
+            updatePlayersTable("/addCardMid " + suitToString(card1.getSuit()) + " " + std::to_string(card1.getValue()));
+
+            if (players_standing - players_all_in == 0 || players_standing == 1) {
+                nextBettingRound();
+            }else if (players_standing >1) {
+                updatePlayersTable("/setActivePlayer " + std::to_string(tableInfo.ButtonPlayer));
+                setNextCurrentPlayer();
+                updatePlayersTable("/setLastRaiser " + std::to_string(tableInfo.current_player));
+
+                askBet(findPlayer(tableInfo.playerInfo[tableInfo.current_player].name));
+            }
+            break;
+    }
+    case 3: {
+            //last betting round
+            Card card1 = deck.dealCard();
+            updatePlayersTable("/addCardMid " + suitToString(card1.getSuit()) + " " + std::to_string(card1.getValue()));
+
+
+            if (players_standing - players_all_in == 0 || players_standing == 1) {
+                nextBettingRound();
+            }else if (players_standing >1) {
+                updatePlayersTable("/setActivePlayer " + std::to_string(tableInfo.ButtonPlayer));
+                setNextCurrentPlayer();
+                updatePlayersTable("/setLastRaiser " + std::to_string(tableInfo.current_player));
+
+                askBet(findPlayer(tableInfo.playerInfo[tableInfo.current_player].name));
+            }
+            break;
+    }
+    case 4:{
+            endHand();
+            break;
+    }
+    }
+}
+
+PokerPlayer* GameLocal::findPlayer(std::string name) {
+    for (PokerPlayer* player : players) {
+        if (player->name == name) {
             return player;
         }
     }
 };
 
-void GameLocal::newHand() {
-    qDebug() << "start hand \n\n";
-    players_standing = tableInfo.player_num;
-
-    //setting small and big blind
-    pay(tableInfo.playerInfo[(tableInfo.ButtonPlayer + 1) % tableInfo.player_num], tableInfo.SBValue);
-
-    pay(tableInfo.playerInfo[(tableInfo.ButtonPlayer + 2) % tableInfo.player_num], tableInfo.BBValue);
-
-    updatePlayersTable();
-
-    deck.shuffleDeck();
-    //give cards to players
-    for (PokerPlayer& player : players) {
-        std::vector<Card> cards;
-        cards.push_back(deck.dealCard());
-        cards.push_back(deck.dealCard());
-        player.receiveCards(cards);
+void GameLocal::setNextCurrentPlayer() {
+    //get next current_player
+    for (int elt = 1; elt <= tableInfo.player_num; elt++) {
+        int next = (tableInfo.current_player + elt) % tableInfo.player_num;
+        if ( !tableInfo.playerInfo[next].isFold  && !tableInfo.playerInfo[next].isAllin) {
+            updatePlayersTable("/setActivePlayer " + std::to_string(next));
+            break;
+        }
     }
-    //first betting round
-    bettingRound((tableInfo.ButtonPlayer + 3)% tableInfo.player_num, true);
-
-    if (players_standing == 1) {
-        PlayerInfo winner;
-        for (int i = 0; i < tableInfo.player_num; i++) {
-            if (!tableInfo.playerInfo[i].isFold) {
-                winner = tableInfo.playerInfo[i];
-            }
-        }
-        endHand(winner);
-        return;
-    }
-    //second betting round
-    tableInfo.communityCards.push_back(deck.dealCard());
-    tableInfo.communityCards.push_back(deck.dealCard());
-    tableInfo.communityCards.push_back(deck.dealCard());
-    updatePlayersTable();
-    bettingRound((tableInfo.ButtonPlayer + 1)%tableInfo.player_num, false);
-
-    if (players_standing == 1) {
-        PlayerInfo winner;
-        for (int i = 0; i < tableInfo.player_num; i++) {
-            if (!tableInfo.playerInfo[i].isFold) {
-                winner = tableInfo.playerInfo[i];
-            }
-        }
-        endHand(winner);
-        return;
-    }
-    //third betting round
-    tableInfo.communityCards.push_back(deck.dealCard());
-    updatePlayersTable();
-    bettingRound((tableInfo.ButtonPlayer + 1)% tableInfo.player_num, false);
-
-    if (players_standing == 1) {
-        PlayerInfo winner;
-        for (int i = 0; i < tableInfo.player_num; i++) {
-            if (!tableInfo.playerInfo[i].isFold) {
-                winner = tableInfo.playerInfo[i];
-            }
-        }
-        endHand(winner);
-        return;
-    }
-    //fourth and last betting round
-    tableInfo.communityCards.push_back(deck.dealCard());
-    updatePlayersTable();
-    bettingRound((tableInfo.ButtonPlayer + 1)% tableInfo.player_num, false);
-
-
-    if (players_standing == 1) {
-        PlayerInfo winner;
-        for (int i = 0; i < tableInfo.player_num; i++) {
-            if (!tableInfo.playerInfo[i].isFold) {
-                winner = tableInfo.playerInfo[i];
-            }
-        }
-        endHand(winner);
-        return;
-    } else {
-        //get all the people who haven't folded
-        std::vector<PlayerInfo> playersNotFold;
-        for (int i = 0; i < tableInfo.player_num; i++) {
-            if (!tableInfo.playerInfo[i].isFold) {
-                playersNotFold.push_back(tableInfo.playerInfo[i]);
-            }
-        }
-
-        std::vector<Card> community = tableInfo.communityCards;
-
-        //showdown
-        PlayerInfo winner = playersNotFold[0];
-        std::vector<Card> winnerHandVect;
-        qDebug() << "a";
-        merge(community.begin(), community.end(), findPlayer(winner.name).getHand().begin(), findPlayer(winner.name).getHand().end(), winnerHandVect.begin());
-
-        PokerHand winnerHand(winnerHandVect);
-
-        //iterate over players and compute their hand score
-        //if their score is better than the current best, they become best
-        //haven't taken into account ties yet, in that case, first player considered wins
-        for (PlayerInfo current : playersNotFold) {
-            std::vector<Card> currentHandVect;
-            //getting hands throught the "getHand" function in the PokerPlayer class which is bad
-            //need to store the hands of the players in the Game in order to retrieve and compare them
-            merge(community.begin(), community.end(), findPlayer(winner.name).getHand().begin(), findPlayer(winner.name).getHand().end(), winnerHandVect.begin());
-
-            PokerHand currentHand(currentHandVect);
-            if (compare_hands(winnerHand, currentHand) == 2) {
-                winner = current;
-                winnerHand = currentHand;
-            }
-        }
-        endHand(winner);
-        return;
-    }
-
 }
 
+std::string GameLocal::nameBot() {
+    //get the vector of existing names
+    std::vector<std::string> names;
+    for (int i = 0; i < tableInfo.player_num; i++) {
+        names.push_back(tableInfo.playerInfo[i].name);
+    }
 
+    //bot names
+    std::vector<std::string> botNames = {
+        "Botly", "Gizmox", "Zipto", "Sparkie", "Tinktron", "Quirkle", "Fluxo", "Cybrix", "Nixi", "Orbito",
+        "Jinxo", "Widget", "Glitchy", "Cogsworth", "Pixela", "Byte", "Gizbot", "Zapster", "Whirlo", "Techton",
+        "Droidle", "Bloop", "MechaMuffin", "Sprocket", "Blipper", "Automato", "Circuita", "Gearlo", "BeepBoop",
+        "RoboRoo", "Gadget", "Blinko", "Wirey", "Flexo", "Nano", "ZipZap", "Mechano", "Bitzy", "Electra",
+        "Pulsar", "Clank", "Chipper", "Bolt", "Tinker", "Click", "Ratchet", "Fizz", "Alloy", "Ion", "Lazer",
+        "Rivet", "Dynamo", "Echo", "Astro", "Logic", "Mobi", "Nova", "Orbit", "Pixel", "Quantum", "Radar",
+        "Sonic", "Turbo", "Vector", "Zappy", "Buzz", "Dash", "Flex", "Glimmer", "Jolt", "Kinetic", "Lumen",
+        "Max", "Nexus", "Optix", "Prism", "Quark", "Reactor", "Spark", "Tronix", "Vortex", "Watt", "Xenon",
+        "Yotta", "Zetta", "Aero", "Blaze", "Cosmo", "Drift", "Eon", "Faze", "Glide", "Holo", "Inertia", "Jet",
+        "Kinetic", "Link", "Motion", "Neon", "Ozone"
+    };
 
+    // Create a random number generator engine
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    // Define the distribution (0 to 99 inclusive)
+    std::uniform_int_distribution<> dis(0, 99);
+    qDebug()<<"returning an integer"<<dis(gen);
+    std::string randomName= botNames.at(dis(gen));
+
+    while (std::find(names.begin(), names.end(), randomName) != names.end()) {
+        randomName=botNames.at(dis(gen));
+    }
+
+    qDebug()<<"here?"<<QString::fromStdString(randomName);
+    return randomName;
+
+}
 
 

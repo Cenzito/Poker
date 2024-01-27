@@ -8,25 +8,18 @@
 class MediumLeal : public Bot {
 public:
 
-    // Bot(const std::string& name, int level) : PokerPlayer(name) {
-
     //constrcutor
-    MediumLeal() : Bot(name, level){
+    MediumLeal(const std::string& name) : Bot(name, 3){
         this -> level = level;
         this->name = name;
     };
 
-    //the bot's decision on what to do
-    signed int Action();
-
 private:
     int CalcCardValue();
-    bool ShouldFold();
-    bool ShouldRaise(int threshhold);
     PokerCombinations CardValue;
     int NumericalCardValue;
     float lambda = 4.8;
-    int threshold;
+    int card_threshold = 4;
 
 };
 

@@ -5,43 +5,75 @@
 #include "Table.hpp"
 #include "Deck.hpp"
 #include "../Bots/Bot.hpp"
+#include "../Bots/Hard/Darius/BotDarius.hpp"
+#include "../Bots/Easy/MonkeyBot.hpp"
 #include "PokerHand.hpp"
+#include <QObject>
+#include <QTimer>
 #include <algorithm>
+#include <QSignalMapper>
 
 
-class GameLocal
+class GameLocal : public QObject
 {
+    Q_OBJECT
 public:
     GameLocal(int seats);
 
 
-    void JoinGame(PokerPlayer);
-    void addBot(Bot bot);
+    void JoinGame(PokerPlayer*);
+
+    std::string nameBot();
+
     int getFreeSeat();
-    void startGame();
 
     //actions on the player
     void pay(PlayerInfo& PlayerPay, int sum);
     void win(PlayerInfo& PlayerWin, int sum);
     void fold(PlayerInfo& foldPlayer);
+    void allin(PlayerInfo& allinPlayer);
 
-    void endHand(PlayerInfo& winner);
-    void newHand();
+    //end of game functions
+    void endHand();
+    void distribute();
+    std::vector<PlayerInfo> winners();
+    void nextHand();
 
-    void updatePlayersTable();
-    void resetHand();
 
-    signed int askAction(PokerPlayer player);
-    void bettingRound(int first_player, bool isfirst_round);
+    void nextBettingRound();
 
-    PokerPlayer findPlayer(std::string name);
-    std::vector<PokerPlayer> players;
+    void setNextCurrentPlayer();
+
+    PokerPlayer* findPlayer(std::string name);
+    std::vector<PokerPlayer*> players;
 
     Deck deck;
     Table tableInfo;
 
     int players_standing;
+    int players_all_in;
     bool hand_finished;
+
+    void askBet(PokerPlayer* p);
+    void onAction();
+
+public slots:
+    void onRaise(int amount);
+    void onFold();
+    void onCall();
+
+    void addBot(int botNumber);
+
+
+    void updatePlayersTable(std::string);
+    void setPlayerInfos(PokerPlayer* player);
+
+signals:
+    void updatePTable(std::string command);
+    void setPInf(std::string command);
+
+    void askAction();
+
 };
 
 #endif // GAMELOCAL_HPP
