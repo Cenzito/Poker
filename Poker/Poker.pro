@@ -1,6 +1,6 @@
 QT       += core gui
 
-LIBS += -lsqlite3
+LIBS += -L/usr/lib/x86_64-linux-gnu -lsqlite3
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
