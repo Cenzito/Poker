@@ -50,7 +50,7 @@ void GameLocal::JoinGame(PokerPlayer* player) {
 
 void GameLocal::addBot(int botNumber) {
 
-    std::string name = "";
+    std::string name = std::to_string(botNumber);
     switch (botNumber) {
     case 0: {
         // Basic bot, he always calls

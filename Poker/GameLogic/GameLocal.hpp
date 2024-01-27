@@ -22,7 +22,7 @@ public:
 
 
     void JoinGame(PokerPlayer*);
-    void addBot(int botNumber);
+
     int getFreeSeat();
 
     //actions on the player
@@ -59,6 +59,8 @@ public slots:
     void onRaise(int amount);
     void onFold();
     void onCall();
+
+    void addBot(int botNumber);
 
 
     void updatePlayersTable(std::string);
