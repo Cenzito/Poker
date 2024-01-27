@@ -30,6 +30,7 @@ int main(int argc, char *argv[]) {
    //w.game_player.tableInfo.player_num = 1;
    // w.update_display();
 
+    b.resize(900,500);
 
     b.show();
     return a.exec();
