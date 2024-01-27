@@ -1,2 +1,0 @@
-add_subdirectory(PokerPlayer)
-add_subdirectory(Card)

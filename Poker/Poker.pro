@@ -34,6 +34,7 @@ SOURCES += \
     GameLogic/Monte_Carlo_Probability_Simulator.cpp \
     Visuals/Gamewindow/gamewindow.cpp \
     Visuals/MainWindow/mainwindow.cpp \
+    Client/Client/client.cc
 
 HEADERS += \
     Bots/Bot.hpp \
@@ -59,7 +60,8 @@ HEADERS += \
     Visuals/Gamewindow/gamewindow.hpp \
     Visuals/MainWindow/mainwindow.hpp \
     Visuals/RulesWindow/ruleswindow.cpp.autosave \
-    Visuals/RulesWindow/ruleswindow.h
+    Visuals/RulesWindow/ruleswindow.h \
+    Client/client.h \
 
 
 

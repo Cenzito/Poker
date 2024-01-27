@@ -4,6 +4,8 @@
 #include "gamewindow.hpp"
 #include "GameLogic/GameLocal.hpp"
 #include "sqlite3.h"
+#include "Creationaccount.hpp"
+#include "PokerPlayer.hpp"
 
 
 class GameLocalWindow : public GameWindow
@@ -15,7 +17,7 @@ public:
 
     PokerClient pokerclient;
 
-    Creationaccount account = CreationAccount("Account.db");
+    CreationAccount account = CreationAccount("Account.db");
 
     string username,password;
 private:

@@ -1,6 +1,10 @@
 #include "gamelocalwindow.hpp"
+#include "ruleswindow.h"
 #include <qdebug.h>
 #include "client.h"
+#include "Creationaccount.hpp"
+#include "PokerPlayer.hpp"
+
 
 GameLocalWindow::GameLocalWindow(QWidget *parent, std::string p) : GameWindow(parent, p), game(5)
 {
@@ -12,9 +16,6 @@ GameLocalWindow::GameLocalWindow(QWidget *parent, std::string p) : GameWindow(pa
 
 }
 
-Creationaccount GameLocalWindow::get_account(Creationaccount account){
-    return account;
-}
 
 void GameLocalWindow::onPlayButtonClicked(){
     RulesWindow *rulesWindow = new RulesWindow(this) ;
@@ -22,10 +23,11 @@ void GameLocalWindow::onPlayButtonClicked(){
 }
 
 void GameLocalWindow::on_pushButton_login_clicked(){
+
     const char* sql = "CREATE TABLE IF NOT EXISTS ACCOUNT("
                   "USERNAME TEXT PRIMARY KEY NOT NULL, "
                   "PASSWORD TEXT NOT NULL);";
-    get_account(this->account).CreationTable(sql);
+    account.CreationTable(sql);
 
     Qstring user = ui->lineEdit_user->text();
     Qstring pass = ui->lineEdit_pass->text();
@@ -33,7 +35,7 @@ void GameLocalWindow::on_pushButton_login_clicked(){
     if(account.login(user, pass)){
         this->username = user;
         this->password = pass;
-        pokerclient = PokerClient(server_ip, port);
+        PokerClient pokerclient = PokerClient(server_ip, port);
         pokerclient.sendMessage(user + ":" + pass);
     }
 }
@@ -79,7 +81,7 @@ void GameLocalWindow::onCallButtonClicked(){ //Reminder: this is check/call butt
     int current = (ui->cumulative_bet_line->text()).toInt();
     std::string message = "/bet";
         if(current <= account.get_money(account.get_db(), this->username)){
-        ui.switch_bet_button_on()
+        ui.switch_bet_button_on();
         pokerclient.sendMessage(message + "" + std::to_string(current));
         pokerclient.processUserInput(message + "" + current, message);
     }
