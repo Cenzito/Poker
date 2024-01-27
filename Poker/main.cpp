@@ -20,14 +20,9 @@ int main(int argc, char *argv[]) {
 
     QApplication a(argc, argv);
 
-    GameLocalWindow w;
+    MainWindow w;
 
-    w.game.addBot(1);
-    w.game.addBot(2);
-    w.game.addBot(3);
     w.show();
-
-    w.game.nextHand();
 
     return a.exec();
 

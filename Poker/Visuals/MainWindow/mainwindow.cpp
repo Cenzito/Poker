@@ -4,6 +4,8 @@
 #include "../GameWindow/gamewindow.hpp"
 #include "../Gamewindow/gamelocalwindow.hpp"
 #include <Qcolor>
+#include <QLabel>
+#include <QPixmap>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent), ui(new Ui::MainWindow)
@@ -19,10 +21,28 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->pushButton, &QPushButton::clicked, this, &MainWindow::onPlayButtonClicked);
     connect(ui->pushButton_2, &QPushButton::clicked, this, &MainWindow::onRulesButtonClicked);
-    //connect(ui->play_local, &QPushButton::clicked, this, &MainWindow::onLocalPlayButtonClicked);
+    connect(ui->playlocal, &QPushButton::clicked, this, &MainWindow::onLocalPlayButtonClicked);
     // Loading and setting the image to the QLabel
     //QPixmap image1("../Poker/Visuals/MainWindow/pokerpic.jpg");
     //ui->label->setPixmap(image1);
+
+    //QLabel *imageLabel = new QLabel(this);
+    //QPixmap imagePixmap(":/images/huge_player_stack.png");
+    //if (imagePixmap.isNull()) {
+    //    qDebug() << "Failed to load image";
+    //}
+    //QPixmap scaledPixmap = imagePixmap.scaled(200, 200, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    //imageLabel->setPixmap(scaledPixmap);
+    //imageLabel->resize(scaledPixmap.size());
+    //imageLabel->move(400, 200);
+    //imageLabel->setScaledContents(true); // Allow the pixmap to scale with the label
+    //imageLabel->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    //QHBoxLayout *layout = new QHBoxLayout(this);
+    //layout->addWidget(imageLabel);
+    //imageLabel->resize(scaledPixmap.size());
+    //this->setCentralWidget(centralWidget());
+
+
 
 }
 
@@ -35,6 +55,7 @@ void MainWindow::onPlayButtonClicked()
 {
     // Create and show the GameWindow when the PLAY button is clicked
     GameWindow *gameWindow = new GameWindow(this, "John");
+
     gameWindow->show();
 }
 
@@ -44,24 +65,12 @@ void MainWindow::onRulesButtonClicked()
     rulesWindow->show();
 }
 
-void MainWindow::onLocalPlayButtonClicked() {
+
+void MainWindow::onLocalPlayButtonClicked()
+{
     GameLocalWindow *gamelocalwindow = new GameLocalWindow(this);
 
     gamelocalwindow -> show();
 }
 
-void MainWindow::on_pushButton_login_clicked()
-{
-    QString user = ui->lineEdit_user->text();
-    QString pass = ui->lineEdit_pass->text();
-
-
-}
-
-void MainWindow::on_pushButton_signin_clicked()
-{
-    QString user = ui->lineEdit_newuser->text();
-    QString pass = ui->lineEdit_newpass->text();
-
-}
 

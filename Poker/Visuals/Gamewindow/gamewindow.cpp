@@ -36,6 +36,7 @@ GameWindow::GameWindow(QWidget *parent, std::string name) : game_player(name),
     });
     connect(ui->RaiseButton, &QPushButton::clicked, this, &GameWindow::onRaiseButtonClicked);
     connect(ui->CallButton, &QPushButton::clicked, this, &GameWindow::onCallButtonClicked);
+
     connect(ui->NextRound, &QPushButton::clicked, this, &GameWindow::onNextRoundButtonClicked);
 
 

@@ -65,6 +65,7 @@ private slots:
     virtual void onAddBotClicked();
 
 
+
 protected:
     Ui::GameWindow *ui;
     QGraphicsScene *scene;
