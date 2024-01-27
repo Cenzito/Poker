@@ -165,6 +165,7 @@ void GameWindow::update_display(){
     update_community_cards();
     updateCallButtonLabel();
     displayAllPCards();
+    QApplication::processEvents();
 
 }
 

@@ -25,13 +25,14 @@ int main(int argc, char *argv[]) {
 
     //Bot bot1 = Bot("Alpha", 3);
     Bot bot1 = Bot("bot2",0);
-    MonkeyBot bot2 = MonkeyBot("Beta");
-
+    Bot bot2 = Bot("Beta", 4);
+    Bot bot3 = Bot("ceta", 4);
     //Bot bot1 = Bot("bot1", 0);
     //Bot bot2 = Bot("bot2", 0);
 
     w.game.addBot(&bot1);
     w.game.addBot(&bot2);
+    w.game.addBot(&bot3);
     w.show();
 
     w.game.nextHand();

@@ -201,7 +201,7 @@ void GameLocal::distribute() {
 }
 
 
-//distributes the money to the winner and start anew
+
 void GameLocal::endHand() {
 
     //show player hands
@@ -386,10 +386,18 @@ void GameLocal::onAction() {
     }
     else {
         //get next current_player
+
         qDebug()<<"is this the problem?";
         setNextCurrentPlayer();
-        // we end round of betting
-        if (tableInfo.current_player == tableInfo.lastRaiser) {
+
+        //if the last raiser just folded
+        //this happens if the first person to acts folds
+        if (tableInfo.playerInfo[tableInfo.lastRaiser].isFold) {
+            updatePlayersTable("/setLastRaiser " + std::to_string(tableInfo.current_player));
+            askBet(findPlayer(tableInfo.playerInfo[tableInfo.current_player].name));
+        }
+        // if we got back to the biggest better
+        else if (tableInfo.current_player == tableInfo.lastRaiser) {
             qDebug()<<"is this the problem?";
             nextBettingRound();
         } else {
