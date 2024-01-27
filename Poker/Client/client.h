@@ -5,7 +5,7 @@
 #include <string>
 #include <atomic>
 #include <thread>
-#include "poker_player.h"
+#include "PokerPlayer.hpp"
 
 class PokerClient {
 public:
