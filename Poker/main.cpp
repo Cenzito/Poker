@@ -45,9 +45,7 @@ void init_col_header() {
 }
 
 void data_collection() {
-    // Specify the relative path to the file
     QFile file("C:/Users/Leal Köksal/Documents/a University/Semester 3/CSE201/C++ Project/Poker/Poker/data");
-
 
     if (!file.exists()) {
         qDebug() << "File does not exist.";
@@ -58,19 +56,6 @@ void data_collection() {
         qDebug() << "Could not open the file.";
         return;
     }
-    /* //I am commenting this section because I already edited the file
-    //let us create the coloumns of the txt file
-    QTextStream stream(&file);
-    stream << "i\\j\t";
-    for (int i = 0; i <= 20; ++i) {
-        for (int j = 0; j <= 20; ++j) {
-            stream << "(" << i << ", " << j << ")\t";
-        }
-    }
-    stream << "\n";
-    */
-
-    file.write(QByteArray("Hello World"));
 
     file.flush();
     file.close();
