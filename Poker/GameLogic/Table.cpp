@@ -66,7 +66,7 @@ void Table::updateTable(std::string command) {
         qDebug() << "invalid command";
         return;
     }
-    qDebug() << QString::fromStdString(command);
+    //qDebug() << QString::fromStdString(command);
 
     std::istringstream iss(command);
     std::vector<std::string> wordsArray(std::istream_iterator<std::string>{iss}, std::istream_iterator<std::string>());
