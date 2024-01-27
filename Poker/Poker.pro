@@ -35,6 +35,7 @@ SOURCES += \
     Visuals/Gamewindow/gamewindow.cpp \
     Visuals/MainWindow/mainwindow.cpp \
     Client/client.cc \
+    Database/Creationaccount.cpp \
 
 HEADERS += \
     Bots/Bot.hpp \
@@ -62,6 +63,7 @@ HEADERS += \
     Visuals/RulesWindow/ruleswindow.cpp.autosave \
     Visuals/RulesWindow/ruleswindow.h \
     Client/client.h \
+    Database/Creationaccount.hpp \
 
 
 
