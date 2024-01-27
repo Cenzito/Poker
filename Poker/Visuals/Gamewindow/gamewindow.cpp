@@ -1,6 +1,6 @@
 
 #include "gamewindow.hpp"
-
+#include <vector>
 #include "Visuals/RulesWindow/ruleswindow.h"
 #include <QPixmap>
 #include "GameLogic/Table.hpp"
@@ -162,7 +162,20 @@ void GameWindow::onNextRoundButtonClicked()
 }
 
 void GameWindow::player_hand_description() {
-    PokerHand hand = game_player.getHand();
+    std::vector<Card> commCards = game_player.tableInfo.communityCards;
+    const std::vector<Card>& playerCards = game_player.getHand();
+
+    // Make a copy of playerCards
+    std::vector<Card> playerCardsCopy = playerCards;
+
+    // Concatenate the copied playerCards to commCards
+    commCards.insert(commCards.end(), playerCardsCopy.begin(), playerCardsCopy.end());
+    /*
+    for (Card i : communityCards) {
+        qDebug() <<QString::i;
+    }
+    */
+    PokerHand hand = commCards;
     PokerCombinations combination = hand.get_combination();
     QString hand_name; // Declare the variable outside of the if-else blocks
     if (combination == PokerCombinations::RoyalFlush) {
