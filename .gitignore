@@ -135,5 +135,9 @@ compile_commands.json
 
 *.json
 
+*.TMP
+*.tmp
+*.user
+
 build/
 external/

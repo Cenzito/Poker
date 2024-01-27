@@ -34,7 +34,7 @@ SOURCES += \
     GameLogic/Monte_Carlo_Probability_Simulator.cpp \
     Visuals/Gamewindow/gamewindow.cpp \
     Visuals/MainWindow/mainwindow.cpp \
-    /home/lehuang/Poker/Poker/Poker/Client/Client/client.cc \
+    Client/client.cc \
 
 HEADERS += \
     Bots/Bot.hpp \
@@ -61,7 +61,7 @@ HEADERS += \
     Visuals/MainWindow/mainwindow.hpp \
     Visuals/RulesWindow/ruleswindow.cpp.autosave \
     Visuals/RulesWindow/ruleswindow.h \
-    /home/lehuang/Poker/Poker/Poker/Client/Client/client.h \
+    Client/client.h \
 
 
 
