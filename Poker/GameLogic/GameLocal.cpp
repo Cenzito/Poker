@@ -234,12 +234,15 @@ void GameLocal::distribute() {
 
 
 void GameLocal::endHand() {
-
+    qDebug() << "hend end";
     //show player hands
     for (int i = 0; i< tableInfo.player_num;i++ ) {
         PlayerInfo* current = &tableInfo.playerInfo[i];
-        updatePlayersTable("/setCard " + current->name + " " + suitToString(current->cards[0].getSuit()) + " " + std::to_string(current->cards[0].getValue()) + " " + suitToString(current->cards[1].getSuit()) + " " + std::to_string(current->cards[1].getValue()));
+        if (!current->isFold) {
+            updatePlayersTable("/setCard " + current->name + " " + suitToString(current->cards[0].getSuit()) + " " + std::to_string(current->cards[0].getValue()) + " " + suitToString(current->cards[1].getSuit()) + " " + std::to_string(current->cards[1].getValue()));
+        }
     }
+    qDebug() << "hend end";
     distribute();
 
 
