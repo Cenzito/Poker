@@ -34,6 +34,12 @@
 ## Weeks of Monday 18 Dec 2023 and Christmas Holidays
 1. **Compatibility of Logic with Server**
    - Worked on making the logic code fit with Servers
+  
+## Weeks of Monday 8 Jan 2024 and Monday 15 Jan 2024
+1. **Optimization and Expansion of `GameLocal` class**
+   - Implementation of Internal Hand Storage instead of calling player's hands
+   - Various optimizations like const-correctness
+   - Managed case where 2 or more players tie: splits pot and divides it between them
 
 
 

@@ -23,7 +23,7 @@ enum class Suit {
 }; //represent the suit of the card, making them easily comparable
 
 std::string suitToString(Suit suit); //converts the suit to a string
-
+Suit stringToSuit(std::string suit); //converts the string to a suit
 
 class Card {
 public:

@@ -24,5 +24,7 @@ private slots:
     void onRulesButtonClicked();
     void onLocalPlayButtonClicked();
 
+    void on_pushButton_login_clicked();
+    void on_pushButton_signin_clicked();
 };
 #endif // MAINWINDOW_H
