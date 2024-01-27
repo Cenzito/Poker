@@ -21,20 +21,25 @@ int main(int argc, char *argv[]) {
 
     QApplication a(argc, argv);
 
-    GameLocalWindow w;
+    MainWindow w;
+    w.show();
+
+
+    //GameLocalWindow w;
 
     //Bot bot1 = Bot("Alpha", 3);
-    Bot bot1 = Bot("bot2",0);
-    MonkeyBot bot2 = MonkeyBot("Beta");
+    //Bot bot1 = Bot("bot2",0);
+    //MonkeyBot bot2 = MonkeyBot("Beta");
 
     //Bot bot1 = Bot("bot1", 0);
     //Bot bot2 = Bot("bot2", 0);
 
-    w.game.addBot(&bot1);
-    w.game.addBot(&bot2);
-    w.show();
+    //w.game.addBot(&bot1);
+    //w.game.addBot(&bot2);
+    //w.show();
 
-    w.game.nextHand();
+
+    //w.game.nextHand();
 
     return a.exec();
 
