@@ -25,16 +25,22 @@ MainWindow::MainWindow(QWidget *parent) :
     // Loading and setting the image to the QLabel
     //QPixmap image1("../Poker/Visuals/MainWindow/pokerpic.jpg");
     //ui->label->setPixmap(image1);
-    // Create a QLabel for the image
-    QLabel *imageLabel = new QLabel(this);
-    QPixmap imagePixmap(":/images/huge_player_stack.png");
-    if (imagePixmap.isNull()) {
-        qDebug() << "Failed to load image";
-    }
-    QPixmap scaledPixmap = imagePixmap.scaled(150, 150, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-    imageLabel->setPixmap(scaledPixmap);
-    imageLabel->resize(scaledPixmap.size());
-    imageLabel->move(400, 200);
+
+    //QLabel *imageLabel = new QLabel(this);
+    //QPixmap imagePixmap(":/images/huge_player_stack.png");
+    //if (imagePixmap.isNull()) {
+    //    qDebug() << "Failed to load image";
+    //}
+    //QPixmap scaledPixmap = imagePixmap.scaled(200, 200, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    //imageLabel->setPixmap(scaledPixmap);
+    //imageLabel->resize(scaledPixmap.size());
+    //imageLabel->move(400, 200);
+    //imageLabel->setScaledContents(true); // Allow the pixmap to scale with the label
+    //imageLabel->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    //QHBoxLayout *layout = new QHBoxLayout(this);
+    //layout->addWidget(imageLabel);
+    //imageLabel->resize(scaledPixmap.size());
+    //this->setCentralWidget(centralWidget());
 
 
 
@@ -49,6 +55,7 @@ void MainWindow::onPlayButtonClicked()
 {
     // Create and show the GameWindow when the PLAY button is clicked
     GameWindow *gameWindow = new GameWindow(this, "John");
+
     gameWindow->show();
 }
 
