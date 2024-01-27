@@ -6,6 +6,7 @@
 #include "sqlite3.h"
 #include "Creationaccount.hpp"
 #include "PokerPlayer.hpp"
+#include "client.h"
 
 
 class GameLocalWindow : public GameWindow
@@ -19,8 +20,9 @@ public:
 
     CreationAccount account = CreationAccount("Account.db");
 
-    string username,password;
+    std::string username,password;
 private:
+
     void onRaiseButtonClicked() override;
 
     void onCallButtonClicked() override;
