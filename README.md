@@ -1,4 +1,5 @@
 
+
 **PokerCombinations** class- enumerates all the possible poker combinations and ranks them, useful for future hand comparisons
 
 Functions:
@@ -197,3 +198,4 @@ Member functions:
 Takes as input the table (of type Table), a hand(of type std::vector<Card>), a number of active players (of type int), and a number of simulations (of type int).
 
 Returns an object of type std::vector<float>, of the type **(winning_proba, draw_proba, losing_proba)** ,which contains the winning probability, drawing probability, and losing probability given the current hand and the exact stage of the game.
+
