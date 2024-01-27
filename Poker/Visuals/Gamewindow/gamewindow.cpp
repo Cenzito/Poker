@@ -12,10 +12,17 @@
 #include "GameLogic/PokerHand.hpp"
 #include <QVBoxLayout>
 #include <QGraphicsDropShadowEffect>
+#include <QGraphicsDropShadowEffect>
+#include "GameLogic/PokerHand.hpp"
+#include <QVBoxLayout>
+#include <QGraphicsDropShadowEffect>
 #include "ui_gamewindow.h"
 #include "GameLogic/Card.hpp"
 #include <QGraphicsScene>
 #include <QGraphicsPixmapItem>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
 GameWindow::GameWindow(QWidget *parent, std::string name) : game_player(name),
@@ -131,6 +138,9 @@ void GameWindow::update_display(){
 =======
     preflop_odds();
     player_hand_description();
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   
     // Display names and stacks
@@ -150,7 +160,10 @@ void GameWindow::update_display(){
 //many bugs, i will solve them
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 void GameWindow::player_hand_description() {
     PokerHand hand = game_player.getHand();
     PokerCombinations combination = hand.get_combination();
