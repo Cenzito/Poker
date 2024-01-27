@@ -12,31 +12,77 @@
 #include <QTextStream>
 #include <QApplication>
 #include <QCoreApplication>
+#include <QDir>
+
+
+void init_col_header() {
+
+    QFile file("C:/Users/Leal Köksal/Documents/a University/Semester 3/CSE201/C++ Project/Poker/Poker/data");
+
+        if (!file.exists()) {
+        qDebug() << "File does not exist.";
+        return;
+    }
+
+    if (!file.open(QIODevice::ReadWrite)) {
+        qDebug() << "Could not open the file.";
+        return;
+    }
+
+    QTextStream stream(&file);
+
+    stream << "i\\j\t";
+    for (int i = 0; i <= 20; ++i) {
+        for (int j = 0; j <= 20; ++j) {
+            stream << "(" << i << ", " << j << ")\t";
+        }
+    }
+    stream << "\n";
+
+    file.flush();
+    file.close();
+
+}
 
 void data_collection() {
+    // Specify the relative path to the file
+    QFile file("C:/Users/Leal Köksal/Documents/a University/Semester 3/CSE201/C++ Project/Poker/Poker/data");
 
-    QFile file("data.txt");
 
-    if(!file.exists()) {
-     qCritical() << "Not real...";
+    if (!file.exists()) {
+        qDebug() << "File does not exist.";
+        return;
     }
 
-    qDebug() << "I AM";
-
-    if(!file.open(QIODevice::ReadWrite)) {
-        qCritical() << "Could not open";
+    if (!file.open(QIODevice::ReadWrite)) {
+        qDebug() << "Could not open the file.";
+        return;
     }
+    /* //I am commenting this section because I already edited the file
+    //let us create the coloumns of the txt file
+    QTextStream stream(&file);
+    stream << "i\\j\t";
+    for (int i = 0; i <= 20; ++i) {
+        for (int j = 0; j <= 20; ++j) {
+            stream << "(" << i << ", " << j << ")\t";
+        }
+    }
+    stream << "\n";
+    */
+
     file.write(QByteArray("Hello World"));
-    file.flush();
 
+    file.flush();
     file.close();
 }
 
 int main(int argc, char *argv[]) {
-
-    data_collection();
-
     QApplication a(argc, argv);
+    QDir::setCurrent(QCoreApplication::applicationDirPath());
+
+    init_col_header();
+    //data_collection();
+
 
     GameLocalWindow w;
 
