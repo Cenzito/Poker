@@ -187,6 +187,9 @@ void GameWindow::update_display(){
     if (game_player.tableInfo.playerInfo[game_player.tableInfo.current_player].name == game_player.getName()) {
         switch_bet_button_on();
     }
+    else {
+        switch_bet_button_off();
+    }
 
     //display middle pot
     display_middle_pot();
@@ -337,37 +340,30 @@ void GameWindow::switch_bet_button_on(){
     //auto current_player_info = player->tableInfo.playerInfo[current_player] ;
     //std::string current_player_info_name = current_player_info.name ;
 
-    std::string player_name = game_player.name ;
 
-    if (ui->RaiseButton->isVisible()==false){ //if the button is already visible, does nothing
-        if (game_player.tableInfo.playerInfo.find(current_player)!=game_player.tableInfo.playerInfo.end()){ // check if the player is there
-            std::cout << "works" ;
-        }
-        if (player_name==game_player.tableInfo.playerInfo.at(current_player).name){
-            ui->RaiseButton->show() ;
-        }
-    }
+void GameWindow::switch_bet_button_on(){
+    ui->RaiseButton->show();
+    ui->FoldButton->show() ;
+    ui->CallButton->show();
 }
 
 /*
  * switch_bet_button_off() : remove display of the bet button when it is clicked
  *
 */
-void GameWindow::switch_bet_button_off(){
-    int current_player = game_player.tableInfo.current_player ;
-    std::string player_name = game_player.name ;
 
-    if (ui->RaiseButton->isVisible() == true){ //if the button already hidden, does nothing
-        if (player_name == game_player.tableInfo.playerInfo.at(current_player).name){
-            ui->RaiseButton->hide() ;
-        }
-    }
+void GameWindow::switch_bet_button_off(){
+    ui->RaiseButton->hide();
+    ui->FoldButton->hide() ;
+    ui->CallButton->hide();
 }
+
 
 /*
  * updateCallButtonLabel() : call or check on the button
  *
 */
+
 void GameWindow::updateCallButtonLabel(){
     //bool condition = /* your condition here */; //SHOULD BE WHETHER TRUE IF SOMEONE PLACES A BET, FALSE IF NO BETS SO FAR IN THE TURN
     bool condition = false;
