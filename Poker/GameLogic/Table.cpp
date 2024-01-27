@@ -50,24 +50,27 @@ void Table::Print() {
 
 /*
  * updateTable(std::string) : This is the most important function of Table
- * It takes a string as argument which is a command passed by
- *
+ * It takes a string as argument which is a command passed by the Game
+ * It then parses it using the helper function parseCommand()
+ * Then it updates the table with the new information received from the command
  *
  */
 void Table::updateTable(std::string command) {
-    // Use std::istringstream to split the string
+    // not a valid command if it doesn't start with a /
     if (command[0] != '/') {
         qDebug() << "invalid command";
         return;
     }
     qDebug() << QString::fromStdString(command);
 
+    //transform the string into a vector with each element a word of the string
     std::istringstream iss(command);
     std::vector<std::string> wordsArray(std::istream_iterator<std::string>{iss}, std::istream_iterator<std::string>());
 
+    //Parse the type of command it is
     CommandType cmdType = parseCommand(wordsArray[0]);
-    //qDebug() << QString::fromStdString(command);
 
+    //Do different things depending on the command
     switch (cmdType) {
     case CommandType::Bet: {
         // "/bet PlayerName Amount"
@@ -126,16 +129,14 @@ void Table::updateTable(std::string command) {
             playerInfo[i].bet = 0;
             playerInfo[i].cards.clear();
         }
-        qDebug()<<"IT WAS RESET";
         current_biggest_bet = 0;
         current_player = ButtonPlayer;
-
 
         lastRaiser = current_player;
         break;
     } case CommandType::ResetGame: {
+        // "/resetGame"
         //reset bets
-        qDebug()<<"IT WAS RESET";
         for (int i = 0; i <= player_num; i++) {
             playerInfo[i].bet = 0;
             playerInfo[i].isAllin = false;
@@ -192,6 +193,7 @@ void Table::updateTable(std::string command) {
         p->cards.push_back(cardToAdd2);
         break;
     } case CommandType::Invalid: {
+        //not a valid command
         qDebug() << "not valid";
         break;
     }
