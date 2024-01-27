@@ -572,7 +572,7 @@ void GameLocal::setNextCurrentPlayer() {
     //get next current_player
     for (int elt = 1; elt <= tableInfo.player_num; elt++) {
         int next = (tableInfo.current_player + elt) % tableInfo.player_num;
-        if ( !tableInfo.playerInfo[next].isFold ) {
+        if ( !tableInfo.playerInfo[next].isFold  && !tableInfo.playerInfo[next].isAllin) {
             updatePlayersTable("/setActivePlayer " + std::to_string(next));
             break;
         }
