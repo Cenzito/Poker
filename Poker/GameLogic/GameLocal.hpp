@@ -22,7 +22,7 @@ public:
 
 
     void JoinGame(PokerPlayer*);
-    void addBot(Bot* bot);
+
     void nameBot(Bot& robot);
 
     int getFreeSeat();

@@ -645,7 +645,7 @@ void GameLocal::nameBot(Bot& robot) {
     }
 
     robot.name=randomName;
-    qDebug()<<"here?"<<randomName;
+    qDebug()<<"here?"<<QString::fromStdString(randomName);
 }
 
 
