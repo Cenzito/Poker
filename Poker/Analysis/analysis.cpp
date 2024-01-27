@@ -377,7 +377,7 @@ double average_margin(const std::vector<double>& margins){
     }
 }
 
-int main() {    
+int main() {
 
     // Sample data (replace this with your actual hand history data)
     std::string name_player = "arazua";
@@ -416,12 +416,46 @@ int main() {
     plt::ylabel("Aggression Factor");
     plt::show();
 
+    std::vector<double> vpip_values;
+
+    for (int i = 0; i < hand_history.size(); i += 10) {
+        std::vector<Hand> subset(hand_history.begin(), hand_history.begin() + i);
+        vpip_values.push_back(calculate_vpip_percentage(subset, name_player));
+    }
+
+    plt::plot(hand_intervals, vpip_values);
+    plt::title("VPIP Percentage Over Time");
+    plt::xlabel("Hand Number");
+    plt::ylabel("VPIP Percentage");
+    plt::show();
+
+
+    std::vector<double> chip_balances;
+
+    for (const auto& hand : hand_history) {
+        chip_balances.push_back(hand.chips);
+    }
+
+    plt::plot(chip_balances);
+    plt::title("Chip Balance Over Time");
+    plt::xlabel("Hand Number");
+    plt::ylabel("Chip Balance");
+    plt::show();
+
+
+    plt::plot(margins);
+    plt::title("Win/Loss Margins Over Hands");
+    plt::xlabel("Hand Number");
+    plt::ylabel("Margin");
+    plt::show();
+
+
+
+
 
 
     return 0;
 }
-
-
 
 
 
