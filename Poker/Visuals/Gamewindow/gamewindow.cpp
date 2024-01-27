@@ -165,6 +165,7 @@ void GameWindow::update_display(){
     update_community_cards();
     updateCallButtonLabel();
     displayAllPCards();
+    QApplication::processEvents();
 
 }
 
@@ -546,6 +547,8 @@ void GameWindow::displayCardP(int player) {
     Suit suit2 = card2.getSuit();
     int value1 = card1.getValue();
     int value2 = card2.getValue();
+    qDebug() << Get_image_path(suitToString(suit1),std::to_string(value1),false);
+    qDebug() << Get_image_path(suitToString(suit2),std::to_string(value2),false);
     QString path1 = Get_image_path(suitToString(suit1),std::to_string(value1),false);
     QString path2 = Get_image_path(suitToString(suit2),std::to_string(value2),false);
     QImage image1(path1);
