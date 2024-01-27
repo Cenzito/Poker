@@ -23,7 +23,7 @@ public:
     void update_middle_card_display(int cardIndex, const Card& card);
     void remove_middle_card_display(int cardIndex);
     void display_names_stacks_bets();
-
+    void player_hand_description();
     void display_player_hand();
     void switch_bet_button_on();
     void switch_bet_button_off();

@@ -6,7 +6,17 @@
 #include "GameLogic/Table.hpp"
 #include"GameLogic/PlayerInfo.hpp"
 #include "GameLogic/PokerPlayer.hpp"
+<<<<<<< Updated upstream
 #include <QGraphicsDropShadowEffect>
+=======
+#include "GameLogic/PokerHand.hpp"
+#include <QVBoxLayout>
+#include <QGraphicsDropShadowEffect>
+#include "ui_gamewindow.h"
+#include "GameLogic/Card.hpp"
+#include <QGraphicsScene>
+#include <QGraphicsPixmapItem>
+>>>>>>> Stashed changes
 
 GameWindow::GameWindow(QWidget *parent, std::string name) : game_player(name),
     QMainWindow(parent),
@@ -117,6 +127,11 @@ void GameWindow::update_display(){
   
     // Display players hand
     display_player_hand();
+<<<<<<< Updated upstream
+=======
+    preflop_odds();
+    player_hand_description();
+>>>>>>> Stashed changes
   
     // Display names and stacks
     display_names_stacks_bets();
@@ -134,6 +149,50 @@ void GameWindow::update_display(){
 
 //many bugs, i will solve them
 
+<<<<<<< Updated upstream
+=======
+void GameWindow::player_hand_description() {
+    PokerHand hand = game_player.getHand();
+    PokerCombinations combination = hand.get_combination();
+    QString hand_name; // Declare the variable outside of the if-else blocks
+
+    if (combination == PokerCombinations::RoyalFlush) {
+        hand_name = "Royal Flush";
+    }
+    else if (combination == PokerCombinations::StraightFlush) {
+        hand_name = "Straight Flush";
+    }
+    else if (combination == PokerCombinations::FourOfAKind) {
+        hand_name = "Four of a kind";
+    }
+    else if (combination == PokerCombinations::FullHouse) {
+        hand_name = "Full House";
+    }
+    else if (combination == PokerCombinations::Flush) {
+        hand_name = "Flush";
+    }
+    else if (combination == PokerCombinations::Straight) {
+        hand_name = "Straight";
+    }
+    else if (combination == PokerCombinations::ThreeOfAKind) {
+        hand_name = "Three of a kind";
+    }
+    else if (combination == PokerCombinations::TwoPairs) {
+        hand_name = "Two Pairs";
+    }
+    else if (combination == PokerCombinations::Pair) {
+        hand_name = "Pair";
+    }
+    else {
+        hand_name = "High Card";
+    }
+    ui->hand_display->setText(hand_name);
+    qDebug() <<hand_name;
+}
+/*
+ * Updates the cards in the middle
+*/
+>>>>>>> Stashed changes
 void GameWindow::update_community_cards() {
     const std::vector<Card>& communityCards = game_player.tableInfo.communityCards;
     if (communityCards.size() == 0) {
