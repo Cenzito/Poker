@@ -9,31 +9,62 @@
 #include "./GameLogic/PokerHand.cpp"
 #include "./GameLogic/GameLocal.hpp"
 #include "./Bots/Hard/Cenzo/BotCenzo.hpp"
+#include "./Bots/Easy/MonkeyBot.hpp"
 
 #include <QApplication>
 
 
 int main(int argc, char *argv[]) {
+
     qDebug() << "Hello";
 
+
     QApplication a(argc, argv);
+
     MainWindow w;
     w.show();
-   // GameLocalWindow w;
+
+
+    //GameLocalWindow w;
+
     //Bot bot1 = Bot("Alpha", 3);
-    //Bot bot2 = Bot("bot2",0);
+    //Bot bot1 = Bot("bot2",0);
+    //MonkeyBot bot2 = MonkeyBot("Beta");
 
     //Bot bot1 = Bot("bot1", 0);
     //Bot bot2 = Bot("bot2", 0);
+
     //w.game.addBot(&bot1);
     //w.game.addBot(&bot2);
     //w.show();
+
 
     //w.game.nextHand();
 
     return a.exec();
 
 
+
+
+/*
+    //QApplication a(argc, argv);
+    GameLocal w(2);
+    BotCenzo bot1 = BotCenzo("bot1", 7);
+    BotCenzo bot2 = BotCenzo("bot2", 7);
+    //BotCenzo bot3 = BotCenzo("bot1", 7);
+    //BotCenzo bot4 = BotCenzo("bot2", 7);
+    //BotCenzo bot5 = BotCenzo("bot1", 7);
+    w.addBot(&bot1);
+    w.addBot(&bot2);
+    //w.addBot(&bot3);
+    //w.addBot(&bot4);
+    //w.addBot(&bot5);
+    //w.show();
+    w.nextHand();
+
+    return 1;
+
+*/
 
 
 
@@ -104,6 +135,7 @@ int main(int argc, char *argv[]) {
     return 0;
 
 */
+
 }
 
 //test
