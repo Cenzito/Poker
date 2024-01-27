@@ -21,7 +21,7 @@ public:
 
 
     void JoinGame(PokerPlayer*);
-    void addBot(Bot* bot);
+    void addBot(int botNumber);
     int getFreeSeat();
 
     //actions on the player

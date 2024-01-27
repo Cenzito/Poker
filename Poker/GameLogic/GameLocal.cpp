@@ -48,8 +48,20 @@ void GameLocal::JoinGame(PokerPlayer* player) {
 
 }
 
-void GameLocal::addBot(Bot* bot) {
-    GameLocal::JoinGame(bot);
+void GameLocal::addBot(int botNumber) {
+
+    std::string name = "";
+    switch (botNumber) {
+    case 1: {
+        Bot* bot = new Bot(name, 2);
+        JoinGame(bot);
+    }
+    case 2: {
+
+    }
+    }
+
+
 }
 
 
