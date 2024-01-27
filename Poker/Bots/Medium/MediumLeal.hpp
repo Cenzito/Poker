@@ -11,6 +11,11 @@ public:
 
     void Action();
 
+    bool SameRank(std::vector<Card> hand);
+    bool SameSuit (std::vector<Card> hand);
+    bool CloseRank (std::vector<Card> hand);
+
+
 private:
     int NumericalCardValue;
     float lambda = 4.8; //arbitrary

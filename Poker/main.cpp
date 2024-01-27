@@ -1,8 +1,5 @@
-
 #include "./Visuals/MainWindow/mainwindow.hpp"
 #include "./Visuals/Gamewindow/gamewindow.hpp"
-
-
 #include "./Visuals/Gamewindow/gamelocalwindow.hpp"
 #include "./GameLogic/Card.cpp"
 #include "./GameLogic/Deck.cpp"
@@ -17,13 +14,14 @@
 #include <QCoreApplication>
 
 void data_collection() {
+
     QFile file("data.txt");
 
     if(!file.exists()) {
      qCritical() << "Not real...";
     }
 
-    qDebug() << "IAM";
+    qDebug() << "I AM";
 
     if(!file.open(QIODevice::ReadWrite)) {
         qCritical() << "Could not open";
@@ -32,7 +30,6 @@ void data_collection() {
     file.flush();
 
     file.close();
-
 }
 
 int main(int argc, char *argv[]) {
@@ -44,8 +41,8 @@ int main(int argc, char *argv[]) {
     GameLocalWindow w;
 
     //Bot bot1 = Bot("Alpha", 3);
-    BotCenzo bot1 = BotCenzo("bot1");
-    BotCenzo bot2 = BotCenzo("bot2");
+    MediumLeal bot1 = MediumLeal("bot1", 3);
+    MediumLeal bot2 = MediumLeal("bot2", 3);
 
     //Bot bot1 = Bot("bot1", 0);
     //Bot bot2 = Bot("bot2", 0);
@@ -57,10 +54,6 @@ int main(int argc, char *argv[]) {
     w.game.nextHand();
 
     return a.exec();
-
-
-
-
 /*
     //QApplication a(argc, argv);
     GameLocal w(2);
@@ -150,7 +143,6 @@ int main(int argc, char *argv[]) {
     return 0;
 
 */
-
 }
 
 //test
