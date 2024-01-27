@@ -1,5 +1,7 @@
 #include "GameLocal.hpp"
 #include <QApplication>
+#include <random>
+
 
 GameLocal::GameLocal(int seats): tableInfo(seats){
 }
@@ -583,6 +585,41 @@ void GameLocal::setNextCurrentPlayer() {
     }
 }
 
+void GameLocal::nameBot(Bot& robot) {
+    //get the vector of existing names
+    std::vector<std::string> names;
+    for (int i = 0; i < tableInfo.player_num; i++) {
+        names.push_back(tableInfo.playerInfo[i].name);
+    }
 
+    //bot names
+    std::vector<std::string> botNames = {
+        "Botly", "Gizmox", "Zipto", "Sparkie", "Tinktron", "Quirkle", "Fluxo", "Cybrix", "Nixi", "Orbito",
+        "Jinxo", "Widget", "Glitchy", "Cogsworth", "Pixela", "Byte", "Gizbot", "Zapster", "Whirlo", "Techton",
+        "Droidle", "Bloop", "MechaMuffin", "Sprocket", "Blipper", "Automato", "Circuita", "Gearlo", "BeepBoop",
+        "RoboRoo", "Gadget", "Blinko", "Wirey", "Flexo", "Nano", "ZipZap", "Mechano", "Bitzy", "Electra",
+        "Pulsar", "Clank", "Chipper", "Bolt", "Tinker", "Click", "Ratchet", "Fizz", "Alloy", "Ion", "Lazer",
+        "Rivet", "Dynamo", "Echo", "Astro", "Logic", "Mobi", "Nova", "Orbit", "Pixel", "Quantum", "Radar",
+        "Sonic", "Turbo", "Vector", "Zappy", "Buzz", "Dash", "Flex", "Glimmer", "Jolt", "Kinetic", "Lumen",
+        "Max", "Nexus", "Optix", "Prism", "Quark", "Reactor", "Spark", "Tronix", "Vortex", "Watt", "Xenon",
+        "Yotta", "Zetta", "Aero", "Blaze", "Cosmo", "Drift", "Eon", "Faze", "Glide", "Holo", "Inertia", "Jet",
+        "Kinetic", "Link", "Motion", "Neon", "Ozone"
+    };
+
+    // Create a random number generator engine
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    // Define the distribution (0 to 99 inclusive)
+    std::uniform_int_distribution<> dis(0, 99);
+    qDebug()<<"returning an integer"<<dis(gen);
+    std::string randomName= botNames.at(dis(gen));
+
+    while (std::find(names.begin(), names.end(), randomName) != names.end()) {
+        randomName=botNames.at(dis(gen));
+    }
+
+    robot.name=randomName;
+    qDebug()<<"here?"<<randomName;
+}
 
 
