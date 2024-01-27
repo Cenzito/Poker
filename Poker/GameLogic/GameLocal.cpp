@@ -37,6 +37,10 @@ void GameLocal::JoinGame(PokerPlayer* player) {
         QObject::connect(player, &PokerPlayer::Raise, this,&GameLocal::onRaise);
         QObject::connect(this, &GameLocal::updatePTable, player, &PokerPlayer::updateTable);
 
+        if (!player->isBot) {
+            QObject::connect(player, &PokerPlayer::nextGame, this, &GameLocal::nextHand);
+        }
+
         //player joins game so we add him to the table with an initial amount of money
         updatePlayersTable("/joinGame " + player->name + " " + std::to_string(1000));
 

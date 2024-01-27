@@ -36,7 +36,7 @@ GameWindow::GameWindow(QWidget *parent, std::string name) : game_player(name),
     });
     connect(ui->RaiseButton, &QPushButton::clicked, this, &GameWindow::onRaiseButtonClicked);
     connect(ui->CallButton, &QPushButton::clicked, this, &GameWindow::onCallButtonClicked);
-    connect(ui->StartStopButton, &QPushButton::clicked, this, &GameWindow::onStartStopButtonClicked);
+    connect(ui->NextRound, &QPushButton::clicked, this, &GameWindow::onNextRoundButtonClicked);
 
 
     /*QImage table_background(":/images/table.png");
@@ -166,23 +166,6 @@ void GameWindow::update_display(){
     updateCallButtonLabel();
     displayAllPCards();
     QApplication::processEvents();
-
-}
-
-void GameWindow::onStartStopButtonClicked()
-{
-    if (ui->StartStopButton->text() == "Start")
-    {
-        // Start the game
-        ui->StartStopButton->setText("Stop");
-        //gameLocal.startGame();  // Add a method in GameLocal to start the game
-    }
-    else
-    {
-        // Stop the game
-        ui->StartStopButton->setText("Start");
-        //gameLocal.stopGame();  // Add a method in GameLocal to stop the game
-    }
 
 }
 
@@ -528,15 +511,9 @@ void GameWindow::display_middle_pot(){
 
 // end of display and update middle pot
 
-void GameWindow::on_NextRound_clicked()
+void GameWindow::onNextRoundButtonClicked()
 {
-    //clear table
-    //potsize = 0
-    //update player states for new round
-    //shuffle deck
-    //update  UI
-    //check Game status
-
+    emit game_player.nextGame();
 }
 
 
