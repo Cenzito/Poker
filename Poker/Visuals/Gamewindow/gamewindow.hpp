@@ -22,10 +22,13 @@ public:
     ~GameWindow();
     const QString Get_image_path(const std::string &suit, const std::string &value, bool back = false); // to display the back call with args ("back", "back", true)
 
+
+    //display functions
     void update_display();
     void update_community_cards();
     void update_middle_card_display(int cardIndex, const Card& card);
     void remove_middle_card_display(int cardIndex);
+
     void display_names_stacks_bets();
 
     void display_player_hand();
@@ -44,8 +47,10 @@ public:
     PokerPlayer game_player;
 
 private slots:
-
-    void onPlayButtonClicked();
+    /*
+      buttons
+    */
+    void onRulesButtonClicked();
 
     void onRaiseButtonClicked();
 
@@ -55,14 +60,10 @@ private slots:
 
     void updateCallButtonLabel();
 
-    void on_NextRound_clicked();
+    void onNextRoundButtonClicked();
 
     void onAddBotClicked();
 
-    void onStartStopButtonClicked();
-
-
-    void Add_Bot(int index);
 
 private:
     Ui::GameWindow *ui;

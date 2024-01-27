@@ -53,6 +53,7 @@ signals:
     void Raise(int amount);
     void Fold();
     void Call();
+    void nextGame();
 
     void callUpdateDisplay(); //signal making the connection between the logic and the visual part of the project
 };
