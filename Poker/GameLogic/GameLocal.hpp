@@ -6,6 +6,7 @@
 #include "Deck.hpp"
 #include "../Bots/Bot.hpp"
 #include "../Bots/Hard/Darius/BotDarius.hpp"
+#include "../Bots/Easy/MonkeyBot.hpp"
 #include "PokerHand.hpp"
 #include <QObject>
 #include <QTimer>
@@ -23,6 +24,7 @@ public:
     void JoinGame(PokerPlayer*);
     void addBot(Bot* bot);
     void nameBot(Bot& robot);
+
     int getFreeSeat();
 
     //actions on the player
@@ -59,6 +61,8 @@ public slots:
     void onRaise(int amount);
     void onFold();
     void onCall();
+
+    void addBot(int botNumber);
 
 
     void updatePlayersTable(std::string);

@@ -62,10 +62,10 @@ private slots:
 
     void onNextRoundButtonClicked();
 
-    void onAddBotClicked();
+    virtual void onAddBotClicked();
 
 
-private:
+protected:
     Ui::GameWindow *ui;
     QGraphicsScene *scene;
     QGraphicsView *view;

@@ -50,8 +50,34 @@ void GameLocal::JoinGame(PokerPlayer* player) {
 
 }
 
-void GameLocal::addBot(Bot* bot) {
-    GameLocal::JoinGame(bot);
+void GameLocal::addBot(int botNumber) {
+
+    std::string name = std::to_string(botNumber);
+    switch (botNumber) {
+    case 0: {
+        // Basic bot, he always calls
+        // Don't bluff against him cause he'll know it
+        Bot* bot = new Bot(name, 2);
+        JoinGame(bot);
+        break;
+    }
+    case 1: {
+        // A random bot
+        // It's a monkey, did you really expect him to know how to play?
+        MonkeyBot* bot = new MonkeyBot(name);
+        JoinGame(bot);
+        break;
+    }
+    case 2: {
+        // Darius's bot
+        //Insert comment
+        BotDarius* bot = new BotDarius(name);
+        JoinGame(bot);
+        break;
+    }
+    }
+
+
 }
 
 
