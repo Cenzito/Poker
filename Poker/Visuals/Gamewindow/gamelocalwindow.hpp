@@ -1,12 +1,12 @@
 #ifndef GAMELOCALWINDOW_HPP
 #define GAMELOCALWINDOW_HPP
 
-#include "gamewindow.hpp"
 #include "GameLogic/GameLocal.hpp"
 #include "sqlite3.h"
-#include "Creationaccount.hpp"
+#include "/Database/Creationaccount.hpp"
 #include "PokerPlayer.hpp"
-#include "client.h"
+#include "Client/client.h"
+#include "gamewindow.hpp"
 
 
 class GameLocalWindow : public GameWindow
