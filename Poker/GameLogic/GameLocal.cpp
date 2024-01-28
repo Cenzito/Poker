@@ -81,17 +81,18 @@ void GameLocal::addBot(int botNumber) {
 
 
 void GameLocal::RemovePlayer(std::string name) {
-    //remove player from the player vector
-    for (int elt=0;elt<players.size(); elt ++) {
-        if (players[elt]->name == name) {
-            players.erase(players.begin() + elt);
-            break;
+    if (hand_finished) {
+        //remove player from the player vector
+        for (int elt=0;elt<players.size(); elt ++) {
+            if (players[elt]->name == name) {
+                players.erase(players.begin() + elt);
+                break;
+            }
         }
+
+        //remove from table
+        updatePlayersTable("/remove " + name);
     }
-
-    //remove from table
-    updatePlayersTable("/remove " + name);
-
 };
 
 void GameLocal::pay(PlayerInfo& PlayerPay, int sum) {
@@ -258,6 +259,7 @@ void GameLocal::endHand() {
     }
     qDebug() << "hend end";
     distribute();
+    hand_finished = true;
 
 
     //nextHand();
@@ -401,7 +403,6 @@ void GameLocal::nextHand(){
     if (tableInfo.player_num < 3) {
         return;
     }
-
 
     players_standing = tableInfo.player_num;
     players_all_in = 0;
