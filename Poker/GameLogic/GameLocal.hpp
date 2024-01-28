@@ -19,21 +19,23 @@ class GameLocal : public QObject
 {
     Q_OBJECT
 public:
+    //constructor
     GameLocal(int seats);
 
-
+    //adding players
+    int getFreeSeat();
     void JoinGame(PokerPlayer*);
+
     void RemovePlayer(std::string name);
 
     std::string nameBot(int number=10);
-
-    int getFreeSeat();
 
     //actions on the player
     void pay(PlayerInfo& PlayerPay, int sum);
     void win(PlayerInfo& PlayerWin, int sum);
     void fold(PlayerInfo& foldPlayer);
     void allin(PlayerInfo& allinPlayer);
+    PokerPlayer* findPlayer(std::string name);
 
     //end of game functions
     void endHand();
@@ -41,39 +43,44 @@ public:
     std::vector<PlayerInfo> winners();
     void nextHand();
 
-
+    //round management functions
     void nextBettingRound();
-
     void setNextCurrentPlayer();
 
-    PokerPlayer* findPlayer(std::string name);
-    std::vector<PokerPlayer*> players;
-
+    //important variables
     Deck deck;
     Table tableInfo;
-
     int players_standing;
     int players_all_in;
+    bool hand_finished;
+    std::vector<PokerPlayer*> players;
 
 
+    //action control
     void askBet(PokerPlayer* p);
     void onAction();
 
+
 public slots:
+    //action control
     void onRaise(int amount);
     void onFold();
     void onCall();
 
+
+
     void addBot(int botNumber);
 
-
+    //information control
     void updatePlayersTable(std::string);
     void setPlayerInfos(PokerPlayer* player);
 
 signals:
+    //more information control
     void updatePTable(std::string command);
     void setPInf(std::string command);
 
+    //more action control
     void askAction();
 
 };
