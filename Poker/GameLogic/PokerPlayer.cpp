@@ -11,6 +11,9 @@ PokerPlayer::PokerPlayer(const std::string& name) : name(name) {
     this->isBot=false;
 }
 
+void PokerPlayer::set_name(std::string new_name){
+    this->name = new_name;
+}
 
 void PokerPlayer::receiveCards(const std::vector<Card> newHand) {
     hand = newHand;

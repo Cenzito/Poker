@@ -18,7 +18,7 @@ public:
     PokerPlayer(const std::string& name);
     const std::string& getName() const; //returns the name of the player
 
-
+    void set_name(std::string new_name);
 
     void showHand() const; //prints the hand of the player
 
