@@ -33,6 +33,9 @@ void GameLocalWindow::on_pushButton_login_clicked(){
         pokerclient.sendMessage(user.toStdString() + ":" + pass.toStdString());
         pokerclient.player.set_name(user.toStdString());
     }
+    else{
+        pokerclient.sendMessage("/quit");
+    }
 }
 
 void GameLocalWindow::on_pushButton_signin_clicked(){
@@ -50,6 +53,9 @@ void GameLocalWindow::on_pushButton_signin_clicked(){
         this->username = user.toStdString();
         this->password = pass.toStdString();
         PokerClient pokerclient = PokerClient(server_ip, port);
+    }
+    else{
+        pokerclient.sendMessage("/quit");
     }
 }
 
@@ -75,12 +81,12 @@ void GameLocalWindow::onCallButtonClicked(){ //Reminder: this is check/call butt
     int current = (ui->cumulative_bet_line->text()).toInt();
     std::string message = "/bet";
         if(current <= account.get_money(account.get_db(), this->username)){
-        ui->switch_bet_button_on();
+            switch_bet_button_on();
         pokerclient.sendMessage(message + "" + std::to_string(current));
         pokerclient.processUserInput(message + "" + std::to_string(current));
     }
     else{
-        ui->switch_bet_button_off();
+            switch_bet_button_off();
     }
     pokerclient.sendMessage(message);
     pokerclient.processUserInput(message);

@@ -10,10 +10,10 @@
 PokerClient::PokerClient(const std::string& server_ip, int port) : 
     serverIP(server_ip), 
     serverPort(port), 
-    sockfd(-1), 
-    running(true), 
-    isCredentialsSent(true), 
-    player("", 500),
+    sockfd(-1),
+    running(true),
+    isCredentialsSent(true),
+    player(""),
     roundStarted(false) {}
 
 PokerClient::~PokerClient() {
