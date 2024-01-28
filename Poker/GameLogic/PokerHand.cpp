@@ -223,8 +223,7 @@ std::vector<int> PokerHand::get_score(){// for each hand, we create a score, whi
 
     std::vector<int> score(6,0); //we initialize the score with 0
     
-    if(has_royal_flush()==true) 
-    {score[0]=10;} //if we have a royal flush, we assign the score 10, no tie breakers
+    if(has_royal_flush()==true) {score[0]=10;} //if we have a royal flush, we assign the score 10, no tie breakers
     else if(has_straight_flush()==true) {
         score[0]=9; 
         PokerHand hearts({}); //we create 4 empty poker hands, one for each suit
@@ -236,27 +235,27 @@ std::vector<int> PokerHand::get_score(){// for each hand, we create a score, whi
             if(cards[i].getSuit()==Suit::Spades) spades.cards.push_back(cards[i]);
             if(cards[i].getSuit()==Suit::Diamonds) diamonds.cards.push_back(cards[i]);
             if(cards[i].getSuit()==Suit::Clubs) clubs.cards.push_back(cards[i]);
-    }
-    score[1]=std::max ({hearts.max_straight(), spades.max_straight(), diamonds.max_straight(), clubs.max_straight()});
-    //std::cout<<"Straight Flush "<<score[0]<<" "<<score[1]<<std::endl;
+        }
+        score[1]=std::max ({hearts.max_straight(), spades.max_straight(), diamonds.max_straight(), clubs.max_straight()});
+        //std::cout<<"Straight Flush "<<score[0]<<" "<<score[1]<<std::endl;
     }
     else if(has_four_of_a_kind()==true) {
         score[0]=8;
         int ranks[15]; //for each rank, we will store if it is in the hand or not
-    for (int i=1; i<15; i++) ranks[i]=0; //we initialize the number of cards with rank i with 0
+        for (int i=1; i<15; i++) ranks[i]=0; //we initialize the number of cards with rank i with 0
     
-    for (int i = 0; i < cards.size(); i++) {
-        ranks[cards[i].getValue()]++; //we increment the number of cards with a given rank
-    }
-    int max=0;
-    for (int i=1; i<15; i++){
-        if (ranks[i]==4) max=i; //if we have 4 cards of the same rank, then we have four of a kind 
+        for (int i = 0; i < cards.size(); i++) {
+            ranks[cards[i].getValue()]++; //we increment the number of cards with a given rank
+        }
+        int max=0;
+        for (int i=1; i<15; i++){
+            if (ranks[i]==4) max=i; //if we have 4 cards of the same rank, then we have four of a kind
 
-    }
-    score[1]=max; // the first tie breaker is the rank of the four of a kind
-    for(int i=14; i>1; i--){
-        if(ranks[i]>=1 && i!=max) {score[2]=i; break;} //the second tie breaker is the highest rank of a card that is not from the quatruplet
-    }
+        }
+        score[1]=max; // the first tie breaker is the rank of the four of a kind
+        for(int i=14; i>1; i--){
+            if(ranks[i]>=1 && i!=max) {score[2]=i; break;} //the second tie breaker is the highest rank of a card that is not from the quatruplet
+        }
 
     }
     else if(has_full_house()==true) {
@@ -264,20 +263,18 @@ std::vector<int> PokerHand::get_score(){// for each hand, we create a score, whi
         int ranks[15]; //for each rank, we will store if it is in the hand or not
         for (int i=1; i<15; i++) ranks[i]=0; //we initialize the number of cards with rank i with 0
     
-    for (int i = 0; i < cards.size(); i++) {
-        ranks[cards[i].getValue()]++; //we increment the number of cards with rank i
-        
-        
-    }
-    int max=0;
-    for (int i=1; i<15; i++){
-        if (ranks[i]==3) max=i; 
+        for (int i = 0; i < cards.size(); i++) {
+            ranks[cards[i].getValue()]++; //we increment the number of cards with rank i
+        }
+        int max=0;
+        for (int i=1; i<15; i++){
+            if (ranks[i]==3) max=i;
 
-    }
-    score[1]=max; // the first tie breaker is the rank of the three of a kind
-    for(int i=14; i>1; i--){
-        if(ranks[i]>=2 && i!=max) {score[2]=i; break;} //the second tie breaker is the highest rank of a card that is not from the triplet
-    }
+        }
+        score[1]=max; // the first tie breaker is the rank of the three of a kind
+        for(int i=14; i>1; i--){
+            if(ranks[i]>=2 && i!=max) {score[2]=i; break;} //the second tie breaker is the highest rank of a card that is not from the triplet
+        }
     }
     else if(has_flush()==true) {
         score[0]=6; 
@@ -290,32 +287,31 @@ std::vector<int> PokerHand::get_score(){// for each hand, we create a score, whi
             if(cards[i].getSuit()==Suit::Spades) spades.cards.push_back(cards[i]);
             if(cards[i].getSuit()==Suit::Diamonds) diamonds.cards.push_back(cards[i]);
             if(cards[i].getSuit()==Suit::Clubs) clubs.cards.push_back(cards[i]);
-    }
-    if(hearts.cards.size()>=5){
-        hearts.order_cards();
-        for (int i=1; i<=5; i++){
-            score[i]=hearts.cards[i-1].getValue(); //the tie breakers are the ranks of the cards that form the flush, from highest to lowest
         }
-    }
-    if (spades.cards.size()>=5){
-        spades.order_cards();
-        for (int i=1; i<=5; i++){
-            score[i]=spades.cards[i-1].getValue(); //the tie breakers are the ranks of the cards that form the flush, from highest to lowest
+        if(hearts.cards.size()>=5){
+            hearts.order_cards();
+            for (int i=1; i<=5; i++){
+                score[i]=hearts.cards[i-1].getValue(); //the tie breakers are the ranks of the cards that form the flush, from highest to lowest
+            }
         }
-    }
-    if(diamonds.cards.size()>=5){
-        diamonds.order_cards();
-        for (int i=1; i<=5; i++){
-            score[i]=diamonds.cards[i-1].getValue(); //the tie breakers are the ranks of the cards that form the flush, from highest to lowest
+        if (spades.cards.size()>=5){
+            spades.order_cards();
+            for (int i=1; i<=5; i++){
+                score[i]=spades.cards[i-1].getValue(); //the tie breakers are the ranks of the cards that form the flush, from highest to lowest
+            }
         }
-    }
-    if(clubs.cards.size()>=5){
-        clubs.order_cards();
-        for (int i=1; i<=5; i++){
-            score[i]=clubs.cards[i-1].getValue(); //the tie breakers are the ranks of the cards that form the flush, from highest to lowest
+        if(diamonds.cards.size()>=5){
+            diamonds.order_cards();
+            for (int i=1; i<=5; i++){
+                score[i]=diamonds.cards[i-1].getValue(); //the tie breakers are the ranks of the cards that form the flush, from highest to lowest
+            }
         }
-    }
-
+        if(clubs.cards.size()>=5){
+            clubs.order_cards();
+            for (int i=1; i<=5; i++){
+                score[i]=clubs.cards[i-1].getValue(); //the tie breakers are the ranks of the cards that form the flush, from highest to lowest
+            }
+        }
     }
     else if(has_straight()==true) {
         score[0]=5; 
