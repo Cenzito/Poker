@@ -29,8 +29,6 @@ public:
 
     std::string nameBot(int number=10);
 
-    int getFreeSeat();
-
     //actions on the player
     void pay(PlayerInfo& PlayerPay, int sum);
     void win(PlayerInfo& PlayerWin, int sum);
