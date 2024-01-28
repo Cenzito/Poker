@@ -4,8 +4,7 @@
 #include "GameLogic/Table.hpp"
 #include"GameLogic/PlayerInfo.hpp"
 #include "GameLogic/PokerPlayer.hpp"
-#include "server.h"
-#include "client.h"
+#include "Client/client.h"
 
 #include <QVBoxLayout>
 #include <QGraphicsDropShadowEffect>
@@ -137,13 +136,13 @@ void GameWindow::onRaiseButtonClicked(){
 }
 
 void GameWindow::on_pushButton_login_clicked(){
-    Qstring user = ui->lineEdit_user->text();
-    Qstring pass = ui->lineEdit_pass->text();
+    QString user = ui->lineEdit_user->text();
+    QString pass = ui->lineEdit_pass->text();
 }
 
 void GameWindow::on_pushButton_signin_clicked(){
-    Qstring user = ui->lineEdit_newuser->text();
-    Qstring pass = ui->lineEdit_newpass->text();
+    QString user = ui->lineEdit_newuser->text();
+    QString pass = ui->lineEdit_newpass->text();
 }
 
 void GameWindow::onCallButtonClicked(){ //Reminder: this is check/call button, need to work on changing the name in accordance with the situation, but functionallity should work fine for now
