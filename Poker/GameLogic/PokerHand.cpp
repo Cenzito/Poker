@@ -68,7 +68,7 @@ if(number_spades ==5 || number_hearts==5 || number_diamonds==5 || number_clubs==
 else return false;
 }
 bool PokerHand:: has_flush(){
-    Suit suit[4] = {Suit:: Spades, Suit:: Hearts, Suit:: Diamonds, Suit:: Clubs};
+    Suit suit[4] = {Suit::Spades, Suit::Hearts, Suit::Diamonds, Suit::Clubs};
     int number_spades=0;
     int number_hearts=0;
     int number_diamonds=0;
@@ -83,7 +83,7 @@ bool PokerHand:: has_flush(){
     //std::cout<<"Number of hearts: "<<number_hearts<<std::endl;
     //std::cout<<"Number of diamonds: "<<number_diamonds<<std::endl;
     //std::cout<<"Number of clubs: "<<number_clubs<<std::endl;
-    if(number_spades ==5 || number_hearts==5 || number_diamonds==5 || number_clubs==5)
+    if(number_spades >=5 || number_hearts>=5 || number_diamonds>=5 || number_clubs>=5)
     {
         return true;
     }
