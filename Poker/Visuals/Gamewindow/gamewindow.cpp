@@ -88,6 +88,9 @@ GameWindow::GameWindow(QWidget *parent, std::string name) : game_player(name),
 
     // Set size policies for labels
     labelPot->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+
+    //hide bet buttons
+    switch_bet_button_off();
 }
 
 
@@ -169,6 +172,7 @@ void GameWindow::onFoldButtonClicked(){
 */
 void GameWindow::onNextRoundButtonClicked()
 {
+    ui->AddBot_Button->setEnabled(true);
     emit game_player.nextGame();
     for (int playerNumber = 1; playerNumber <= 8; ++playerNumber) {
         for (int cardNumber = 1; cardNumber <= 2; ++cardNumber) {
@@ -258,7 +262,7 @@ void GameWindow::update_display(){
 
 
     //if you are the current player
-    if (game_player.tableInfo.playerInfo[game_player.tableInfo.current_player].name == game_player.getName()) {
+    if (game_player.tableInfo.playerInfo[game_player.tableInfo.current_player].name == game_player.getName() && !game_player.tableInfo.hand_finished) {
         switch_bet_button_on();
     }
     else {
@@ -286,12 +290,11 @@ void GameWindow::update_display(){
 */
 void GameWindow::update_community_cards() {
     const std::vector<Card>& communityCards = game_player.tableInfo.communityCards;
-
     if (communityCards.size() == 0) {
-        ui->AddBot->setEnabled(true);
+        ui->AddBot_Button->setEnabled(true);
     }
     else {
-        ui->AddBot->setEnabled(false);
+        ui->AddBot_Button->setEnabled(false);
     }
 
     //qDebug() << "number center cards: " << communityCards.size();

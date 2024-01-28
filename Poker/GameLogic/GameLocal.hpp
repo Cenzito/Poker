@@ -54,6 +54,7 @@ public:
     bool hand_finished;
     std::vector<PokerPlayer*> players;
 
+
     //action control
     void askBet(PokerPlayer* p);
     void onAction();

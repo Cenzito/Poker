@@ -12,6 +12,7 @@ Table::Table(){
     current_player=0;
     player_num=0;
     subpots={};
+    hand_finished=true;
 }
 
 Table::Table(int seats){
@@ -23,6 +24,7 @@ Table::Table(int seats){
     player_num=0;
     current_player=3;
     subpots={};
+    hand_finished=true;
 }
 
 
@@ -36,14 +38,17 @@ void Table::Print() {
     qDebug() << "current player " << current_player;
     qDebug() << "Button player " << ButtonPlayer;
     qDebug() << "Active player " << QString::fromStdString(playerInfo[current_player].name);
-    qDebug() << "SB, BB" << SBValue << " " << BBValue << "\n";
+    for (int i=0; i< player_num; i++) {
+        qDebug()<< playerInfo[i].name <<"'s subpot is:" <<subpots[i];
+    }
+    //qDebug() << "SB, BB" << SBValue << " " << BBValue << "\n";
 
     qDebug() << "POT " << pot;
 
-    for (int i = 0; i < player_num; i++ ) {
-        playerInfo[i].Print();
-        qDebug() << "\n";
-    }
+    //for (int i = 0; i < player_num; i++ ) {
+    //    playerInfo[i].Print();
+    //    qDebug() << "\n";
+    //}
 
 }
 
@@ -61,7 +66,7 @@ void Table::updateTable(std::string command) {
         qDebug() << "invalid command";
         return;
     }
-    //qDebug() << QString::fromStdString(command);
+    qDebug() << QString::fromStdString(command);
 
     //transform the string into a vector with each element a word of the string
     std::istringstream iss(command);
@@ -136,11 +141,12 @@ void Table::updateTable(std::string command) {
     } case CommandType::ResetGame: {
         // "/resetGame"
         //reset bets
-        for (int i = 0; i <= player_num; i++) {
+        for (int i = 0; i <= player_num; i++) { //maybe remove the ==?
             playerInfo[i].bet = 0;
             playerInfo[i].isAllin = false;
             playerInfo[i].isFold = false;
             playerInfo[i].cards.clear();
+            subpots[i]=0;
         }
         pot=0;
         ButtonPlayer = (ButtonPlayer + 1)% player_num;
@@ -191,6 +197,14 @@ void Table::updateTable(std::string command) {
         p->cards.push_back(cardToAdd1);
         p->cards.push_back(cardToAdd2);
         break;
+    } case CommandType::FinishHand: {
+        std::string opt = wordsArray[1];
+        if (opt == "1") {
+            hand_finished = true;
+        } else {
+            hand_finished = false;
+        }
+        break;
     } case CommandType::Remove: {
         std::string playerName = wordsArray[1];
         bool found = false;
@@ -237,6 +251,7 @@ CommandType Table::parseCommand(const std::string& command) {
     else if (command == "/joinGame") return CommandType::JoinGame;
     else if (command == "/setPInf") return CommandType::SetPlayerInfo;
     else if (command == "/setCard") return CommandType::SetCards;
+    else if (command == "/finishHand") return CommandType::FinishHand;
     else if (command == "/remove") return CommandType::Remove;
     else return CommandType::Invalid;
 }
