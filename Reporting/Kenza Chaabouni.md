@@ -1,13 +1,13 @@
 #WEEK_1
 
-I tried to formalise the intuitional brut force method for poker in order to optimise it. 
+I tried to formalise the intuitional brute force method for poker in order to optimise it. 
 Def probability_of_my_hand_winning(cardA, cardB, n_players):
 N = number of possibilities
 M = 0                   //number of wins
 Iterate N times:
       Me : cardA , cardB            // stays the same
-	    For player in range(n_players):
-			deal 2 cards 
+      For player in range(n_players):
+	 deal 2 cards 
       Board: 5 cards              //Preflop, you can change this detail depending on the stage of the game
       Simulate the game
       if I win: M+=1
