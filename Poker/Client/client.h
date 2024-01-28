@@ -84,6 +84,7 @@ public:
     std::string server_ip;
     int port;
     std::string recv_message;
+    std::string send_message;
 };
 
 #endif // CLIENT_H
