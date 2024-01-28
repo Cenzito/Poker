@@ -52,7 +52,7 @@ public:
     /**
      * @brief Enters the main loop for processing user input and server messages.
      */
-    void messageLoop(std::string& message);
+    void messageLoop();
 
     /**
      * @brief Sends a message to the server.
