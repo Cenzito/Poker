@@ -38,7 +38,14 @@ GameWindow::GameWindow(QWidget *parent, std::string name) : game_player(name),
     connect(ui->CallButton, &QPushButton::clicked, this, &GameWindow::onCallButtonClicked);
 
     connect(ui->NextRound, &QPushButton::clicked, this, &GameWindow::onNextRoundButtonClicked);
-
+    connect(ui->kick_1, &QPushButton::clicked, this, [this]{ onKickButtonClicked(1); });
+    connect(ui->kick_2, &QPushButton::clicked, this, [this]{ onKickButtonClicked(2); });
+    connect(ui->kick_3, &QPushButton::clicked, this, [this]{ onKickButtonClicked(3); });
+    connect(ui->kick_4, &QPushButton::clicked, this, [this]{ onKickButtonClicked(4); });
+    connect(ui->kick_5, &QPushButton::clicked, this, [this]{ onKickButtonClicked(5); });
+    connect(ui->kick_6, &QPushButton::clicked, this, [this]{ onKickButtonClicked(6); });
+    connect(ui->kick_7, &QPushButton::clicked, this, [this]{ onKickButtonClicked(7); });
+    connect(ui->kick_8, &QPushButton::clicked, this, [this]{ onKickButtonClicked(8); });
 
     /*QImage table_background(":/images/table.png");
     QSize table_background_size = ui->label_table->size();
@@ -47,7 +54,7 @@ GameWindow::GameWindow(QWidget *parent, std::string name) : game_player(name),
     //QSize pot_image_size = ui->label_pot->size();
     //ui->label_pot->setPixmap(QPixmap::fromImage(pot_image).scaled(pot_image_size, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     \
-        QImage potImage(":/images/huge_player_stack.png");
+    QImage potImage(":/images/huge_player_stack.png");
     QImage player_background(":/images/Poker_background.png");
 
     // Set up the labels with initial images
@@ -117,6 +124,9 @@ void GameWindow::onAddBotClicked()
     return;
 }
 
+void GameWindow::onKickButtonClicked(int num) {
+    return;
+}
 
 /*
  *  onRulesButtonClicked(): Open the rules window
@@ -448,17 +458,20 @@ void GameWindow::switch_players_display() {
         QLineEdit* line_bet = findChild<QLineEdit*>(QString("line_bet%1").arg(i));
         QLabel* label_card1 = findChild<QLabel*>(QString("label_player%1_card1").arg(i));
         QLabel* label_card2 = findChild<QLabel*>(QString("label_player%1_card2").arg(i));
+        QPushButton* kick_button = findChild<QPushButton*>(QString("kick_%1").arg(i));
 
         if (i <= numPlayers) {
             line_player->show();
             line_bet->show();
             label_card1->show();
             label_card2->show();
+            kick_button->show();
         } else {
             line_player->hide();
             line_bet->hide();
             label_card1->hide();
             label_card2->hide();
+            kick_button->hide();
         }
     }
 }
@@ -478,7 +491,12 @@ void GameWindow::display_names_stacks_bets() {
         std::string playerName = game_player.tableInfo.playerInfo[i].name + " | " + std::to_string(game_player.tableInfo.playerInfo[i].stack_size);
         QLineEdit* line_player = findChild<QLineEdit*>(QString("line_player%1").arg(i + 1));
         QLineEdit* line_bet = findChild<QLineEdit*>(QString("line_bet%1").arg(i + 1));
-
+        /*
+        QPushButton* kick_button = findChild<QPushButton*>(QString("kick_%1").arg(i + 1));
+        if (game_player.tableInfo.playerInfo[i].name.isBot == false){
+            kick_button->hide();
+        }
+        */
         // Set player name and stack size
         if (line_player)
             line_player->setText(QString::fromStdString(playerName));

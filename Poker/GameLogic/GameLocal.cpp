@@ -87,6 +87,21 @@ void GameLocal::addBot(int botNumber) {
 }
 
 
+void GameLocal::RemovePlayer(std::string name) {
+    if (hand_finished) {
+        //remove player from the player vector
+        for (int elt=0;elt<players.size(); elt ++) {
+            if (players[elt]->name == name) {
+                players.erase(players.begin() + elt);
+                break;
+            }
+        }
+
+        //remove from table
+        updatePlayersTable("/remove " + name);
+    }
+};
+
 void GameLocal::pay(PlayerInfo& PlayerPay, int sum) {
     //adding to the subpots for allinners if they allinned this round
     for (int i = 0; i < tableInfo.player_num; i++) {
@@ -251,6 +266,7 @@ void GameLocal::endHand() {
     }
     qDebug() << "hend end";
     distribute();
+    hand_finished = true;
 
     updatePlayersTable("/finishHand 1");
 
@@ -319,7 +335,7 @@ void GameLocal::fold(PlayerInfo& foldPlayer) {
 void GameLocal::updatePlayersTable(std::string updatePlayersTable) {
     emit updatePTable(updatePlayersTable);
     tableInfo.updateTable(updatePlayersTable);
-    //tableInfo.Print();
+    tableInfo.Print();
 
 }
 
@@ -385,22 +401,20 @@ void GameLocal::nextHand(){
     }
 
     //reset bets
-    for (int i = 0; i <= tableInfo.player_num; i++) {
+    for (int i = tableInfo.player_num - 1; i >= 0; i--) {
         tableInfo.playerInfo[i].bet = 0;
         tableInfo.playerInfo[i].isAllin = false;
         tableInfo.playerInfo[i].isFold = false;
+        if (tableInfo.playerInfo[i].stack_size == 0) {
+            RemovePlayer(tableInfo.playerInfo[i].name);
+        }
     }
-    //reset bets
-    /*for (int i = 0; i <= tableInfo.player_num; i++) {
-        tableInfo.playerInfo[i].bet = 0;
-        tableInfo.playerInfo[i].isAllin = false;
-        tableInfo.playerInfo[i].isFold = false;
-    }*/
-
+    if (tableInfo.player_num < 3) {
+        return;
+    }
 
     players_standing = tableInfo.player_num;
     players_all_in = 0;
-    //qDebug() << tableInfo.communityCards.size();
 
     updatePlayersTable("/finishHand 0");
 
@@ -528,6 +542,7 @@ void GameLocal::nextBettingRound() {
                 std::vector<Card> cards;
                 cards.push_back(deck.dealCard());
                 cards.push_back(deck.dealCard());
+                qDebug() << QString::fromStdString(player->name);
                 player->receiveCards(cards);
                 tableInfo.getPlayerInfo(player->name)->cards = cards;
             }
@@ -613,7 +628,7 @@ PokerPlayer* GameLocal::findPlayer(std::string name) {
 
 void GameLocal::setNextCurrentPlayer() {
     //get next current_player
-    for (int elt = 1; elt <= tableInfo.player_num; elt++) {
+    for (int elt = 1; elt < tableInfo.player_num; elt++) {
         int next = (tableInfo.current_player + elt) % tableInfo.player_num;
         if ( !tableInfo.playerInfo[next].isFold  && !tableInfo.playerInfo[next].isAllin) {
             updatePlayersTable("/setActivePlayer " + std::to_string(next));

@@ -24,7 +24,8 @@ enum class CommandType {
     SetPlayerInfo,
     SetCards,
     Invalid,
-    FinishHand
+    FinishHand,
+    Remove
 };
 
 
