@@ -1,4 +1,4 @@
-
+**DOCUMENTATION** for the logic part of the project:
 
 **PokerCombinations** class- enumerates all the possible poker combinations and ranks them, useful for future hand comparisons
 
@@ -198,4 +198,22 @@ Member functions:
 Takes as input the table (of type Table), a hand(of type std::vector<Card>), a number of active players (of type int), and a number of simulations (of type int).
 
 Returns an object of type std::vector<float>, of the type **(winning_proba, draw_proba, losing_proba)** ,which contains the winning probability, drawing probability, and losing probability given the current hand and the exact stage of the game.
+
+**Bot**
+
+The bot class is inherited from the PokerPlayer class, which makes all the functionalities of the PokerPlayer reusable for each bot. Furthermore, all other bots are obtained from a public inheritance of the Bot class. When a bot is constructed, it calls the constructor of a PokerPlayer and also initializes the level of the bot and the boolean **isBot** to 1. The specific functions added to this class are the public slots:
+
+	call_bet() (of **type void**) -> is called when the bot decision is to call the bet
+ 
+	fold_bet() (of **type void**) -> is called when the bot decides to fold
+ 
+	raise_bet( int amount) (of **type int**) -> is called when the bot decides to raise, the amount received as input being the new bet 
+
+ 	find_stack_size () (of **type int**) -> function that returns the remaining wealth available to the bot
+
+The last function of the bot class is:
+
+	Action( of **type void**) -> a virtual function, when called, the bot decides between one of call_bet, fold_bet, raise_bet. 
+
+ Furthermore, all other bots integrated different functions and data members to run a specific strategy.
 
