@@ -6,6 +6,9 @@
 #include <atomic>
 #include <thread>
 #include "GameLogic/PokerPlayer.hpp"
+#include <thread>
+#include <string>
+#include <winsock2.h>
 
 class PokerClient {
 public:
@@ -99,14 +102,13 @@ public:
 
 
     // Attributes
-    std::string serverIP; ///< The IP address of the server.
-    uint16_t serverPort; ///< The port number of the server.
-    int sockfd; ///< Socket file descriptor for communication with the server.
     std::atomic<bool> running; ///< Flag to control the running state of the client.
     std::atomic<bool> isCredentialsSent; ///< Flag to indicate whether credentials have been sent.
     std::thread recvThread; ///< Thread for handling incoming messages.
     PokerPlayer player; ///< PokerPlayer attributes for the client.
-    bool roundStarted; ///< Indicator if a round has started
+    SOCKET sock;
+    sockaddr_in serverAddr;
+    std::thread networkThread;
 };
 
 #endif // CLIENT_H
