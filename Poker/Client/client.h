@@ -105,7 +105,7 @@ public:
     std::atomic<bool> running; ///< Flag to control the running state of the client.
     std::atomic<bool> isCredentialsSent; ///< Flag to indicate whether credentials have been sent.
     std::thread recvThread; ///< Thread for handling incoming messages.
-    PokerPlayer player; ///< PokerPlayer attributes for the client.
+    PokerPlayer player = PokerPlayer(""); ///< PokerPlayer attributes for the client.
     SOCKET sock;
     sockaddr_in serverAddr;
     std::thread networkThread;
