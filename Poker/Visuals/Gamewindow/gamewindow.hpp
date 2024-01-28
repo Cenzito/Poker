@@ -32,8 +32,8 @@ public:
     void display_names_stacks_bets();
 
     void display_player_hand();
-    void switch_bet_button_on();
-    void switch_bet_button_off();
+    virtual void switch_bet_button_on();
+    virtual void switch_bet_button_off();
     void switch_players_display();
     void highlightActivePlayer();
     void display_middle_pot();
@@ -42,9 +42,6 @@ public:
     void preflop_odds();
     void displayCardP(int player);
     void displayAllPCards();
-
-    Ui::GameWindow* get_ui(){return this->ui;};
-
 
     PokerPlayer game_player;
 
