@@ -5,6 +5,8 @@
 #include "Table.hpp"
 #include "Deck.hpp"
 #include "../Bots/Bot.hpp"
+#include "../Bots/Hard/Darius/BotDarius.hpp"
+#include "../Bots/Easy/MonkeyBot.hpp"
 #include "PokerHand.hpp"
 #include <QObject>
 #include <QTimer>
@@ -20,18 +22,22 @@ public:
 
 
     void JoinGame(PokerPlayer*);
-    void addBot(Bot* bot);
+    void RemovePlayer(std::string name);
+
+    std::string nameBot(int number=10);
+
     int getFreeSeat();
-    void startGame();
 
     //actions on the player
     void pay(PlayerInfo& PlayerPay, int sum);
     void win(PlayerInfo& PlayerWin, int sum);
     void fold(PlayerInfo& foldPlayer);
+    void allin(PlayerInfo& allinPlayer);
 
-    void endHand(PlayerInfo& winner);
-
-
+    //end of game functions
+    void endHand();
+    void distribute();
+    std::vector<PlayerInfo> winners();
     void nextHand();
 
 
@@ -46,7 +52,8 @@ public:
     Table tableInfo;
 
     int players_standing;
-    bool hand_finished;
+    int players_all_in;
+
 
     void askBet(PokerPlayer* p);
     void onAction();
@@ -56,11 +63,18 @@ public slots:
     void onFold();
     void onCall();
 
-    void updatePlayersTable();
+    void addBot(int botNumber);
+
+
+    void updatePlayersTable(std::string);
+    void setPlayerInfos(PokerPlayer* player);
 
 signals:
-    void updatePTable(Table t);
+    void updatePTable(std::string command);
+    void setPInf(std::string command);
+
     void askAction();
+
 };
 
 #endif // GAMELOCAL_HPP
