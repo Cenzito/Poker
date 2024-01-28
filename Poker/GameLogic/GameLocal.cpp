@@ -252,6 +252,8 @@ void GameLocal::endHand() {
     qDebug() << "hend end";
     distribute();
 
+    updatePlayersTable("/finishHand 1");
+
 
     //nextHand();
 }
@@ -400,7 +402,7 @@ void GameLocal::nextHand(){
     players_all_in = 0;
     //qDebug() << tableInfo.communityCards.size();
 
-    hand_finished = false;
+    updatePlayersTable("/finishHand 0");
 
     updatePlayersTable("/resetGame");
 

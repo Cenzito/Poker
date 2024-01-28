@@ -23,7 +23,8 @@ enum class CommandType {
     JoinGame,
     SetPlayerInfo,
     SetCards,
-    Invalid
+    Invalid,
+    FinishHand
 };
 
 
@@ -55,6 +56,9 @@ public:
 
     int pot;
     std::unordered_map <int, int> subpots;
+
+
+    bool hand_finished;
 
     //usefull variables for betting round
     int betting_round; //current betting round (0: preflop, 1: river...)

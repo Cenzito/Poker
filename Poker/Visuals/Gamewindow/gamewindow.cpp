@@ -81,6 +81,9 @@ GameWindow::GameWindow(QWidget *parent, std::string name) : game_player(name),
 
     // Set size policies for labels
     labelPot->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+
+    //hide bet buttons
+    switch_bet_button_off();
 }
 
 

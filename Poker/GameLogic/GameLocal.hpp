@@ -52,7 +52,7 @@ public:
 
     int players_standing;
     int players_all_in;
-    bool hand_finished;
+
 
     void askBet(PokerPlayer* p);
     void onAction();
