@@ -35,6 +35,7 @@ void GameLocalWindow::on_pushButton_login_clicked(){
     }
     else{
         pokerclient.sendMessage("/quit");
+        pokerclient.send_message = "/quit";
     }
 }
 
@@ -56,6 +57,7 @@ void GameLocalWindow::on_pushButton_signin_clicked(){
     }
     else{
         pokerclient.sendMessage("/quit");
+        pokerclient.send_message = "quit";
     }
 }
 
@@ -69,7 +71,7 @@ void GameLocalWindow::onRaiseButtonClicked() {
     if(sum <= account.get_money(account.get_db(), this->username)){
         switch_bet_button_on();
         pokerclient.sendMessage(message + "" + std::to_string(sum));
-        pokerclient.processUserInput(message + "" + std::to_string(sum));
+        pokerclient.send_message = message;
     }
     else{
         switch_bet_button_off();
@@ -80,25 +82,23 @@ void GameLocalWindow::onCallButtonClicked(){ //Reminder: this is check/call butt
     //emit game_player.Call();
     int current = (ui->cumulative_bet_line->text()).toInt();
     std::string message = "/bet";
-        if(current <= account.get_money(account.get_db(), this->username)){
-            switch_bet_button_on();
+    if(current <= account.get_money(account.get_db(), this->username)){
+        switch_bet_button_on();
         pokerclient.sendMessage(message + "" + std::to_string(current));
-        pokerclient.processUserInput(message + "" + std::to_string(current));
+        pokerclient.send_message = message;
     }
     else{
-            switch_bet_button_off();
+        switch_bet_button_off();
     }
-    pokerclient.sendMessage(message);
-    pokerclient.processUserInput(message);
+    pokerclient.send_message = "quit";
 }
 
 
 
 void GameLocalWindow::onFoldButtonClicked(){
-    //emit game_player.Fold();
     std::string message = "/fold";
     pokerclient.sendMessage(message);
-    pokerclient.processUserInput(message);
+    pokerclient.send_message = message;
 }
 
 /*

@@ -72,12 +72,11 @@ void PokerClient::startReceiverThread() {
 }
 
 void PokerClient::messageLoop() {
-    std::string message;
     while (running) {
-        if (message.find("/quit") != std::string::npos) {
+        if (send_message.find("/quit") != std::string::npos) {
             running = false;
         }
-        sendMessage(message);
+        sendMessage(send_message);
     }
 }
 
@@ -88,16 +87,13 @@ std::string PokerClient::get_message(std::string& message){
 void PokerClient::receiveMessages() {
     char buffer[BUFFER_SIZE] = {0};
     while (running) {
-        if (!isCredentialsSent) {
-            continue;
-        }
         int bytesReceived = recv(sock, buffer, 1024, 0);
         if (bytesReceived <= 0) {
             std::cerr << "Disconnected from server or error occurred.\n";
             this->running = false;
             break;
         }
-        std::cout<<std::string(buffer, bytesReceived)<<std::endl;
+        this->recv_message = std::string(buffer, bytesReceived);
     }
 }
 
