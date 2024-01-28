@@ -12,7 +12,7 @@
 class GameLocalWindow : public GameWindow
 {
 public:
-    explicit GameLocalWindow(QWidget *parent = nullptr, std::string p = "name");
+    explicit GameLocalWindow(QWidget *parent = nullptr, std::string p = "name", PokerClient pokerclient = PokerClient(server_ip, port));
 
     GameLocal game;
 
@@ -21,6 +21,11 @@ public:
     CreationAccount account = CreationAccount("Account.db");
 
     std::string username,password;
+
+    std::string server_ip;
+
+    int port;
+
 private:
 
     void onRaiseButtonClicked() override;
@@ -30,6 +35,8 @@ private:
     void onFoldButtonClicked() override;
 
     void onPlayButtonClicked() override;
+
+    void on_pushButton_signin_clicked() override;
 
     void on_pushButton_login_clicked() override;
 

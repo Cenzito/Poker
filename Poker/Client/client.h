@@ -5,7 +5,7 @@
 #include <string>
 #include <atomic>
 #include <thread>
-#include "PokerPlayer.hpp"
+#include "GameLogic/PokerPlayer.hpp"
 
 class PokerClient {
 public:
@@ -25,6 +25,13 @@ public:
      * @brief Runs the client application.
      */
     void run();
+
+    /**
+     * @brief Sends a message to the server.
+     * @param message The message to be sent.
+     */
+    void sendMessage(const std::string& message);
+
 
 private:
     /**
@@ -92,11 +99,6 @@ private:
      */
     void receiveMessages();
 
-    /**
-     * @brief Sends a message to the server.
-     * @param message The message to be sent.
-     */
-    void sendMessage(const std::string& message);
 
     // Attributes
     std::string serverIP; ///< The IP address of the server.
