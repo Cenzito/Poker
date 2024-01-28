@@ -16,13 +16,13 @@ public:
 
     GameLocal game;
 
-    PokerClient pokerclient;
-
     CreationAccount account = CreationAccount("Account.db");
+
+    PokerClient pokerclient = PokerClient(server_ip, port);
 
     std::string username,password;
 
-    std::string server_ip;
+    const std::string server_ip;
 
     int port;
 
