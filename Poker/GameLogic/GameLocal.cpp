@@ -249,16 +249,17 @@ void GameLocal::distribute() {
             }
 
             //reduce the available money
+            int minpot=tableInfo.subpots[minindex];
             qDebug()<< "pot went from"<<tableInfo.pot;
-            tableInfo.pot -= tableInfo.subpots[minindex];
+            tableInfo.pot -= minpot;
             qDebug()<< "to"<<tableInfo.pot;
-            for (int i =0; i<=tableInfo.player_num; i++){
-                tableInfo.subpots[i] -= tableInfo.subpots[minindex];
+            for (int i =0; i<tableInfo.player_num; i++){
+                tableInfo.subpots[i] -= minpot;
             }
 
             //get rid of any all inners who might have been equal to the minimum (at least one)
             for (PokerPlayer* player : players) {
-                PlayerInfo candidate= tableInfo.playerInfo[tableInfo.playerIndex(player->name)];
+                PlayerInfo& candidate= tableInfo.playerInfo[tableInfo.playerIndex(player->name)];
                 if (candidate.isAllin) {
                     int index=tableInfo.playerIndex(candidate.name);
                     if (tableInfo.subpots[index]<=0) {
