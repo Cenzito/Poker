@@ -15,8 +15,10 @@ public:
 
     void onAddBotClicked();
 
+    void onKickButtonClicked(int);
     signals:
         void addBot(int level);
+        void removePlayer(std::string name);
 };
 
 #endif // GAMELOCALWINDOW_HPP
