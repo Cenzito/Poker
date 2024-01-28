@@ -83,6 +83,7 @@ public:
     SOCKET sock;
     std::string server_ip;
     int port;
+    std::string recv_message;
 };
 
 #endif // CLIENT_H
