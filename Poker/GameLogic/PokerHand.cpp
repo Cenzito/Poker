@@ -320,85 +320,78 @@ std::vector<int> PokerHand::get_score(){// for each hand, we create a score, whi
     
     
     else if(has_three_of_a_kind()==true) {
-    score[0]=4; 
-    int ranks[15]; //for each rank, we will store if it is in the hand or not
+        score[0]=4;
+        int ranks[15]; //for each rank, we will store if it is in the hand or not
         for (int i=1; i<15; i++) ranks[i]=0; //we initialize the number of cards with rank i with 0
     
-    for (int i = 0; i < cards.size(); i++) {
-        ranks[cards[i].getValue()]++; //we increment the number of cards with the rank of the current card
-    }
-    //for (int i=14; i>1; i--){
-      //  std::cout<<ranks[i]<<" "<<i<<" "; //the tie breaker is the rank of the triplet
-    //}
-    //std::cout<<std::endl;
-    for(int i=14; i>1; i--){
-        if(ranks[i]==3) {score[1]=i; break;} //the tie breaker is the rank of the triplet
-    }
-    for (int i=14; i>1; i--){
-        if(ranks[i]>=1 && i!=score[1]) {score[2]=i; break;} //the second tie breaker is the highest rank of a card that is not from the triplet
-    }
-    for (int i=14; i>1; i--){
-        if(ranks[i]>=1 && i!=score[1] && i!=score[2]) {score[3]=i; break;} //the third tie breaker is the highest rank of a card that is not from the triplet or the pair
-    }
-
+        for (int i = 0; i < cards.size(); i++) {
+            ranks[cards[i].getValue()]++; //we increment the number of cards with the rank of the current card
+        }
+        for(int i=14; i>1; i--){
+            if(ranks[i]==3) {score[1]=i; break;} //the tie breaker is the rank of the triplet
+        }
+        for (int i=14; i>1; i--){
+            if(ranks[i]>=1 && i!=score[1]) {score[2]=i; break;} //the second tie breaker is the highest rank of a card that is not from the triplet
+        }
+        for (int i=14; i>1; i--){
+            if(ranks[i]>=1 && i!=score[1] && i!=score[2]) {score[3]=i; break;} //the third tie breaker is the highest rank of a card that is not from the triplet or other card
+        }
     }
     else if(has_two_pairs()==true) {
-    score[0]=3;
-    int ranks[15]; //for each rank, we will store if it is in the hand or not
+        score[0]=3;
+        int ranks[15]; //for each rank, we will store if it is in the hand or not
         for (int i=1; i<15; i++) ranks[i]=0; //we initialize the number of cards with rank i with 0
-    for(int i=0; i<cards.size(); i++){
-        ranks[cards[i].getValue()]++; //we increment the number of cards with the rank of the current card
-    }
-    for (int i=14; i>1; i--){
-        if(ranks[i]==2) {score[1]=i; break;} //the first tie breaker is the rank of the first pair
-    }
-    for (int i=14; i>1; i--){
-        if(ranks[i]==2 && i!=score[1]) {score[2]=i; break;} //the second tie breaker is the rank of the second pair
-    }
-    for (int i=14; i>1; i--){
-        if(ranks[i]>=1 && i!=score[1] && i!=score[2]) {score[3]=i; break;} //the third tie breaker is the highest rank of a card that is not from the pairs
-    }
-
+        for(int i=0; i<cards.size(); i++){
+            ranks[cards[i].getValue()]++; //we increment the number of cards with the rank of the current card
+        }
+        for (int i=14; i>1; i--){
+            if(ranks[i]==2) {score[1]=i; break;} //the first tie breaker is the rank of the first pair
+        }
+        for (int i=14; i>1; i--){
+            if(ranks[i]==2 && i!=score[1]) {score[2]=i; break;} //the second tie breaker is the rank of the second pair
+        }
+        for (int i=14; i>1; i--){
+            if(ranks[i]>=1 && i!=score[1] && i!=score[2]) {score[3]=i; break;} //the third tie breaker is the highest rank of a card that is not from the pairs
+        }
     }
     else if(has_pair()==true) {
-    score[0]=2;
-    int ranks[15]; //for each rank, we will store if it is in the hand or not
+        score[0]=2;
+        int ranks[15]; //for each rank, we will store if it is in the hand or not
         for (int i=1; i<15; i++) ranks[i]=0; //we initialize the number of cards with rank i with 0
-    for(int i=0; i<cards.size(); i++){
-        ranks[cards[i].getValue()]++; //we increment the number of cards the rank of the current card
-    }
-    for (int i=14; i>1; i--){
-        if(ranks[i]==2) {score[1]=i; break;} //the first tie breaker is the rank of the pair
-    }
-    for (int i=14; i>1; i--){
-        if(ranks[i]>=1 && i!=score[1]) {score[2]=i; break;} //the second tie breaker is the highest rank of a card that is not from the pair
-    }
-    for (int i=14; i>1; i--){
-        if(ranks[i]>=1 && i!=score[1] && i!=score[2]) {score[3]=i; break;} //the third tie breaker is the highest rank of a card that is not from the pair or the first tie breaker
-    }
-    for (int i=14; i>1; i--){
-        if(ranks[i]>=1 && i!=score[1] && i!=score[2] && i!=score[3]) {score[4]=i; break;} //the fourth tie breaker is the highest rank of a card that is not from the pair or the first or second tie breaker
-    }
+        for(int i=0; i<cards.size(); i++){
+            ranks[cards[i].getValue()]++; //we increment the number of cards the rank of the current card
+        }
+        for (int i=14; i>1; i--){
+            if(ranks[i]==2) {score[1]=i; break;} //the first tie breaker is the rank of the pair
+        }
+        for (int i=14; i>1; i--){
+            if(ranks[i]>=1 && i!=score[1]) {score[2]=i; break;} //the second tie breaker is the highest rank of a card that is not from the pair
+        }
+        for (int i=14; i>1; i--){
+            if(ranks[i]>=1 && i!=score[1] && i!=score[2]) {score[3]=i; break;} //the third tie breaker is the highest rank of a card that is not from the pair or the first tie breaker
+        }
+        for (int i=14; i>1; i--){
+            if(ranks[i]>=1 && i!=score[1] && i!=score[2] && i!=score[3]) {score[4]=i; break;} //the fourth tie breaker is the highest rank of a card that is not from the pair or the first or second tie breaker
+        }
     }
     
    
     else if(has_high_card()==true) { 
-    score[0]=1; 
-    int ranks[15]; //for each rank, we will store if it is in the hand or not
-        for (int i=1; i<15; i++) ranks[i]=0; //we initialize the number of cards with rank i with 0
-    for(int i=0; i<cards.size(); i++){
-        ranks[cards[i].getValue()]++; //we increment the number of cards with the rank of the current card
-    }
-    int j=0; //we create a counter for the tie breakers
-    int i=14; // we begin with the highest value card and iteratively check the best ones in descending order
-    while (j<5){
-        if(ranks[i]==1) {
-        score[j+1]=i; //the tie breakers are the ranks of the cards, from highest to lowest
-        j++;
+        score[0]=1;
+        int ranks[15]; //for each rank, we will store if it is in the hand or not
+            for (int i=1; i<15; i++) ranks[i]=0; //we initialize the number of cards with rank i with 0
+        for(int i=0; i<cards.size(); i++){
+            ranks[cards[i].getValue()]++; //we increment the number of cards with the rank of the current card
         }
-        i--;
-    }
-        
+        int j=0; //we create a counter for the tie breakers
+        int i=14; // we begin with the highest value card and iteratively check the best ones in descending order
+        while (j<5){
+            if(ranks[i]==1) {
+                score[j+1]=i; //the tie breakers are the ranks of the cards, from highest to lowest
+                j++;
+            }
+            i--;
+        }
     }
     else score[0]=0; 
     return score;
