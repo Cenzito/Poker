@@ -1,9 +1,5 @@
 QT       += core gui
-
-unix: {
-    INCLUDEPATH += /usr/include
-    LIBS += -L/usr/lib/x86_64-linux-gnu -lsqlite3
-}
+QT       += sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
