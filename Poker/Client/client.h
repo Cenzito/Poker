@@ -70,6 +70,11 @@ public:
      */
     void CloseConnection();
 
+    /*
+     *This function can get message from the action that player does
+     */
+    std::string get_message(std::string& message);
+
     // Attributes
     std::atomic<bool> running; ///< Flag to control the running state of the client.
     std::atomic<bool> isCredentialsSent; ///< Flag to indicate whether credentials have been sent.
