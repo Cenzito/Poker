@@ -30,7 +30,7 @@ public:
     void remove_middle_card_display(int cardIndex);
 
     void display_names_stacks_bets();
-
+    void player_hand_description();
     void display_player_hand();
     void switch_bet_button_on();
     void switch_bet_button_off();
@@ -62,10 +62,13 @@ private slots:
 
     void onNextRoundButtonClicked();
 
-    void onAddBotClicked();
+    virtual void onKickButtonClicked(int);
+
+    virtual void onAddBotClicked();
 
 
-private:
+
+protected:
     Ui::GameWindow *ui;
     QGraphicsScene *scene;
     QGraphicsView *view;

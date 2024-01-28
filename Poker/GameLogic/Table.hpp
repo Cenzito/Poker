@@ -23,7 +23,8 @@ enum class CommandType {
     JoinGame,
     SetPlayerInfo,
     SetCards,
-    Invalid
+    Invalid,
+    Remove
 };
 
 

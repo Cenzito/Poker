@@ -1,5 +1,7 @@
 #include "GameLocal.hpp"
 #include <QApplication>
+#include <random>
+
 
 /*
     GameLocal(int seats): initializes a game with that many seats
@@ -37,8 +39,6 @@ void GameLocal::JoinGame(PokerPlayer* player) {
     } else {
 
         //player joins game so we add him to the table with an initial amount of money
-        PlayerInfo playerinfo(player->getName(), 1000, 0);
-        tableInfo.playerInfo[tableInfo.player_num] = playerinfo;
 
         players.push_back(player);
 
@@ -57,18 +57,70 @@ void GameLocal::JoinGame(PokerPlayer* player) {
 
         //player joins game so we add him to the table with an initial amount of money
         updatePlayersTable("/joinGame " + player->name + " " + std::to_string(1000));
+        tableInfo.playerInfo[tableInfo.player_num-1].isFold = true;
 
     }
 
 }
 
+
 /*
-    addBot(Bot* bot): calls JoinGame(bot). its use is to simplify the calls.
+    addBot(int botNumber): calls JoinGame(bot). its use is to simplify the calls.
 */
 
-void GameLocal::addBot(Bot* bot) {
-    GameLocal::JoinGame(bot);
+void GameLocal::addBot(int botNumber) {
+    std::string name;
+    if (botNumber==1) {
+        name = nameBot(1);
+    } else if (botNumber==2){
+        name = nameBot(2);
+    } else {
+        name=nameBot();
+    }
+
+    switch (botNumber) {
+    case 0: {
+        // Basic bot, he always calls
+        // Don't bluff against him cause he'll know it
+        Bot* bot = new Bot(name, 2);
+        JoinGame(bot);
+        break;
+    }
+    case 1: {
+        // A random bot
+        // It's a monkey, did you really expect him to know how to play?
+        MonkeyBot* bot = new MonkeyBot(name);
+        JoinGame(bot);
+        break;
+    }
+    case 2: {
+        // Darius's bot
+        //Insert comment
+        BotDarius* bot = new BotDarius(name);
+        JoinGame(bot);
+        break;
+    }
+    }
+
+
 }
+
+
+void GameLocal::RemovePlayer(std::string name) {
+    if (hand_finished) {
+        //remove player from the player vector
+        for (int elt=0;elt<players.size(); elt ++) {
+            if (players[elt]->name == name) {
+                players.erase(players.begin() + elt);
+                break;
+            }
+        }
+
+        //remove from table
+        updatePlayersTable("/remove " + name);
+    }
+};
+
 
 /*
     pay(PlayerInfo& PlayerPay, int sum): makes PlayerPay pay sum to the stack, and modifies the subpots of allinners if needed.
@@ -236,15 +288,18 @@ void GameLocal::distribute() {
     endHand(): ends the hand by showing the cards and distributing the money
 */
 void GameLocal::endHand() {
-
+    qDebug() << "hend end";
     //show player hands
     for (int i = 0; i< tableInfo.player_num;i++ ) {
         PlayerInfo* current = &tableInfo.playerInfo[i];
-        updatePlayersTable("/setCard " + current->name + " " + suitToString(current->cards[0].getSuit()) + " " + std::to_string(current->cards[0].getValue()) + " " + suitToString(current->cards[1].getSuit()) + " " + std::to_string(current->cards[1].getValue()));
+        if (!current->isFold) {
+            updatePlayersTable("/setCard " + current->name + " " + suitToString(current->cards[0].getSuit()) + " " + std::to_string(current->cards[0].getValue()) + " " + suitToString(current->cards[1].getSuit()) + " " + std::to_string(current->cards[1].getValue()));
+        }
     }
 
     //distributes the money to the winners
     distribute();
+    hand_finished = true;
 
 }
 
@@ -316,7 +371,7 @@ void GameLocal::fold(PlayerInfo& foldPlayer) {
 void GameLocal::updatePlayersTable(std::string updatePlayersTable) {
     emit updatePTable(updatePlayersTable);
     tableInfo.updateTable(updatePlayersTable);
-    //tableInfo.Print();
+    tableInfo.Print();
 
 }
 
@@ -388,22 +443,20 @@ void GameLocal::nextHand(){
     }
 
     //reset bets
-    for (int i = 0; i <= tableInfo.player_num; i++) {
+    for (int i = tableInfo.player_num - 1; i >= 0; i--) {
         tableInfo.playerInfo[i].bet = 0;
         tableInfo.playerInfo[i].isAllin = false;
         tableInfo.playerInfo[i].isFold = false;
+        if (tableInfo.playerInfo[i].stack_size == 0) {
+            RemovePlayer(tableInfo.playerInfo[i].name);
+        }
     }
-    //reset bets
-    /*for (int i = 0; i <= tableInfo.player_num; i++) {
-        tableInfo.playerInfo[i].bet = 0;
-        tableInfo.playerInfo[i].isAllin = false;
-        tableInfo.playerInfo[i].isFold = false;
-    }*/
-
+    if (tableInfo.player_num < 3) {
+        return;
+    }
 
     players_standing = tableInfo.player_num;
     players_all_in = 0;
-    //qDebug() << tableInfo.communityCards.size();
 
     hand_finished = false;
 
@@ -548,6 +601,7 @@ void GameLocal::nextBettingRound() {
                 std::vector<Card> cards;
                 cards.push_back(deck.dealCard());
                 cards.push_back(deck.dealCard());
+                qDebug() << QString::fromStdString(player->name);
                 player->receiveCards(cards);
                 tableInfo.getPlayerInfo(player->name)->cards = cards;
             }
@@ -639,7 +693,7 @@ PokerPlayer* GameLocal::findPlayer(std::string name) {
 */
 void GameLocal::setNextCurrentPlayer() {
     //get next current_player
-    for (int elt = 1; elt <= tableInfo.player_num; elt++) {
+    for (int elt = 1; elt < tableInfo.player_num; elt++) {
         int next = (tableInfo.current_player + elt) % tableInfo.player_num;
         if ( !tableInfo.playerInfo[next].isFold  && !tableInfo.playerInfo[next].isAllin) {
             updatePlayersTable("/setActivePlayer " + std::to_string(next));
@@ -648,6 +702,53 @@ void GameLocal::setNextCurrentPlayer() {
     }
 }
 
+std::string GameLocal::nameBot(int number) {
+    //get the vector of existing names
+    std::vector<std::string> names;
+    for (int i = 0; i < tableInfo.player_num; i++) {
+        names.push_back(tableInfo.playerInfo[i].name);
+    }
 
+    //bot names
+    std::vector<std::string> botNames = {
+        "Chimpanzee", "Gorilla", "Baboon", "Capuchin", "Marmocet", "Mandrill", "Orangutan", "Gibbon", "Macaque", "Tamarin",
+        "You_better_fold", "Prepared_to_lose?", "Take_a_mortgage", "Better_than_french_wine", "Orient_Express", "All_I_want_for_Christmas",
+        "Moses", "Zapster", "Whirlo", "Techton",
+        "Droidle", "Bloop", "MechaMuffin", "Sprocket", "Blipper", "Automato", "Circuita", "Gearlo", "BeepBoop",
+        "RoboRoo", "Gadget", "Blinko", "Wirey", "Flexo", "Nano", "ZipZap", "Mechano", "Bitzy", "Electra",
+        "Pulsar", "Clank", "Chipper", "Bolt", "Tinker", "Click", "Ratchet", "Fizz", "Alloy", "Ion", "Lazer",
+        "Rivet", "Dynamo", "Echo", "Astro", "Logic", "Mobi", "Nova", "Orbit", "Pixel", "Quantum", "Radar",
+        "Sonic", "Turbo", "Vector", "Zappy", "Buzz", "Dash", "Flex", "Glimmer", "Jolt", "Kinetic", "Lumen",
+        "Max", "Nexus", "Optix", "Prism", "Quark", "Reactor", "Spark", "Tronix", "Vortex", "Watt", "Xenon",
+        "Yotta", "Zetta", "Aero", "Blaze", "Cosmo", "Drift", "Eon", "Faze", "Glide", "Holo", "Inertia", "Jet",
+        "Kinetic", "Link", "Motion", "Neon", "Ozone"
+    };
+
+    int top=99;
+    int bottom=17;
+    if (number==1) {
+        top=9;
+        bottom=0;
+    } else if (number==2) {
+        top=16;
+        bottom=10;
+    }
+
+    // Create a random number generator engine
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    // Define the distribution (0 to 99 inclusive)
+    std::uniform_int_distribution<> dis(bottom,top);
+    qDebug()<<"returning an integer"<<dis(gen);
+    std::string randomName= botNames.at(dis(gen));
+
+    while (std::find(names.begin(), names.end(), randomName) != names.end()) {
+        randomName=botNames.at(dis(gen));
+    }
+
+    qDebug()<<"here?"<<QString::fromStdString(randomName);
+    return randomName;
+
+}
 
 
