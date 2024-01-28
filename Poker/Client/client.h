@@ -26,10 +26,6 @@ public:
      */
     void run();
 
-
-
-
-protected:
     /**
      * @brief Sets up the connection to the server.
      */
