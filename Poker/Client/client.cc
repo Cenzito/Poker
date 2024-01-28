@@ -21,10 +21,10 @@ PokerClient::PokerClient(const std::string& server_ip, int port){
 }
 
 PokerClient::~PokerClient() {
-    closeconnection();
+    CloseConnection();
 }
 
-void PokerClient::closeconnection(){
+void PokerClient::CloseConnection(){
     running = false;
     closesocket(sock);
     WSACleanup();
