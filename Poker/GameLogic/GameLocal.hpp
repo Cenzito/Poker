@@ -22,6 +22,7 @@ public:
 
 
     void JoinGame(PokerPlayer*);
+    void RemovePlayer(std::string name);
 
     std::string nameBot();
 

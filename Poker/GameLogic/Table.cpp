@@ -132,16 +132,12 @@ void Table::updateTable(std::string command) {
             playerInfo[i].bet = 0;
             playerInfo[i].cards.clear();
         }
-        qDebug()<<"IT WAS RESET";
         current_biggest_bet = 0;
         current_player = ButtonPlayer;
-
-
         lastRaiser = current_player;
         break;
     } case CommandType::ResetGame: {
         //reset bets
-        qDebug()<<"IT WAS RESET";
         for (int i = 0; i <= player_num; i++) {
             playerInfo[i].bet = 0;
             playerInfo[i].isAllin = false;
@@ -197,6 +193,19 @@ void Table::updateTable(std::string command) {
         p->cards.push_back(cardToAdd1);
         p->cards.push_back(cardToAdd2);
         break;
+    } case CommandType::Remove: {
+        std::string playerName = wordsArray[1];
+        bool found = false;
+        for (int i = 0; i<player_num-1;i++) {
+            if (playerInfo[i].name == playerName) {
+                found = true;
+            }
+            if (found) {
+                playerInfo[i] = playerInfo[i+1];
+            }
+        }
+        playerInfo.erase(player_num-1);
+        player_num -= 1;
     } case CommandType::Invalid: {
         qDebug() << "not valid";
         break;
@@ -218,6 +227,7 @@ CommandType Table::parseCommand(const std::string& command) {
     else if (command == "/joinGame") return CommandType::JoinGame;
     else if (command == "/setPInf") return CommandType::SetPlayerInfo;
     else if (command == "/setCard") return CommandType::SetCards;
+    else if (command == "/remove") return CommandType::Remove;
     else return CommandType::Invalid;
 }
 
