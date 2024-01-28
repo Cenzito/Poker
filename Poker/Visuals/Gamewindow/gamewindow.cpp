@@ -169,6 +169,7 @@ void GameWindow::onFoldButtonClicked(){
 */
 void GameWindow::onNextRoundButtonClicked()
 {
+    ui->AddBot_Button->setEnabled(true);
     emit game_player.nextGame();
     for (int playerNumber = 1; playerNumber <= 8; ++playerNumber) {
         for (int cardNumber = 1; cardNumber <= 2; ++cardNumber) {
@@ -286,12 +287,11 @@ void GameWindow::update_display(){
 */
 void GameWindow::update_community_cards() {
     const std::vector<Card>& communityCards = game_player.tableInfo.communityCards;
-
     if (communityCards.size() == 0) {
-        ui->AddBot->setEnabled(true);
+        ui->AddBot_Button->setEnabled(true);
     }
     else {
-        ui->AddBot->setEnabled(false);
+        ui->AddBot_Button->setEnabled(false);
     }
 
     //qDebug() << "number center cards: " << communityCards.size();
