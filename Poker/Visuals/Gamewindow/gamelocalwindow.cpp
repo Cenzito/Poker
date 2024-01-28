@@ -11,15 +11,8 @@ GameLocalWindow::GameLocalWindow(QWidget *parent, std::string p) : GameWindow(pa
     //make player join the game
     //qDebug() << QString::fromStdString(game_player.getName());
 
-
     game.JoinGame(&game_player);
 
-}
-
-
-void GameLocalWindow::onPlayButtonClicked(){
-    RulesWindow *rulesWindow = new RulesWindow(this) ;
-    rulesWindow->show();
 }
 
 void GameLocalWindow::on_pushButton_login_clicked(){
@@ -29,14 +22,14 @@ void GameLocalWindow::on_pushButton_login_clicked(){
                   "PASSWORD TEXT NOT NULL);";
     account.CreationTable(sql);
 
-    Qstring user = ui->lineEdit_user->text();
-    Qstring pass = ui->lineEdit_pass->text();
+    QString user = ui->lineEdit_user->text();
+    QString pass = ui->lineEdit_pass->text();
 
     if(account.login(user, pass)){
-        this->username = user;
-        this->password = pass;
+        this->username = user.toStdString();
+        this->password = pass.toStdString();
         PokerClient pokerclient = PokerClient(server_ip, port);
-        pokerclient.sendMessage(user + ":" + pass);
+        pokerclient.sendMessage(user.toStdString() + ":" + pass.toStdString());
     }
 }
 
@@ -47,14 +40,14 @@ void GameLocalWindow::on_pushButton_signin_clicked(){
                   "PASSWORD TEXT NOT NULL);";
     get_account(this->account).CreationTable(sql);
 
-    Qstring user = ui->lineEdit_newuser->text();
-    Qstring pass = ui->lineEdit_newpass->text();
+    QString user = ui->lineEdit_newuser->text();
+    QString pass = ui->lineEdit_newpass->text();
 
     if(account.Check_repetition(user)){
         account.Insertaccount(user, pass);
-        this->username = user;
-        this->password = pass;
-        pokerclient = PokerClient(server_ip, port);
+        this->username = user.toStdString();
+        this->password = pass.toStdString();
+        PokerClient pokerclient = PokerClient(server_ip, port);
     }
 }
 
@@ -67,7 +60,7 @@ void GameLocalWindow::onRaiseButtonClicked() {
     int sum = add_bet + current;
     //emit game_player.Raise(add_bet);
     if(sum <= account.get_money(account.get_db(), this->username)){
-        ui.switch_bet_button_on()
+        ui->switch_bet_button_on();
         pokerclient.sendMessage(message + "" + std::to_string(sum));
         pokerclient.processUserInput(message + "" + sum, message);
     }
