@@ -203,7 +203,6 @@ void Table::updateTable(std::string command) {
             hand_finished = false;
         }
         break;
-    }
     } case CommandType::Remove: {
         std::string playerName = wordsArray[1];
         bool found = false;

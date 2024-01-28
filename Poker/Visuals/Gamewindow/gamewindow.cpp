@@ -261,7 +261,7 @@ void GameWindow::update_display(){
 
 
     //if you are the current player
-    if (game_player.tableInfo.playerInfo[game_player.tableInfo.current_player].name == game_player.getName()) {
+    if (game_player.tableInfo.playerInfo[game_player.tableInfo.current_player].name == game_player.getName() && !game_player.tableInfo.hand_finished) {
         switch_bet_button_on();
     }
     else {
