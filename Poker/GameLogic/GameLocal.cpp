@@ -108,7 +108,7 @@ void GameLocal::pay(PlayerInfo& PlayerPay, int sum) {
         if (tableInfo.playerInfo[i].isAllin) { //players who are all in are not folded (you cant have both)
             if (0<tableInfo.playerInfo[i].bet){ //checking if the all in was this round to check if subpot can still increase
                 if (PlayerPay.bet < tableInfo.playerInfo[i].bet) { //checks if has already been counted previously in allin
-                    tableInfo.subpots[i]+= (tableInfo.playerInfo[i].bet-PlayerPay.bet ); //adds what hadn't been added
+                    tableInfo.subpots[i]+= std::min(tableInfo.playerInfo[i].bet-PlayerPay.bet,sum ); //adds what hadn't been added
                 }
             }
         }
@@ -130,34 +130,45 @@ void GameLocal::win(PlayerInfo& PlayerWin, int sum) {
 
 
 void GameLocal::distribute() {
+    qDebug()<<"distributing";
 
     std::vector<PlayerInfo> winnerlist = winners();
-
+    qDebug()<<"winners are";
+    for (int i=0; i<winnerlist.size(); i++) {
+        qDebug()<<winnerlist.at(i).name;
+    }
+    qDebug()<<"end of winners";
     if (winnerlist.size() ==1){
+        qDebug()<<"CASE 1 ERROR";
         PlayerInfo PlayerWin = winnerlist.at(0);
         if (PlayerWin.isAllin) {
             //finds the index of the winning player in playerInfo
             int index=tableInfo.playerIndex(PlayerWin.name);
-            qDebug()<<"SINGLE ALLIN WINNER";
+            qDebug()<<"CASE A ERROR";
             if (tableInfo.subpots[index]>0) {
 
                 //transfers the money from the subpot to the players stack
                 win(PlayerWin,tableInfo.subpots[index]);
 
                 //decreases the value in the pot and subpots
+                qDebug()<< "pot went from"<<tableInfo.pot;
                 tableInfo.pot -= tableInfo.subpots[index];
                 for (int i =0; i<tableInfo.player_num; i++){
                     tableInfo.subpots[i] -= tableInfo.subpots[index];
                 }
+                qDebug()<< "to"<<tableInfo.pot;
             }
 
 
             //get rid of any all inners who might have been equal to the minimum (at least one)
-            for (PlayerInfo candidate : winnerlist) {
+            for (PokerPlayer* player : players) {
+                PlayerInfo candidate= tableInfo.playerInfo[tableInfo.playerIndex(player->name)];
                 if (candidate.isAllin) {
                     int index=tableInfo.playerIndex(candidate.name);
                     if (tableInfo.subpots[index]<=0) {
+                        qDebug()<<"folding"<<candidate.name;
                         fold(candidate);
+                        qDebug()<<"it worked?:"<<candidate.isFold;
                     }
 
                 }
@@ -166,9 +177,11 @@ void GameLocal::distribute() {
             qDebug()<<"There are this many players"<<players_standing;
             if (tableInfo.pot>0){ //if theres still money to give...
                 if (players_standing<=1) { //if theres at most one active player, let that active player win the rest
+                    qDebug()<<"less than 1 player bug?";
                     for (int i =0; i<=tableInfo.player_num; i++){
                         if (tableInfo.playerInfo[i].isFold==false) {
                             win(tableInfo.playerInfo[i],tableInfo.pot);
+                            break;
                         }
                     }
                 } else { //else distribute the rest with the other players
@@ -179,10 +192,11 @@ void GameLocal::distribute() {
                 }
             }
         } else { //if the only player is not allin then he gets all the money and the round is over
-            qDebug()<<"One player got the money";
+            qDebug()<<"CASE B ERROR";
             win(PlayerWin, tableInfo.pot);
         }
     } else {
+        qDebug()<<"CASE 2 ERROR";
         //check if there's a player who went all in
         int allin_counter=0;
         for (PlayerInfo candidate : winnerlist) {
@@ -193,15 +207,18 @@ void GameLocal::distribute() {
 
         //if no players went all in, share the pot equally
         if (allin_counter==0) {
+            qDebug()<<"CASE A ERROR";
             int splitpot = (tableInfo.pot/winnerlist.size());
             int extra =(tableInfo.pot%winnerlist.size());
-            win(winnerlist.at(0),extra);
+            if (extra>0){
+                win(winnerlist.at(0),extra);
+            }
             for (PlayerInfo candidate : winnerlist) {
                 win(candidate,splitpot);
             }
 
         } else { // if at least one player went all in, we split the smallest subpot with all the winners and check with the rest
-
+            qDebug()<<"CASE B ERROR";
             //find the smallest subpot
             int minindex =-1;
             for (PlayerInfo candidate : winnerlist) {
@@ -221,33 +238,54 @@ void GameLocal::distribute() {
             //split the subpot
             int splitpot = (tableInfo.subpots[minindex]/winnerlist.size());
             int extra =(tableInfo.subpots[minindex]%winnerlist.size());
-            win(winnerlist.at(0),extra);
+            qDebug()<<"number of ways to split is"<<winnerlist.size();
+            qDebug()<<"minsubpot is"<<tableInfo.playerInfo[minindex].name<<"'s"<< "and has "<<tableInfo.subpots[minindex];
+            qDebug()<<"split sum is"<<splitpot<<"+"<<extra;
+            if (extra>0){
+                win(winnerlist.at(0),extra);
+            }
             for (PlayerInfo candidate : winnerlist) {
                 win(candidate,splitpot);
             }
 
             //reduce the available money
+            qDebug()<< "pot went from"<<tableInfo.pot;
             tableInfo.pot -= tableInfo.subpots[minindex];
+            qDebug()<< "to"<<tableInfo.pot;
             for (int i =0; i<=tableInfo.player_num; i++){
                 tableInfo.subpots[i] -= tableInfo.subpots[minindex];
             }
 
             //get rid of any all inners who might have been equal to the minimum (at least one)
-            for (PlayerInfo candidate : winnerlist) {
+            for (PokerPlayer* player : players) {
+                PlayerInfo candidate= tableInfo.playerInfo[tableInfo.playerIndex(player->name)];
                 if (candidate.isAllin) {
                     int index=tableInfo.playerIndex(candidate.name);
                     if (tableInfo.subpots[index]<=0) {
+                        qDebug()<<"folding"<<candidate.name;
                         fold(candidate);
+                        qDebug()<<"it worked?:"<<candidate.isFold;
                     }
 
                 }
             }
-            //keep distributing the money if there's any left
-            if (tableInfo.pot>0){
-                if (players_standing>=1) {
-                    distribute();
-                }
 
+            qDebug()<<"There are this many players"<<players_standing;
+            if (tableInfo.pot>0){ //if theres still money to give...
+                if (players_standing<=1) { //if theres at most one active player, let that active player win the rest
+                    qDebug()<<"less than 1 player bug?";
+                    for (int i =0; i<=tableInfo.player_num; i++){
+                        if (tableInfo.playerInfo[i].isFold==false) {
+                            win(tableInfo.playerInfo[i],tableInfo.pot);
+                            break;
+                        }
+                    }
+                } else { //else distribute the rest with the other players
+
+                    //we continue distributing until there is no more pot
+                    distribute();
+
+                }
             }
         }
     }
@@ -404,6 +442,7 @@ void GameLocal::nextHand(){
         tableInfo.playerInfo[i].bet = 0;
         tableInfo.playerInfo[i].isAllin = false;
         tableInfo.playerInfo[i].isFold = false;
+        tableInfo.subpots[i]=0;
         if (tableInfo.playerInfo[i].stack_size == 0) {
             RemovePlayer(tableInfo.playerInfo[i].name);
         }

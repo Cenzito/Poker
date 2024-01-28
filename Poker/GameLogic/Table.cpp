@@ -38,14 +38,17 @@ void Table::Print() {
     qDebug() << "current player " << current_player;
     qDebug() << "Button player " << ButtonPlayer;
     qDebug() << "Active player " << QString::fromStdString(playerInfo[current_player].name);
-    qDebug() << "SB, BB" << SBValue << " " << BBValue << "\n";
+    for (int i=0; i< player_num; i++) {
+        qDebug()<< playerInfo[i].name <<"'s subpot is:" <<subpots[i];
+    }
+    //qDebug() << "SB, BB" << SBValue << " " << BBValue << "\n";
 
     qDebug() << "POT " << pot;
 
-    for (int i = 0; i < player_num; i++ ) {
-        playerInfo[i].Print();
-        qDebug() << "\n";
-    }
+    //for (int i = 0; i < player_num; i++ ) {
+    //    playerInfo[i].Print();
+    //    qDebug() << "\n";
+    //}
 
 }
 
@@ -68,7 +71,7 @@ void Table::updateTable(std::string command) {
         qDebug() << "invalid command";
         return;
     }
-    //qDebug() << QString::fromStdString(command);
+    qDebug() << QString::fromStdString(command);
 
     std::istringstream iss(command);
     std::vector<std::string> wordsArray(std::istream_iterator<std::string>{iss}, std::istream_iterator<std::string>());
@@ -140,11 +143,12 @@ void Table::updateTable(std::string command) {
         break;
     } case CommandType::ResetGame: {
         //reset bets
-        for (int i = 0; i <= player_num; i++) {
+        for (int i = 0; i <= player_num; i++) { //maybe remove the ==?
             playerInfo[i].bet = 0;
             playerInfo[i].isAllin = false;
             playerInfo[i].isFold = false;
             playerInfo[i].cards.clear();
+            subpots[i]=0;
         }
         pot=0;
         ButtonPlayer = (ButtonPlayer + 1)% player_num;
