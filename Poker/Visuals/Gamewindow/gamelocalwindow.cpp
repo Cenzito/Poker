@@ -31,6 +31,7 @@ void GameLocalWindow::on_pushButton_login_clicked(){
         this->password = pass.toStdString();
         PokerClient pokerclient = PokerClient(server_ip, port);
         pokerclient.sendMessage(user.toStdString() + ":" + pass.toStdString());
+        pokerclient.player.set_name(user.toStdString());
     }
 }
 
@@ -60,12 +61,12 @@ void GameLocalWindow::onRaiseButtonClicked() {
     qDebug() << add_bet;
     int sum = add_bet + current;
     if(sum <= account.get_money(account.get_db(), this->username)){
-        ui->switch_bet_button_on();
+        switch_bet_button_on();
         pokerclient.sendMessage(message + "" + std::to_string(sum));
         pokerclient.processUserInput(message + "" + std::to_string(sum));
     }
     else{
-        ui->switch_bet_button_off();
+        switch_bet_button_off();
     }
 }
 
@@ -92,4 +93,25 @@ void GameLocalWindow::onFoldButtonClicked(){
     std::string message = "/fold";
     pokerclient.sendMessage(message);
     pokerclient.processUserInput(message);
+}
+
+/*
+ * switch_bet_button_on() : display the bet button when it is our turn to bet
+ *
+*/
+void GameLocalWindow::switch_bet_button_on(){
+    ui->RaiseButton->show();
+    ui->FoldButton->show() ;
+    ui->CallButton->show();
+}
+
+/*
+ * switch_bet_button_off() : remove display of the bet button when it is clicked
+ *
+*/
+
+void GameLocalWindow::switch_bet_button_off(){
+    ui->RaiseButton->hide();
+    ui->FoldButton->hide() ;
+    ui->CallButton->hide();
 }
