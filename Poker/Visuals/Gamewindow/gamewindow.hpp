@@ -62,14 +62,7 @@ private slots:
 
     void onNextRoundButtonClicked();
 
-    void onkick_1Clicked();
-    void onkick_2Clicked();
-    void onkick_3Clicked();
-    void onkick_4Clicked();
-    void onkick_5Clicked();
-    void onkick_6Clicked();
-    void onkick_7Clicked();
-    void onkick_8Clicked();
+    virtual void onKickButtonClicked();
 
     virtual void onAddBotClicked();
 

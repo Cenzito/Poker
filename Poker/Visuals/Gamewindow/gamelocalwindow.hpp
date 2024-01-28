@@ -15,6 +15,7 @@ public:
 
     void onAddBotClicked();
 
+    void onKickButtonClicked();
     signals:
         void addBot(int level);
 };
