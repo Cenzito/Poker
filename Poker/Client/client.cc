@@ -18,10 +18,16 @@ PokerClient::PokerClient(const std::string& server_ip, int port){
         std::cerr << "WSAStartup failed." << std::endl;
         exit(1);
     }
-
 }
 
 PokerClient::~PokerClient() {
+    closeconnection();
+}
+
+void PokerClient::closeconnection(){
+    running = false;
+    closesocket(sock);
+    WSACleanup();
     if (recvThread.joinable()) {
         recvThread.join();
     }

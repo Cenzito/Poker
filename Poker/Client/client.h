@@ -68,7 +68,7 @@ public:
     /*
      * This function closes the connection
      */
-    void closeconnection();
+    void CloseConnection();
 
     // Attributes
     std::atomic<bool> running; ///< Flag to control the running state of the client.
