@@ -1,5 +1,4 @@
 QT       += core gui
-QT       += sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -79,6 +78,9 @@ FORMS += \
 RESOURCES += \
     Visuals/Image.qrc
     Visuals/MainWindow/pokerpic.jpg
+
+INCLUDEPATH += C:/Qt/Tools/mingw1120_64/opt/include
+LIBS += -LC:/Qt/Tools/mingw1120_64/opt/lib -lsqlite3
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
