@@ -1,5 +1,6 @@
 #include "gamelocalwindow.hpp"
 #include "ruleswindow.h"
+#include "gamewindow.hpp"
 #include <qdebug.h>
 #include "client.h"
 #include "Creationaccount.hpp"

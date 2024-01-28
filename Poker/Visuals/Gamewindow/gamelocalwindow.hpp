@@ -12,7 +12,7 @@
 class GameLocalWindow : public GameWindow
 {
 public:
-    explicit GameLocalWindow(QWidget *parent = nullptr, std::string p = "name", PokerClient pokerclient = PokerClient(server_ip, port));
+    explicit GameLocalWindow(QWidget *parent = nullptr, std::string p = "name");
 
     GameLocal game;
 
