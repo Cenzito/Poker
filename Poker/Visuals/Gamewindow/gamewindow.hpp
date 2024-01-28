@@ -64,6 +64,8 @@ private slots:
 
     virtual void updateCallButtonLabel();
 
+    void onRulesButtonClicked();
+
     void onNextRoundButtonClicked();
 
     void onAddBotClicked();

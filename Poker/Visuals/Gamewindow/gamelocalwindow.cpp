@@ -1,6 +1,6 @@
 #include "gamelocalwindow.hpp"
 #include "ruleswindow.h"
-#include "gamewindow.hpp"
+#include "gamewindow.cpp"
 #include <qdebug.h>
 #include "client.h"
 #include "Creationaccount.hpp"
@@ -59,14 +59,13 @@ void GameLocalWindow::onRaiseButtonClicked() {
     ui->cumulative_bet_line->setText(QString::number(add_bet+current));
     qDebug() << add_bet;
     int sum = add_bet + current;
-    //emit game_player.Raise(add_bet);
     if(sum <= account.get_money(account.get_db(), this->username)){
         ui->switch_bet_button_on();
         pokerclient.sendMessage(message + "" + std::to_string(sum));
-        pokerclient.processUserInput(message + "" + sum, message);
+        pokerclient.processUserInput(message + "" + std::to_string(sum));
     }
     else{
-        ui.switch_bet_button_off();
+        ui->switch_bet_button_off();
     }
 }
 
@@ -75,12 +74,12 @@ void GameLocalWindow::onCallButtonClicked(){ //Reminder: this is check/call butt
     int current = (ui->cumulative_bet_line->text()).toInt();
     std::string message = "/bet";
         if(current <= account.get_money(account.get_db(), this->username)){
-        ui.switch_bet_button_on();
+        ui->switch_bet_button_on();
         pokerclient.sendMessage(message + "" + std::to_string(current));
-        pokerclient.processUserInput(message + "" + current, message);
+        pokerclient.processUserInput(message + "" + std::to_string(current));
     }
     else{
-        ui.switch_bet_button_off();
+        ui->switch_bet_button_off();
     }
     pokerclient.sendMessage(message);
     pokerclient.processUserInput(message);
@@ -90,7 +89,7 @@ void GameLocalWindow::onCallButtonClicked(){ //Reminder: this is check/call butt
 
 void GameLocalWindow::onFoldButtonClicked(){
     //emit game_player.Fold();
-    std::string message = "fold";
+    std::string message = "/fold";
     pokerclient.sendMessage(message);
     pokerclient.processUserInput(message);
 }
