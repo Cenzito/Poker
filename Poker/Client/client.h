@@ -108,7 +108,8 @@ public:
     PokerPlayer player = PokerPlayer(""); ///< PokerPlayer attributes for the client.
     SOCKET sock;
     sockaddr_in serverAddr;
-    std::thread networkThread;
+    const std::string server_ip;
+    int port;
 };
 
 #endif // CLIENT_H
