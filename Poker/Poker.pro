@@ -36,6 +36,7 @@ SOURCES += \
     Visuals/MainWindow/mainwindow.cpp \
     Client/client.cc \
     Database/Creationaccount.cpp \
+    Database/hash.cpp
 
 HEADERS += \
     Bots/Bot.hpp \
@@ -65,6 +66,7 @@ HEADERS += \
     Visuals/RulesWindow/ruleswindow.h \
     Client/client.h \
     Database/Creationaccount.hpp \
+    Database/hash.hpp \
 
 
 
