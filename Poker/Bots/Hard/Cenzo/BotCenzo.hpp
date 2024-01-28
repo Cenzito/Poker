@@ -9,7 +9,7 @@
 class BotCenzo : public Bot {
 
 public:
-    BotCenzo(const std::string& name, int level) : Bot(name,7) {};
+    BotCenzo(const std::string& name) : Bot(name,7) {};
     //matrix raisefunction;
 
     std::vector<std::vector<float>> raisefunction = std::vector<std::vector<float>>(20, std::vector<float>(20, 0.5));

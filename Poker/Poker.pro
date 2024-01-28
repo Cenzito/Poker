@@ -55,12 +55,13 @@ HEADERS += \
     GameLogic/Card.hpp \
     GameLogic/Deck.hpp \
     GameLogic/Table.hpp \
+    GameLogic/Monte_Carlo_Probability_Simulator.hpp \
     Visuals/Gamewindow/gamelocalwindow.hpp \
     Visuals/Gamewindow/gamewindow.hpp \
     Visuals/MainWindow/mainwindow.hpp \
     Visuals/RulesWindow/ruleswindow.cpp.autosave \
-    Visuals/RulesWindow/ruleswindow.h
-
+    Visuals/RulesWindow/ruleswindow.h \
+    Visuals/Gamewindow/gamewindow.h
 
 
 FORMS += \

@@ -8,6 +8,7 @@ public :
     Bot(const std::string& name, int level) : PokerPlayer(name) {
 
         this -> level = level; //BotCenzo is level 7 (might change)
+        this-> isBot = true;
     };
 
     virtual void Action();
