@@ -38,7 +38,14 @@ GameWindow::GameWindow(QWidget *parent, std::string name) : game_player(name),
     connect(ui->CallButton, &QPushButton::clicked, this, &GameWindow::onCallButtonClicked);
 
     connect(ui->NextRound, &QPushButton::clicked, this, &GameWindow::onNextRoundButtonClicked);
-
+    connect(ui->kick_1, &QPushButton::clicked, this, &GameWindow::onkick_1Clicked);
+    connect(ui->kick_2, &QPushButton::clicked, this, &GameWindow::onkick_2Clicked);
+    connect(ui->kick_3, &QPushButton::clicked, this, &GameWindow::onkick_3Clicked);
+    connect(ui->kick_4, &QPushButton::clicked, this, &GameWindow::onkick_4Clicked);
+    connect(ui->kick_5, &QPushButton::clicked, this, &GameWindow::onkick_5Clicked);
+    connect(ui->kick_6, &QPushButton::clicked, this, &GameWindow::onkick_6Clicked);
+    connect(ui->kick_7, &QPushButton::clicked, this, &GameWindow::onkick_7Clicked);
+    connect(ui->kick_8, &QPushButton::clicked, this, &GameWindow::onkick_8Clicked);
 
     /*QImage table_background(":/images/table.png");
     QSize table_background_size = ui->label_table->size();
@@ -114,6 +121,39 @@ void GameWindow::onAddBotClicked()
     return;
 }
 
+void GameWindow::onkick_1Clicked()
+{
+    return;
+}
+
+void GameWindow::onkick_2Clicked()
+{
+    return;
+}
+void GameWindow::onkick_3Clicked()
+{
+    return;
+}
+void GameWindow::onkick_4Clicked()
+{
+    return;
+}
+void GameWindow::onkick_5Clicked()
+{
+    return;
+}
+void GameWindow::onkick_6Clicked()
+{
+    return;
+}
+void GameWindow::onkick_7Clicked()
+{
+    return;
+}
+void GameWindow::onkick_8Clicked()
+{
+    return;
+}
 
 /*
  *  onRulesButtonClicked(): Open the rules window
@@ -475,7 +515,12 @@ void GameWindow::display_names_stacks_bets() {
         std::string playerName = game_player.tableInfo.playerInfo[i].name + " | " + std::to_string(game_player.tableInfo.playerInfo[i].stack_size);
         QLineEdit* line_player = findChild<QLineEdit*>(QString("line_player%1").arg(i + 1));
         QLineEdit* line_bet = findChild<QLineEdit*>(QString("line_bet%1").arg(i + 1));
-
+        /*
+        QPushButton* kick_button = findChild<QPushButton*>(QString("kick_%1").arg(i + 1));
+        if (game_player.tableInfo.playerInfo[i].name.isBot == false){
+            kick_button->hide();
+        }
+        */
         // Set player name and stack size
         if (line_player)
             line_player->setText(QString::fromStdString(playerName));
