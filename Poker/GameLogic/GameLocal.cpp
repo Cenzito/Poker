@@ -50,8 +50,15 @@ void GameLocal::JoinGame(PokerPlayer* player) {
 }
 
 void GameLocal::addBot(int botNumber) {
+    std::string name;
+    if (botNumber==1) {
+        name = nameBot(1);
+    } else if (botNumber==2){
+        name = nameBot(2);
+    } else {
+        name=nameBot();
+    }
 
-    std::string name = nameBot();
     switch (botNumber) {
     case 0: {
         // Basic bot, he always calls
@@ -613,7 +620,7 @@ void GameLocal::setNextCurrentPlayer() {
     }
 }
 
-std::string GameLocal::nameBot() {
+std::string GameLocal::nameBot(int number) {
     //get the vector of existing names
     std::vector<std::string> names;
     for (int i = 0; i < tableInfo.player_num; i++) {
@@ -622,8 +629,9 @@ std::string GameLocal::nameBot() {
 
     //bot names
     std::vector<std::string> botNames = {
-        "Botly", "Gizmox", "Zipto", "Sparkie", "Tinktron", "Quirkle", "Fluxo", "Cybrix", "Nixi", "Orbito",
-        "Jinxo", "Widget", "Glitchy", "Cogsworth", "Pixela", "Byte", "Gizbot", "Zapster", "Whirlo", "Techton",
+        "Chimpanzee", "Gorilla", "Baboon", "Capuchin", "Marmocet", "Mandrill", "Orangutan", "Gibbon", "Macaque", "Tamarin",
+        "You_better_fold", "Prepared_to_lose?", "Take_a_mortgage", "Better_than_french_wine", "Orient_Express", "All_I_want_for_Christmas",
+        "Moses", "Zapster", "Whirlo", "Techton",
         "Droidle", "Bloop", "MechaMuffin", "Sprocket", "Blipper", "Automato", "Circuita", "Gearlo", "BeepBoop",
         "RoboRoo", "Gadget", "Blinko", "Wirey", "Flexo", "Nano", "ZipZap", "Mechano", "Bitzy", "Electra",
         "Pulsar", "Clank", "Chipper", "Bolt", "Tinker", "Click", "Ratchet", "Fizz", "Alloy", "Ion", "Lazer",
@@ -634,11 +642,21 @@ std::string GameLocal::nameBot() {
         "Kinetic", "Link", "Motion", "Neon", "Ozone"
     };
 
+    int top=99;
+    int bottom=17;
+    if (number==1) {
+        top=9;
+        bottom=0;
+    } else if (number==2) {
+        top=16;
+        bottom=10;
+    }
+
     // Create a random number generator engine
     std::random_device rd;
     std::mt19937 gen(rd());
     // Define the distribution (0 to 99 inclusive)
-    std::uniform_int_distribution<> dis(0, 99);
+    std::uniform_int_distribution<> dis(bottom,top);
     qDebug()<<"returning an integer"<<dis(gen);
     std::string randomName= botNames.at(dis(gen));
 
