@@ -53,32 +53,29 @@ void Table::Print() {
 }
 
 
-int Table::active_players() {
-    int counter=0;
-    for (int i=0; i < player_num; i++) {
-        if (playerInfo[i].isFold==false) {
-            counter+=1;
-        }
-    }
-    return counter;
-}
-
-
-
+/*
+ * updateTable(std::string) : This is the most important function of Table
+ * It takes a string as argument which is a command passed by the Game
+ * It then parses it using the helper function parseCommand()
+ * Then it updates the table with the new information received from the command
+ *
+ */
 void Table::updateTable(std::string command) {
-    // Use std::istringstream to split the string
+    // not a valid command if it doesn't start with a /
     if (command[0] != '/') {
         qDebug() << "invalid command";
         return;
     }
     qDebug() << QString::fromStdString(command);
 
+    //transform the string into a vector with each element a word of the string
     std::istringstream iss(command);
     std::vector<std::string> wordsArray(std::istream_iterator<std::string>{iss}, std::istream_iterator<std::string>());
 
+    //Parse the type of command it is
     CommandType cmdType = parseCommand(wordsArray[0]);
-    //qDebug() << QString::fromStdString(command);
 
+    //Do different things depending on the command
     switch (cmdType) {
     case CommandType::Bet: {
         // "/bet PlayerName Amount"
@@ -142,6 +139,7 @@ void Table::updateTable(std::string command) {
         lastRaiser = current_player;
         break;
     } case CommandType::ResetGame: {
+        // "/resetGame"
         //reset bets
         for (int i = 0; i <= player_num; i++) { //maybe remove the ==?
             playerInfo[i].bet = 0;
@@ -221,12 +219,24 @@ void Table::updateTable(std::string command) {
         playerInfo.erase(player_num-1);
         player_num -= 1;
     } case CommandType::Invalid: {
+        //not a valid command
         qDebug() << "not valid";
         break;
     }
     }
 };
 
+
+/*
+   These next functions are helper functions
+*/
+
+/*
+ * parseCommand(const std::string&) : Takes a String as an argument and converts it into an element of the enum CommandType
+ * This is used for parsing the commands received from the Game
+ * This function is called by updateTable
+ *
+*/
 CommandType Table::parseCommand(const std::string& command) {
     if (command == "/bet") return CommandType::Bet;
     else if (command == "/setBiggestBet") return CommandType::SetBiggestBet;
@@ -246,15 +256,43 @@ CommandType Table::parseCommand(const std::string& command) {
     else return CommandType::Invalid;
 }
 
+
+/*
+ * getPlayerInfo(std::string) : Takes the name of a player as input and returns a pointer to their PlayerInfo in the Table
+ * Used to search for a player and get information about him by name
+ * This function is called by updateTable as the commands only give a name
+ *
+*/
 PlayerInfo* Table::getPlayerInfo(std::string name) {
     for (int i = 0; i<player_num;i++) {
         if (playerInfo[i].name == name) {
             return &playerInfo[i];
         }
     }
+    return NULL;
 };
 
+/*
+ * active_players() : This returns the number of active players
+ * This function is used by the bots
+ *
+*/
+int Table::active_players() {
+    int counter=0;
+    for (int i=0; i < player_num; i++) {
+        if (playerInfo[i].isFold==false) {
+            counter+=1;
+        }
+    }
+    return counter;
+}
 
+/*
+ *  playerIndex(std::string&) This function takes the name of a player as input and returns the index of the player in the table
+ *  The index is the same as their position on the table
+ *  This function is used by updateTable
+ *
+*/
 int Table::playerIndex(std::string& name){
     int index=-1;
     for (int i = 0; i < player_num; i++) {

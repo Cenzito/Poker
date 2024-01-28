@@ -3,8 +3,17 @@
 #include <random>
 
 
+/*
+    GameLocal(int seats): initializes a game with that many seats
+*/
+
 GameLocal::GameLocal(int seats): tableInfo(seats){
 }
+
+/*
+    getFreeSeat(): checks if there's a free seat at the table, if there is,
+    returns i, the index of the seat. otherwise it returns -1
+*/
 
 int GameLocal::getFreeSeat() {
     Table &t = tableInfo;
@@ -16,9 +25,14 @@ int GameLocal::getFreeSeat() {
     return -1;
 }
 
+
+/*
+    JoinGame(PokerPlayer* player): adds the player to the game if there's space and connects
+    him to all the signals, with an inital amount of money and initializes his playerInfo
+*/
 void GameLocal::JoinGame(PokerPlayer* player) {
 
-    //would need to do a try in case of error if room is full
+    //error if room is full
     if (tableInfo.player_num >= tableInfo.seats)  {
         //qDebug() << "too many players";
         return;
@@ -48,6 +62,11 @@ void GameLocal::JoinGame(PokerPlayer* player) {
     }
 
 }
+
+
+/*
+    addBot(int botNumber): calls JoinGame(bot). its use is to simplify the calls.
+*/
 
 void GameLocal::addBot(int botNumber) {
     std::string name;
@@ -102,6 +121,10 @@ void GameLocal::RemovePlayer(std::string name) {
     }
 };
 
+
+/*
+    pay(PlayerInfo& PlayerPay, int sum): makes PlayerPay pay sum to the stack, and modifies the subpots of allinners if needed.
+*/
 void GameLocal::pay(PlayerInfo& PlayerPay, int sum) {
     //adding to the subpots for allinners if they allinned this round
     for (int i = 0; i < tableInfo.player_num; i++) {
@@ -123,12 +146,18 @@ void GameLocal::pay(PlayerInfo& PlayerPay, int sum) {
     updatePlayersTable("/bet " + PlayerPay.name + " " + std::to_string(sum));
 };
 
+/*
+    win(PlayerInfo& PlayerWin, int sum): gives sum back to PlayerWin.
+*/
 void GameLocal::win(PlayerInfo& PlayerWin, int sum) {
     //qDebug() << sum;
     updatePlayersTable("/win " + PlayerWin.name + " " + std::to_string(sum));
 };
 
-
+/*
+    distribute(): distributes all the money in the pot to the players, takes into account ties and allins by splitting the pot or
+    distributing the subpots first. Uses a little bit of recursion to make sure all the money is redistributed.
+*/
 void GameLocal::distribute() {
     //qDebug()<<"distributing";
 
@@ -147,13 +176,15 @@ void GameLocal::distribute() {
             //finds the index of the winning player in playerInfo
             int index=tableInfo.playerIndex(PlayerWin.name);
             //qDebug()<<"CASE A ERROR";
+            //just to be safe we check that they can still receive money (i.e if their subpot is bigger than 0)
             if (tableInfo.subpots[index]>0) {
-
                 //transfers the money from the subpot to the players stack
                 win(PlayerWin,tableInfo.subpots[index]);
 
-                //decreases the value in the pot and subpots
+
+                //decreases the money available in the pot and subpots
                 //qDebug()<< "pot went from"<<tableInfo.pot;
+
                 tableInfo.pot -= tableInfo.subpots[index];
                 for (int i =0; i<tableInfo.player_num; i++){
                     tableInfo.subpots[i] -= tableInfo.subpots[index];
@@ -176,11 +207,12 @@ void GameLocal::distribute() {
                 }
             }
 
-            //qDebug()<<"There are this many players"<<players_standing;
-            if (tableInfo.pot>0){ //if theres still money to give...
-                if (players_standing<=1) { //if theres at most one active player, let that active player win the rest
-                    //qDebug()<<"less than 1 player bug?";
-                    for (int i =0; i<=tableInfo.player_num; i++){
+
+            //if theres still money to give...
+            if (tableInfo.pot>0){
+                //if theres at most one active player, let that active player win the rest (serves as a base case for the recursion)
+                if (players_standing<=1) {
+                    for (int i =0; i<=tableInfo.player_num; i++){ //there might need an = here
                         if (tableInfo.playerInfo[i].isFold==false) {
                             win(tableInfo.playerInfo[i],tableInfo.pot);
                             break;
@@ -219,8 +251,9 @@ void GameLocal::distribute() {
                 win(candidate,splitpot);
             }
 
-        } else { // if at least one player went all in, we split the smallest subpot with all the winners and check with the rest
-            //qDebug()<<"CASE B ERROR";
+
+        } else { // if at least one player went all in, we split the smallest subpot with all the winners and redistribute what remains
+
             //find the smallest subpot
             int minindex =-1;
             for (PlayerInfo candidate : winnerlist) {
@@ -295,7 +328,9 @@ void GameLocal::distribute() {
 }
 
 
-
+/*
+    endHand(): ends the hand by showing the cards and distributing the money
+*/
 void GameLocal::endHand() {
     //qDebug() << "hend end";
     //show player hands
@@ -305,15 +340,18 @@ void GameLocal::endHand() {
             updatePlayersTable("/setCard " + current->name + " " + suitToString(current->cards[0].getSuit()) + " " + std::to_string(current->cards[0].getValue()) + " " + suitToString(current->cards[1].getSuit()) + " " + std::to_string(current->cards[1].getValue()));
         }
     }
-    //qDebug() << "hend end";
+
+
+    //distributes the money to the winners
     distribute();
 
     updatePlayersTable("/finishHand 1");
 
-
-    //nextHand();
 }
 
+/*
+    winners() : returns the vector of winners (can be multiple in case of ties).
+*/
 std::vector<PlayerInfo> GameLocal::winners() {
 
     //get all the people who haven't folded
@@ -361,17 +399,22 @@ std::vector<PlayerInfo> GameLocal::winners() {
             }
         }
     }
+
     //qDebug()<<winners.size();
     return winners;
 }
 
-
+/*
+    fold(PlayerInfo& foldPlayer): folds the player and decreases the number of active players.
+*/
 void GameLocal::fold(PlayerInfo& foldPlayer) {
     foldPlayer.isFold = true;
     players_standing -= 1;
 }
 
-
+/*
+    updatePlayersTable(std::string updatePlayersTable): updates the table for the player.
+*/
 void GameLocal::updatePlayersTable(std::string updatePlayersTable) {
     emit updatePTable(updatePlayersTable);
     tableInfo.updateTable(updatePlayersTable);
@@ -379,7 +422,9 @@ void GameLocal::updatePlayersTable(std::string updatePlayersTable) {
 
 }
 
-
+/*
+    allin(PlayerInfo& allinPlayerInfo): sets the player to allin, creates their subpot, and pays their whole stack to the pot.
+*/
 void GameLocal::allin(PlayerInfo& allinPlayerInfo) {
     //set the player to all in
     allinPlayerInfo.isAllin=true;
@@ -411,7 +456,9 @@ void GameLocal::allin(PlayerInfo& allinPlayerInfo) {
 }
 
 
-
+/*
+    setPlayerInfos(PokerPlayer* player): .
+*/
 void GameLocal::setPlayerInfos(PokerPlayer* player) {
     //used to set the players in the Table when you join the game
     // can also be used to resync the players with what the game has.
@@ -433,7 +480,9 @@ void GameLocal::setPlayerInfos(PokerPlayer* player) {
 
 }
 
-
+/*
+    nextHand(): .
+*/
 void GameLocal::nextHand(){
     //resets the hands
     for (PokerPlayer* player : players) {
@@ -468,6 +517,9 @@ void GameLocal::nextHand(){
     }
 }
 
+/*
+    askBet(PokerPlayer* p): connects the player functions to the functions in GameLocal.
+*/
 void GameLocal::askBet(PokerPlayer* p) {
     //connect to  a player, tell him its his turn then disconnect
     //qDebug()<<p->name<<"is asked to make a choice";
@@ -476,6 +528,11 @@ void GameLocal::askBet(PokerPlayer* p) {
     QObject::disconnect(this, &GameLocal::askAction, p, &PokerPlayer::Action);
 }
 
+
+/*
+    onAction(): sets current player to the next player and goes to the next betting round if the lastRaiser is reach or in
+    specific situations.
+*/
 void GameLocal::onAction() {
     //qDebug()<<"action entered";
     //check if end hand
@@ -487,7 +544,6 @@ void GameLocal::onAction() {
     else {
         //get next current_player
 
-        //qDebug()<<"is this the problem?";
         setNextCurrentPlayer();
 
         //if the last raiser just folded
@@ -507,6 +563,9 @@ void GameLocal::onAction() {
     }
 }
 
+/*
+    onCall(): calls if they have the money and allins if they dont, then calls onAction() to decide what to do next.
+*/
 void GameLocal::onCall() {
     PlayerInfo &currentPlayerInfo = tableInfo.playerInfo[tableInfo.current_player];
     //qDebug()<<"current highest bet is:"<< tableInfo.current_biggest_bet;
@@ -520,7 +579,9 @@ void GameLocal::onCall() {
     onAction();
 }
 
-
+/*
+    onFold(): folds the player, then calls onAction() to decide what to do next.
+*/
 void GameLocal::onFold() {
     PlayerInfo &currentPlayerInfo = tableInfo.playerInfo[tableInfo.current_player];
 
@@ -529,7 +590,10 @@ void GameLocal::onFold() {
     onAction();
 }
 
-
+/*
+    onRaise(): lets the player raise if they have the money and allins if they don't
+    updates the current_biggest_bet if necessary, then calls onAction() to decide what to do next.
+*/
 void GameLocal::onRaise(int bet) {
     //qDebug()<<"IN RAISE";
     PlayerInfo &currentPlayerInfo = tableInfo.playerInfo[tableInfo.current_player];
@@ -555,7 +619,9 @@ void GameLocal::onRaise(int bet) {
     onAction();
 }
 
-
+/*
+    nextBettingRound():
+*/
 void GameLocal::nextBettingRound() {
     updatePlayersTable("/nextRound");
     //qDebug() << tableInfo.betting_round;
@@ -659,6 +725,9 @@ void GameLocal::nextBettingRound() {
     }
 }
 
+/*
+    findPlayer(std::string name): finds the pointer towards the player with the name "name".
+*/
 PokerPlayer* GameLocal::findPlayer(std::string name) {
     for (PokerPlayer* player : players) {
         if (player->name == name) {
@@ -667,6 +736,9 @@ PokerPlayer* GameLocal::findPlayer(std::string name) {
     }
 };
 
+/*
+    setNextCurrentPlayer(): sets currentplayer to the next player who can make a decision (i.e if they're not allin or folded).
+*/
 void GameLocal::setNextCurrentPlayer() {
     //get next current_player
     for (int elt = 1; elt < tableInfo.player_num; elt++) {
