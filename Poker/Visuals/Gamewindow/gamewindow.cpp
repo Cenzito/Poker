@@ -38,14 +38,14 @@ GameWindow::GameWindow(QWidget *parent, std::string name) : game_player(name),
     connect(ui->CallButton, &QPushButton::clicked, this, &GameWindow::onCallButtonClicked);
 
     connect(ui->NextRound, &QPushButton::clicked, this, &GameWindow::onNextRoundButtonClicked);
-    connect(ui->kick_1, &QPushButton::clicked, this, &GameWindow::onkick_1Clicked);
-    connect(ui->kick_2, &QPushButton::clicked, this, &GameWindow::onkick_2Clicked);
-    connect(ui->kick_3, &QPushButton::clicked, this, &GameWindow::onkick_3Clicked);
-    connect(ui->kick_4, &QPushButton::clicked, this, &GameWindow::onkick_4Clicked);
-    connect(ui->kick_5, &QPushButton::clicked, this, &GameWindow::onkick_5Clicked);
-    connect(ui->kick_6, &QPushButton::clicked, this, &GameWindow::onkick_6Clicked);
-    connect(ui->kick_7, &QPushButton::clicked, this, &GameWindow::onkick_7Clicked);
-    connect(ui->kick_8, &QPushButton::clicked, this, &GameWindow::onkick_8Clicked);
+    connect(ui->kick_1, &QPushButton::clicked, this, [this]{ onKickButtonClicked(1); });
+    connect(ui->kick_2, &QPushButton::clicked, this, [this]{ onKickButtonClicked(2); });
+    connect(ui->kick_3, &QPushButton::clicked, this, [this]{ onKickButtonClicked(3); });
+    connect(ui->kick_4, &QPushButton::clicked, this, [this]{ onKickButtonClicked(4); });
+    connect(ui->kick_5, &QPushButton::clicked, this, [this]{ onKickButtonClicked(5); });
+    connect(ui->kick_6, &QPushButton::clicked, this, [this]{ onKickButtonClicked(6); });
+    connect(ui->kick_7, &QPushButton::clicked, this, [this]{ onKickButtonClicked(7); });
+    connect(ui->kick_8, &QPushButton::clicked, this, [this]{ onKickButtonClicked(8); });
 
     /*QImage table_background(":/images/table.png");
     QSize table_background_size = ui->label_table->size();
@@ -121,37 +121,7 @@ void GameWindow::onAddBotClicked()
     return;
 }
 
-void GameWindow::onkick_1Clicked()
-{
-    return;
-}
-
-void GameWindow::onkick_2Clicked()
-{
-    return;
-}
-void GameWindow::onkick_3Clicked()
-{
-    return;
-}
-void GameWindow::onkick_4Clicked()
-{
-    return;
-}
-void GameWindow::onkick_5Clicked()
-{
-    return;
-}
-void GameWindow::onkick_6Clicked()
-{
-    return;
-}
-void GameWindow::onkick_7Clicked()
-{
-    return;
-}
-void GameWindow::onkick_8Clicked()
-{
+void GameWindow::onKickButtonClicked(int num) {
     return;
 }
 

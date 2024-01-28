@@ -10,6 +10,7 @@ GameLocalWindow::GameLocalWindow(QWidget *parent, std::string p) : GameWindow(pa
 
 
     QObject::connect(this, &GameLocalWindow::addBot, &game, &GameLocal::addBot);
+    QObject::connect(this, &GameLocalWindow::removePlayer, &game, &GameLocal::RemovePlayer);
 
     game.JoinGame(&game_player);
 
@@ -22,3 +23,7 @@ void GameLocalWindow::onAddBotClicked(){
     qDebug() << level;
     emit addBot(level);
 };
+
+void GameLocalWindow::onKickButtonClicked(int num) {
+    return;
+}
