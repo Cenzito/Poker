@@ -54,7 +54,7 @@ GameWindow::GameWindow(QWidget *parent, std::string name) : game_player(name),
     //QSize pot_image_size = ui->label_pot->size();
     //ui->label_pot->setPixmap(QPixmap::fromImage(pot_image).scaled(pot_image_size, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     \
-        QImage potImage(":/images/huge_player_stack.png");
+    QImage potImage(":/images/huge_player_stack.png");
     QImage player_background(":/images/Poker_background.png");
 
     // Set up the labels with initial images
@@ -485,17 +485,20 @@ void GameWindow::switch_players_display() {
         QLineEdit* line_bet = findChild<QLineEdit*>(QString("line_bet%1").arg(i));
         QLabel* label_card1 = findChild<QLabel*>(QString("label_player%1_card1").arg(i));
         QLabel* label_card2 = findChild<QLabel*>(QString("label_player%1_card2").arg(i));
+        QPushButton* kick_button = findChild<QPushButton*>(QString("kick_%1").arg(i));
 
         if (i <= numPlayers) {
             line_player->show();
             line_bet->show();
             label_card1->show();
             label_card2->show();
+            kick_button->show();
         } else {
             line_player->hide();
             line_bet->hide();
             label_card1->hide();
             label_card2->hide();
+            kick_button->hide();
         }
     }
 }
