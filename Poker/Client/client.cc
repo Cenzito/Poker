@@ -12,6 +12,7 @@
 PokerClient::PokerClient(const std::string& server_ip, int port){
     this->server_ip = server_ip;
     this->port = port;
+    this->running = true;
 
     WSADATA wsaData;
     if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
@@ -72,12 +73,16 @@ void PokerClient::startReceiverThread() {
 
 void PokerClient::messageLoop() {
     std::string message;
-    while (running && std::getline(std::cin, message)) {
-        processUserInput(message);
+    while (running) {
         if (message.find("/quit") != std::string::npos) {
             running = false;
         }
+        sendMessage(message);
     }
+}
+
+std::string PokerClient::get_message(std::string& message){
+    return message;
 }
 
 void PokerClient::receiveMessages() {
@@ -89,17 +94,17 @@ void PokerClient::receiveMessages() {
         int bytesReceived = recv(sock, buffer, 1024, 0);
         if (bytesReceived <= 0) {
             std::cerr << "Disconnected from server or error occurred.\n";
-            running = false;
+            this->running = false;
             break;
         }
-        std::cout << std::string(buffer, bytesReceived) << std::endl;
+        std::cout<<std::string(buffer, bytesReceived)<<std::endl;
     }
 }
 
 void PokerClient::sendMessage(const std::string& message) {
     if (send(sock, message.c_str(), message.size(), 0) == -1) {
         std::cerr << "Failed to send message. " << errno << std::endl;
-        running = false;
+        this->running = false;
     }
 }
 

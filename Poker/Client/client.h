@@ -63,7 +63,7 @@ public:
     /**
      * @brief Continuously receives and processes messages from the server.
      */
-    std::string receiveMessages();
+    void receiveMessages();
 
     /*
      * This function closes the connection
