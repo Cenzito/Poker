@@ -43,6 +43,8 @@ public:
     void displayCardP(int player);
     void displayAllPCards();
 
+    Ui::GameWindow* get_ui(){return this->ui;};
+
 
     PokerPlayer game_player;
 
@@ -66,9 +68,8 @@ private slots:
 
     void onAddBotClicked();
 
-    virtual void update_display();
 
-private:
+protected:
     Ui::GameWindow *ui;
     QGraphicsScene *scene;
     QGraphicsView *view;

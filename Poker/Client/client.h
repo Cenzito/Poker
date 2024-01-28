@@ -26,14 +26,10 @@ public:
      */
     void run();
 
-    /**
-     * @brief Sends a message to the server.
-     * @param message The message to be sent.
-     */
-    void sendMessage(const std::string& message);
 
 
-private:
+
+protected:
     /**
      * @brief Sets up the connection to the server.
      */
@@ -93,6 +89,12 @@ private:
      * @param action The action type (bet or raise).
      */
     void executePlayerAction(const std::string& message, const std::string& action);
+
+    /**
+     * @brief Sends a message to the server.
+     * @param message The message to be sent.
+     */
+    void sendMessage(const std::string& message);
 
     /**
      * @brief Continuously receives and processes messages from the server.
