@@ -50,44 +50,9 @@ public:
     void startReceiverThread();
 
     /**
-     * @brief Authenticates the user by sending credentials to the server.
-     */
-    void authenticateUser();
-
-    /**
      * @brief Enters the main loop for processing user input and server messages.
      */
     void messageLoop();
-
-    /**
-     * @brief Processes user input and performs corresponding actions.
-     * @param message The input message from the user.
-     */
-    void processUserInput(const std::string& message);
-
-    /**
-     * @brief Handles the 'bet' action of the user.
-     * @param message The bet command message.
-     */
-    void handleBet(const std::string& message);
-
-    /**
-     * @brief Handles the 'raise' action of the user.
-     * @param message The raise command message.
-     */
-    void handleRaise(const std::string& message);
-
-    /**
-     * @brief Handles the 'fold' action of the user.
-     */
-    void handleFold();
-
-    /**
-     * @brief Executes a player action (bet or raise) and sends the action to the server.
-     * @param message The command message containing the action.
-     * @param action The action type (bet or raise).
-     */
-    void executePlayerAction(const std::string& message, const std::string& action);
 
     /**
      * @brief Sends a message to the server.
@@ -100,6 +65,10 @@ public:
      */
     void receiveMessages();
 
+    /*
+     * This function closes the connection
+     */
+    void closeconnection();
 
     // Attributes
     std::atomic<bool> running; ///< Flag to control the running state of the client.
@@ -107,7 +76,6 @@ public:
     std::thread recvThread; ///< Thread for handling incoming messages.
     PokerPlayer player = PokerPlayer(""); ///< PokerPlayer attributes for the client.
     SOCKET sock;
-    sockaddr_in serverAddr;
     std::string server_ip;
     int port;
 };
