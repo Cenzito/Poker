@@ -40,6 +40,10 @@ private:
 
     void on_pushButton_login_clicked() override;
 
+    void switch_bet_button_on() override;
+
+    void switch_bet_button_off() override;
+
     
 };
 
