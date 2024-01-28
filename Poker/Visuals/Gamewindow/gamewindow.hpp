@@ -62,7 +62,7 @@ private slots:
 
     void onNextRoundButtonClicked();
 
-    virtual void onKickButtonClicked();
+    virtual void onKickButtonClicked(int);
 
     virtual void onAddBotClicked();
 
