@@ -88,7 +88,7 @@ void GameLocal::addBot(int botNumber) {
 
 
 void GameLocal::RemovePlayer(std::string name) {
-    if (hand_finished) {
+    if (tableInfo.hand_finished) {
         //remove player from the player vector
         for (int elt=0;elt<players.size(); elt ++) {
             if (players[elt]->name == name) {
@@ -266,7 +266,8 @@ void GameLocal::endHand() {
     }
     qDebug() << "hend end";
     distribute();
-    hand_finished = true;
+
+    updatePlayersTable("/finishHand 1");
 
 
     //nextHand();
@@ -414,7 +415,7 @@ void GameLocal::nextHand(){
     players_standing = tableInfo.player_num;
     players_all_in = 0;
 
-    hand_finished = false;
+    updatePlayersTable("/finishHand 0");
 
     updatePlayersTable("/resetGame");
 

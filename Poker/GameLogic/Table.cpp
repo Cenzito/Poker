@@ -12,6 +12,7 @@ Table::Table(){
     current_player=0;
     player_num=0;
     subpots={};
+    hand_finished=true;
 }
 
 Table::Table(int seats){
@@ -23,6 +24,7 @@ Table::Table(int seats){
     player_num=0;
     current_player=3;
     subpots={};
+    hand_finished=true;
 }
 
 
@@ -193,6 +195,14 @@ void Table::updateTable(std::string command) {
         p->cards.push_back(cardToAdd1);
         p->cards.push_back(cardToAdd2);
         break;
+    } case CommandType::FinishHand: {
+        std::string opt = wordsArray[1];
+        if (opt == "1") {
+            hand_finished = true;
+        } else {
+            hand_finished = false;
+        }
+        break;
     } case CommandType::Remove: {
         std::string playerName = wordsArray[1];
         bool found = false;
@@ -227,6 +237,7 @@ CommandType Table::parseCommand(const std::string& command) {
     else if (command == "/joinGame") return CommandType::JoinGame;
     else if (command == "/setPInf") return CommandType::SetPlayerInfo;
     else if (command == "/setCard") return CommandType::SetCards;
+    else if (command == "/finishHand") return CommandType::FinishHand;
     else if (command == "/remove") return CommandType::Remove;
     else return CommandType::Invalid;
 }
