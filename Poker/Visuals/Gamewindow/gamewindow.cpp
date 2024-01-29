@@ -4,7 +4,6 @@
 #include "GameLogic/Table.hpp"
 #include"GameLogic/PlayerInfo.hpp"
 #include "GameLogic/PokerPlayer.hpp"
-#include "Client/client.h"
 
 #include <QVBoxLayout>
 #include <QGraphicsDropShadowEffect>
@@ -133,16 +132,6 @@ void GameWindow::onRaiseButtonClicked(){
     ui->cumulative_bet_line->setText(QString::number(add_bet+current));
 
     emit game_player.Raise(add_bet);
-}
-
-void GameWindow::on_pushButton_login_clicked(){
-    QString user = ui->lineEdit_user->text();
-    QString pass = ui->lineEdit_pass->text();
-}
-
-void GameWindow::on_pushButton_signin_clicked(){
-    QString user = ui->lineEdit_newuser->text();
-    QString pass = ui->lineEdit_newpass->text();
 }
 
 void GameWindow::onCallButtonClicked(){ //Reminder: this is check/call button, need to work on changing the name in accordance with the situation, but functionallity should work fine for now

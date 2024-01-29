@@ -49,10 +49,6 @@ private slots:
 
     virtual void onPlayButtonClicked();
 
-    virtual void on_pushButton_login_clicked();
-
-    virtual void on_pushButton_signin_clicked();
-
     virtual void onRaiseButtonClicked();
 
     virtual void onFoldButtonClicked();
@@ -63,7 +59,7 @@ private slots:
 
     void onRulesButtonClicked();
 
-    void onNextRoundButtonClicked();
+    virtual void onNextRoundButtonClicked();
 
     void onAddBotClicked();
 
