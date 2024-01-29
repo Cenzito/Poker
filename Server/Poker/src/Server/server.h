@@ -55,11 +55,13 @@ public:
 
     static void sendMessageToAll(const std::string& message, const StreamSocket& sender);
 
+    static void sendMessageTosender(const std::string& message, const StreamSocket& sender);
+
 private:
     static std::vector<PokerServerConnection*> connections; ///< Static list of active connections.
     static std::mutex connectionsMutex; ///< Mutex for managing access to the connections list.
     static std::map<StreamSocket*, ClientInfo> clientCredentials; ///< Map to store client credentials
-    static Dealer dealer; ///< Dealer for the poker table
+    GameLocal game = GameLocal(5);
 
     /**
      * @brief Processes received data from the client.
