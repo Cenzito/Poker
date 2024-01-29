@@ -42,9 +42,15 @@ Implemented a working text based local version of the Poker game. This will allo
 
 
 
-## Week 5 ( 08/01 16/01)
+## Week 5 ( 08/01 14/01)
 Restructured entirely the working of the Game class. Instead of using a linear approach which would make it unable to be responsive to user input, I utilize asynchronous programming with functions linked which have individual uses.
 
+
+## Week 6 (15/01 21/01)
+Separated the functions to update the tables and ask for a bet. Continued working on the game logic and started implemented a command based approach for the communication between the game and the players.
+
+## Week 7 (22/01 28/01)
+Finished implementing the command based approach for the communication. Worked some more on the game logic and solved some issues in specific cases. Linked buttons to the logic such as adding bots and going to the next hand. Made a command to remove bots. I also made it such that the cards of all the players are shown at the end of a round
 
 
 
