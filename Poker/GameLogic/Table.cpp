@@ -39,7 +39,7 @@ void Table::Print() {
     qDebug() << "Button player " << ButtonPlayer;
     qDebug() << "Active player " << QString::fromStdString(playerInfo[current_player].name);
     for (int i=0; i< player_num; i++) {
-        qDebug()<< playerInfo[i].name <<"'s subpot is:" <<subpots[i];
+        std::cout << playerInfo[i].name <<"'s subpot is:" << subpots[i] << std::endl;
     }
     //qDebug() << "SB, BB" << SBValue << " " << BBValue << "\n";
 

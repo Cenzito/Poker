@@ -1,4 +1,4 @@
-#ifndef PLAYERINFO_H
+    #ifndef PLAYERINFO_H
 #define PLAYERINFO_H
 
 
