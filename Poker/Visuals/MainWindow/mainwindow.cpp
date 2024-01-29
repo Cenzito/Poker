@@ -36,6 +36,7 @@ void MainWindow::onPlayButtonClicked()
     // Create and show the GameWindow when the PLAY button is clicked
     GameWindow *gameWindow = new GameWindow(this, "John");
     gameWindow->show();
+
 }
 
 void MainWindow::onRulesButtonClicked()
@@ -58,16 +59,50 @@ void MainWindow::onLocalPlayButtonClicked() {
 
 void MainWindow::on_pushButton_login_clicked()
 {
+    GameLocalWindow *gamelocalwindow = new GameLocalWindow(this);
+
+    const char* sql = "CREATE TABLE IF NOT EXISTS ACCOUNT("
+                      "USERNAME TEXT PRIMARY KEY NOT NULL, "
+                      "PASSWORD TEXT NOT NULL);";
+    gamelocalwindow->account.CreationTable(sql);
+
     QString user = ui->lineEdit_user->text();
     QString pass = ui->lineEdit_pass->text();
 
+    if(gamelocalwindow->account.login(user.toStdString(), pass.toStdString())){
+        gamelocalwindow->username = user.toStdString();
+        gamelocalwindow->password = pass.toStdString();
+        gamelocalwindow->pokerclient.sendMessage("/joinGame :" + user.toStdString());
+        gamelocalwindow->pokerclient.player.set_name(user.toStdString());
+    }
+    else{
+        gamelocalwindow->pokerclient.sendMessage("/quit");
+        gamelocalwindow->pokerclient.send_message = "/quit";
+    }
 
 }
 
 void MainWindow::on_pushButton_signin_clicked()
 {
+    GameLocalWindow *gamelocalwindow = new GameLocalWindow(this);
+
+    const char* sql = "CREATE TABLE IF NOT EXISTS ACCOUNT("
+                      "USERNAME TEXT PRIMARY KEY NOT NULL, "
+                      "PASSWORD TEXT NOT NULL);";
+    gamelocalwindow->account.CreationTable(sql);
+
     QString user = ui->lineEdit_newuser->text();
     QString pass = ui->lineEdit_newpass->text();
+
+    if(gamelocalwindow->account.Check_repetition(user.toStdString())){
+        gamelocalwindow->account.Insertaccount(user.toStdString(), pass.toStdString());
+        gamelocalwindow->username = user.toStdString();
+        gamelocalwindow->password = pass.toStdString();
+    }
+    else{
+        gamelocalwindow->pokerclient.sendMessage("/quit");
+        gamelocalwindow->pokerclient.send_message = "quit";
+    }
 
 }
 
