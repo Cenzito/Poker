@@ -115,6 +115,9 @@ color: rgb(15, 96, 0);</string>
           <height>25</height>
          </size>
         </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(18, 107, 2);</string>
+        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
@@ -212,7 +215,7 @@ color: rgb(15, 96, 0);</string>
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true"/>
+         <string notr="true">background-color: rgb(18, 107, 2);</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -235,6 +238,9 @@ color: rgb(15, 96, 0);</string>
           <width>75</width>
           <height>25</height>
          </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(18, 107, 2);</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -360,6 +366,9 @@ color: rgb(15, 96, 0);</string>
           <height>25</height>
          </size>
         </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(18, 107, 2);</string>
+        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
@@ -387,6 +396,9 @@ color: rgb(15, 96, 0);</string>
           <width>300</width>
           <height>25</height>
          </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(18, 107, 2);</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -463,6 +475,9 @@ color: rgb(15, 96, 0);</string>
             <width>75</width>
             <height>25</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(18, 107, 2);</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
@@ -596,6 +611,12 @@ color: rgb(15, 96, 0);</string>
               <height>25</height>
              </size>
             </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(18, 107, 2);
+
+
+</string>
+            </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
             </property>
@@ -641,7 +662,7 @@ color: rgb(15, 96, 0);</string>
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: rgb(255, 121, 64);</string>
+           <string notr="true"/>
           </property>
           <property name="text">
            <string/>
@@ -663,7 +684,7 @@ color: rgb(15, 96, 0);</string>
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: rgb(255, 121, 64);</string>
+           <string notr="true"/>
           </property>
           <property name="text">
            <string/>
@@ -729,8 +750,7 @@ color: rgb(15, 96, 0);</string>
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: rgb(255, 121, 64);
-</string>
+           <string notr="true"/>
           </property>
           <property name="text">
            <string/>
@@ -770,6 +790,9 @@ color: rgb(15, 96, 0);</string>
             <width>75</width>
             <height>25</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(18, 107, 2);</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
@@ -859,6 +882,9 @@ color: rgb(15, 96, 0);</string>
               <height>25</height>
              </size>
             </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(18, 107, 2);</string>
+            </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
             </property>
@@ -906,7 +932,7 @@ color: rgb(15, 96, 0);</string>
      </layout>
     </item>
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_12">
+     <layout class="QHBoxLayout" name="horizontalLayout_12" stretch="20,4,1,4,1,4,20">
       <item>
        <spacer name="horizontalSpacer_43">
         <property name="orientation">
@@ -940,10 +966,29 @@ color: rgb(15, 96, 0);</string>
           <height>25</height>
          </size>
         </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(18, 107, 2);</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
         <property name="readOnly">
          <bool>true</bool>
         </property>
        </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_19">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
       </item>
       <item>
        <widget class="QLabel" name="pot_image">
@@ -955,7 +1000,8 @@ color: rgb(15, 96, 0);</string>
         </property>
         <property name="styleSheet">
          <string notr="true">background: None;
-image: url(:/images/huge_player_stack.png);</string>
+image: url(:/images/player_stack.png);
+</string>
         </property>
         <property name="text">
          <string/>
@@ -964,6 +1010,19 @@ image: url(:/images/huge_player_stack.png);</string>
          <bool>true</bool>
         </property>
        </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_20">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
       </item>
       <item>
        <widget class="QLineEdit" name="maxbet_line">
@@ -978,6 +1037,12 @@ image: url(:/images/huge_player_stack.png);</string>
           <width>125</width>
           <height>25</height>
          </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(18, 107, 2);</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
         </property>
         <property name="readOnly">
          <bool>true</bool>
@@ -1061,6 +1126,9 @@ image: url(:/images/huge_player_stack.png);</string>
             <height>25</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(18, 107, 2);</string>
+          </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
@@ -1082,6 +1150,9 @@ image: url(:/images/huge_player_stack.png);</string>
             <width>75</width>
             <height>25</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(18, 107, 2);</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
@@ -1226,6 +1297,9 @@ image: url(:/images/huge_player_stack.png);</string>
             <height>25</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(18, 107, 2);</string>
+          </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
@@ -1269,6 +1343,9 @@ image: url(:/images/huge_player_stack.png);</string>
             <width>300</width>
             <height>25</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(18, 107, 2);</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
@@ -1392,6 +1469,10 @@ image: url(:/images/huge_player_stack.png);</string>
             <height>25</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(18, 107, 2);
+</string>
+          </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
@@ -1419,6 +1500,9 @@ image: url(:/images/huge_player_stack.png);</string>
             <width>300</width>
             <height>25</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(18, 107, 2);</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
@@ -1519,6 +1603,9 @@ image: url(:/images/huge_player_stack.png);</string>
             <height>25</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(18, 107, 2);</string>
+          </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
@@ -1540,6 +1627,9 @@ image: url(:/images/huge_player_stack.png);</string>
             <width>75</width>
             <height>25</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(18, 107, 2);</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
@@ -1648,6 +1738,24 @@ image: url(:/images/huge_player_stack.png);</string>
         </property>
         <item row="0" column="3">
          <widget class="QLineEdit" name="hand_display">
+          <property name="minimumSize">
+           <size>
+            <width>100</width>
+            <height>25</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>300</width>
+            <height>25</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(18, 107, 2);</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
           <property name="readOnly">
            <bool>true</bool>
           </property>
@@ -1667,7 +1775,7 @@ image: url(:/images/huge_player_stack.png);</string>
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">background-color: rgb(255, 121, 64);</string>
+             <string notr="true"/>
             </property>
             <property name="text">
              <string/>
@@ -1683,7 +1791,7 @@ image: url(:/images/huge_player_stack.png);</string>
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">background-color: rgb(255, 121, 64);</string>
+             <string notr="true"/>
             </property>
             <property name="text">
              <string/>
@@ -1804,6 +1912,9 @@ image: url(:/images/huge_player_stack.png);</string>
               <width>150</width>
               <height>25</height>
              </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(18, 107, 2);</string>
             </property>
             <property name="inputMask">
              <string/>
@@ -1938,6 +2049,12 @@ image: url(:/images/huge_player_stack.png);</string>
             <width>300</width>
             <height>25</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(18, 107, 2);</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
           </property>
           <property name="readOnly">
            <bool>true</bool>
