@@ -91,6 +91,9 @@ GameWindow::GameWindow(QWidget *parent, std::string name) : game_player(name),
 
     //hide bet buttons
     switch_bet_button_off();
+
+
+
 }
 
 
