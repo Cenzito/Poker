@@ -11,7 +11,7 @@ public :
         this-> isBot = true;
     };
 
-    virtual void Action();
+    virtual void Action() = 0;
 
 public slots:
     void call_bet();

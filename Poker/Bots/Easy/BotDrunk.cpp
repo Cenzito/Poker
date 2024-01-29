@@ -1,6 +1,6 @@
 #include "BotDrunk.hpp"
 
-void BotDrunk::action() {
+void BotDrunk::Action() {
     call_bet();
     return;
 }

@@ -82,7 +82,7 @@ void GameLocal::addBot(int botNumber) {
     case 0: {
         // Basic bot, he always calls
         // Don't bluff against him cause he'll know it
-        Bot* bot = new BotDrunk(name);
+        BotDrunk* bot = new BotDrunk(name);
         JoinGame(bot);
         break;
     }
