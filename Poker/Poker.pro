@@ -22,7 +22,10 @@ SOURCES += \
     Bots/Hard/Axel/BotAxel.cpp \
     Bots/Hard/Cenzo/BotCenzo.cpp \
     Bots/Hard/Darius/BotDarius.cpp \
-    Bots/Hard/Kenza/BotKenza.cpp \
+    Bots/Hard/Kenza/kuhnbot.cpp \
+    Bots/Hard/Kenza/mainKuhn.cpp \
+    Bots/Hard/Kenza/Node.cpp \
+    Bots/Hard/Kenza/Trainer.cpp \
     Bots/Hard/Leal/BotLeal.cpp \
     Bots/Hard/Pu/BotPu.cpp \
     Bots/Medium/BotMedium.cpp \
@@ -43,9 +46,11 @@ HEADERS += \
     Bots/Hard/Axel/BotAxel.hpp \
     Bots/Hard/Cenzo/BotCenzo.hpp \
     Bots/Hard/Darius/BotDarius.hpp \
-    Bots/Hard/Kenza/BotKenza.hpp \
     Bots/Hard/Leal/BotLeal.hpp \
     Bots/Hard/Pu/BotPu.hpp \
+    Bots/Hard/Kenza/kuhnbot.h \
+    Bots/Hard/Kenza/Trainer.h \
+    Bots/Hard/Kenza/Node.h \
     Bots/Medium/BotMedium.hpp \
     Bots/Medium/MediumLeal.hpp \
     GameLogic/GameLocal.hpp \
@@ -72,6 +77,7 @@ FORMS += \
 
 
 RESOURCES += \
+    Bots/Hard/Kenza/KuhnPokerStrategy.txt \
     Visuals/Image.qrc
     Visuals/MainWindow/pokerpic.jpg
 
