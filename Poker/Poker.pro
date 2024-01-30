@@ -89,3 +89,6 @@ INCLUDEPATH += /Users/mateoaguilar/anaconda3/lib/python3.11/site-packages/numpy/
 
 
 
+
+
+

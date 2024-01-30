@@ -6,7 +6,8 @@
 #include "matplotlibcpp.h"
 namespace plt = matplotlibcpp;
 
-// Add the missing constructor for the Hand class
+
+
 Hand::Hand(std::string& player, std::string& street, std::string& action, double chips, double chips_start)
     : player(player), street(street), action(action), chips(chips), chips_start() {}
 
@@ -18,12 +19,13 @@ Hand::Hand(std::string& player, std::string& street, std::string& action, double
 std::vector<Hand> ReadPlayerHands(std::string file_name, std::string player_name){
     // Open the file
     std::ifstream file(file_name);
+    if (file.fail()) std::cerr << "File not found" << std::endl;
     std::string line;
     std::vector<Hand> player_hands;
     std::string street;
     std::string action;
-    
-    // Each play of the game is separated by 3 blank lines, separate each play of the game, then in each play we'll look for the street of the play, and then in each line after the street 
+
+    // Each play of the game is separated by 3 blank lines, separate each play of the game, then in each play we'll look for the street of the play, and then in each line after the street
     // is declared we'll look for the player name, and if the player name is found, we'll look for the action he took.
 
     while (std::getline(file,line)){
@@ -35,41 +37,30 @@ std::vector<Hand> ReadPlayerHands(std::string file_name, std::string player_name
         }
 
         else{
-            
-            if (line.find("*** HOLE CARDS ***") != std::string::npos){
 
+            if (line.find("* HOLE CARDS *") != std::string::npos){
                 street = "Preflop";
-                }
-            if (line.find("*** FLOP ***") != std::string::npos){
-
+            }
+            if (line.find("* FLOP *") != std::string::npos){
                 street = "Flop";
-                }
-            if (line.find("*** TURN ***") != std::string::npos){
-
+            }
+            if (line.find("* TURN *") != std::string::npos){
                 street = "Turn";
-                }
-            if (line.find("*** RIVER ***") != std::string::npos){
-
+            }
+            if (line.find("* RIVER *") != std::string::npos){
                 street = "River";
-                }
-            
-
+            }
             if (line.find(player_name) != std::string::npos){
-
                 if (line.find("folds") != std::string::npos){
-
                     action = "Fold";
                 }
                 if (line.find("calls") != std::string::npos){
-
                     action = "Call";
                 }
                 if (line.find("bets") != std::string::npos){
-
                     action = "Bet";
                 }
                 if (line.find("raises") != std::string::npos){
-
                     action = "Raise";
                 }
             }
@@ -77,15 +68,11 @@ std::vector<Hand> ReadPlayerHands(std::string file_name, std::string player_name
                 action = "";
             }
 
-
             if (street != "" && action != ""){
-
                 Hand hand = {player_name, street, action, 0, 0};
                 player_hands.push_back(hand);
             }
-        }
-    
-    }
+        }   }
     return player_hands;
 }
 
@@ -108,112 +95,112 @@ std::vector<double> ReadMargins(std::string file_name, std::string player_name) 
             chips = 0.0;
             chips_start = 0.0;
             continue;
-        
+
         } else {
 
             // Extract chip count
             if (line.find("Seat") != std::string::npos && line.find(player_name) != std::string::npos) {
-            
+
                 std::string chipsStartSubstring = " (";
                 std::string chipsEndSubstring = " in chips)";
 
                 // Find the position of the chips start substring
                 size_t chipsStartPos = line.find(chipsStartSubstring);
-        
+
                 // If the chips start substring is found, proceed to extract the chip count
                 if (chipsStartPos != std::string::npos) {
-                // Adjust the start position to point to the character after the chips start substring
-                chipsStartPos += chipsStartSubstring.length();
-            
-                // Find the position of the chips end substring
-                size_t chipsEndPos = line.find(chipsEndSubstring, chipsStartPos);
-            
-                // If the chips end substring is found, extract the chip count substring
-                if (chipsEndPos != std::string::npos) {
-                    std::string chipsStr = line.substr(chipsStartPos, chipsEndPos - chipsStartPos);
-                
-                    // Convert the extracted chip count substring to an integer
-                    chips_start = std::stod(chipsStr);
+                    // Adjust the start position to point to the character after the chips start substring
+                    chipsStartPos += chipsStartSubstring.length();
 
-                    chips = chips_start;
+                    // Find the position of the chips end substring
+                    size_t chipsEndPos = line.find(chipsEndSubstring, chipsStartPos);
 
-                
-                    // Print the result
-                    //std::cout << "Chips at the start of the game of " << player_name << ": " << chips << std::endl;
-            }
-        } }
+                    // If the chips end substring is found, extract the chip count substring
+                    if (chipsEndPos != std::string::npos) {
+                        std::string chipsStr = line.substr(chipsStartPos, chipsEndPos - chipsStartPos);
 
-           
+                        // Convert the extracted chip count substring to an integer
+                        chips_start = std::stod(chipsStr);
+
+                        chips = chips_start;
+
+
+                        // Print the result
+                        //std::cout << "Chips at the start of the game of " << player_name << ": " << chips << std::endl;
+                    }
+                } }
+
+
             //blind bets
-           if (line.find("blind") != std::string::npos && line.find(player_name) != std::string::npos) {
-               
-               int i = line.length()-1;
-            
+            if (line.find("blind") != std::string::npos && line.find(player_name) != std::string::npos) {
 
-               while(line[i] != ' ') {
-                  i--;
-               }
+                int i = line.length()-1;
 
-               if (i >= 0) {
-                  std::string value = line.substr(i + 1);
 
-                try {
-                    double blindAmount = std::stod(value);
-                    chips -=  blindAmount;
-                    //std::cout << "Chips after blind bet: " << chips << std::endl;
-                } catch (const std::invalid_argument& e) {
-                // Silently skip the line or handle the error accordingly
+                while(line[i] != ' ') {
+                    i--;
                 }
+
+                if (i >= 0) {
+                    std::string value = line.substr(i + 1);
+
+                    try {
+                        double blindAmount = std::stod(value);
+                        chips -=  blindAmount;
+                        //std::cout << "Chips after blind bet: " << chips << std::endl;
+                    } catch (const std::invalid_argument& e) {
+                        // Silently skip the line or handle the error accordingly
+                    }
                 }
             }
 
-             //Money won
+            //Money won
             if (line.find("collected") != std::string::npos && line.find(player_name) != std::string::npos) {
-            
+
                 std::string chipsStartSubstring = "collected ";
                 std::string chipsEndSubstring = " from pot";
 
                 // Find the position of the chips start substring
                 size_t chipsStartPos = line.find(chipsStartSubstring);
-        
+
                 // If the chips start substring is found, proceed to extract the chip count
                 if (chipsStartPos != std::string::npos) {
-                // Adjust the start position to point to the character after the chips start substring
-                chipsStartPos += chipsStartSubstring.length();
-            
-                // Find the position of the chips end substring
-                size_t chipsEndPos = line.find(chipsEndSubstring, chipsStartPos);
-            
-                // If the chips end substring is found, extract the chip count substring
-                if (chipsEndPos != std::string::npos) {
-                    std::string chipsStr = line.substr(chipsStartPos, chipsEndPos - chipsStartPos);
-                
-                    // Convert the extracted chip count substring to an integer
-                    double won = std::stod(chipsStr);
-                    chips += won;
-                
-                    // Print the result
-                    //std::cout << "Chips won: " << won << std::endl;
-                    //std::cout << "Chips afer winning: " << chips << std::endl;
+                    // Adjust the start position to point to the character after the chips start substring
+                    chipsStartPos += chipsStartSubstring.length();
 
-            }
-        } }
+                    // Find the position of the chips end substring
+                    size_t chipsEndPos = line.find(chipsEndSubstring, chipsStartPos);
+
+                    // If the chips end substring is found, extract the chip count substring
+                    if (chipsEndPos != std::string::npos) {
+                        std::string chipsStr = line.substr(chipsStartPos, chipsEndPos - chipsStartPos);
+
+                        // Convert the extracted chip count substring to an integer
+                        double won = std::stod(chipsStr);
+                        chips += won;
+
+                        // Print the result
+                        //std::cout << "Chips won: " << won << std::endl;
+                        //std::cout << "Chips afer winning: " << chips << std::endl;
+
+                    }
+                } }
 
 
-            if (line.find("*** HOLE CARDS ***") != std::string::npos) {
+            if (line.find("* HOLE CARDS *") != std::string::npos) {
                 street = "Preflop";
             }
-            if (line.find("*** FLOP ***") != std::string::npos) {
+            if (line.find("* FLOP *") != std::string::npos) {
                 street = "Flop";
             }
-            if (line.find("*** TURN ***") != std::string::npos) {
+            if (line.find("* TURN *") != std::string::npos) {
                 street = "Turn";
             }
-            if (line.find("*** RIVER ***") != std::string::npos) {
+            if (line.find("* RIVER *") != std::string::npos) {
                 street = "River";
             }
 
-            if (line.find("*** SUMMARY ***") != std::string::npos){
+            if (line.find("* SUMMARY *") != std::string::npos){
                 double chips_end = chips;
                 //std::cout << "Chips at the end of the game: " << chips << std::endl;
                 double balance = chips_end - chips_start;
@@ -221,7 +208,7 @@ std::vector<double> ReadMargins(std::string file_name, std::string player_name) 
 
                 //std::cout << "Margin: " << balance << std::endl;
 
-                
+
 
             }
 
@@ -233,7 +220,7 @@ std::vector<double> ReadMargins(std::string file_name, std::string player_name) 
                     action = "Call";
 
                     int i = line.length()-1;
-            
+
 
                     while(line[i] != ' ') {
                         i--;
@@ -247,16 +234,16 @@ std::vector<double> ReadMargins(std::string file_name, std::string player_name) 
                             chips -=  blindAmount;
                             //std::cout << "Chips after call: " << chips << std::endl;
                         } catch (const std::invalid_argument& e) {
-                        // Silently skip the line or handle the error accordingly
+                            // Silently skip the line or handle the error accordingly
                         }
-                        }
+                    }
 
                 }
                 if (line.find("bets") != std::string::npos) {
                     action = "Bet";
 
                     int i = line.length()-1;
-            
+
 
                     while(line[i] != ' ') {
                         i--;
@@ -270,9 +257,9 @@ std::vector<double> ReadMargins(std::string file_name, std::string player_name) 
                             chips -=  blindAmount;
                             //std::cout << "Chips after bet: " << chips << std::endl;
                         } catch (const std::invalid_argument& e) {
-                        // Silently skip the line or handle the error accordingly
+                            // Silently skip the line or handle the error accordingly
                         }
-                        }
+                    }
 
 
 
@@ -281,7 +268,7 @@ std::vector<double> ReadMargins(std::string file_name, std::string player_name) 
                 if (line.find("raises") != std::string::npos) {
                     action = "Raise";
                     int i = line.length()-1;
-            
+
 
                     while(line[i] != ' ') {
                         i--;
@@ -295,17 +282,16 @@ std::vector<double> ReadMargins(std::string file_name, std::string player_name) 
                             chips -=  blindAmount;
                             //std::cout << "Chips after raise: " << chips << std::endl;
                         } catch (const std::invalid_argument& e) {
-                        // Silently skip the line or handle the error accordingly
+                            // Silently skip the line or handle the error accordingly
                         }
-                        }
+                    }
                 }
 
 
-    
+
             } else {
                 action = "";
             }
-
             if (street != "" && action != "") {
                 Hand hand = {player_name, street, action, chips, chips_start};
                 player_hands.push_back(hand);
@@ -368,7 +354,7 @@ double average_margin(const std::vector<double>& margins){
     // Print the result
     std::cout << "Total Chips won or loss: " << sum << std::endl;
 
-     // Calculate the mean
+    // Calculate the mean
     if (!margins.empty()) {
         mean = sum / margins.size();
         std::cout << "Mean of chips: " << mean << std::endl;
@@ -381,7 +367,7 @@ int main() {
 
     // Sample data (replace this with your actual hand history data)
     std::string name_player = "arazua";
-    std::string file_name = "PokerHands2.txt";
+    std::string file_name = "/Users/mateoaguilar/POKER_Mateo/PokerHands2.txt";
 
     // Print in a stylish way a header that says "Poker Analysis: (player_name)" for what player the analysis is done
     std::cout << "Poker Analysis: " << name_player << "\n" << std::endl;
@@ -400,7 +386,7 @@ int main() {
 
     // Calculate the average margins and print them
     double average = average_margin(margins);
-
+    // Create line plot for Aggression Factor over time
     std::vector<double> af_values;
     std::vector<double> hand_intervals;
 
@@ -408,6 +394,7 @@ int main() {
         std::vector<Hand> subset(hand_history.begin(), hand_history.begin() + i);
         af_values.push_back(calculate_af(subset, name_player));
         hand_intervals.push_back(static_cast<double>(i));
+        std::cout << static_cast<double>(i) << std::endl;
     }
 
     plt::plot(hand_intervals, af_values);
@@ -416,20 +403,7 @@ int main() {
     plt::ylabel("Aggression Factor");
     plt::show();
 
-    std::vector<double> vpip_values;
-
-    for (int i = 0; i < hand_history.size(); i += 10) {
-        std::vector<Hand> subset(hand_history.begin(), hand_history.begin() + i);
-        vpip_values.push_back(calculate_vpip_percentage(subset, name_player));
-    }
-
-    plt::plot(hand_intervals, vpip_values);
-    plt::title("VPIP Percentage Over Time");
-    plt::xlabel("Hand Number");
-    plt::ylabel("VPIP Percentage");
-    plt::show();
-
-
+    // Create line plot for Chip Balance over time
     std::vector<double> chip_balances;
 
     for (const auto& hand : hand_history) {
@@ -442,7 +416,7 @@ int main() {
     plt::ylabel("Chip Balance");
     plt::show();
 
-
+    // Create line plot for Win/Loss Margins over hands
     plt::plot(margins);
     plt::title("Win/Loss Margins Over Hands");
     plt::xlabel("Hand Number");
@@ -450,13 +424,7 @@ int main() {
     plt::show();
 
 
-
-
-
-
     return 0;
 }
-
-
 
 
