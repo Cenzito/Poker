@@ -16,16 +16,13 @@ SOURCES += \
     Visuals/RulesWindow/ruleswindow.cpp \
     main.cpp \
     Bots/Bot.cpp \
-    Bots/Easy/BotEasy.cpp \
     Bots/Easy/MonkeyBot.cpp \
     Bots/Easy/BotDrunk.cpp \
     Bots/Hard/Axel/BotAxel.cpp \
-    Bots/Hard/Cenzo/BotCenzo.cpp \
     Bots/Hard/Darius/BotDarius.cpp \
     Bots/Hard/Kenza/BotKenza.cpp \
     Bots/Hard/Leal/BotLeal.cpp \
     Bots/Hard/Pu/BotPu.cpp \
-    Bots/Medium/BotMedium.cpp \
     GameLogic/PokerPlayer.cpp \
     GameLogic/PokerHand.cpp \
     GameLogic/Card.cpp \
@@ -38,15 +35,12 @@ SOURCES += \
 HEADERS += \
     Bots/Bot.hpp \
     Bots/Easy/BotDrunk.hpp \
-    Bots/Easy/BotEasy.hpp \
     Bots/Easy/MonkeyBot.hpp \
     Bots/Hard/Axel/BotAxel.hpp \
-    Bots/Hard/Cenzo/BotCenzo.hpp \
     Bots/Hard/Darius/BotDarius.hpp \
     Bots/Hard/Kenza/BotKenza.hpp \
     Bots/Hard/Leal/BotLeal.hpp \
     Bots/Hard/Pu/BotPu.hpp \
-    Bots/Medium/BotMedium.hpp \
     Bots/Medium/MediumLeal.hpp \
     GameLogic/GameLocal.hpp \
     GameLogic/PlayerInfo.hpp \
