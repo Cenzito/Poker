@@ -3,6 +3,7 @@
 #include <qdebug.h>
 #include <cmath>
 #include <random>
+#include <algorithm>
 #include "GameLogic/PokerHand.hpp"
 #include "GameLogic/Card.hpp"
 #include "GameLogic/Table.hpp"
