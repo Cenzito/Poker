@@ -74,6 +74,8 @@ void GameLocal::addBot(int botNumber) {
         name = nameBot(1);
     } else if (botNumber==2){
         name = nameBot(2);
+    } else if (botNumber==3){
+        name=nameBot(3);
     } else {
         name=nameBot();
     }
