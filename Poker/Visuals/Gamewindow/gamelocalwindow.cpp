@@ -38,7 +38,7 @@ void GameLocalWindow::onCallButtonClicked(){ //Reminder: this is check/call butt
 
 void GameLocalWindow::onFoldButtonClicked(){
     std::string message = "/fold";
-    pokerclient.sendMessage(message + pokerclient.player.name);
+    pokerclient.sendMessage(message + ":" + pokerclient.player.name);
     pokerclient.send_message = message;
 }
 
