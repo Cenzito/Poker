@@ -1,7 +1,7 @@
 #include "BotAxel.hpp"
 
 #include <cmath>
-
+#include <random>
 
 /*This bot works like the Darius hardbot, but 20% of the games of poker,
  * instead of playing its hand, it bluffs and plays exactly how Darius hardbot would if
@@ -56,8 +56,8 @@ int BotAxel::optimalBet()
                 suitnumcard2 = int(randsuitcard2 * 4);
                 valnumcard2 = int(randvalcard2 *5) + 10;
             }
-            Card Card1 = Card(suitnumcard1,valnumcard1);
-            Card Card2 = Card(suitnumcard2,valnumcard2);
+            Card Card1 = Card(static_cast<Suit>(suitnumcard1),valnumcard1);
+            Card Card2 = Card(static_cast<Suit>(suitnumcard2),valnumcard2);
             HandThisGame = std::vector<Card>{Card1, Card2};
             our_hand_cardsvector = HandThisGame;
         }
@@ -79,7 +79,7 @@ int BotAxel::optimalBet()
     wealth=find_stack_size();
     pot=tableInfo.pot;
     float optimal_bet;
-    if( round==0){ /
+    if( round==0){
         optimal_bet=Kelly_Criterion(wealth,pot, win_probability,lose_probability,float(0.66*active_players));
 
     }
