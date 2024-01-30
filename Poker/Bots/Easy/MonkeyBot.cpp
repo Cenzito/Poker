@@ -14,14 +14,14 @@ void MonkeyBot::Action(){
     double random_number = dis(gen);
     qDebug()<<"random number is: "<< random_number;
 
-    if (random_number<(0.1)){
+    if (random_number<(0.15)){
         qDebug()<<"folding";
         fold_bet();
-    } else if (random_number<(0.7)) {
+    } else if (random_number<(0.75)) {
         qDebug()<<"calling";
         call_bet();
-    } else if (random_number<(0.9)){
-        double another_random_number = dis(gen);
+    } else if (random_number<(0.93)){
+        double another_random_number = dis(gen)*0.6;
         int bet = another_random_number*find_stack_size();
         qDebug()<<"raising by"<<bet;
         raise_bet(bet);
