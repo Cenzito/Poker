@@ -20,15 +20,7 @@ std::map<StreamSocket*, ClientInfo> PokerServerConnection::clientCredentials;
 PokerServerConnection::PokerServerConnection(const StreamSocket& s) : TCPServerConnection(s) {
     std::lock_guard<std::mutex> guard(connectionsMutex);
     connections.push_back(this);
-    clientCredentials[&socket()] = ClientInfo(); 
-
-    try {
-        auto cards = dealer.dealCommunityCards(2);
-        std::string cardMessage = createCardMessage(cards);
-        socket().sendBytes(cardMessage.data(), cardMessage.length());
-    } catch (const std::runtime_error& e) {
-        std::cerr << "Error dealing cards: " << e.what() << std::endl;
-    }
+    clientCredentials[&socket()] = ClientInfo();
 }
 
 
@@ -40,8 +32,13 @@ void PokerServerConnection::run() {
     try {
         while (true) {
             int n = ss.receiveBytes(buffer, BUFFER_SIZE - 1);
-            if (n <= 0) break; 
-            if(processReceivedData(ss, buffer, n, accumulated)) break;
+            if (n <= 0 || processCommands(ss, buffer, n, accumulated)){
+                break;
+            }
+            else{
+                processReceivedData(ss, buffer, n, accumulated);
+            }
+            
         }
     } catch (Poco::Exception& exc) {
         std::cerr << "Connection error: " << exc.displayText() << std::endl;
@@ -50,27 +47,86 @@ void PokerServerConnection::run() {
     cleanupConnection();
 }
 
-bool PokerServerConnection::processReceivedData(StreamSocket& ss, char* buffer, int n, std::string& accumulated) {
+void PokerServerConnection::bet_command(StreamSocket& ss, char* buffer, int n, std::string& accumulated){
+    size_t pos = message.find(":");
+    std::string amount = message.substr(pos + 1);
+    game.onRaise(amount.toInt());
+}
+
+void PokerServerConnection::fold_command(){
+    size_t pos = message.find(":");
+    std::string name = message.substr(pos + 1);
+    game.fold(game.tableInfo.getPlayerInfo(name));
+}
+
+void PokerServerConnection::joingame_command(StreamSocket& ss, char* buffer, int n, std::string& accumulated){
+    size_t pos = message.find(":");
+    std::string name = message.substr(pos + 1);
+    PokerPlayer* player = new Pokerplayer(name);
+    game.JoinGame(player);
+}
+
+void PokerServerConnection::nextround_command(){
+    game.nextBettingRound();
+}
+
+void PokerServerConnection::win_command(){
+    size_t pos1 = message.find(":");
+    std::string name = message.substr(pos1 + 1);
+    size_t pos2 = message.substr(pos + 1).find(":")
+    std::string amount = message.substr(pos2 + 1).toInt();
+    game.distribute();
+    game.win(game.tableInfo.getPlayerInfo(name));
+}
+
+void PokerServerConnection::Allin_command(){
+    game.allin(game.tableInfo.getPlayerInfo(name));
+}
+
+void PokerServerConnection::resetGame_command(){
+    game.nextHand();
+}
+
+void PokerServerConnection::setActivePlayer_command(){
+    game.setNextCurrentPlayer();
+}
+
+void PokerServerConnection::setPlayerInfos_command(){
+    game.setPlayerInfos();
+}
+
+void PokerServerConnection::processReceivedData(StreamSocket& ss, char* buffer, int n, std::string& accumulated) {
     accumulated.append(buffer, n);
-    std::string message = trim(accumulated)
-    if (processCommands(ss, message)) {
-        if(message.find("/bet") != std::string::npos){
-            game.onRaise()
-        }
-        else if(message.find("/fold") != std::string::npos){
-            game.onFold();
-        }
-        else if(message.find("/joinGame") != std::string::npos){
-            size_t pos = message.find(":");
-            std::string name = message.substr(pos + 1);
-            PokerPlayer* player = new Pokerplayer(name);
-            game.JoinGame(player);
-        }
-        else if(message.find(""))
-        else{
-            break;
-        }
+    std::string message = trim(accumulated);
+
+    if(message.find("/joinGame") != std::string::npos){
+        joingame_command(ss, buffer, n, accumulated);
     }
+    else if(message.find("/bet") != std::string::npos){
+        bet_command(ss, buffer, n, accumulated);
+    }
+    else if(message.find("/fold") != std::string::npos){
+        fold_command();
+    }
+    else if(message.find("/nextRound") != std::string::npos){
+        nextround_command();
+    }
+    else if(message.find("/win") != std::string::npos){
+        win_command();
+    }
+    else if(message.find("/Allin") != std::string::npos){
+        Allin_command();
+    }
+    else if(message.find("/resetGame") != std::string::npos){
+        resetGame_command();
+    }
+    else if(message.find("/setActivePlayer") != std::string::npos){
+        setActivePlayer_command();
+    }
+    else if(message.find("/setPInf") != std::string::npos){
+
+    }
+
     sendMessageToAll(clientCredentials[&ss].username + ": " + message, ss);
     
 
@@ -80,26 +136,13 @@ bool PokerServerConnection::processReceivedData(StreamSocket& ss, char* buffer, 
     return false;
 }
 
-void PokerServerConnection::processLogin(StreamSocket& ss, std::string& message) {
-    auto delimiterPos = message.find(':');
-    if (delimiterPos != std::string::npos) {
-        clientCredentials[&ss].username = message.substr(0, delimiterPos);
-        clientCredentials[&ss].password = message.substr(delimiterPos + 1);
-        clientCredentials[&ss].isLoggedIn = true;
-    }
-}
+bool PokerServerConnection::processCommands(StreamSocket& ss, char* buffer, int n, std::string& accumulated) {
+    accumulated.append(buffer, n);
+    std::string message = trim(accumulated);
 
-bool PokerServerConnection::processCommands(StreamSocket& ss, const std::string& message) {
     if (message.find("/quit") != std::string::npos) {
         ss.close();
         return true;
-    }
-    if (message.find("/bet") != std::string::npos){
-        sendMessageTosender("/bet");
-        return 
-    }
-    if (message.find("/fold") != std::string::npos){
-        sendMessageTosender("/fold");
     }
 
     return false;

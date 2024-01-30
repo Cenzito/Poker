@@ -43,15 +43,25 @@ public:
      */
     PokerServerConnection(const StreamSocket& s);
 
-    /**
-     * @brief Creates a message string from a vector of Cards.
-     * 
-     * @param cards The vector of Card objects.
-     * @return A string representation of the cards.
-     */
-    static std::string createCardMessage(const std::vector<Card>& cards);
-
     void run() override;
+
+    void bet_command(StreamSocket& ss, char* buffer, int n, std::string& accumulated);
+
+    void fold_command();
+
+    void joingame_command(StreamSocket& ss, char* buffer, int n, std::string& accumulated);
+
+    void nextround_command();
+
+    void win_command();
+
+    void Allin_command();
+
+    void resetGame_command();
+
+    void setActivePlayer_command();
+
+    void setPlayerInfos_command(); 
 
     static void sendMessageToAll(const std::string& message, const StreamSocket& sender);
 
@@ -62,6 +72,7 @@ private:
     static std::mutex connectionsMutex; ///< Mutex for managing access to the connections list.
     static std::map<StreamSocket*, ClientInfo> clientCredentials; ///< Map to store client credentials
     GameLocal game = GameLocal(5);
+    std::vector
 
     /**
      * @brief Processes received data from the client.
@@ -71,7 +82,7 @@ private:
      * @param n The number of bytes received.
      * @param accumulated The accumulated message string.
      */
-    bool processReceivedData(StreamSocket& ss, char* buffer, int n, std::string& accumulated);
+    void processReceivedData(StreamSocket& ss, char* buffer, int n, std::string& accumulated);
 
     /**
      * @brief Processes login information from the client.
