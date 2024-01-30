@@ -248,7 +248,6 @@ void BotPu::Action(){
     }
     player_handid[0] = hand_to_id[player_hand[0][0]][player_hand[0][1]];
     if(round == 3) {
-        call_bet();
         int card_num[5];
         for(int i = 0; i < 3; i++)
             card_num[i] = tableInfo.communityCards[i].getValue() - 2;
