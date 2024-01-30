@@ -157,9 +157,11 @@ void BotPu::Action(){
     if(round == 0) {
         std::vector<float> probability = Winning_Probability(tableInfo, hand, tableInfo.player_num, 10000);
         float prob_not_lose = probability[0] + probability[1];
-        float factor = 1.0 - rand_float() / 2.0;
+        float factor = 0.8 + rand_float() / 2.5;
         float lim = (1.0 / tableInfo.player_num) * factor;
-        if(prob_not_lose >= lim)
+        if(prob_not_lose > 2.0)
+            raise_bet(tableInfo.BBValue);
+        else if(prob_not_lose >= lim)
             call_bet();
         else
             fold_bet();
