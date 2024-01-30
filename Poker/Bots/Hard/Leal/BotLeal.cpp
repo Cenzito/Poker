@@ -1,12 +1,13 @@
 #include "BotLeal.hpp"
+#include //mlpack headers
 
 
 //"C:/Users/Leal Köksal/Documents/a University/Semester 3/CSE201/C++ Project/Poker/Poker/logistic_regression_1"
 
-//mlpack::regression::LogisticRegression<> lrModelRaise;
-//mlpack::regression::LogisticRegression<> lrModelFold;
+mlpack::regression::LogisticRegression<> lrModelRaise;
+mlpack::regression::LogisticRegression<> lrModelFold;
 
-/*
+
 void TrainRegressionRaise(const std::string& TrainingFile) {
     //first we load the data
     arma::mat TraningData;
@@ -21,7 +22,7 @@ void TrainRegressionRaise(const std::string& TrainingFile) {
 
     /*data could now be split into training data and testing data. I will use all the data for training and use
     other inputs later to make predictions*/
-   /* lrModelRaise = mlpack::regression::LogisticRegression<>(features, labels);
+    lrModelRaise = mlpack::regression::LogisticRegression<>(features, labels);
 
 }
 
@@ -89,4 +90,4 @@ void BotLeal::Action() {
 
     //make the actual decision...
 }
-*/
+
