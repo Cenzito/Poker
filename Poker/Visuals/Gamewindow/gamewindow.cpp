@@ -272,8 +272,9 @@ void GameWindow::update_display(){
         switch_bet_button_off();
     }
 
-    //display middle pot
+    //display middle pot and max bet in the middle
     display_middle_pot();
+    display_max_bet();
 
     //if (game_player.tableInfo.playerInfo[game_player.tableInfo.current_player].name == game_player.getName()) {
     //  switch_bet_button_on();
@@ -615,7 +616,7 @@ void GameWindow::displayAllPCards() {
 
 /*
  *  display_name_red(): as the name suggests, displays the names in red
- *  not really sure why?
+ *  to know at first glance where you are around the table
  *
  *
 */
@@ -652,3 +653,27 @@ void GameWindow::display_name_red(){
 
 // end display name red
 
+/*
+ *  display_max_bet(): as the name suggests, displays the maximal bet in the middle (maxbet_line)
+ *  so that players can directly see it
+ *
+*/
+void GameWindow::display_max_bet(){
+
+    int bet_max = 0;
+
+    for(int i=0; i<game_player.tableInfo.player_num && i<8;i++){
+        if (bet_max < game_player.tableInfo.playerInfo[i].bet){
+            bet_max = game_player.tableInfo.playerInfo[i].bet;
+        }
+    }
+
+    QFont font = ui->maxbet_line->font();
+    font.setBold(true) ;
+    ui->maxbet_line->setFont(font);
+    QString text = QString::fromStdString("max bet : ")+QString::number(bet_max);
+    ui->maxbet_line->setText(text);
+
+}
+
+// end of display_max_bet

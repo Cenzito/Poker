@@ -962,7 +962,7 @@ color: rgb(15, 96, 0);</string>
         </property>
         <property name="maximumSize">
          <size>
-          <width>150</width>
+          <width>200</width>
           <height>25</height>
          </size>
         </property>
@@ -1034,7 +1034,7 @@ image: url(:/images/player_stack.png);
         </property>
         <property name="maximumSize">
          <size>
-          <width>125</width>
+          <width>200</width>
           <height>25</height>
          </size>
         </property>

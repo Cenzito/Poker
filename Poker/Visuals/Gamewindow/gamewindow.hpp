@@ -24,11 +24,11 @@ public:
 
 
     //display functions
+
     void update_display();
     void update_community_cards();
     void update_middle_card_display(int cardIndex, const Card& card);
     void remove_middle_card_display(int cardIndex);
-
     void display_names_stacks_bets();
     void player_hand_description();
     void display_player_hand();
@@ -42,6 +42,7 @@ public:
     void preflop_odds();
     void displayCardP(int player);
     void displayAllPCards();
+    void display_max_bet();
 
 
     PokerPlayer game_player;
