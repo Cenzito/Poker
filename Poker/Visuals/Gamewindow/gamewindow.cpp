@@ -293,14 +293,6 @@ void GameWindow::update_display(){
 */
 void GameWindow::update_community_cards() {
     const std::vector<Card>& communityCards = game_player.tableInfo.communityCards;
-    if (communityCards.size() == 0) {
-        ui->AddBot_Button->setEnabled(true);
-    }
-    else {
-        ui->AddBot_Button->setEnabled(false);
-    }
-
-    //qDebug() << "number center cards: " << communityCards.size();
 
 
     // Display the first three community cards initially
@@ -508,11 +500,28 @@ void GameWindow::display_names_stacks_bets() {
             line_bet->setText(QString::fromStdString(std::to_string(game_player.tableInfo.playerInfo[i].bet)));
             //display the name in red if is current player
             if (game_player.tableInfo.current_player == i){
-                line_player->setStyleSheet("color : red; background-color: green;");
-                line_bet->setStyleSheet("color : red; background-color: green;");
+                if (game_player.tableInfo.playerInfo[i].isFold) {
+                    line_player->setStyleSheet("color : black; background-color: red;");
+                    line_bet->setStyleSheet("color : black; background-color: red;");
+                } else if (game_player.tableInfo.playerInfo[i].isAllin) {
+                    line_player->setStyleSheet("color : black; background-color: yellow;");
+                    line_bet->setStyleSheet("color : black; background-color: yellow;");
+                } else{
+                    line_player->setStyleSheet("color : red; background-color: green;");
+                    line_bet->setStyleSheet("color : red; background-color: green;");
+                }
+
             } else {
-                line_player->setStyleSheet("color : black; background-color: green;");
-                line_bet->setStyleSheet("color : black; background-color: green;");
+                if (game_player.tableInfo.playerInfo[i].isFold) {
+                    line_player->setStyleSheet("color : black; background-color: red;");
+                    line_bet->setStyleSheet("color : black; background-color: red;");
+                } else if (game_player.tableInfo.playerInfo[i].isAllin) {
+                    line_player->setStyleSheet("color : black; background-color: yellow;");
+                    line_bet->setStyleSheet("color : black; background-color: yellow;");
+                } else{
+                    line_player->setStyleSheet("color : black; background-color: green;");
+                    line_bet->setStyleSheet("color : black; background-color: green;");
+                }
             }
         }
     }

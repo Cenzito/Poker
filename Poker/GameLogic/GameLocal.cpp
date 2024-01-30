@@ -200,7 +200,7 @@ void GameLocal::distribute() {
                     int index=tableInfo.playerIndex(candidate.name);
                     if (tableInfo.subpots[index]<=0) {
                         //qDebug()<<"folding"<<candidate.name;
-                        fold(candidate);
+                        candidate.isFold=true;
                         //qDebug()<<"it worked?:"<<candidate.isFold;
                     }
 
@@ -299,7 +299,7 @@ void GameLocal::distribute() {
                     int index=tableInfo.playerIndex(candidate.name);
                     if (tableInfo.subpots[index]<=0) {
                         //qDebug()<<"folding"<<candidate.name;
-                        fold(candidate);
+                        candidate.isFold=true;
                         //qDebug()<<"it worked?:"<<candidate.isFold;
                     }
 
@@ -408,7 +408,7 @@ std::vector<PlayerInfo> GameLocal::winners() {
     fold(PlayerInfo& foldPlayer): folds the player and decreases the number of active players.
 */
 void GameLocal::fold(PlayerInfo& foldPlayer) {
-    foldPlayer.isFold = true;
+    updatePlayersTable("/fold " +  foldPlayer.name);
     players_standing -= 1;
 }
 
@@ -426,10 +426,8 @@ void GameLocal::updatePlayersTable(std::string updatePlayersTable) {
     allin(PlayerInfo& allinPlayerInfo): sets the player to allin, creates their subpot, and pays their whole stack to the pot.
 */
 void GameLocal::allin(PlayerInfo& allinPlayerInfo) {
-    //set the player to all in
-    allinPlayerInfo.isAllin=true;
     //qDebug()<<allinPlayerInfo.name<<"went all in";
-
+    updatePlayersTable("/allin " + allinPlayerInfo.name);
     //get players who havent folded since they are the ones who might of bet more than our stack
     //(keep in mind that if a player has folded then he certainly put in less than our stack or else this would
     //have already been triggered earlier, and they couldn't have both called/raised and folded in that one move)
@@ -451,7 +449,6 @@ void GameLocal::allin(PlayerInfo& allinPlayerInfo) {
     players_all_in += 1;
 
 
-    //pay all the money the player has to the pot
     pay(  allinPlayerInfo, allinPlayerInfo.stack_size  );
 }
 

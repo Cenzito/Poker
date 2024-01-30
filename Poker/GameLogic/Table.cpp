@@ -103,9 +103,8 @@ void Table::updateTable(std::string command) {
     } case CommandType::AllIn: {
         // "/pay PlayerName"
         std::string PlayerName = wordsArray[1];
-        getPlayerInfo(PlayerName)->bet += getPlayerInfo(PlayerName)->stack_size;
-        getPlayerInfo(PlayerName)->stack_size = 0;
-        getPlayerInfo(PlayerName)->isAllin = true;
+        PlayerInfo* current = getPlayerInfo(PlayerName);
+        current->isAllin = true;
         break;
     } case CommandType::Fold: {
         // "/fold PlayerName"
