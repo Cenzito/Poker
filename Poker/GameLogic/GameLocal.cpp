@@ -761,7 +761,7 @@ std::string GameLocal::nameBot(int number) {
     std::vector<std::string> botNames = {
         "Chimpanzee", "Gorilla", "Baboon", "Capuchin", "Marmocet", "Mandrill", "Orangutan", "Gibbon", "Macaque", "Tamarin",
         "You_better_fold", "Prepared_to_lose?", "Take_a_mortgage", "Better_than_french_wine", "Orient_Express", "All_I_want_for_Christmas",
-        "Moses", "Zapster", "Whirlo", "Techton",
+        "Moses", "Watch_and_Learn", "Sanpellegrino", "Dostoïevsky",
         "Droidle", "Bloop", "MechaMuffin", "Sprocket", "Blipper", "Automato", "Circuita", "Gearlo", "BeepBoop",
         "RoboRoo", "Gadget", "Blinko", "Wirey", "Flexo", "Nano", "ZipZap", "Mechano", "Bitzy", "Electra",
         "Pulsar", "Clank", "Chipper", "Bolt", "Tinker", "Click", "Ratchet", "Fizz", "Alloy", "Ion", "Lazer",
@@ -773,12 +773,12 @@ std::string GameLocal::nameBot(int number) {
     };
 
     int top=99;
-    int bottom=17;
+    int bottom=20;
     if (number==1) {
         top=9;
         bottom=0;
     } else if (number==2) {
-        top=16;
+        top=19;
         bottom=10;
     }
 
@@ -790,8 +790,17 @@ std::string GameLocal::nameBot(int number) {
     //qDebug()<<"returning an integer"<<dis(gen);
     std::string randomName= botNames.at(dis(gen));
 
+    int counter=0;
+
     while (std::find(names.begin(), names.end(), randomName) != names.end()) {
         randomName=botNames.at(dis(gen));
+        counter+=1;
+        if (counter>=5) {
+            std::uniform_int_distribution<> last(20,99);
+            while (std::find(names.begin(), names.end(), randomName) != names.end()) {
+                randomName=botNames.at(last(gen));
+            }
+        }
     }
 
     //qDebug()<<"here?"<<QString::fromStdString(randomName);
