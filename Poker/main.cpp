@@ -8,7 +8,7 @@
 #include "./GameLogic/Deck.cpp"
 #include "./GameLogic/PokerHand.cpp"
 #include "./GameLogic/GameLocal.hpp"
-#include "./Bots/Hard/Cenzo/BotCenzo.hpp"
+#include "./Bots/Hard/Leal/BotLeal.hpp"
 
 #include <QApplication>
 
