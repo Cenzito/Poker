@@ -24,24 +24,23 @@ public:
 
 
     //display functions
+
     void update_display();
     void update_community_cards();
     void update_middle_card_display(int cardIndex, const Card& card);
     void remove_middle_card_display(int cardIndex);
-
     void display_names_stacks_bets();
     void player_hand_description();
     void display_player_hand();
     void switch_bet_button_on();
     void switch_bet_button_off();
     void switch_players_display();
-    void highlightActivePlayer();
     void display_middle_pot();
     void display_given_cards(PokerPlayer* display_player);
-    void display_name_red();
     void preflop_odds();
     void displayCardP(int player);
     void displayAllPCards();
+    void display_max_bet();
 
 
     PokerPlayer game_player;
