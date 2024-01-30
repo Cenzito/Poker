@@ -30,7 +30,7 @@ bool MediumLeal::SameRank(std::vector<Card> hand) {
 }
 
 bool MediumLeal::CloseRank(std::vector<Card> hand) { // +/- 2
-    if (std::abs(hand[0].getValue() - hand[1].getValue()) <= 2) {
+    if (std::abs(hand[0].getValue() - hand[1].getValue()) <= 3) {
         return true;
     }
     else {
@@ -56,7 +56,7 @@ void MediumLeal::Action() {
     }
 
     if (CloseRank(hand)) {
-        score += 0.2;
+        score += 0.4;
     }
 
     if (SameSuit(hand)) {
