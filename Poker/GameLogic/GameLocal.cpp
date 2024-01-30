@@ -1,4 +1,5 @@
 #include "GameLocal.hpp"
+#include "Visuals/Gamewindow/gamelocalwindow.hpp"
 #include <QApplication>
 
 GameLocal::GameLocal(int seats): tableInfo(seats){
@@ -320,6 +321,8 @@ void GameLocal::allin(PlayerInfo& allinPlayerInfo) {
 void GameLocal::setPlayerInfos(PokerPlayer* player) {
     //used to set the players in the Table when you join the game
     // can also be used to resync the players with what the game has.
+    GameLocalWindow gameplayer = GameLocalWindow();
+
     std::string listPInf = "/setPInf";
 
     for (int i = 0; i< tableInfo.player_num;i++) {
@@ -333,7 +336,8 @@ void GameLocal::setPlayerInfos(PokerPlayer* player) {
 
     //emit the change to the player
     QObject::connect(this, &GameLocal::setPInf, player, &PokerPlayer::updatePInf);
-    emit setPInf(listPInf);
+    //emit setPInf(listPInf);
+    gameplayer.pokerclient.receiveMessages();
     QObject::disconnect(this, &GameLocal::setPInf, player, &PokerPlayer::updatePInf);
 
 }
