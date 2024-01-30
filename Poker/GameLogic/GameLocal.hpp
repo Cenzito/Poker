@@ -6,6 +6,7 @@
 #include "Deck.hpp"
 #include "../Bots/Bot.hpp"
 #include "../Bots/Hard/Darius/BotDarius.hpp"
+#include "../Bots/Medium/MediumLeal.hpp"
 #include "../Bots/Easy/MonkeyBot.hpp"
 #include "PokerHand.hpp"
 #include <QObject>

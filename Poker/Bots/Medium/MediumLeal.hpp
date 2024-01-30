@@ -8,7 +8,7 @@
 
 class MediumLeal : public Bot {
 public:
-    MediumLeal(const std::string& name, int level) : Bot(name, 3) {}; //constrcutor
+    MediumLeal(const std::string& name) : Bot(name, 3) {} //constrcutor
 
     void Action();
 

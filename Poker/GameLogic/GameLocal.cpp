@@ -100,6 +100,13 @@ void GameLocal::addBot(int botNumber) {
         JoinGame(bot);
         break;
     }
+    case 3: {
+        // Darius's bot
+        //Insert comment
+        MediumLeal* bot = new MediumLeal(name);
+        JoinGame(bot);
+        break;
+    }
     }
 
 
