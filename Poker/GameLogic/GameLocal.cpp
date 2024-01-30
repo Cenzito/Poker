@@ -115,7 +115,6 @@ void GameLocal::addBot(int botNumber) {
         JoinGame(bot);
         break;
     }
-    }
     case 5: {
         // Axel's's bot
         BotAxel* bot = new BotAxel(name);
