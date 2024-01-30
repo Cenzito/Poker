@@ -81,4 +81,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
-    data
+    data \
+    logistic_regression \
+    logistic_regression_1 \
+    logistic_regression_2

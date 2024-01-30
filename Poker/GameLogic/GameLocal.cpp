@@ -1,5 +1,14 @@
 #include "GameLocal.hpp"
 #include <QApplication>
+#include <QFile>
+#include <QTextStream>
+#include <QApplication>
+#include <QCoreApplication>
+#include <QDir>
+#include <QString>
+
+
+QFile file("C:/Users/Leal Köksal/Documents/a University/Semester 3/CSE201/C++ Project/Poker/Poker/logistic_regression");
 
 GameLocal::GameLocal(int seats): tableInfo(seats){
 }
@@ -73,6 +82,26 @@ void GameLocal::pay(PlayerInfo& PlayerPay, int sum) {
 void GameLocal::win(PlayerInfo& PlayerWin, int sum) {
     //qDebug() << sum;
     updatePlayersTable("/win " + PlayerWin.name + " " + std::to_string(sum));
+    //FILE1 win amount
+
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Append)) {
+        qDebug() << "Failed to open the file for writing:" << file.errorString();
+        return;
+    }
+    QTextStream stream(&file);
+    if (PlayerWin.name == "bot4") {
+        stream << sum << "\n";
+    }
+
+    else {
+        stream << 0 << "\n";
+    }
+
+    if (stream.status() != QTextStream::Ok) {
+        qDebug() << "Error writing to the file:" << file.errorString();
+    }
+
+    file.close();
 };
 
 
@@ -126,9 +155,12 @@ void GameLocal::distribute() {
                 }
             }
         } else { //if the only player is not allin then he gets all the money and the round is over
-            qDebug()<<"One player got the money";
-            qDebug()<< PlayerWin.name;
+            qDebug()<<"One player got the money:" << PlayerWin.name;
+            qDebug()<< "They won" << tableInfo.pot;
+
+
             win(PlayerWin, tableInfo.pot);
+
         }
     } else {
         //check if there's a player who went all in
@@ -215,11 +247,10 @@ void GameLocal::endHand() {
     distribute();
 
 
-    //nextHand();, so that the game ends after one round
+    nextHand();
 }
 
 std::vector<PlayerInfo> GameLocal::winners() {
-
     //get all the people who haven't folded
     std::vector<PlayerInfo> playersNotFold;
     for (int i = 0; i < tableInfo.player_num; i++) {
@@ -349,12 +380,6 @@ void GameLocal::nextHand(){
         tableInfo.playerInfo[i].isAllin = false;
         tableInfo.playerInfo[i].isFold = false;
     }
-    //reset bets
-    /*for (int i = 0; i <= tableInfo.player_num; i++) {
-        tableInfo.playerInfo[i].bet = 0;
-        tableInfo.playerInfo[i].isAllin = false;
-        tableInfo.playerInfo[i].isFold = false;
-    }*/
 
 
     players_standing = tableInfo.player_num;
@@ -380,8 +405,36 @@ void GameLocal::askBet(PokerPlayer* p) {
 }
 
 void GameLocal::onAction() {
-    //qDebug()<<"action entered";
-    //check if end hand
+    QTextStream stream(&file);
+    if (tableInfo.playerInfo[tableInfo.current_player].name == "bot4") {
+        std::vector<Card> bot_hand = tableInfo.playerInfo[tableInfo.current_player].cards;
+        for (int i = 0; i < tableInfo.communityCards.size(); i++) {
+            bot_hand.emplace_back(tableInfo.communityCards[i]);
+        }
+
+        if (!file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Append)) {
+            qDebug() << "Failed to open the file for writing:" << file.errorString();
+            return;
+        }
+
+        if (tableInfo.playerInfo[tableInfo.current_player].name == "bot4") {
+            if (tableInfo.betting_round == 3 || tableInfo.playerInfo[tableInfo.current_player].isFold == true ) {
+                stream << tableInfo.betting_round << "\t" << Winning_Probability(tableInfo, bot_hand, tableInfo.player_num, 100)[0] << "\t";
+
+            }
+            else {
+                stream << tableInfo.betting_round << "\t" << Winning_Probability(tableInfo, bot_hand, tableInfo.player_num, 100)[0] << QString::fromStdString(" ") << "\n";
+            }
+        }
+
+        if (stream.status() != QTextStream::Ok) {
+            qDebug() << "Error writing to the file:" << file.errorString();
+        }
+
+        file.close();
+    }
+
+
     if (players_standing == 1) {
         endHand();
     }
@@ -401,8 +454,25 @@ void GameLocal::onAction() {
 }
 
 void GameLocal::onCall() {
+    QTextStream stream(&file);
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Append)) {
+        qDebug() << "Failed to open the file for writing:" << file.errorString();
+        return;
+    }
+
+    if (tableInfo.playerInfo[tableInfo.current_player].name == "bot4") {
+        stream << 0 << "\t";
+    }
+
+    if (stream.status() != QTextStream::Ok) {
+        qDebug() << "Error writing to the file:" << file.errorString();
+    }
+
+    file.close();
+
+
     PlayerInfo &currentPlayerInfo = tableInfo.playerInfo[tableInfo.current_player];
-    qDebug()<<"current highest bet is:"<< tableInfo.current_biggest_bet;
+    qDebug()<<"current highest bet is:"<< tableInfo.current_biggest_bet << "by" << tableInfo.current_player;
     //if doesn't have the money to match: all-in
     if (currentPlayerInfo.stack_size + currentPlayerInfo.bet <= tableInfo.current_biggest_bet){
         allin(currentPlayerInfo);
@@ -415,6 +485,24 @@ void GameLocal::onCall() {
 
 
 void GameLocal::onFold() {
+    QTextStream stream(&file);
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Append)) {
+        qDebug() << "Failed to open the file for writing:" << file.errorString();
+        return;
+    }
+
+    if (tableInfo.playerInfo[tableInfo.current_player].name == "bot4") {
+        stream << 1 << "\t";
+    }
+
+
+    if (stream.status() != QTextStream::Ok) {
+        qDebug() << "Error writing to the file:" << file.errorString();
+    }
+
+    file.close();
+
+
     PlayerInfo &currentPlayerInfo = tableInfo.playerInfo[tableInfo.current_player];
 
     fold(currentPlayerInfo);
@@ -424,6 +512,23 @@ void GameLocal::onFold() {
 
 
 void GameLocal::onRaise(int bet) {
+    QTextStream stream(&file);
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Append)) {
+        qDebug() << "Failed to open the file for writing:" << file.errorString();
+        return;
+    }
+    if (tableInfo.playerInfo[tableInfo.current_player].name == "bot4") {
+        stream << 0 << "\t";
+
+    }
+
+    if (stream.status() != QTextStream::Ok) {
+        qDebug() << "Error writing to the file:" << file.errorString();
+    }
+
+    file.close();
+
+
     qDebug()<<"IN RAISE";
     PlayerInfo &currentPlayerInfo = tableInfo.playerInfo[tableInfo.current_player];
     //qDebug()<<currentPlayerInfo.name<<"is trying to raise"<<bet;
@@ -480,6 +585,7 @@ void GameLocal::nextBettingRound() {
                 cards.push_back(deck.dealCard());
                 player->receiveCards(cards);
                 tableInfo.getPlayerInfo(player->name)->cards = cards;
+                //FILE1: calculate card combo here and add %win to table
             }
             //three players after button is first to act
             setNextCurrentPlayer();

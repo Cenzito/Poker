@@ -12,18 +12,18 @@ void MonkeyBot::Action(){
 
     // Generate a random number
     double random_number = dis(gen);
-    qDebug()<<"random number is: "<< random_number;
+    //qDebug()<<"random number is: "<< random_number;
 
     if (random_number<(0.1)){
-        qDebug()<<"folding";
+        //qDebug()<<"folding";
         fold_bet();
     } else if (random_number<(0.7)) {
-        qDebug()<<"calling";
+        //qDebug()<<"calling";
         call_bet();
     } else if (random_number<(0.9)){
         double another_random_number = dis(gen);
         int bet = another_random_number*find_stack_size();
-        qDebug()<<"raising by"<<bet;
+        //qDebug()<<"raising by"<<bet;
         raise_bet(bet);
     } else {
         raise_bet(find_stack_size());

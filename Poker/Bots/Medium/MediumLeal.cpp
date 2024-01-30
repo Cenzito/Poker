@@ -29,8 +29,8 @@ bool MediumLeal::SameRank(std::vector<Card> hand) {
     }
 }
 
-bool MediumLeal::CloseRank(std::vector<Card> hand) { //+/- 2
-    if (std::abs(hand[0].getValue() - hand[1].getValue())) {
+bool MediumLeal::CloseRank(std::vector<Card> hand) { // +/- 2
+    if (std::abs(hand[0].getValue() - hand[1].getValue()) <= 2) {
         return true;
     }
     else {
@@ -50,14 +50,26 @@ bool MediumLeal::SameSuit(std::vector<Card> hand) {
 void MediumLeal::Action() {
 
     //now we will have to create cases for the betting rounds
+    double score = 0;
+    if (SameRank(hand)) {
+        score += 0.5;
+    }
+
+    if (CloseRank(hand)) {
+        score += 0.2;
+    }
+
+    if (SameSuit(hand)) {
+        score += 0.1;
+    }
 
     if (tableInfo.communityCards.size() == 0) {
-        if (SameRank(hand) || SameSuit(hand) || CloseRank(hand)) {
-            call_bet();
+        if (score <= gen_rand_num()) {
+            fold_bet();
         }
 
         else {
-            fold_bet();
+            call_bet();
         }
 
     }
@@ -68,13 +80,10 @@ void MediumLeal::Action() {
         }
 
         PokerHand educatedHand(bot_hand);
-
         NumericalCardValue = static_cast<int>(educatedHand.get_combination());
+        float probability = exp(-lambda * (static_cast<float>(NumericalCardValue) / 10));
 
-        float probability = 1 -  exp(-lambda * (static_cast<float>(NumericalCardValue) / 10));
-        float rand_num = gen_rand_num();
-
-        if (probability >= rand_num) {
+        if (probability <= gen_rand_num()) {
             fold_bet();
         }
 
@@ -83,9 +92,10 @@ void MediumLeal::Action() {
         }
 
         else {
-            raise_bet(tableInfo.current_biggest_bet); //raise by minimum raise amount
+            raise_bet(gen_rand_num()*find_stack_size());
 
         }
+
     }
 
 }

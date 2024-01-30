@@ -10,6 +10,7 @@
 #include <QObject>
 #include <QTimer>
 #include <algorithm>
+#include "Card.hpp"
 #include <QSignalMapper>
 
 

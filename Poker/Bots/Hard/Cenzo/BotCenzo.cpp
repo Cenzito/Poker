@@ -33,7 +33,7 @@ void BotCenzo::Action(){
     int last_bet = tableInfo.current_biggest_bet;
     float x = 1 - Winning_Probability(tableInfo, hand, tableInfo.player_num, 1000)[2];
     float y = static_cast<float>(last_bet) / tableInfo.pot;
-    qDebug() << "y" << y;
+    //qDebug() << "y" << y;
 
     float col;
     float row;
@@ -47,7 +47,7 @@ void BotCenzo::Action(){
         col = std::floor(x / 0.05);
         row = std::floor((10 + ((y - 2)) / ((max - 2) * 0.1)));
     }
-    qDebug() << "col:" <<col <<" row:" << row;
+    //qDebug() << "col:" <<col <<" row:" << row;
 
     //refer to matrix for probability of fold
 

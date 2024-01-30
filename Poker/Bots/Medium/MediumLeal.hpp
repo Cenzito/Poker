@@ -4,6 +4,7 @@
 #include "../../GameLogic/PokerHand.hpp"
 #include "../../GameLogic/Card.hpp"
 #include "../../GameLogic/Table.hpp"
+#include "./../../GameLogic/Monte_Carlo_Probability_Simulator.hpp"
 
 class MediumLeal : public Bot {
 public:

@@ -61,28 +61,31 @@ void data_collection() {
     file.close();
 }
 
+
 int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
     QDir::setCurrent(QCoreApplication::applicationDirPath());
 
-    init_col_header();
-    //data_collection();
+    //init_col_header();
+    data_collection();
+    //hello();
 
+    GameLocal w(5);
 
-    GameLocalWindow w;
-
-    //Bot bot1 = Bot("Alpha", 3);
     MediumLeal bot1 = MediumLeal("bot1", 3);
     MediumLeal bot2 = MediumLeal("bot2", 3);
+    MediumLeal bot4 = MediumLeal("bot4", 3);
+    BotCenzo bot3 = BotCenzo("bot3");
+    MonkeyBot bot5 = MonkeyBot("bot5");
 
-    //Bot bot1 = Bot("bot1", 0);
-    //Bot bot2 = Bot("bot2", 0);
+    w.addBot(&bot1);
+    w.addBot(&bot2);
+    w.addBot(&bot3);
+    w.addBot(&bot4);
+    w.addBot(&bot5);
+    //w.show();
 
-    w.game.addBot(&bot1);
-    w.game.addBot(&bot2);
-    w.show();
-
-    w.game.nextHand();
+    w.nextHand();
 
     return a.exec();
 /*
