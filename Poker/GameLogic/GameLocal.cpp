@@ -100,12 +100,12 @@ void GameLocal::addBot(int botNumber) {
         JoinGame(bot);
         break;
     }
-    case 3: {
+    /*case 3: {
         // Pu's bot
         BotPu* bot = new BotPu(name);
         JoinGame(bot);
         break;
-    }
+    }*/
     }
 
 

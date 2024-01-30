@@ -1882,11 +1882,6 @@ image: url(:/images/player_stack.png);
           </item>
           <item>
            <property name="text">
-            <string>BotPu</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
             <string/>
            </property>
           </item>
