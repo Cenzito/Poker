@@ -2,10 +2,6 @@
 #define BOTLEAL_H
 #include "Bots/Bot.hpp"
 
-//#include "../../../GameLogic/Monte_Carlo_Probability_Simulator.cpp"
-
-
-
 class BotLeal : public Bot {
 
 public:
