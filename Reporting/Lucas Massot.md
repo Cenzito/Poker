@@ -13,7 +13,7 @@ I Implemented the bet system buttons, that is Call, Raise, Fold and the box on t
 
 Week 4 (11.12. - 17.12.) 
 
-I worked on a function to display the stacks of the players, that is how much money they have. My initial idea and the one that i first implemented was to allow the player to click on one's name_line to switch from the name to the stack through slots, but its not the one we kept, rather the extended display_name_bet function which is discussed below.
+I added the background and the line_players, then I worked on a function to display the stacks of the players, that is how much money they have. My initial idea and the one that i first implemented was to allow the player to click on one's name_line to switch from the name to the stack through slots, but its not the one we kept, rather the extended display_name_bet function which is discussed below. 
 
 Week 5 (18.12. - 24.12.) 
 
@@ -29,10 +29,10 @@ I started working on the expensible window and reworked the whole display with l
 
 Week 7 (15.1. - 21.1.) 
 
-What is left to do is take care of the display, so I reworked to display in order to add cards for the other players that would show at the end of each rounds what were their cards to the other players using the display_given_cards function. I also added the next_round button on the display and reworked the layouts so that these new widgets would fit and extend correctly.
+What is left to do is take care of the display, so I reworked to display in order to add cards for the other players that would show at the end of each rounds what were their cards to the other players using the display_given_cards function. I also added the next_round button on the display and reworked the layouts so that these new widgets would fit and extend correctly. I finally added a display_name_red function which puts your name in red so that it is easier to keep track of where you are around the table
 
 Week 8 (22.1 - 29.1.) 
 
-I first added a display_name_red function which puts your name in red so that it is easier to keep track of where you are around the table, and up from there to the end of the time we had left to work on the project I reworked the layouts to make sure that they extend correctly and that the window can be resized properly.
+Up from there we had left to work on was the layouts, and to make sure that they extend correctly and that the window can be resized properly. Hence, I mostly dedicated time to it, and make sure that my work can merge with the rest.
 
 
