@@ -1,6 +1,13 @@
-
 #pragma once
 #include "../GameLogic/PokerPlayer.hpp"
+#include <qdebug.h>
+#include <cmath>
+#include <random>
+#include <algorithm>
+#include "GameLogic/PokerHand.hpp"
+#include "GameLogic/Card.hpp"
+#include "GameLogic/Table.hpp"
+#include "GameLogic/Monte_Carlo_Probability_Simulator.hpp"
 
 class Bot : public PokerPlayer {
     Q_OBJECT
@@ -11,7 +18,7 @@ public :
         this-> isBot = true;
     };
 
-    virtual void Action();
+    virtual void Action() = 0;
 
 public slots:
     void call_bet();

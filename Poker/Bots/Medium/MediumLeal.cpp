@@ -1,8 +1,4 @@
 #include "MediumLeal.hpp"
-#include <cmath>
-#include <algorithm>
-#include <random>
-#include <qdebug.h>
 
 float gen_rand_num() {
     std::random_device rd;
