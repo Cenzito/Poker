@@ -8,7 +8,7 @@
 */
 
 
-double randnumb_generator() {
+double randnumb_generator2() {
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_real_distribution<> dis(0.0, 1.0);
@@ -33,23 +33,23 @@ int BotAxel::optimalBet()
     int round=tableInfo.communityCards.size();
 
     if  (round ==0){
-        double x = randnumb_generator();
+        double x = randnumb_generator2();
         if (x<= 0.8){
             our_hand_cardsvector = getHand();
             HandThisGame = our_hand_cardsvector;
         }
         else {
-            double randvalcard1 = randnumb_generator();
-            double randsuitcard1 = randnumb_generator();
+            double randvalcard1 = randnumb_generator2();
+            double randsuitcard1 = randnumb_generator2();
             int suitnumcard1 = int(randsuitcard1 * 4);
             int valnumcard1 = int(randvalcard1 *5) + 10;
-            double randvalcard2 = randnumb_generator();
-            double randsuitcard2 = randnumb_generator();
+            double randvalcard2 = randnumb_generator2();
+            double randsuitcard2 = randnumb_generator2();
             int suitnumcard2 = int(randsuitcard2 * 4);
             int valnumcard2 = int(randvalcard2 *5) + 10;
             while (suitnumcard1 == suitnumcard2 and valnumcard1 == valnumcard2 ){
-                randvalcard2 = randnumb_generator();
-                randsuitcard2 = randnumb_generator();
+                randvalcard2 = randnumb_generator2();
+                randsuitcard2 = randnumb_generator2();
                 suitnumcard2 = int(randsuitcard2 * 4);
                 valnumcard2 = int(randvalcard2 *5) + 10;
             }
