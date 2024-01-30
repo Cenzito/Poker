@@ -34,6 +34,7 @@ public:
     void display_player_hand();
     void switch_bet_button_on();
     void switch_bet_button_off();
+    void switch_bet_button_off_start();
     void switch_players_display();
     void highlightActivePlayer();
     void display_middle_pot();
