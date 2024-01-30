@@ -2,26 +2,6 @@
 #include <QTimer>
 #include <qdebug.h>
 
-void Bot::Action() {
-        // Create a QTimer
-
-        /*
-        QTimer timer;
-
-        qDebug() << "acting bot";
-        // Connect the QTimer's timeout signal to the delayedSignal slot
-        QObject::connect(&timer, &QTimer::timeout, [this]() {
-            this->raise_bet(100);
-        });
-
-        timer.start(100);
-        */
-
-    call_bet();
-
-}
-
-
 void Bot::call_bet(){
     //qDebug()<<name<<"is calling";
     emit Call();

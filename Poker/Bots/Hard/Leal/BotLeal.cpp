@@ -1,10 +1,4 @@
 #include "BotLeal.hpp"
-#include "../../../GameLogic/Table.hpp"
-#include "../../../GameLogic/GameLocal.hpp"
-#include "../../../GameLogic/PokerPlayer.hpp"
-#include <cmath>
-#include <random>
-#include <QDebug>
 
 double randnumb_generator() {
     std::random_device rd;

@@ -80,9 +80,9 @@ void GameLocal::addBot(int botNumber) {
 
     switch (botNumber) {
     case 0: {
-        // Basic bot, he always calls
+        // Drunk bot, he always calls
         // Don't bluff against him cause he'll know it
-        Bot* bot = new Bot(name, 2);
+        BotDrunk* bot = new BotDrunk(name);
         JoinGame(bot);
         break;
     }
@@ -100,6 +100,12 @@ void GameLocal::addBot(int botNumber) {
         JoinGame(bot);
         break;
     }
+    /*case 3: {
+        // Pu's bot
+        BotPu* bot = new BotPu(name);
+        JoinGame(bot);
+        break;
+    }*/
     }
 
 

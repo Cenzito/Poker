@@ -1,8 +1,5 @@
 #include "BotAxel.hpp"
 
-#include <cmath>
-#include <random>
-
 /*This bot works like the Darius hardbot, but 20% of the games of poker,
  * instead of playing its hand, it bluffs and plays exactly how Darius hardbot would if
  * it had a random strong hand, making all its decisions as if it had,

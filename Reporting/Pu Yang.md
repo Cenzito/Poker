@@ -1,16 +1,39 @@
+# CSE201 Project Individual Report
+
+Student Name: Pu Yang
+
+Project name: Poker
+
+GitHub repository: https://github.com/Cenzito/Poker
+
+My Github account: CChanis
+
+Brief description of my work: I am a member of the bot team. I created a simple bot that always calls and a hard bot based on Counterfactual Regret Minimization (CFR). I also communicate with the logic team and write a little bit of code in the game logic part.
 
 ## Week 1
 
-1. Create card.hpp, a card class is defined.
-2. Create player.hpp, a player class is defined.
+I created card.hpp, player.hpp. (Later they were deleted and merged into Card.hpp, PokerPlayer.hpp)
 
 ## Week 2
 
-1.  Create bot.hpp, which defined a bot class, derived from PokerPlayer.
-2. Declare a member function "action" of PokerPlayer, being called when it is this player's turn. The function is virtual and is overrided if the player is a bot.
-3.  Create BotDrunk.hpp and BotDrunk.cpp, which defined a drunk bot who always calls or all-in.
+I created Bot.hpp, which defined a Bot class, derived from PokerPlayer. I also declared a member function "Action" of PokerPlayer, being called when it is this player's turn. The function is overridden in Bot.
 
 ## Week 3
-1. Make sure that Bot is a abstract class, and all bots using a specific strategy are derived from it. Make "action" in the Bot class a pure virtual function.
-2. Communicate with the game logic team and confirm the return value and parameters of "action". Define a new class Table to record all information on the table for players (especially the bots) to make decisions. 
-3. We are still waiting for the game logic team to complete some functions.
+
+I made Bot an abstract class. All bots using a specific strategy are derived from it. The function "Action" in the class Bot is a pure virtual function. I also defined a class Table to record all information on the table for players (especially the bots) to make decisions.
+
+## Week 4
+
+I created a drunk bot, who always calls. It can be used to test our project. I also communicated with the logic team and waited for some functions from them.
+
+## Week 5
+
+I learned some algorithms to design a hard bot. Finally, I chose CFR and sketched my CFR bot.
+
+## Week 6
+
+I completed the decision process of my CFR bot in the first round (pre-flop) and the last round (When there are 5 community cards).
+
+## Week 7
+
+I completed the decision process of my CFR bot when there are 3 or 4 community cards. Now, I finished my CFR bot and my work.

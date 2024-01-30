@@ -1,5 +1,6 @@
 #include "BotDrunk.hpp"
 
-void BotDrunk::action(int minAmount, int type) {
+void BotDrunk::Action() {
+    call_bet();
     return;
 }

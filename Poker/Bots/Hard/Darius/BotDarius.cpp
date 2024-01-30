@@ -1,5 +1,4 @@
 #include "BotDarius.hpp"
-#include <cmath>
 
 BotDarius::BotDarius(const std::string& name) : Bot(name, 10) {
 
