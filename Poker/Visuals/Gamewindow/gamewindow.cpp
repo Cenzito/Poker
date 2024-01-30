@@ -81,7 +81,6 @@ GameWindow::GameWindow(QWidget *parent, std::string name) : game_player(name),
         }
     }
 
-    switch_bet_button_off();
 
     // Add labels to the layout
     verticalLayout->addWidget(labelPot);
@@ -90,7 +89,7 @@ GameWindow::GameWindow(QWidget *parent, std::string name) : game_player(name),
     labelPot->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
     //hide bet buttons
-    switch_bet_button_off();
+    switch_bet_button_off_start();
 
 
 
@@ -412,6 +411,10 @@ void GameWindow::switch_bet_button_on(){
     ui->RaiseButton->show();
     ui->FoldButton->show() ;
     ui->CallButton->show();
+    ui->Preflop_odds->show();
+    ui->hand_display->show();
+    ui->raise_box->show();
+    ui->cumulative_bet_line->show();
 }
 
 /*
@@ -424,6 +427,17 @@ void GameWindow::switch_bet_button_off(){
     ui->FoldButton->hide() ;
     ui->CallButton->hide();
 }
+
+void GameWindow::switch_bet_button_off_start(){
+    ui->RaiseButton->hide();
+    ui->FoldButton->hide() ;
+    ui->CallButton->hide();
+    ui->Preflop_odds->hide();
+    ui->hand_display->hide();
+    ui->raise_box->hide();
+    ui->cumulative_bet_line->hide();
+}
+
 
 
 /*
