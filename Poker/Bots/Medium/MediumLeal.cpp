@@ -79,11 +79,12 @@ void MediumLeal::Action() {
             bot_hand.emplace_back(tableInfo.communityCards[i]);
         }
 
+
         PokerHand educatedHand(bot_hand);
         NumericalCardValue = static_cast<int>(educatedHand.get_combination());
         float probability = exp(-lambda * (static_cast<float>(NumericalCardValue) / 10));
 
-        if (probability <= gen_rand_num()) {
+        if (probability*0.5 >= gen_rand_num()) {
             fold_bet();
         }
 
@@ -92,7 +93,7 @@ void MediumLeal::Action() {
         }
 
         else {
-            raise_bet(gen_rand_num()*find_stack_size());
+            raise_bet(1.5*gen_rand_num()*find_stack_size());
 
         }
 
