@@ -1080,7 +1080,7 @@ image: url(:/images/player_stack.png);
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_17">
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="0,6,2,0,0,0">
+       <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="0,0,2,0,0,0">
         <property name="spacing">
          <number>5</number>
         </property>

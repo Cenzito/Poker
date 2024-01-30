@@ -6,6 +6,7 @@
 #include "Deck.hpp"
 #include "../Bots/Bot.hpp"
 #include "../Bots/Hard/Darius/BotDarius.hpp"
+#include "../Bots/Medium/MediumLeal.hpp"
 #include "../Bots/Hard/Pu/BotPu.hpp"
 #include "../Bots/Hard/Axel/BotAxel.hpp"
 #include "../Bots/Easy/BotDrunk.hpp"

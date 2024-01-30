@@ -74,6 +74,8 @@ void GameLocal::addBot(int botNumber) {
         name = nameBot(1);
     } else if (botNumber==2){
         name = nameBot(2);
+    } else if (botNumber==3){
+        name=nameBot(3);
     } else {
         name=nameBot();
     }
@@ -101,8 +103,9 @@ void GameLocal::addBot(int botNumber) {
         break;
     }
     case 3: {
-        // Axel's bot
-        BotAxel* bot = new BotAxel(name);
+        // Leal's bot
+        // Play with the stars
+        MediumLeal* bot = new MediumLeal(name);
         JoinGame(bot);
         break;
     }
@@ -112,6 +115,13 @@ void GameLocal::addBot(int botNumber) {
         JoinGame(bot);
         break;
     }
+    }
+    case 5: {
+        // Axel's's bot
+        BotAxel* bot = new BotAxel(name);
+        JoinGame(bot);
+        break;
+    }   
     }
 
 
@@ -768,11 +778,16 @@ std::string GameLocal::nameBot(int number) {
 
     //bot names
     std::vector<std::string> botNames = {
+
         "Chimpanzee", "Gorilla", "Baboon", "Capuchin", "Marmocet", "Mandrill", "Orangutan", "Gibbon", "Macaque", "Tamarin",
+
         "You_better_fold", "Prepared_to_lose?", "Take_a_mortgage", "Better_than_french_wine", "Orient_Express", "All_I_want_for_Christmas",
         "Moses", "Watch_and_Learn", "Sanpellegrino", "Dostoïevsky",
-        "Droidle", "Bloop", "MechaMuffin", "Sprocket", "Blipper", "Automato", "Circuita", "Gearlo", "BeepBoop",
-        "RoboRoo", "Gadget", "Blinko", "Wirey", "Flexo", "Nano", "ZipZap", "Mechano", "Bitzy", "Electra",
+
+        "Elle_Woods", "Regina_George", "Ryan_Reynolds", "Holly_Golighty", "Carrie_Bradshaw", "Samantha_Jones",
+        "Miranda_Hobbes", "Charlotte_York", "Rachel_Greene", "Lorelai_Gilmore",
+
+        "Gadget", "Blinko", "Wirey", "Flexo", "Nano", "ZipZap", "Mechano", "Bitzy", "Electra",
         "Pulsar", "Clank", "Chipper", "Bolt", "Tinker", "Click", "Ratchet", "Fizz", "Alloy", "Ion", "Lazer",
         "Rivet", "Dynamo", "Echo", "Astro", "Logic", "Mobi", "Nova", "Orbit", "Pixel", "Quantum", "Radar",
         "Sonic", "Turbo", "Vector", "Zappy", "Buzz", "Dash", "Flex", "Glimmer", "Jolt", "Kinetic", "Lumen",
@@ -782,13 +797,16 @@ std::string GameLocal::nameBot(int number) {
     };
 
     int top=99;
-    int bottom=20;
+    int bottom=30;
     if (number==1) {
         top=9;
         bottom=0;
     } else if (number==2) {
         top=19;
         bottom=10;
+    } else if (number==3) {
+        top=29;
+        bottom=20;
     }
 
     // Create a random number generator engine

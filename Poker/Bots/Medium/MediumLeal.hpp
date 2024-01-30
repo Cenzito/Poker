@@ -4,7 +4,7 @@
 
 class MediumLeal : public Bot {
 public:
-    MediumLeal(const std::string& name, int level) : Bot(name, 3) {}; //constrcutor
+    MediumLeal(const std::string& name) : Bot(name, 3) {} //constrcutor
 
     void Action();
 
@@ -16,7 +16,7 @@ public:
 private:
     int NumericalCardValue;
     float lambda = 4.8; //arbitrary
-    int threshold = 5; //basically arbitrary
+    int threshold = 3; //basically arbitrary
 };
 
 #endif // MEDIUMLEAL_HPP
