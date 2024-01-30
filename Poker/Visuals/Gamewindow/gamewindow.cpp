@@ -260,7 +260,6 @@ void GameWindow::update_display(){
     player_hand_description();
 
     // Display names and stacks and put yours in red
-    display_name_red();
     display_names_stacks_bets();
 
 
@@ -501,39 +500,24 @@ void GameWindow::display_names_stacks_bets() {
             kick_button->hide();
         }
         */
-        // Set player name and stack size
-        if (line_player)
+        // Set player name and stack size and bet
+        //qDebug() << "is folded" << game_player.tableInfo.playerInfo[i].isFold;
+        if (line_player && line_bet){
+
             line_player->setText(QString::fromStdString(playerName));
-
-        // Set player bet
-        if (line_bet)
             line_bet->setText(QString::fromStdString(std::to_string(game_player.tableInfo.playerInfo[i].bet)));
-    }
-}
-
-
-/*
- * highlightActivePlayer(): put a border on the box of the player that is currently playing
- *
-*/
-void GameWindow::highlightActivePlayer() {
-
-    //current player
-    std::string name = game_player.getName();
-
-    // Loop through all player labels
-    for (int i = 1; i <= 8; ++i) {
-        QLabel* playerLabel = findChild<QLabel*>(QString("line_player%1").arg(i));
-        QString labelText = playerLabel->text();
-
-        //checking which player is active
-        if (labelText.toStdString() == name) {
-
-            // Highlight the active player's label
-            playerLabel->setStyleSheet("border: 20px solid yellow;"); // the style
+            //display the name in red if is current player
+            if (game_player.tableInfo.current_player == i){
+                line_player->setStyleSheet("color : red; background-color: green;");
+                line_bet->setStyleSheet("color : red; background-color: green;");
+            } else {
+                line_player->setStyleSheet("color : black; background-color: green;");
+                line_bet->setStyleSheet("color : black; background-color: green;");
+            }
         }
     }
 }
+
 
 /*
  * display_middle_pot(): display sum in the pot
@@ -611,44 +595,6 @@ void GameWindow::displayAllPCards() {
             displayCardP(i);
         }
     }
-}
-
-
-/*
- *  display_name_red(): as the name suggests, displays the names in red
- *  to know at first glance where you are around the table
- *
- *
-*/
-void GameWindow::display_name_red(){
-
-    int num = game_player.tableInfo.current_player;
-
-    if(num == 1){
-        ui->line_player1->setStyleSheet("color : red;");
-    }
-    if(num == 2){
-        ui->line_player2->setStyleSheet("color : red;");
-    }
-    if(num == 3){
-        ui->line_player3->setStyleSheet("color : red;");
-    }
-    if(num == 4){
-        ui->line_player4->setStyleSheet("color : red;");
-    }
-    if(num == 5){
-        ui->line_player5->setStyleSheet("color : red;");
-    }
-    if(num == 6){
-        ui->line_player6->setStyleSheet("color : red;");
-    }
-    if(num == 7){
-        ui->line_player7->setStyleSheet("color : red;");
-    }
-    if(num == 8){
-        ui->line_player8->setStyleSheet("color : red;");
-    }
-
 }
 
 // end display name red

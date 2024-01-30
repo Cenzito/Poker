@@ -35,10 +35,8 @@ public:
     void switch_bet_button_on();
     void switch_bet_button_off();
     void switch_players_display();
-    void highlightActivePlayer();
     void display_middle_pot();
     void display_given_cards(PokerPlayer* display_player);
-    void display_name_red();
     void preflop_odds();
     void displayCardP(int player);
     void displayAllPCards();

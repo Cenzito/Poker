@@ -1751,7 +1751,7 @@ image: url(:/images/player_stack.png);
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: rgb(18, 107, 2);</string>
+           <string notr="true">background-color: white;</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
@@ -1914,7 +1914,7 @@ image: url(:/images/player_stack.png);
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">background-color: rgb(18, 107, 2);</string>
+             <string notr="true">background-color:white;</string>
             </property>
             <property name="inputMask">
              <string/>
@@ -2051,7 +2051,7 @@ image: url(:/images/player_stack.png);
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: rgb(18, 107, 2);</string>
+           <string notr="true">background-color: white;</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
