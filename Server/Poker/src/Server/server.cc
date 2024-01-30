@@ -91,8 +91,11 @@ void PokerServerConnection::setActivePlayer_command(){
     game.setNextCurrentPlayer();
 }
 
-void PokerServerConnection::setPlayerInfos_command(){
-    game.setPlayerInfos();
+void PokerServerConnection::setPlayerInfos_command(StreamSocket& ss, char* buffer, int n, std::string& accumulated){
+    accumulated.append(buffer, n);
+    std::string message = trim(accumulated);
+    sendMessageTosender("/setPInf");
+    game.updatePTable(message);
 }
 
 void PokerServerConnection::processReceivedData(StreamSocket& ss, char* buffer, int n, std::string& accumulated) {
@@ -122,9 +125,6 @@ void PokerServerConnection::processReceivedData(StreamSocket& ss, char* buffer, 
     }
     else if(message.find("/setActivePlayer") != std::string::npos){
         setActivePlayer_command();
-    }
-    else if(message.find("/setPInf") != std::string::npos){
-
     }
 
     sendMessageToAll(clientCredentials[&ss].username + ": " + message, ss);
