@@ -1080,7 +1080,7 @@ image: url(:/images/player_stack.png);
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_17">
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="0,6,2,0,0,0">
+       <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="0,0,2,0,0,0">
         <property name="spacing">
          <number>5</number>
         </property>
@@ -1878,6 +1878,11 @@ image: url(:/images/player_stack.png);
           <item>
            <property name="text">
             <string>DariusBot</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>StarBot</string>
            </property>
           </item>
           <item>
