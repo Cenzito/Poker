@@ -932,7 +932,7 @@ color: rgb(15, 96, 0);</string>
      </layout>
     </item>
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_12" stretch="20,4,1,4,1,4,20">
+     <layout class="QHBoxLayout" name="horizontalLayout_12" stretch="20,10,1,4,1,10,20">
       <item>
        <spacer name="horizontalSpacer_43">
         <property name="orientation">
@@ -962,7 +962,7 @@ color: rgb(15, 96, 0);</string>
         </property>
         <property name="maximumSize">
          <size>
-          <width>200</width>
+          <width>250</width>
           <height>25</height>
          </size>
         </property>
@@ -1080,7 +1080,7 @@ image: url(:/images/player_stack.png);
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_17">
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="0,0,2,0,0,0">
+       <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="0,60,0,2,0,0">
         <property name="spacing">
          <number>5</number>
         </property>
