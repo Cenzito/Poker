@@ -31,23 +31,24 @@ Table::Table(int seats){
 
 
 void Table::Print() {
-
-    qDebug() << "\n\n\n\n\n\n";
-    qDebug() << "seats " << seats;
-    qDebug() << "number players " << player_num;
-    qDebug() << "current player " << current_player;
-    qDebug() << "Button player " << ButtonPlayer;
-    qDebug() << "Active player " << QString::fromStdString(playerInfo[current_player].name);
+    /*
+    //qDebug() << "\n\n\n\n\n\n";
+    //qDebug() << "seats " << seats;
+    //qDebug() << "number players " << player_num;
+    //qDebug() << "current player " << current_player;
+    //qDebug() << "Button player " << ButtonPlayer;
+    //qDebug() << "Active player " << QString::fromStdString(playerInfo[current_player].name);
     for (int i=0; i< player_num; i++) {
-        qDebug()<< QString::fromStdString(playerInfo[i].name) <<"'s subpot is:" <<subpots[i];
+        //qDebug()<< QString::fromStdString(playerInfo[i].name) <<"'s subpot is:" <<subpots[i];
     }
+    */
     //qDebug() << "SB, BB" << SBValue << " " << BBValue << "\n";
 
-    qDebug() << "POT " << pot;
+    //qDebug() << "POT " << pot;
 
     //for (int i = 0; i < player_num; i++ ) {
     //    playerInfo[i].Print();
-    //    qDebug() << "\n";
+    //    //qDebug() << "\n";
     //}
 
 }
@@ -63,10 +64,10 @@ void Table::Print() {
 void Table::updateTable(std::string command) {
     // not a valid command if it doesn't start with a /
     if (command[0] != '/') {
-        qDebug() << "invalid command";
+        //qDebug() << "invalid command";
         return;
     }
-    qDebug() << QString::fromStdString(command);
+    //qDebug() << QString::fromStdString(command);
 
     //transform the string into a vector with each element a word of the string
     std::istringstream iss(command);
@@ -219,7 +220,7 @@ void Table::updateTable(std::string command) {
         player_num -= 1;
     } case CommandType::Invalid: {
         //not a valid command
-        qDebug() << "not valid";
+        //qDebug() << "not valid";
         break;
     }
     }

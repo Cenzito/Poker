@@ -1,6 +1,6 @@
 #include "Monte_Carlo_Probability_Simulator.hpp"
 // function that for any given hand, number of current players, state of the table, computes the probability of winning, making draws or losing
-#include <qdebug.h>
+#include <//qDebug.h>
 
 
 std::vector<float> Winning_Probability (Table &table, std::vector<Card> &hand, int num_players, int num_simulations) { //num_players is the number of other players

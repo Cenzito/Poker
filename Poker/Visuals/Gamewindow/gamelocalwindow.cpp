@@ -21,7 +21,7 @@ GameLocalWindow::GameLocalWindow(QWidget *parent, std::string p) : GameWindow(pa
 
 void GameLocalWindow::onAddBotClicked(){
     int level =  ui->AddBot->currentIndex();
-    qDebug() << level;
+    //qDebug() << level;
     emit addBot(level);
 };
 

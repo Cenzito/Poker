@@ -184,11 +184,11 @@ void GameLocal::distribute() {
 
     std::vector<PlayerInfo> winnerlist = winners();
     /*
-    qDebug()<<"winners are";
+    //qDebug()<<"winners are";
     for (int i=0; i<winnerlist.size(); i++) {
-        qDebug()<<winnerlist.at(i).name;
+        //qDebug()<<winnerlist.at(i).name;
     }
-    qDebug()<<"end of winners";
+    //qDebug()<<"end of winners";
     */
     if (winnerlist.size() ==1){
         //qDebug()<<"CASE 1 ERROR";
