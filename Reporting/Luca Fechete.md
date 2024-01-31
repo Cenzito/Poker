@@ -19,35 +19,29 @@ Building on the momentum from the first week, I further enhanced our server proj
 
 1. **Client Implementation Using Native Linux Headers**: This week, I focused on the client side of our project by creating a lightweight and efficient client using native Linux headers. This approach ensures compatibility and performance, leveraging the inherent capabilities of the Linux system for network communications. The client is designed to interact seamlessly with our server, providing a robust and responsive user experience.
 
-2. **Server Enhancement with Multicasting Capabilities**: To improve the efficiency and scalability of our server, I implemented multicasting functionality. This allows the server to send messages to multiple clients simultaneously, significantly enhancing the communication process. This feature is particularly beneficial for scenarios requiring real-time updates or broadcasts to multiple clients, demonstrating our server's capacity to handle high-volume, simultaneous communications.
-
-3. **Account Creation Support**: Another major milestone was the implementation of account creation support. This feature enables users to create their own accounts, laying the groundwork for personalized and secure interactions within our network. The account creation process is integrated with the server's architecture, ensuring a seamless and user-friendly experience. This addition marks an important step towards a fully-featured and user-centric application.
+2. **Account Creation Support**: Another major milestone was the implementation of account creation support. This feature enables users to create their own accounts, laying the groundwork for personalized and secure interactions within our network. The account creation process is integrated with the server's architecture, ensuring a seamless and user-friendly experience. This addition marks an important step towards a fully-featured and user-centric application.
 
 These advancements collectively mark a significant progression in our project, showcasing the potential of our server-client architecture and setting a solid foundation for future enhancements and features.
 
-### Week 3 and Week 4
+### Week 3 and Week 4:
 
-This weeks, I focused and will focus on merging the backend with the server and client, a critical step for our project's functionality.
+These weeks, I concentrated on detailed testing and debugging of both the server and client components in our system, focusing on enhancing performance, stability, and security. The server was scrutinized for its ability to handle multiple user requests simultaneously, ensuring optimal performance and data integrity. Client-side testing aimed at ensuring a glitch-free, responsive user interface across various devices and platforms.
 
-**Backend-Server Integration:**
-- Established a stable connection between the backend and the server.
-- Configured server settings and implemented API endpoints.
-- Overcame server load balancing issues.
-- Achieved a responsive backend-server connection.
+Simultaneously, I advanced backend integration for our poker application, particularly by implementing the '/command number' feature. This addition allows players to execute game actions like 'bet', 'raise', or 'fold' via simple commands. Integrating this required a deep understanding of the game's mechanics and the technical aspects of real-time client-server communication. This week's efforts were geared towards refining user experience and laying a foundation for more complex features in our poker application.
 
-**Backend-Client Integration:**
-- Integrated the backend with the client interface for user interaction.
-- Developed APIs and ensured data security.
-- Addressed latency issues for better user experience.
-- Completed a smooth and secure backend-client integration.
+### Week 5:
 
-**Testing and Optimization:**
-- Conducted load, stress, and user acceptance tests.
-- Optimized code for enhanced performance.
-- Resolved performance bottlenecks.
+This week, I focused on the development of two crucial classes for a terminal-based poker game: the Dealer class and the Card class. The creation of these classes is a significant step towards simulating a functional poker game in a terminal environment.
 
-**Next Steps:**
-- Refine integration based on test feedback.
-- Prepare for next steps and develop documentation.
+1. **Dealer Class**: This class acts as the central controller of the game. It's responsible for managing the flow of the poker game, including shuffling and dealing cards, handling bets, and determining the winner of each hand. The Dealer class maintains the state of the game and enforces the rules, ensuring that the game progresses logically and fairly.
 
-This week's achievements have significantly advanced our project, setting a strong foundation for the upcoming steps.
+2. **Card Class**: The Card class represents the individual cards in a deck. Each instance of this class holds information about the card's suit (hearts, diamonds, clubs, spades) and rank (number or face). This class is fundamental to the game's operation, as it allows the creation and manipulation of a deck of cards, which is central to poker gameplay.
+
+By testing these classes in a terminal, I'm ensuring that the basic functionalities – like card dealing, hand formation, and round progression – are working correctly. This setup provides a solid foundation for further development, such as integrating player interactions and merging the frontend with the client.
+
+### Weeks 6 and 7:
+Over the past few weeks, I have completed extensive testing and prepared the client component for integration into the backend and game logic of our poker application. This involved a thorough process of modularizing the code, enhancing its maintainability, scalability, and ease of use.
+
+Modularization entailed breaking down the client's codebase into distinct, functional modules. Each module was designed to handle specific aspects of the client's operations, such as user input processing, game state management, and network communication. This approach not only streamlines the development process but also facilitates easier debugging and future enhancements, as changes can be made to individual modules without affecting the entire system.
+
+The completion of testing ensured that all components function cohesively, with robust error handling and performance optimizations. This preparation paves the way for a seamless merger of the client with the backend, aligning it with the game logic to offer a comprehensive and efficient gaming experience.
