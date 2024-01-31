@@ -15,3 +15,7 @@ WEEK of 22th January 2024:
 
 Alongside Alvaro we finished the functions for Agression Factor and VPIP for each player, using his function ReadMargins and ReadHands, and the worked perfectly, now we have to adapt all of our work for QT and then develop a UI so it can be translated into a visual aspect, we'll ask for help to the Visuals group.
 
+
+WEEK of 29th January 2024:
+
+Finishing touches for our analysis functions, talked with Augustin Clot from Visuals for the development of a Analysis window where the stats for each player would be shown, he encountered problems with the window rendering in Windows, had to talk with the rest of the group so this problem has to be fixed before we go on with the Analysis window (just have to render window, the stats and their respective functions are already done and working perfectly.).
