@@ -40,7 +40,7 @@ This week, I focused on the development of two crucial classes for a terminal-ba
 By testing these classes in a terminal, I'm ensuring that the basic functionalities – like card dealing, hand formation, and round progression – are working correctly. This setup provides a solid foundation for further development, such as integrating player interactions and merging the frontend with the client.
 
 ### Weeks 6 and 7:
-Over the past few weeks, I have completed extensive testing and prepared the client component for integration into the backend and game logic of our poker application. This involved a thorough process of modularizing the code, enhancing its maintainability, scalability, and ease of use.
+These weeks, I have completed extensive testing and prepared the client component for integration into the backend and game logic of our poker application. This involved a thorough process of modularizing the code, enhancing its maintainability, scalability, and ease of use.
 
 Modularization entailed breaking down the client's codebase into distinct, functional modules. Each module was designed to handle specific aspects of the client's operations, such as user input processing, game state management, and network communication. This approach not only streamlines the development process but also facilitates easier debugging and future enhancements, as changes can be made to individual modules without affecting the entire system.
 
